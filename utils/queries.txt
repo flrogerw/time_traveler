@@ -1,0 +1,50 @@
+
+#####  Update the schedules table with show ids #####
+UPDATE public.schedules
+SET show_id = shows.show_id
+FROM public.shows
+WHERE public.schedules.show_title ilike(%public.shows.show_name%);
+
+## Get episode count for shows ###
+SELECT shows.show_name, COUNT(episodes.episode_id) AS episode_count
+FROM shows LEFT JOIN episodes ON shows.show_id = episodes.show_id GROUP BY shows.show_name;
+
+## Get episodes more than 5 not in schedules ###
+SELECT shows.show_name, shows.show_id, COUNT(episodes.episode_id) AS episode_count FROM shows
+JOIN episodes ON shows.show_id = episodes.show_id LEFT JOIN schedules ON shows.show_id = schedules.show_id
+GROUP BY shows.show_name, shows.show_id HAVING COUNT(episodes.episode_id) > 5 AND MAX(schedules.show_id) IS NULL;
+
+## Gets year and day with most filled time slots
+SELECT air_date, day_of_week, network, COUNT(*) AS time_slots, COUNT(show_id) AS slots_with_shows
+FROM schedules GROUP BY air_date, day_of_week, network
+ORDER BY CASE WHEN COUNT(*) = COUNT(show_id) THEN 1 ELSE 0 END DESC, COUNT(show_id) DESC, air_date, day_of_week,network;
+
+## Compares episodes durations to show expected durations
+SELECT e.show_id, s.show_name, e.episode_id, e.end_point,
+s.show_duration, CASE WHEN e.end_point >= ALL(ARRAY(SELECT unnest(s.show_duration) * 0.75))
+THEN TRUE ELSE FALSE END AS is_80_percent_or_more
+FROM episodes e JOIN shows s ON e.show_id = s.show_id ORDER BY is_80_percent_or_more, e.show_id;
+
+## populate episode_durations for episodes
+INSERT INTO episode_durations (episode_id, start_point, end_point)
+SELECT episode_id, start_point, end_point
+FROM episodes;
+
+## Update episode_season for holidays
+UPDATE public.episodes SET episode_season = 'easter'
+WHERE episode_description ILIKE '% easter %'
+   OR episode_title ILIKE '% easter %';
+
+UPDATE public.episodes SET episode_season = 'christmas'
+WHERE episode_description ILIKE '% santa %'
+   OR episode_description ILIKE '% christmas %'
+   OR episode_title ILIKE '% santa %'
+   OR episode_title ILIKE '% christmas %';
+
+UPDATE public.episodes SET episode_season = 'thanksgiving'
+WHERE episode_description ILIKE '% thanksgiving %'
+   OR episode_title ILIKE '% thanksgiving %';
+
+UPDATE public.episodes SET episode_season = 'halloween'
+WHERE episode_description ILIKE '% halloween %'
+   OR episode_title ILIKE '% halloween %';

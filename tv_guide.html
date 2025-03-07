@@ -1,0 +1,35 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TV Guide</title>
+        <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file -->
+    </head>
+    <body>
+        <div class="tv-guide">
+            <div class="header">TV Guide - Sunday, 1971</div>
+    <div class="channel">Channel</div><div class="time">06:00 PM</div><div class="time">06:30 PM</div><div class="time">07:00 PM</div><div class="time">07:30 PM</div><div class="time">08:00 PM</div><div class="time">08:30 PM</div><div class="time">09:00 PM</div><div class="time">09:30 PM</div><div class="time">10:00 PM</div><div class="time">10:30 PM</div><div class="time">11:00 PM</div><div class="time">11:30 PM</div><div class="time">12:00 AM</div><div class="time">12:30 AM</div>
+        </div>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="modal-title"></h2>
+                <p id="modal-description"></p>
+            </div>
+        </div>
+    <script>
+        function showDetails(title, description) {
+        document.getElementById('modal-title').textContent = title;
+        document.getElementById('modal-description').textContent = description;
+        document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+    </body>
+    </html>
+    
