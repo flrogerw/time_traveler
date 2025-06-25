@@ -16,6 +16,7 @@ from html import unescape
 import hashlib
 from multiprocessing import Pool, cpu_count
 import shutil
+import random
 
 con = psycopg2.connect(database="time_traveler", user="postgres", password="m06Ar14u", host="192.168.1.201", port=5432)
 cur = con.cursor()
@@ -25,10 +26,11 @@ translator = str.maketrans('', '', string.punctuation)
 
 BLACKOUT_DURATION = 1.8
 DEV_MODE = False
-SHOW_NAME = 'Flying_Nun'.replace(' ', '_')
-SHOW_ID = 210
-FILES_DIR = "/Volumes/TTBS/dump/flying_nun"
-IMDB_URL = 'https://www.imdb.com/title/tt0061252/episodes/?season=2'
+#DEV_MODE = True
+SHOW_NAME = 'Lou_Grant'.replace(' ', '_')
+SHOW_ID = 222
+FILES_DIR = "/Volumes/TTBS/dump/lou-grant-season-3"
+IMDB_URL = 'https://www.imdb.com/title/tt0075528/episodes/?season=3'
 
 
 def get_episode_season(url_string):
@@ -36,7 +38,7 @@ def get_episode_season(url_string):
     file = Path(os.path.basename(a.path))
     file_name = str(file.with_suffix('')) #.split('-')[0]
 
-    match = re.search(r"S(\d{1,2})E(\d{1,2})", file_name, re.IGNORECASE)
+    match = re.search(r"S(\d{1,2})E(\d{1,2})*", file_name, re.IGNORECASE)
     if match:
         season = int(match.group(1))
         episode = int(match.group(2))
@@ -104,10 +106,13 @@ def process_remove_bars(input_file):
         return output_file
     return None
 
+def random_string(length=10):
+    characters = string.ascii_letters + string.digits  # A-Z, a-z, 0-9
+    return ''.join(random.choice(characters) for _ in range(length))
 
 def get_blackout(filename):
     result_times = []
-    logfile = "./FFMPEGLOG.txt"
+    logfile = f"{random_string()}.txt"
     subprocess.call(
         f'ffmpeg -i {filename} -vf "blackdetect=d={BLACKOUT_DURATION}:pix_th=0.05" -an -f null - 2>&1 | grep blackdetect > {logfile}',
         shell=True)
@@ -118,6 +123,7 @@ def get_blackout(filename):
                 start = float(deltas[0].split(':')[1])
                 end = float(deltas[1].split(':')[1])
                 result_times.append((start, end))
+    os.remove(logfile)
     return result_times
 
 

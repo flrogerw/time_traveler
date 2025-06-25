@@ -38,7 +38,6 @@ WHERE episode_description ILIKE '% easter %'
 UPDATE public.episodes SET episode_season = 'christmas'
 WHERE episode_description ILIKE '% santa %'
    OR episode_description ILIKE '% christmas %'
-   OR episode_title ILIKE '% santa %'
    OR episode_title ILIKE '% christmas %';
 
 UPDATE public.episodes SET episode_season = 'thanksgiving'
