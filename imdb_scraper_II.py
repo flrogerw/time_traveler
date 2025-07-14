@@ -25,12 +25,12 @@ stop = set(stopwords.words('english') + list(string.punctuation))
 translator = str.maketrans('', '', string.punctuation)
 
 BLACKOUT_DURATION = 1.8
-DEV_MODE = False
-#DEV_MODE = True
-SHOW_NAME = 'Lou_Grant'.replace(' ', '_')
-SHOW_ID = 222
-FILES_DIR = "/Volumes/TTBS/dump/lou-grant-season-3"
-IMDB_URL = 'https://www.imdb.com/title/tt0075528/episodes/?season=3'
+#DEV_MODE = False
+DEV_MODE = True
+SHOW_NAME = 'Night_Gallery'.replace(' ', '_')
+SHOW_ID = 228
+FILES_DIR = "/Volumes/TTBS/dump/night_gallery"
+IMDB_URL = 'https://www.imdb.com/title/tt0065327/episodes/?season=1'
 
 
 def get_episode_season(url_string):
