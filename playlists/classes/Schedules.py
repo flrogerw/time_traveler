@@ -72,14 +72,15 @@ class Schedules:
                 SELECT * FROM time_slot_schedules
                 WHERE channel_id = %s
                 AND schedule_id = %s
-                AND (start_time <= CAST(%s AS TIME) 
-                AND (start_time + (duration - CAST('00:00:01' AS TIME))) > CAST(%s AS TIME))
+                AND (start_time >= CAST(%s AS TIME) 
+                AND (start_time + (duration - CAST('00:00:01' AS TIME))) < CAST(%s AS TIME))
                 AND channel_dow = %s
                 ORDER BY start_time ASC;""",
-                             (channel_id, replication_year, end_datetime.time(), start_time_str, dow))
+                             (channel_id, replication_year, start_time_str, end_datetime.time(), dow))
 
             # Format the results into a list of dictionaries with human-readable times.
             records = self.cur.fetchall()
+
             formatted_records = [{
                 **dict(record),  # Unpack the record into a dictionary.
                 'start_time': record['start_time'].strftime('%H:%M:%S'),

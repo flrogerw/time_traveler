@@ -49,9 +49,9 @@ class Shows:
             FROM shows s
             LEFT JOIN broadcast_log bl ON s.show_id = bl.show_id
             WHERE (bl.channel_id IS NULL OR bl.channel_id != %s)
-            AND s.airdate_end < CAST(%s AS DATE)
+            AND s.airdate_end <= CAST(%s AS DATE)
             AND %s = ANY (s.show_duration)
-            AND {where_string}
+            AND s.show_is_syndicated = TRUE
             AND s.show_type != 'children'
             AND s.show_id NOT IN (
                 SELECT show_id FROM schedule_template WHERE channel_id = %s AND replication_year = %s

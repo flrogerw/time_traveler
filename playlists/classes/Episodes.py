@@ -95,8 +95,10 @@ class Episodes:
             else:
                 # If no episode is found, check for a scheduled show or attempt to fill the slot
                 show_id = current_schedule.get(slot['start_time'])
-                self.schedules.insert_schedule_template(slot, dow, network, show_id)
+                if not show_id:
+                    show_id = self.shows.get_available_show_id(channel_id, year, total_seconds, network)
 
+                self.schedules.insert_schedule_template(slot, dow, network, show_id)
                 episode = self.get_next_episode(slot, dow)  # Retry getting the next episode
                 if episode:
                     final_episodes.append(episode)

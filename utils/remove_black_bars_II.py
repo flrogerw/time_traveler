@@ -134,7 +134,7 @@ def process_file(file):
 
 
 def main():
-    files_to_process = glob.glob(f"/Volumes/TTBS/dump/king-of-the-hill13seasons/King of the Hill S01E01 Pilot.mp4")
+    files_to_process = glob.glob(f"/Volumes/TTBS/time_traveler/90s/97/Bill_Nye_Life_Cycles.mp4")
     print(len(files_to_process))
 
     with ProcessPoolExecutor(max_workers=4) as executor:

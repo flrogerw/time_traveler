@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+from pprint import pprint
 
 import psycopg2
 from dotenv import load_dotenv
@@ -53,6 +54,7 @@ class Playlists:
         commercial_break_flag = None
 
         for episode in final_episodes:
+            print(episode)
             movie_duration = None
             episode_true_duration = None
             commercial_break_counter = 0  # Initialize counter for commercial breaks
@@ -64,6 +66,7 @@ class Playlists:
                 file_path = f"{LOCAL_PATH}/{decade}/{str(sub_year).zfill(2)}/{episode['episode_file']}"
                 commercial_breaks = self.commercials.get_commercial_breaks(episode['episode_id'])
                 episode_true_duration = Episodes.get_true_duration(self.cur, episode['episode_id'])
+                print(episode['show_id'], episode_true_duration)
                 show_duration = self.shows.get_show_duration(episode['show_id'], episode_true_duration)
                 target_duration = show_duration - episode_true_duration  # Remaining time to fill with commercials
                 number_of_breaks = len(commercial_breaks) + 2  # Adding 2 breaks: before and after the show

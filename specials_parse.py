@@ -123,7 +123,7 @@ for special in specials:
         'specials_description': description,
         'specials_genre': ', '.join(data['genre']),
         'specials_airdate': release_date,
-        'specials_stars': ', '.join([record['name'] for record in data['actor']]),
+        'specials_stars': ', '.join([record['name'] for record in data.get('actor', [])]) or None,
         'start_point': 0,
         'end_point': special_end_point,
         'specials_rating': 'G' if data['contentRating'] == 'Approved' else data['contentRating']

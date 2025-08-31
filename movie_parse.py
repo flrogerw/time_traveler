@@ -63,7 +63,8 @@ for movie in movies:
         'movie_stars': ', '.join([record['name'] for record in data['actor']]),
         'start_point': 0,
         'end_point': movie_end_point,
-        'movie_rating': 'G' if data['contentRating'] == 'Approved' else data['contentRating']
+        'movie_rating': 'G' if data['contentRating'] == 'Approved' else data['contentRating'],
+        'imdb_number': imdb_id
     }
 
     if 'movie_season' in extras:

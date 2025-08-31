@@ -3,7 +3,7 @@
 UPDATE public.schedules
 SET show_id = shows.show_id
 FROM public.shows
-WHERE public.schedules.show_title ilike(%public.shows.show_name%);
+WHERE public.schedules.show_title ILIKE '%' || shows.show_name || '%';
 
 ## Get episode count for shows ###
 SELECT shows.show_name, COUNT(episodes.episode_id) AS episode_count
@@ -32,18 +32,18 @@ FROM episodes;
 
 ## Update episode_season for holidays
 UPDATE public.episodes SET episode_season = 'easter'
-WHERE episode_description ILIKE '% easter %'
-   OR episode_title ILIKE '% easter %';
+WHERE episode_description ILIKE '%easter%'
+   OR episode_title ILIKE '%easter%';
 
 UPDATE public.episodes SET episode_season = 'christmas'
-WHERE episode_description ILIKE '% santa %'
-   OR episode_description ILIKE '% christmas %'
-   OR episode_title ILIKE '% christmas %';
+WHERE episode_description ILIKE '%santa%'
+   OR episode_description ILIKE '%christmas%'
+   OR episode_title ILIKE '%christmas%';
 
 UPDATE public.episodes SET episode_season = 'thanksgiving'
-WHERE episode_description ILIKE '% thanksgiving %'
-   OR episode_title ILIKE '% thanksgiving %';
+WHERE episode_description ILIKE '%thanksgiving%'
+   OR episode_title ILIKE '%thanksgiving%';
 
 UPDATE public.episodes SET episode_season = 'halloween'
-WHERE episode_description ILIKE '% halloween %'
-   OR episode_title ILIKE '% halloween %';
+WHERE episode_description ILIKE '%halloween%'
+   OR episode_title ILIKE '%halloween%';
