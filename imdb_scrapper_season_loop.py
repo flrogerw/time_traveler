@@ -48,12 +48,13 @@ cur = con.cursor()
 stop = set(stopwords.words('english') + list(string.punctuation))
 translator = str.maketrans('', '', string.punctuation)
 
-SHOW_NAME = 'Hardcastle'.replace(' ', '_')
-SHOW_ID = 251
-FILES_DIR = "hard_castle"
-IMDB_NUMBER = 'tt0085029'
-SEASONS = [1,2,3]
-PATTERN = r"S(\d{1,2}) E(\d{1,2})*"
+SHOW_NAME = 'Knight_Rider'.replace(' ', '_')
+FRIENDLY_NAME = 'Knight Rider'
+SHOW_ID = 264
+FILES_DIR = "knight_rider"
+IMDB_NUMBER = 'tt0083437'
+SEASONS = [1,2,3,4]
+PATTERN = r"S(\d{1,2})E(\d{1,2})*"
 BLACKOUT_DURATION = 1.8
 THREAD_COUNT = 1
 DEV_MODE = False
@@ -212,7 +213,7 @@ def process_no_remove_bars(input_file: str) -> str:
     return output_file
 
 
-def process_remove_bars(input_file: str) -> Optional[str]:
+def process_remove_bars(input_file: str, metadata: dict) -> Optional[str]:
     """
     Transcode video with automatic bar cropping based on detected crop values.
     """
@@ -238,15 +239,20 @@ def process_remove_bars(input_file: str) -> Optional[str]:
         output_file = f"{parent_path}/{filename}.build.mp4"
         crop_cmd = [
             'ffmpeg', '-y', '-loglevel', 'quiet', '-i', input_file,
+            "-map_metadata", "-1",
             '-r', '30',
             '-vf', f'crop={crop_values},scale=640:480,setdar=4/3',
             '-af', 'loudnorm=I=-26:TP=-2:LRA=7',
-            '-b:v', '600k',
+            '-b:v', '800k',
             '-c:v', 'h264_videotoolbox',
             '-c:a', 'aac',
-            '-b:a', '128k',
-            output_file
+            '-b:a', '128k'
         ]
+
+        for k, v in metadata.items():
+            crop_cmd.extend(["-metadata", f"{k}={v}"])
+        crop_cmd.append(output_file)
+
         subprocess.run(crop_cmd)
         return output_file
     except Exception as e:
@@ -311,14 +317,14 @@ def get_date(release_date: Optional[dict], last_year: str) -> Tuple[datetime.dat
     Convert IMDb release_date dict to datetime, filling missing values.
     """
     if release_date is None:
-        release_date = {'month': 12, 'day': 10, 'year': 1979}
+        release_date = {'month': 12, 'day': 31, 'year': 1900}
 
     release_date.setdefault('day', 19)
     release_date.setdefault('month', 12)
 
-    year = release_date.get('year', last_year)
-    day = release_date.get('day', 1)
-    month = release_date.get('month', 1)
+    year = release_date.get('year', last_year) or 1900
+    day = release_date.get('day', 1) or 3
+    month = release_date.get('month', 1) or 1
     return datetime.datetime.strptime(f"{year}-{month}-{day}", '%Y-%m-%d'), year
 
 
@@ -393,8 +399,15 @@ def process_file(file: str, episodes: Dict[str, dict]) -> None:
                 save_path_str = f"/Volumes/TTBS/time_traveler/{e['decade']}/{e['year']}/{save_file}"
                 print(save_path_str)
 
+                meta = {
+                    "title": f"{e['title']} - {str(e['airdate'])}",
+                    "artist": FRIENDLY_NAME,
+                    "comment": "TV Party Tonight",
+                    "year": str(e['airdate'])
+                }
+
                 if not DEV_MODE:
-                    processed_file = process_remove_bars(file) if PROCESS else file
+                    processed_file = process_remove_bars(file, meta) if PROCESS else file
                     if processed_file:
                         processed_file_path = Path(processed_file)
                         save_path = Path(save_path_str)
@@ -406,7 +419,7 @@ def process_file(file: str, episodes: Dict[str, dict]) -> None:
                             os.remove(processed_file_path)
 
                         episode_length = int(get_length(save_path))
-                        breaks = detect_commercials(save_path)
+                        breaks = [] #detect_commercials(save_path)
                         save_episode_to_db(e, save_file, episode_length, breaks)
                     else:
                         print(f"Crop values could not be detected for {file}")
