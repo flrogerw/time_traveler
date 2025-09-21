@@ -84,8 +84,7 @@ def generate_tv_guide_html(shows, year):
     # Generate time slots from 6:00 PM to 1:00 AM
     start_time = datetime.strptime("18:00", "%H:%M")
     end_time = datetime.strptime("01:00", "%H:%M")
-    end_time = end_time.replace(
-        day=start_time.day + 1)  # Adjust end_time to the next day to ensure correct calculations
+    end_time = end_time.replace(day=start_time.day + 1)  # Adjust end_time to the next day to ensure correct calculations
     time_slots = [start_time + timedelta(minutes=30 * i) for i in range(14)]  # 6:00 PM to 1:00 AM
 
     # Time slot headers

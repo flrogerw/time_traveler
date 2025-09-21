@@ -48,12 +48,12 @@ cur = con.cursor()
 stop = set(stopwords.words('english') + list(string.punctuation))
 translator = str.maketrans('', '', string.punctuation)
 
-SHOW_NAME = 'Hardcastle'.replace(' ', '_')
-SHOW_ID = 251
-FILES_DIR = "hard_castle"
-IMDB_NUMBER = 'tt0085029'
-SEASONS = [1,2,3]
-PATTERN = r"S(\d{1,2}) E(\d{1,2})*"
+SHOW_NAME = 'Land_Of_The_Giants'.replace(' ', '_')
+SHOW_ID = 274
+FILES_DIR = "land-of-the-giants"
+IMDB_NUMBER = 'tt0062578'
+SEASONS = [1,2]
+PATTERN = r"S(\d{1,2})E(\d{1,2})*"
 BLACKOUT_DURATION = 1.8
 THREAD_COUNT = 1
 DEV_MODE = False
@@ -187,7 +187,7 @@ def get_episode_season(url_string: str) -> Tuple[Optional[int], Optional[int]]:
     return None, None
 
 
-def process_no_remove_bars(input_file: str) -> str:
+def crop_to_43(input_file: str) -> str:
     """
     Transcode video without cropping bars.
     """
@@ -200,9 +200,9 @@ def process_no_remove_bars(input_file: str) -> str:
     process_cmd = [
         'ffmpeg', '-y', '-loglevel', 'quiet', '-i', input_file,
         '-r', '30',
-        '-vf', 'scale=640:480,setdar=4/3',
+        '-vf', 'crop=ih*4/3:ih:(iw-ih*4/3)/2:0,scale=640:480',
         '-af', 'loudnorm=I=-26:TP=-2:LRA=7',
-        '-b:v', '600k',
+        '-b:v', '800k',
         '-c:v', 'h264_videotoolbox',
         '-c:a', 'aac',
         '-b:a', '128k',
@@ -241,7 +241,7 @@ def process_remove_bars(input_file: str) -> Optional[str]:
             '-r', '30',
             '-vf', f'crop={crop_values},scale=640:480,setdar=4/3',
             '-af', 'loudnorm=I=-26:TP=-2:LRA=7',
-            '-b:v', '600k',
+            '-b:v', '800k',
             '-c:v', 'h264_videotoolbox',
             '-c:a', 'aac',
             '-b:a', '128k',
@@ -394,7 +394,8 @@ def process_file(file: str, episodes: Dict[str, dict]) -> None:
                 print(save_path_str)
 
                 if not DEV_MODE:
-                    processed_file = process_remove_bars(file) if PROCESS else file
+                    #processed_file = process_remove_bars(file) if PROCESS else file
+                    processed_file = crop_to_43(file) if PROCESS else file
                     if processed_file:
                         processed_file_path = Path(processed_file)
                         save_path = Path(save_path_str)
