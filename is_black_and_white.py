@@ -1,42 +1,32 @@
 import subprocess
 
+import cv2
+import numpy as np
 
-def is_video_black_and_white(video_path):
-    """
-    Determines if a video is black and white using FFmpeg.
 
-    Args:
-        video_path (str): Path to the video file.
+def is_bw_frame(frame, tolerance=5):
+    return np.all(np.abs(frame[:,:,0] - frame[:,:,1]) < tolerance) and \
+           np.all(np.abs(frame[:,:,1] - frame[:,:,2]) < tolerance)
 
-    Returns:
-        bool: True if the video is black and white, False otherwise.
-    """
-    command = [
-        "ffmpeg", "-i", video_path,
-        "-vf", "format=gray,signalstats",
-        "-f", "null", "-"
-    ]
-    try:
-        result = subprocess.run(command, stderr=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
-        output = result.stderr  # FFmpeg writes analysis logs to stderr
-
-        # Check for non-zero chroma signals in output
-        if "U:" in output or "V:" in output:
-            for line in output.splitlines():
-                if "U:" in line or "V:" in line:
-                    chroma_values = [float(val.split(":")[-1]) for val in line.split() if val.startswith(("U:", "V:"))]
-                    if any(value > 0.0 for value in chroma_values):
-                        return False  # Color detected
-        return True  # No chroma detected, likely black and white
-
-    except FileNotFoundError:
-        raise FileNotFoundError("FFmpeg is not installed or not in the system PATH.")
-
+def is_video_black_and_white_opencv(video_path, max_samples=20):
+    cap = cv2.VideoCapture(video_path)
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    step = max(total_frames // max_samples, 1)
+    count_bw = 0
+    for i in range(0, total_frames, step):
+        cap.set(cv2.CAP_PROP_POS_FRAMES, i)
+        ret, frame = cap.read()
+        if not ret:
+            continue
+        if is_bw_frame(frame):
+            count_bw += 1
+    cap.release()
+    return count_bw >= max_samples * 0.95  # 95% of sampled frames are grayscale
 
 # Example usage
-video_file = "/Volumes/TTBS/time_traveler/80s/81/WKRP_Straight_from_the_Heart.mp4"
+video_file = "/Volumes/TTBS/time_traveler/80s/85/Airwolf_Eruption.mp4"
 try:
-    is_bw = is_video_black_and_white(video_file)
+    is_bw = is_video_black_and_white_opencv(video_file)
     if is_bw:
         print("The video is black and white.")
     else:
