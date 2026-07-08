@@ -41,7 +41,7 @@ class Episodes:
             return formatted_record
 
 
-    def manage_time_slot_expansion(self, slot, dow, final_episodes, network):
+    def manage_time_slot_expansion(self, slot, dow, final_episodes, network, air_date=None):
         """
         Handle the expansion of time slots into 30-minute segments if no suitable show is found
         for the given slot. Updates schedules and inserts new time slots.
@@ -67,7 +67,7 @@ class Episodes:
             new_end_time += duration_delta
             slot['end_time'] = new_end_time.strftime('%H:%M:%S')  # Update the end time of the slot
             self.schedules.insert_schedule_template(slot, dow, network)
-            episode = self.get_next_episode(slot, dow)  # Get next episode for the new slot
+            episode = self.get_next_episode(slot, dow, air_date=air_date)  # Get next episode for the new slot
             if episode:
                 final_episodes.append(episode)
                 slot['start_time'] = slot['end_time']  # Update start time for the next iteration
@@ -152,11 +152,14 @@ class Episodes:
                                           seconds=time_obj.second).total_seconds())
 
             # Attempt to get the next episode for the time slot
-            episode = self.get_next_episode(slot, dow)
+            episode = self.get_next_episode(slot, dow, air_date=air_date)
             if episode:
                 final_episodes.append(episode)
-                # Check if the show needs to be replaced and rotate a new show if it's the last episode
-                self.shows.get_replacement_show(episode['show_id'], channel_id, year, total_seconds)
+                # Rotate in a new show once its episodes are exhausted -- unless this episode is a
+                # non-final part of a multi-part story with its continuation still unaired, in which
+                # case rotating the show out now would orphan the arc mid-story.
+                if not episode.get('has_pending_continuation'):
+                    self.shows.get_replacement_show(episode['show_id'], channel_id, year, total_seconds)
             else:
                 # If no episode is found, check for a scheduled show or attempt to fill the slot
                 show_id = current_schedule.get(slot['start_time'])
@@ -168,7 +171,7 @@ class Episodes:
                     show_id = self.shows.get_available_show_id(channel_id, year, total_seconds, network, preferred_genres)
 
                 self.schedules.insert_schedule_template(slot, dow, network, show_id)
-                episode = self.get_next_episode(slot, dow)  # Retry getting the next episode
+                episode = self.get_next_episode(slot, dow, air_date=air_date)  # Retry getting the next episode
                 if episode:
                     final_episodes.append(episode)
                 elif show_id == 173 or total_seconds > 3600:
@@ -177,7 +180,7 @@ class Episodes:
                     final_episodes.append(movie)
                 else:
                     # If no match, try to expand the slot into 30-minute shows
-                    self.manage_time_slot_expansion(slot, dow, final_episodes, network)
+                    self.manage_time_slot_expansion(slot, dow, final_episodes, network, air_date=air_date)
 
             return final_episodes
         except Exception as e:
@@ -200,60 +203,122 @@ class Episodes:
         return db.fetchone()['final_duration']
 
 
-    def get_next_episode(self, time_slot, day_of_week):
+    def _handle_multipart_continuation(self, episode, time_slot, air_date):
+        """
+        If `episode` is a non-final part of a multi-part story, reserve this slot's next
+        calendar-day occurrence for the continuation (via schedule_overrides) so it airs the
+        very next night regardless of the show's normal recurring cadence.
+
+        Returns True if a continuation is still unaired (whether or not it could be scheduled),
+        so callers can avoid rotating the show out of its slot mid-arc.
+        """
+        if not episode.get('episode_is_multipart'):
+            return False
+
+        # Match on the exact next episode_number (not just the next part-index), since a show can
+        # have multiple multi-part arcs whose "part 2"s otherwise share the same part-index value.
+        self.cur.execute(
+            """SELECT episode_id FROM episodes
+               WHERE show_id = %s AND episode_number = %s AND episode_is_multipart = %s
+               AND episode_id NOT IN (SELECT episode_id FROM broadcast_log)
+               LIMIT 1;""",
+            (episode['show_id'], episode['episode_number'] + 1, episode['episode_is_multipart'] + 1))
+        continuation = self.cur.fetchone()
+        if not continuation:
+            return False
+
+        if air_date is not None:
+            next_day = air_date + timedelta(days=1)
+            self.cur.execute(
+                """INSERT INTO schedule_overrides (channel_id, air_date, time_slot, episode_id)
+                   VALUES (%s, %s, %s, %s)
+                   ON CONFLICT (channel_id, air_date, time_slot) DO NOTHING;""",
+                (time_slot['channel_id'], next_day, time_slot['start_time'], continuation['episode_id']))
+        return True
+
+    def get_next_episode(self, time_slot, day_of_week, air_date=None):
         """
         Retrieve the next episode that hasn't been broadcast for the given time slot and day of the week.
         Inserts the episode into the broadcast log to track it as played.
+
+        If a schedule_overrides row exists for this channel/slot/air_date (e.g. a multi-part
+        continuation reserved by a prior call), it takes priority over the normal season/episode
+        sequential lookup.
         """
         try:
-            query = sql.SQL("""
-                            WITH NextEpisode AS (
-                                SELECT
-                                    st.channel_id,
-                                    st.time_slot,
-                                    st.show_id,
-                                    e.episode_id,
-                                    st.runtime,
-                                    st.replication_year,
-                                    st.days_of_week
-                                FROM
-                                    schedule_template st
-                                JOIN episodes e ON e.show_id = st.show_id
-                                LEFT JOIN broadcast_log bl ON bl.episode_id = e.episode_id 
-                                                           AND bl.channel_id = st.channel_id
-                                WHERE 
-                                    bl.episode_id IS NULL
-                                    AND st.channel_id = %s
-                                    AND st.replication_year = %s
-                                    AND st.time_slot::text = %s
-                                    AND %s = ANY(st.days_of_week)
-                                ORDER BY e.show_season_number, e.episode_number
-                                LIMIT 1
-                            )
-                            INSERT INTO broadcast_log (channel_id, show_id, episode_id, date_played, time_slot, replication_year)
-                            SELECT 
-                                ne.channel_id,
-                                ne.show_id,
-                                ne.episode_id,
-                                current_date,
-                                ne.time_slot::time,
-                                ne.replication_year
-                            FROM NextEpisode ne RETURNING episode_id;""")
+            episode_row = None
 
-            # Execute the query and retrieve the next episode
-            self.cur.execute(query,
-                             (time_slot['channel_id'], time_slot['schedule_id'], time_slot['start_time'], day_of_week))
-            episode_id = self.cur.fetchone()
-            if episode_id is None:
+            if air_date is not None:
+                self.cur.execute(
+                    """SELECT episode_id FROM schedule_overrides
+                       WHERE channel_id = %s AND air_date = %s AND time_slot = %s;""",
+                    (time_slot['channel_id'], air_date, time_slot['start_time']))
+                override = self.cur.fetchone()
+                if override:
+                    self.cur.execute(
+                        """INSERT INTO broadcast_log (channel_id, show_id, episode_id, date_played, time_slot, replication_year)
+                           SELECT %s, e.show_id, e.episode_id, current_date, %s::time, %s
+                           FROM episodes e WHERE e.episode_id = %s
+                           RETURNING episode_id;""",
+                        (time_slot['channel_id'], time_slot['start_time'], time_slot['schedule_id'], override['episode_id']))
+                    episode_row = self.cur.fetchone()
+                    self.cur.execute(
+                        """DELETE FROM schedule_overrides WHERE channel_id = %s AND air_date = %s AND time_slot = %s;""",
+                        (time_slot['channel_id'], air_date, time_slot['start_time']))
+
+            if episode_row is None:
+                query = sql.SQL("""
+                                WITH NextEpisode AS (
+                                    SELECT
+                                        st.channel_id,
+                                        st.time_slot,
+                                        st.show_id,
+                                        e.episode_id,
+                                        st.runtime,
+                                        st.replication_year,
+                                        st.days_of_week
+                                    FROM
+                                        schedule_template st
+                                    JOIN episodes e ON e.show_id = st.show_id
+                                    LEFT JOIN broadcast_log bl ON bl.episode_id = e.episode_id
+                                                               AND bl.channel_id = st.channel_id
+                                    WHERE
+                                        bl.episode_id IS NULL
+                                        AND st.channel_id = %s
+                                        AND st.replication_year = %s
+                                        AND st.time_slot::text = %s
+                                        AND %s = ANY(st.days_of_week)
+                                    ORDER BY e.show_season_number, e.episode_number
+                                    LIMIT 1
+                                )
+                                INSERT INTO broadcast_log (channel_id, show_id, episode_id, date_played, time_slot, replication_year)
+                                SELECT
+                                    ne.channel_id,
+                                    ne.show_id,
+                                    ne.episode_id,
+                                    current_date,
+                                    ne.time_slot::time,
+                                    ne.replication_year
+                                FROM NextEpisode ne RETURNING episode_id;""")
+
+                # Execute the query and retrieve the next episode
+                self.cur.execute(query,
+                                 (time_slot['channel_id'], time_slot['schedule_id'], time_slot['start_time'], day_of_week))
+                episode_row = self.cur.fetchone()
+
+            if episode_row is None:
                 return None
 
             # Query to fetch detailed episode information
             query = sql.SQL("""SELECT e.*, bl.time_slot, bl.replication_year FROM episodes e
                                     LEFT JOIN broadcast_log bl ON e.episode_id = bl.episode_id
                                     WHERE e.episode_id = %s""")
-            self.cur.execute(query, (episode_id['episode_id'],))
+            self.cur.execute(query, (episode_row['episode_id'],))
             formatted_record = [{**dict(record), 'type': 'episode'} for record in self.cur.fetchall()]
-            return formatted_record[0]
+            episode = formatted_record[0]
+
+            episode['has_pending_continuation'] = self._handle_multipart_continuation(episode, time_slot, air_date)
+            return episode
         except Exception as e:
             # Log any errors encountered during the query
             logging.error(f"Could not get Next Episode: {e}")
