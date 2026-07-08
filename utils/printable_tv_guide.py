@@ -262,21 +262,6 @@ def chunk_by_sizes(data, sizes):
     return chunks
 
 
-def fit_shows_on_logical_page(shows: list, page_height: float, top_margin: float = 72, bottom_margin: float = 50):
-    y_remaining = page_height - top_margin
-    col_index = 0
-    shows_per_page = 0
-    buf = io.BytesIO()
-    c = canvas.Canvas(buf, pagesize=(width, height))
-
-    col_heights = [y_remaining, y_remaining]
-
-    total_h = sum(h for h, _, _ in (get_wrapped_title_des(c, show, max_line_width) for show in shows))
-    columns_needed = math.ceil(total_h / (col_heights[col_index] - bottom_margin))
-    shows_per_page = (len(shows) // columns_needed) * 2
-    return shows_per_page
-
-
 def truncate_paragraph(paragraph, n_sentences=1):
     if not paragraph:
         return ""
@@ -707,14 +692,6 @@ def wrap_text_to_width(c: canvas.Canvas, text: str, max_width: float, font_name=
     return lines
 
 
-def get_needed_draw_space(shows: list, max_line_width: float) -> float:
-    buf = io.BytesIO()
-    c = canvas.Canvas(buf, pagesize=(width, height))
-    required_space = sum(h for h, _, _ in (get_wrapped_title_des(c, show, max_line_width) for show in shows))
-
-    return required_space
-
-
 def get_layout_options(
         total_length: float,
         page_height: float,
@@ -1035,8 +1012,8 @@ def get_wrapped_title_des(c, item, max_line_width, font_size: int = 8):
     return block_height, description_lines, title_lines
 
 
-def draw_title_des(c, x: float, y: float, item: dict, max_line_width: float, year: int):
-    _, description_lines, title_lines = get_wrapped_title_des(c, item, max_line_width)
+def draw_title_des(c, x: float, y: float, item: dict, max_line_width: float, year: int,
+                   description_lines: list, title_lines: list):
     text_x = draw_channel_boxes(c, x, y, item['channel'], title_lines[0])
 
     if (col_width - (text_x - x)) + c.stringWidth(title_lines[0], "Helvetica-Bold", 8) > col_width:
@@ -1128,6 +1105,10 @@ def generate_tv_guide(imposed_sheets: list, dow: int, year: int, col_w: float, f
             for i in range(4)
         ]
 
+        # Captured per side so the leftover-ad-space block below (which runs after both sides are
+        # drawn) can use each side's own candidate ads instead of whichever side happened to run last.
+        side_matching_ads = [[], []]
+
         for side_index, page_data in enumerate(sheet):
 
             if not page_data:
@@ -1142,11 +1123,15 @@ def generate_tv_guide(imposed_sheets: list, dow: int, year: int, col_w: float, f
 
             shows_ad_list = get_show_id_time_slots(page_data)
             matching_ads = [show for show in page_data if show.get("show_id") in shows_ad_list]
+            side_matching_ads[side_index] = matching_ads
             column_space[col_index]["has_ads"] = True if matching_ads else False
 
             draw_day_date_header(c, dow, year, start_col, col_index, col_w)
 
-            needed_space = get_needed_draw_space(page_data, col_width)
+            # Wrap each item's title/description once and reuse it below, instead of
+            # recomputing the same text-measurement work up to 3x per item.
+            wrapped_items = [get_wrapped_title_des(c, item, max_line_width) for item in page_data]
+            needed_space = sum(h for h, _, _ in wrapped_items)
             best_layout = get_layout_options(needed_space, y_start, col_width, used_ads, min_height=50)
             layout_type = best_layout.get('type')
 
@@ -1199,7 +1184,7 @@ def generate_tv_guide(imposed_sheets: list, dow: int, year: int, col_w: float, f
 
             for cnt, item in enumerate(page_data):
                 x = col_x_positions[col_index]
-                block_height, _, _ = get_wrapped_title_des(c, item, max_line_width)
+                block_height, description_lines, title_lines = wrapped_items[cnt]
 
                 if layout_type == "two_column_ad":
                     _, img_height = get_scaled_image_size(best_layout['ad'], col_width * 2, available_height=None)
@@ -1216,7 +1201,7 @@ def generate_tv_guide(imposed_sheets: list, dow: int, year: int, col_w: float, f
                     x = col_x_positions[col_index]
 
                 time_slot = draw_timeslot(c, x, y, item, time_slot)
-                y = draw_title_des(c, x, y, item, max_line_width, year)
+                y = draw_title_des(c, x, y, item, max_line_width, year, description_lines, title_lines)
 
                 if layout_type == 'full_column_ad':
                     col_i: int = 0 if side_index == 0 else 3
@@ -1260,12 +1245,12 @@ def generate_tv_guide(imposed_sheets: list, dow: int, year: int, col_w: float, f
             x = col_x_positions[col_i]
 
             if idx in (0, 1) and left_has_ads:
-                img_dimensions = draw_show_ad(c, matching_ads, x, col_data["current_y"], col_data["y_bottom"], used_ads)
+                img_dimensions = draw_show_ad(c, side_matching_ads[0], x, col_data["current_y"], col_data["y_bottom"], used_ads)
                 if img_dimensions:
                     col_data["current_y"] = col_data["current_y"] - img_dimensions[1] - 10
 
             if idx in (2, 3) and right_has_ads:
-                img_dimensions = draw_show_ad(c, matching_ads, x, col_data["current_y"], col_data["y_bottom"], used_ads)
+                img_dimensions = draw_show_ad(c, side_matching_ads[1], x, col_data["current_y"], col_data["y_bottom"], used_ads)
                 if img_dimensions:
                     col_data["current_y"] = col_data["current_y"] - img_dimensions[1] - 10
 
@@ -1304,7 +1289,6 @@ if __name__ == "__main__":
 
     pprint(sorted_list)
 
-    max_shows = fit_shows_on_logical_page(shows, height, top_margin=y_margin, bottom_margin=y_bottom)
     chunks = list(chunk_shows_random(sorted_list, 4, 9))
 
     generate_tv_guide(imposition_order(chunks), DOW, YEAR, col_width)
