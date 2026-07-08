@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-from psycopg2.extras import DictCursor
+from psycopg.rows import dict_row
 import calendar
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time, date
 
 # Constants
 SCHEDULE_RECURSION = 3  # Number of past years to consider for schedule recursion
@@ -14,7 +14,7 @@ class Shows:
         self.db_connection = db
         _, self.network, self.channel = hostname.split('-')
         # Create a cursor using DictCursor to fetch rows as dictionaries
-        self.cur = db.cursor(cursor_factory=DictCursor)
+        self.cur = db.cursor(row_factory=dict_row)
 
     # Fetch the duration of a specific show based on its ID and a minimum required duration
     def get_show_duration(self, show_id, duration=1500):
@@ -24,7 +24,7 @@ class Shows:
                    ORDER BY duration ASC
                    LIMIT 1;"""
         self.cur.execute(query, (show_id, duration))
-        return self.cur.fetchone()[0]
+        return self.cur.fetchone()['duration']
 
     # Fetch show counts grouped by duration for a specific channel and year
     def get_show_count_by_duration(self, channel_id, year):
@@ -39,10 +39,70 @@ class Shows:
         GROUP BY s.show_duration""", (year - SCHEDULE_RECURSION, channel_id, year))
         return self.cur.fetchall()
 
+    # Return the preferred genres for a given time-of-day and air date, biased by decade.
+    def get_genre_bias_for_slot(self, start_time: time, air_date: date) -> list[str]:
+        """
+        Return the preferred genres for a given date/time.
+
+        Defines genre bias tables for decades (1950s-1980s) and picks the table for the
+        decade closest to `air_date.year`, then returns the genres for the hour range
+        containing `start_time.hour`.
+        """
+        TIME_OF_DAY_GENRE_BIAS_50s = {
+            range(6, 18): ['local', 'family'],
+            range(18, 19): ['news', 'family'],
+            range(19, 21): ['family', 'comedy'],
+            range(21, 23): ['variety', 'drama'],
+            range(23, 24): ['rerun', 'talk']
+        }
+        TIME_OF_DAY_GENRE_BIAS_60s = {
+            range(6, 18): ['local', 'family', 'comedy'],
+            range(18, 19): ['news', 'family', 'comedy'],
+            range(19, 21): ['comedy', 'western', 'family', 'drama'],
+            range(21, 23): ['drama', 'crime', 'variety', 'thriller'],
+            range(23, 24): ['talk', 'rerun', 'variety']
+        }
+        TIME_OF_DAY_GENRE_BIAS_70s = {
+            range(6, 18): ['local', 'family', 'comedy'],
+            range(18, 19): ['news', 'family', 'comedy'],
+            range(19, 21): ['comedy', 'family', 'drama', 'western'],
+            range(21, 23): ['drama', 'crime', 'thriller', 'comedy'],
+            range(23, 24): ['talk', 'rerun', 'drama']
+        }
+        TIME_OF_DAY_GENRE_BIAS_80s = {
+            range(6, 18): ['local', 'family', 'comedy'],
+            range(18, 19): ['news', 'family', 'comedy'],
+            range(19, 21): ['comedy', 'family', 'drama', 'sitcom'],
+            range(21, 23): ['drama', 'crime', 'thriller', 'action'],
+            range(23, 24): ['talk', 'rerun', 'variety', 'drama']
+        }
+        genre_bias_by_decade = {
+            1950: TIME_OF_DAY_GENRE_BIAS_50s,
+            1960: TIME_OF_DAY_GENRE_BIAS_60s,
+            1970: TIME_OF_DAY_GENRE_BIAS_70s,
+            1980: TIME_OF_DAY_GENRE_BIAS_80s
+        }
+
+        decade = min(genre_bias_by_decade.keys(), key=lambda d: abs(d - air_date.year))
+        bias_table = genre_bias_by_decade[decade]
+
+        for hour_range, genres in bias_table.items():
+            if start_time.hour in hour_range:
+                return genres
+
+        return ['comedy', 'drama', 'family']
+
     # Get an available show ID based on channel, year, required runtime, and network
-    def get_available_show_id(self, channel_id, year, required_runtime, network):
+    def get_available_show_id(self, channel_id, year, required_runtime, network, preferred_genres=None):
         # Condition for whether the show is syndicated or belongs to a specific network
         where_string = 's.show_is_syndicated = TRUE' if network.upper() == 'SYN' else f"s.show_network && ARRAY['{network.upper()}', 'Syndicated']"
+        genre_order_by = ""
+        params = [channel_id, f"{year - SCHEDULE_RECURSION}-09-01", required_runtime, channel_id, year]
+        if preferred_genres:
+            genre_order_by = "CASE WHEN string_to_array(s.show_genre, ',') && %s::text[] THEN 0 ELSE 1 END,"
+            params.append(preferred_genres)
+        params.append(network.upper())
+
         self.cur.execute(
             f"""
             SELECT s.show_id
@@ -51,20 +111,21 @@ class Shows:
             WHERE (bl.channel_id IS NULL OR bl.channel_id != %s)
             AND s.airdate_end <= CAST(%s AS DATE)
             AND %s = ANY (s.show_duration)
-            AND s.show_is_syndicated = TRUE
+            AND {where_string}
             AND s.show_type != 'children'
             AND s.show_id NOT IN (
                 SELECT show_id FROM schedule_template WHERE channel_id = %s AND replication_year = %s
             )
-            ORDER BY 
-                CASE 
+            ORDER BY
+                {genre_order_by}
+                CASE
                     WHEN %s = ANY(show_network) THEN random() * 0.5
                     WHEN 'Syndicated' = ANY(show_network) THEN random() * 1.5
                 END
             LIMIT 1
-            """, (channel_id, f"{year - SCHEDULE_RECURSION}-09-01", required_runtime, channel_id, year, network.upper()))
+            """, params)
         result = self.cur.fetchone()
-        return result[0] if result else None
+        return result['show_id'] if result else None
 
     # Replace a show in the schedule if it has no remaining episodes
     def get_replacement_show(self, show_id, channel_id, year, required_runtime):
@@ -132,7 +193,8 @@ class Shows:
     def process_scheduled_shows(self, show_results, year):
         schedules = {}
         # Organize show results by air date and air time
-        for show_id, air_time, air_date in show_results:
+        for row in show_results:
+            show_id, air_time, air_date = row['show_id'], row['air_time'], row['air_date']
             air_time_str = air_time.strftime('%H:%M:%S')
             schedules.setdefault(air_date, {})[air_time_str] = show_id
 
@@ -148,6 +210,7 @@ class Shows:
         # Sort the final schedule by time
         sorted_schedule = dict(sorted(final_schedule.items(), key=lambda item: datetime.strptime(item[0], '%H:%M:%S')))
         return sorted_schedule
+
 
     # Retrieve scheduled show IDs based on the year and day of the week (dow)
     def get_scheduled_shows_id(self, year, dow):

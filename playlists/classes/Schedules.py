@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-from psycopg2.extras import execute_values, DictCursor
+from psycopg.rows import dict_row
+import calendar
 import random
-from datetime import datetime, time, timedelta
+from datetime import datetime, time, date, timedelta
+from typing import Optional, Tuple
 from playlists.classes.Shows import Shows
 
 
@@ -19,7 +21,7 @@ class Schedules:
         self.weights = [0.8, 0.3]
         self.db_connection = db
         self.shows = Shows(self.db_connection, hostname)
-        self.cur = db.cursor(cursor_factory=DictCursor)  # Use DictCursor to fetch results as dictionaries.
+        self.cur = db.cursor(row_factory=dict_row)  # Use dict_row to fetch results as dictionaries.
 
     def get_current_schedule(self, channel_id, dow):
         """
@@ -48,6 +50,33 @@ class Schedules:
             ORDER BY st.channel_id, st.time_slot, st.show_id, bl.date_played DESC;""",
                          (channel_id, dow))
         return self.cur.fetchall()
+
+    def get_manual_time_slots(self, channel_id, session_id):
+        try:
+            # Query to retrieve time slots that match the given channel, year, and time range.
+            self.cur.execute("""
+                       SELECT stm.* FROM schedule_templates_manual stm
+                       JOIN schedule_sessions ss
+					   ON ss.session_id = stm.session_id
+					   WHERE stm.channel_id = %s
+					   AND ss.friendly_name = %s
+                       ORDER BY start_time ASC;""",
+                             (channel_id, session_id))
+
+            # Format the results into a list of dictionaries with human-readable times.
+            records = self.cur.fetchall()
+
+            formatted_records = [{
+                **dict(record),  # Unpack the record into a dictionary.
+                'start_time': record['start_time'].strftime('%H:%M:%S'),
+                'end_time': record['end_time'].strftime('%H:%M:%S'),
+                'duration': str(self.timedelta_to_hms(record['duration']))  # Format duration.
+            } for record in records]
+
+            return formatted_records
+        except Exception as e:
+            print(f"Error fetching time slots: {e}")
+            return []
 
     def get_time_slots(self, channel_id, replication_year, start_time_str, duration_str, dow):
         """
@@ -128,9 +157,9 @@ class Schedules:
                 values.append((replication_year, channel_id, start_time, duration, dow))
 
             # Insert generated time slots into the database.
-            execute_values(self.cur, """
+            self.cur.executemany("""
                 INSERT INTO time_slot_schedules (schedule_id, channel_id, start_time, duration, channel_dow)
-                VALUES %s""", values)
+                VALUES (%s, %s, %s, %s, %s)""", values)
         except Exception as e:
             print(f"Error generating time slots: {e}")
         finally:
@@ -197,9 +226,9 @@ class Schedules:
         """
         try:
             start_time = time(int(start_str.split(":")[0]), int(start_str.split(":")[1]))
-            execute_values(self.cur, """
+            self.cur.executemany("""
                 INSERT INTO time_slot_schedules (schedule_id, channel_id, start_time, duration, channel_dow)
-                VALUES %s""", [(replication_year, channel_id, start_time, duration_delta, dow)])
+                VALUES (%s, %s, %s, %s, %s)""", [(replication_year, channel_id, start_time, duration_delta, dow)])
         except Exception as e:
             print(f"Error inserting time slot schedule: {e}")
         finally:
@@ -275,3 +304,45 @@ class Schedules:
             self.db_connection.commit()
         except Exception as e:
             print(f"Error deleting record: {row_id}. Exception: {e}")
+
+    @staticmethod
+    def nth_weekday_in_month(year: int, month: int, weekday: int, n: int) -> date:
+        """
+        Find the nth occurrence of a weekday in a specific month.
+
+        :param year: target year
+        :param month: target month (1-12)
+        :param weekday: 0=Monday ... 6=Sunday
+        :param n: occurrence index (1=first, 2=second, ...)
+        :return: date of the nth weekday in the month; if n too large, returns the last occurrence
+        """
+        c = calendar.Calendar()
+        days = [d for d in c.itermonthdates(year, month) if d.month == month and d.weekday() == weekday]
+        if n <= len(days):
+            return days[n - 1]
+        return days[-1]
+
+    @staticmethod
+    def equivalent_date(target_year: int, month: Optional[int] = None, day: Optional[int] = None) -> Tuple[date, str]:
+        """
+        Map a date (defaulting to today's month/day if missing) to its equivalent in `target_year`,
+        preserving the weekday occurrence index in the month (e.g. "2nd Tuesday of June" stays the
+        "2nd Tuesday of June" in the target year).
+
+        :param target_year: year to map the date into
+        :param month: month number (1-12); defaults to today's month
+        :param day: day of month; defaults to today's day
+        :return: (equivalent_date, weekday_name)
+        """
+        today = date.today()
+        src_date = date(today.year, month or today.month, day or today.day)
+
+        weekday = src_date.weekday()
+        month_val = src_date.month
+
+        c = calendar.Calendar()
+        month_days = [d for d in c.itermonthdates(src_date.year, month_val) if d.month == month_val and d.weekday() == weekday]
+        occurrence = month_days.index(src_date) + 1
+
+        eq_date = Schedules.nth_weekday_in_month(target_year, month_val, weekday, occurrence)
+        return eq_date, eq_date.strftime("%A")

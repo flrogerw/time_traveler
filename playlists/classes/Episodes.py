@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import logging
-from psycopg2.extras import DictCursor
-from psycopg2 import sql
+from collections import defaultdict
+
+from psycopg.rows import dict_row
+from psycopg import sql
 from datetime import datetime, timedelta
 from playlists.classes.Shows import Shows
 from playlists.classes.Schedules import Schedules
@@ -19,7 +21,7 @@ class Episodes:
         self.shows = Shows(self.db_connection, hostname)
         self.movies = Movies(self.db_connection, year)
         self.schedules = Schedules(self.db_connection, hostname)
-        self.cur = db.cursor(cursor_factory=DictCursor)  # Cursor to execute queries
+        self.cur = db.cursor(row_factory=dict_row)  # Cursor to execute queries
 
     def get_episodes_for_holiday(self, holiday):
         try:
@@ -72,7 +74,70 @@ class Episodes:
             else:
                 raise ValueError(f"Could not generate an episode for slot {slot} with day of week {dow}")
 
-    def get_episodes_for_slot(self, slot, channel_id, dow, year, network, current_schedule=None):
+    def get_manual_episodes(self, time_slots: list):
+        final_episodes = []
+
+        # Build mapping: { "episodes_123": original_slot_time }
+        slot_time_map = {
+            slot["episode_id"]: (slot["start_time"], slot["duration"], slot['replication_year'])
+            for slot in time_slots
+        }
+
+        # Group ids by table: { "episodes": [123, 124], "specials": [5] }
+        grouped = defaultdict(list)
+        for slot in time_slots:
+            table_name, id_str = slot["episode_id"].split("_")
+            grouped[table_name].append(int(id_str))
+
+        try:
+            # Process each table only once
+            for table_name, ids in grouped.items():
+
+                # Normalize table name
+                table_name = "episodes" if table_name == "shows" else table_name
+                base_name = table_name.rstrip("s")
+                id_col = f"{base_name}_id"
+
+                # Safe SQL
+                query = sql.SQL("""
+                    SELECT *, (end_point - start_point) AS duration
+                    FROM {table}
+                    WHERE {id_col} = ANY(%s)
+                """).format(
+                    table=sql.Identifier(table_name),
+                    id_col=sql.Identifier(id_col),
+                )
+
+                self.cur.execute(query, (ids,))
+                rows = self.cur.fetchall()
+
+                for row in rows:
+                    row_dict = dict(row)
+                    table_name = 'shows' if table_name == 'episodes' else table_name
+                    eid = f"{table_name}_{row_dict[id_col]}"
+
+                    # Use ORIGINAL time_slot from input
+                    time_slot, time_slot_duration, replication_year  = slot_time_map.get(eid)
+
+                    t = datetime.strptime(time_slot_duration, "%H:%M:%S")
+                    seconds = t.hour * 3600 + t.minute * 60 + t.second
+
+                    final_episodes.append({
+                        **row_dict,
+                        "type": base_name,
+                        "time_slot": time_slot,
+                        "slot_duration": seconds,
+                        "replication_year": replication_year
+                    })
+
+        except Exception as e:
+            logging.error(f"Could not get episodes: {e}")
+            return []
+
+        return final_episodes
+
+
+    def get_episodes_for_slot(self, slot, channel_id, dow, year, network, current_schedule=None, air_date=None):
         """
         Retrieve and manage episodes for a given time slot.
         This function looks for a suitable episode or expands the slot if needed.
@@ -96,7 +161,11 @@ class Episodes:
                 # If no episode is found, check for a scheduled show or attempt to fill the slot
                 show_id = current_schedule.get(slot['start_time'])
                 if not show_id:
-                    show_id = self.shows.get_available_show_id(channel_id, year, total_seconds, network)
+                    preferred_genres = None
+                    if air_date is not None:
+                        slot_time = datetime.strptime(slot['start_time'], '%H:%M:%S').time()
+                        preferred_genres = self.shows.get_genre_bias_for_slot(slot_time, air_date)
+                    show_id = self.shows.get_available_show_id(channel_id, year, total_seconds, network, preferred_genres)
 
                 self.schedules.insert_schedule_template(slot, dow, network, show_id)
                 episode = self.get_next_episode(slot, dow)  # Retry getting the next episode
@@ -128,7 +197,7 @@ class Episodes:
                           ON episode_durations.episode_id = commercial_breaks.media_id 
                           WHERE episode_durations.episode_id = %s
                           GROUP BY end_point, start_point;""", (episode_id,))
-        return db.fetchone()[0]
+        return db.fetchone()['final_duration']
 
 
     def get_next_episode(self, time_slot, day_of_week):
@@ -179,8 +248,8 @@ class Episodes:
                 return None
 
             # Query to fetch detailed episode information
-            query = sql.SQL("""SELECT e.*, bl.time_slot FROM episodes e 
-                                    LEFT JOIN broadcast_log bl ON e.episode_id = bl.episode_id 
+            query = sql.SQL("""SELECT e.*, bl.time_slot, bl.replication_year FROM episodes e
+                                    LEFT JOIN broadcast_log bl ON e.episode_id = bl.episode_id
                                     WHERE e.episode_id = %s""")
             self.cur.execute(query, (episode_id['episode_id'],))
             formatted_record = [{**dict(record), 'type': 'episode'} for record in self.cur.fetchall()]
