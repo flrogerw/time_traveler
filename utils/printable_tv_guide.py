@@ -15,6 +15,7 @@ import calendar
 import datetime
 import io
 import logging
+import math
 import os
 import random
 from operator import itemgetter
@@ -24,14 +25,13 @@ from pprint import pprint
 from typing import Union, Iterable, Any
 
 from PIL import Image, ImageDraw, ImageFont
-from psycopg2.extras import DictCursor
-import psycopg2
+from psycopg.rows import dict_row
+import psycopg
 from reportlab.lib.colors import black, white
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from nltk.tokenize import sent_tokenize
-from sympy import ceiling
 
 # nltk.download("punkt")
 # nltk.download('punkt_tab')
@@ -54,9 +54,16 @@ col_x_positions: list[float] = [
 
 # Other constants
 y_start: float = height - y_margin
-used_ads: set[str] = set()
+
+# Simulated market's actual over-the-air VHF channel numbers (the digits in hostnames like
+# TV-ABC-7 or TV-SYN-5).
 real_channels = [2, 3, 4, 5, 7, 9, 11, 13]
+# Duplicate/UHF or cable-relay channel numbers that don't correspond to a real channel row in
+# the DB, but are printed alongside a real channel's listing in draw_channel_boxes (see
+# channel_groups below) because the same station also aired on that number for some viewers.
 non_channels: list[int] = [22, 28, 34, 40, 52, 24, 36, 42]
+# Which of the above duplicate numbers should render as an outlined ("clear") box instead of a
+# solid black one -- purely a print-style distinction, not a functional grouping.
 clear_channels: list[int] = [3, 24, 36, 42]
 advert_keys = ['ad_image', 'ad_text', 'network_img', 'channel_img', 'font', 'font_size', 'time_slot', 'show_id']
 
@@ -67,21 +74,21 @@ box_size = 0.13 * inch
 box_width = box_size + 0.04 * inch
 box_padding = 0.06 * inch
 
-SHOW_IMAGES = "advertising/shows/"
-SHOW_LOGOS = "advertising/logos/"
-FONT_DIR = "advertising/fonts/"
-AD_IMAGES = "advertising/images/"
+SHOW_IMAGES = "../advertising/shows/"
+SHOW_LOGOS = "../advertising/logos/"
+FONT_DIR = "../advertising/fonts/"
+AD_IMAGES = "../advertising/images/"
 THUMB_HEIGHT = 16
 
 
-def build_ad_candidates(ad_source: Union[str, Iterable[str]], year: str, season: str, day: str) -> list[str]:
+def build_ad_candidates(ad_source: Union[str, Iterable[str]], year, season: str, day: str) -> list[str]:
     """
     Collect candidate advertisement file paths that match:
       <year>_<season>_<day>_...  OR  <year>_<season>_gen_...
 
     Args:
         ad_source: Directory path (str) or iterable of file paths
-        year: Year string (e.g., "1970")
+        year: Year (e.g., 70 or "1970")
         season: Season string (e.g., "fall")
         day: Day string (e.g., "monday")
 
@@ -95,16 +102,6 @@ def build_ad_candidates(ad_source: Union[str, Iterable[str]], year: str, season:
     gen_prefix: str = f"{year}_{season}_gen_".lower()
     candidates: list[str] = []
 
-    for fname in os.listdir(ad_source):
-        lower = fname.lower()
-        if not any(lower.endswith(ext) for ext in exts):
-            continue
-
-        candidates.append(os.path.join(ad_source, fname))
-    return candidates
-
-    """
-
     if isinstance(ad_source, str):
         # Treat as directory
         try:
@@ -113,7 +110,7 @@ def build_ad_candidates(ad_source: Union[str, Iterable[str]], year: str, season:
                 if not any(lower.endswith(ext) for ext in exts):
                     continue
                 if lower.startswith(day_prefix) or lower.startswith(gen_prefix):
-                    #candidates.append(os.path.join(ad_source, fname))
+                    candidates.append(os.path.join(ad_source, fname))
         except FileNotFoundError:
             logging.warning("Ad source directory not found: %s", ad_source)
             return []
@@ -130,7 +127,6 @@ def build_ad_candidates(ad_source: Union[str, Iterable[str]], year: str, season:
                 candidates.append(p)
 
     return candidates
-    """
 
 
 def get_sorted_ads():
@@ -221,7 +217,7 @@ def chunk_shows_random(shows, min_size, max_size):
     max_size  : maximum number of shows per chunk
     """
     list_length = len(shows)
-    pages_needed = ceiling(int(list_length) / int(max_size))
+    pages_needed = math.ceil(int(list_length) / int(max_size))
     pages_needed = pages_needed if pages_needed > 3 else 4
     logical_page_count = pages_needed if pages_needed % 4 == 0 else ((pages_needed + 3) // 4) * 4
 
@@ -273,7 +269,7 @@ def fit_shows_on_logical_page(shows: list, page_height: float, top_margin: float
     col_heights = [y_remaining, y_remaining]
 
     total_h = sum(h for h, _, _ in (get_wrapped_title_des(c, show, max_line_width) for show in shows))
-    columns_needed = ceiling(total_h / (col_heights[col_index] - bottom_margin))
+    columns_needed = math.ceil(total_h / (col_heights[col_index] - bottom_margin))
     shows_per_page = (len(shows) // columns_needed) * 2
     return shows_per_page
 
@@ -391,11 +387,11 @@ def convert_to_12hr(time_24: str, ampm: bool = False) -> str:
         return f"{hour_12}:{minute:02d}"
 
 
-def get_db_connection() -> psycopg2.extensions.connection:
+def get_db_connection() -> psycopg.Connection:
     """Establish and return a database connection."""
     try:
-        conn = psycopg2.connect(
-            database="time_traveler",
+        conn = psycopg.connect(
+            dbname="time_traveler",
             user="postgres",
             password="m06Ar14u",
             host="192.168.1.201",
@@ -408,9 +404,17 @@ def get_db_connection() -> psycopg2.extensions.connection:
         raise
 
 
+def _format_schedule_records(records: list, time_key: str = 'time_slot') -> list[dict]:
+    """Normalize a schedule query's rows into dicts with a common 'time_slot' string key."""
+    return [{
+        **dict(record),
+        'time_slot': record[time_key].strftime("%H:%M")
+    } for record in records]
+
+
 def get_current_schedule(dow, year: int = 1974):
     with get_db_connection() as db:
-        cur = db.cursor(cursor_factory=DictCursor)
+        cur = db.cursor(row_factory=dict_row)
         cur.execute("""-- Normal shows
             (
             SELECT DISTINCT ON (st.channel_id, st.show_id, st.time_slot)
@@ -434,17 +438,22 @@ def get_current_schedule(dow, year: int = 1974):
             FROM schedule_template st
             LEFT JOIN broadcast_log bl 
                    ON st.channel_id = bl.channel_id AND st.show_id = bl.show_id
-            LEFT JOIN episodes e 
+            LEFT JOIN episodes e
                    ON bl.episode_id = e.episode_id
-            LEFT JOIN shows sh 
+            LEFT JOIN shows sh
                    ON st.show_id = sh.show_id
-            LEFT JOIN channels ch 
+            -- INNER: a schedule row for a channel that no longer exists shouldn't print.
+            JOIN channels ch
                    ON ch.channel_id = bl.channel_id
             LEFT JOIN show_adverts sa 
                    ON sa.show_id = sh.show_id
             WHERE %s = ANY(st.days_of_week)
               AND st.replication_year = %s
               AND st.show_id <> 173
+            -- Broadcast dates are simulation-run dates, not in-story dates, and can tie when
+            -- multiple runs happen the same real day -- season/episode order is monotonic and
+            -- reliably identifies the most recently aired episode.
+            ORDER BY st.channel_id, st.show_id, st.time_slot, e.show_season_number DESC, e.episode_number DESC
         )
         UNION ALL
         (
@@ -470,122 +479,27 @@ def get_current_schedule(dow, year: int = 1974):
             FROM schedule_template st
             LEFT JOIN broadcast_log bl 
                    ON st.channel_id = bl.channel_id AND st.show_id = bl.show_id
-            LEFT JOIN movies m 
+            LEFT JOIN movies m
                    ON bl.episode_id = m.movie_id
-            LEFT JOIN channels ch 
+            -- INNER: a schedule row for a channel that no longer exists shouldn't print.
+            JOIN channels ch
                    ON ch.channel_id = bl.channel_id
             LEFT JOIN show_adverts sa 
                    ON sa.show_id = st.show_id
             WHERE %s = ANY(st.days_of_week)
               AND st.replication_year = %s
               AND st.show_id = 173
+            ORDER BY st.channel_id, st.show_id, st.time_slot, bl.date_played DESC
         )
-        --ORDER BY channel, time_slot, sh.show_id, date_played DESC;
+        ORDER BY channel, time_slot
         """, (dow, year, dow, year))
-    records = cur.fetchall()
-    formatted_records = [{
-        **dict(record),
-        'time_slot': record['time_slot'].strftime("%H:%M")
-    } for record in records]
-    return formatted_records
-
-
-def get_new_current_schedule(dow, year: int = 1974):
-    with get_db_connection() as db:
-        cur = db.cursor(cursor_factory=DictCursor)
-        cur.execute("""-- Normal shows
-                       WITH latest AS (
-                        SELECT channel_id, start_time, MAX(insert_date) AS max_insert_date
-                            FROM schedule_templates_manual
-                            WHERE session_id = '46e3e5a0-9fbd-4068-91e4-bed88ee3458f'
-                            GROUP BY channel_id, start_time)
-                        (SELECT 
-                               split_part(ch.channel_name, '-', 3) AS channel,
-                               st.start_time,
-                               CEIL((e.end_point - e.start_point) / 1800) * 1800 AS show_duration,
-                               sh.show_name AS show,
-                               sh.show_genre,
-                               e.episode_title AS title,
-                               COALESCE(e.episode_description, sh.show_description) AS description,
-                               e.episode_airdate AS date_played,
-                               sa.ad_image,
-                               sa.ad_text,
-                               sa.network_img,
-                               sa.channel_img,
-                               sa.font,
-                               sa.font_size,
-                               sh.show_id,
-                               e.is_bw,
-                               e.episode_co_stars AS actors,
-                               st.insert_date
-                        FROM schedule_templates_manual st
-                        JOIN latest l
-                          ON st.channel_id   = l.channel_id
-                         AND st.start_time    = l.start_time
-                         AND st.insert_date  = l.max_insert_date
-                        LEFT JOIN episodes e 
-                               ON st.episode_id = 'shows_' || e.episode_id
-                        LEFT JOIN channels ch 
-                               ON ch.channel_id = st.channel_id
-                        LEFT JOIN shows sh 
-                               ON st.show_id = sh.show_id
-                        LEFT JOIN show_adverts sa 
-                               ON sa.show_id = sh.show_id
-                        WHERE %s = ANY(st.days_of_week)
-                          AND st.replication_year = %s
-                          AND st.show_id <> 173
-                        )
-                        UNION ALL
-                        (
-                        SELECT 
-                               split_part(ch.channel_name, '-', 3) AS channel,
-                               st.start_time,
-                               CEIL((m.end_point - m.start_point) / 1800) * 1800 AS show_duration,
-                               'MOVIE' AS show,
-                               m.movie_genre AS show_genre,
-                               m.movie_name AS title,
-                               m.movie_description AS description,
-                               TO_DATE(m.movie_release_date::TEXT, 'YYYY') AS movie_release_date,
-                               sa.ad_image,
-                               sa.ad_text,
-                               sa.network_img,
-                               sa.channel_img,
-                               sa.font,
-                               sa.font_size,
-                               173 AS show_id,
-                               m.is_bw,
-                               m.movie_stars AS actors,
-                               st.insert_date   -- <-- added to match the first SELECT
-                        FROM schedule_templates_manual st
-                        JOIN latest l
-                          ON st.channel_id   = l.channel_id
-                         AND st.start_time    = l.start_time
-                         AND st.insert_date  = l.max_insert_date
-                        LEFT JOIN movies m 
-                               ON st.episode_id = 'movies_' || m.movie_id
-                        LEFT JOIN channels ch 
-                               ON ch.channel_id = st.channel_id
-                        LEFT JOIN show_adverts sa 
-                               ON sa.show_id = st.show_id
-                        WHERE %s = ANY(st.days_of_week)
-                          AND st.replication_year = %s
-                          AND st.show_id = 173
-                        );
-
-        --ORDER BY channel, time_slot, sh.show_id, date_played DESC;
-        """, (dow, year, dow, year))
-    records = cur.fetchall()
-    formatted_records = [{
-        **dict(record),
-        'time_slot': record['time_slot'].strftime("%H:%M")
-    } for record in records]
-
-    return formatted_records
+        records = cur.fetchall()
+    return _format_schedule_records(records)
 
 
 def get_manual_schedule(session_id: str):
     with get_db_connection() as db:
-        cur = db.cursor(cursor_factory=DictCursor)
+        cur = db.cursor(row_factory=dict_row)
         cur.execute("""WITH latest AS (
                                     SELECT channel_id, start_time, session_id
                                         FROM schedule_templates_manual
@@ -701,15 +615,9 @@ def get_manual_schedule(session_id: str):
                                 WHERE st.show_id = 328;
 
         """, (session_id,))
-    records = cur.fetchall()
-    print([dict(row) for row in records])
+        records = cur.fetchall()
 
-    formatted_records = [{
-        **dict(record),
-        'time_slot': record['start_time'].strftime("%H:%M")
-    } for record in records]
-
-    return formatted_records
+    return _format_schedule_records(records, time_key='start_time')
 
 
 def draw_clear_number_box(c, x, y, width, height, number, radius=2, stroke_width=1):
@@ -1000,11 +908,11 @@ def draw_ad_box(c: canvas.Canvas, x: float, y: float, box_w: float, box_h: float
         offset_x = x + (box_w - new_w) / 2
         offset_y = y + (box_h - new_h) / 2
         c.drawImage(img, offset_x, offset_y, new_w, new_h)
-    except Exception:
-        return
+    except Exception as e:
+        logging.warning("Could not draw ad image %s: %s", file_path, e)
 
 
-def fill_column_ads(c, ads: list, col_i: int, col_data: dict) -> None:
+def fill_column_ads(c, ads: list, col_i: int, col_data: dict, used_ads: set[str]) -> None:
     ad_y_top = col_data['current_y']
     ad_y_bottom = col_data['y_bottom']
     available_height = ad_y_top - ad_y_bottom
@@ -1075,8 +983,9 @@ def draw_channel_boxes(c: canvas.Canvas, box_x: float, y: float, channel: int | 
     text_height = font_size * 0.7
     box_y = y - (box_size - text_height) / 2
 
+    # Real channel -> its duplicate/UHF numbers (see non_channels above) that should render
+    # as additional badges on the same listing, since the station aired on all of them.
     channel_groups = [(4, 36), (3, 7, 42), (2,)]
-    title_length = box_size + box_padding + c.stringWidth(title, "Helvetica-Bold", 10)
     channels = next((t for t in channel_groups if int(channel) in t), (channel,))
 
     for fake_channel in channels:
@@ -1085,7 +994,6 @@ def draw_channel_boxes(c: canvas.Canvas, box_x: float, y: float, channel: int | 
             draw_clear_number_box(c, box_x, box_y, box_width, box_size, fake_channel)
         else:
             draw_number_box(c, box_x, box_y, box_width, box_size, fake_channel)
-        title_length += (box_size + box_padding)
         box_x = box_x + box_size + box_padding
 
     return box_x
@@ -1170,7 +1078,7 @@ def draw_timeslot(c, x: float, y: float, item, time_slot) -> str:
     return time_slot
 
 
-def draw_show_ad(c, show_ads: list, current_x: float, current_y: float, bottom_y: float) -> tuple | None:
+def draw_show_ad(c, show_ads: list, current_x: float, current_y: float, bottom_y: float, used_ads: set[str]) -> tuple | None:
     dems, image = create_show_image(show_ads, used_ads, available_height=int(current_y - bottom_y))
     if dems:
         draw_ad_box(c, current_x, current_y - dems[1] - 5, dems[0], dems[1], image)
@@ -1183,6 +1091,10 @@ def generate_tv_guide(imposed_sheets: list, dow: int, year: int, col_w: float, f
     c = canvas.Canvas(filename, pagesize=(width, height))
     c.setFont("Helvetica", 10)
     page_numbers = get_page_numbers(len(imposed_sheets) * 2)
+
+    # Local to this run, so generating multiple guides in one process doesn't have a later guide
+    # starved of ads already claimed by an earlier one.
+    used_ads: set[str] = set()
 
     ads_1, _, ads_full = get_sorted_ads()
 
@@ -1273,7 +1185,7 @@ def generate_tv_guide(imposed_sheets: list, dow: int, year: int, col_w: float, f
             elif layout_type == 'stacked_ads':
                 x = col_x_positions[col_index]
                 if matching_ads:
-                    img_dimensions = draw_show_ad(c, matching_ads, x, y, y_bottom)
+                    img_dimensions = draw_show_ad(c, matching_ads, x, y, y_bottom, used_ads)
                     if img_dimensions:
                         y -= (img_dimensions + 10)
 
@@ -1345,16 +1257,16 @@ def generate_tv_guide(imposed_sheets: list, dow: int, year: int, col_w: float, f
             x = col_x_positions[col_i]
 
             if idx in (0, 1) and left_has_ads:
-                img_dimensions = draw_show_ad(c, matching_ads, x, col_data["current_y"], col_data["y_bottom"])
+                img_dimensions = draw_show_ad(c, matching_ads, x, col_data["current_y"], col_data["y_bottom"], used_ads)
                 if img_dimensions:
                     col_data["current_y"] = col_data["current_y"] - img_dimensions[1] - 10
 
             if idx in (2, 3) and right_has_ads:
-                img_dimensions = draw_show_ad(c, matching_ads, x, col_data["current_y"], col_data["y_bottom"])
+                img_dimensions = draw_show_ad(c, matching_ads, x, col_data["current_y"], col_data["y_bottom"], used_ads)
                 if img_dimensions:
                     col_data["current_y"] = col_data["current_y"] - img_dimensions[1] - 10
 
-            fill_column_ads(c, [*ads_1, *ads_full], col_i, col_data)
+            fill_column_ads(c, [*ads_1, *ads_full], col_i, col_data, used_ads)
 
         if sheet_index < len(imposed_sheets) - 1:
             c.showPage()
@@ -1364,11 +1276,10 @@ def generate_tv_guide(imposed_sheets: list, dow: int, year: int, col_w: float, f
 
 
 if __name__ == "__main__":
-    DOW = 6
+    DOW = 3
     YEAR = 1971
 
-    # shows = get_new_current_schedule(DOW, YEAR)
-    shows = get_manual_schedule('46e3e5a0-9fbd-4068-91e4-bed88ee3458f')
+    shows = get_current_schedule(DOW, YEAR)
 
     if not shows:
         print("No shows found")
