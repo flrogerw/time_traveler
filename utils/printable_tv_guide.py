@@ -430,9 +430,12 @@ def get_current_schedule(dow, year: int = 1974):
                    ON bl.episode_id = e.episode_id
             LEFT JOIN shows sh
                    ON st.show_id = sh.show_id
-            -- INNER: a schedule row for a channel that no longer exists shouldn't print.
+            -- INNER on st.channel_id (not bl.channel_id): a schedule row for a channel that no
+            -- longer exists shouldn't print, but movies never get a broadcast_log row (only
+            -- episodes do, via get_next_episode) so bl.channel_id is NULL for every movie slot --
+            -- joining against it would silently drop all movies.
             JOIN channels ch
-                   ON ch.channel_id = bl.channel_id
+                   ON ch.channel_id = st.channel_id
             LEFT JOIN show_adverts sa 
                    ON sa.show_id = sh.show_id
             WHERE %s = ANY(st.days_of_week)
@@ -469,9 +472,12 @@ def get_current_schedule(dow, year: int = 1974):
                    ON st.channel_id = bl.channel_id AND st.show_id = bl.show_id
             LEFT JOIN movies m
                    ON bl.episode_id = m.movie_id
-            -- INNER: a schedule row for a channel that no longer exists shouldn't print.
+            -- INNER on st.channel_id (not bl.channel_id): a schedule row for a channel that no
+            -- longer exists shouldn't print, but movies never get a broadcast_log row (only
+            -- episodes do, via get_next_episode) so bl.channel_id is NULL for every movie slot --
+            -- joining against it would silently drop all movies.
             JOIN channels ch
-                   ON ch.channel_id = bl.channel_id
+                   ON ch.channel_id = st.channel_id
             LEFT JOIN show_adverts sa 
                    ON sa.show_id = st.show_id
             WHERE %s = ANY(st.days_of_week)

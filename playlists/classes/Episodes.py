@@ -196,7 +196,13 @@ class Episodes:
                 elif show_id == 173 or total_seconds > 3600:
                     # If it's a movie slot (show_id 173) or a length greater than one hour, insert a random movie
                     movie = self.movies.get_random_movie(total_seconds, slot)
-                    final_episodes.append(movie)
+                    if movie:
+                        final_episodes.append(movie)
+                    else:
+                        # No unshown movie fits this channel/duration -- fall back to filling
+                        # the slot with shows instead of leaving it empty.
+                        self.manage_time_slot_expansion(slot, dow, final_episodes, network, air_date=air_date,
+                                                        preferred_show_id=show_id)
                 else:
                     # If no match, try to expand the slot into 30-minute shows
                     self.manage_time_slot_expansion(slot, dow, final_episodes, network, air_date=air_date,
