@@ -41,10 +41,15 @@ class Episodes:
             return formatted_record
 
 
-    def manage_time_slot_expansion(self, slot, dow, final_episodes, network, air_date=None):
+    def manage_time_slot_expansion(self, slot, dow, final_episodes, network, air_date=None, preferred_show_id=None):
         """
         Handle the expansion of time slots into 30-minute segments if no suitable show is found
         for the given slot. Updates schedules and inserts new time slots.
+
+        When `preferred_show_id` (the show that didn't fit the original, larger slot) supports a
+        30-minute runtime, it's reused across the split sub-slots -- a back-to-back double episode
+        reads better than pairing two unrelated shows -- falling back to independent selection per
+        sub-slot once that show's unaired episodes run out.
         """
         # Delete the current schedule row for the slot
         self.schedules.delete_row(slot['id'])
@@ -60,14 +65,25 @@ class Episodes:
         duration_delta = timedelta(minutes=30)  # Time delta of 30 minutes
         new_end_time = datetime.strptime(slot['start_time'], '%H:%M:%S')
 
+        reuse_show_id = None
+        if preferred_show_id and self.shows.show_supports_duration(preferred_show_id, 1800):
+            reuse_show_id = preferred_show_id
+
         # Loop to insert new time slots in 30-minute increments
         for _ in range(num_loops):
             self.schedules.insert_time_slot_schedule(slot['schedule_id'], slot['channel_id'],
                                                      slot['start_time'], duration_delta, dow)
             new_end_time += duration_delta
             slot['end_time'] = new_end_time.strftime('%H:%M:%S')  # Update the end time of the slot
-            self.schedules.insert_schedule_template(slot, dow, network)
+            self.schedules.insert_schedule_template(slot, dow, network, reuse_show_id)
             episode = self.get_next_episode(slot, dow, air_date=air_date)  # Get next episode for the new slot
+            if episode is None and reuse_show_id is not None:
+                # The reused show just ran out of unaired episodes -- drop back to a fresh pick
+                # for this and the remaining sub-slots instead of failing the whole expansion.
+                reuse_show_id = None
+                self.schedules.insert_schedule_template(slot, dow, network, None)
+                episode = self.get_next_episode(slot, dow, air_date=air_date)
+
             if episode:
                 final_episodes.append(episode)
                 slot['start_time'] = slot['end_time']  # Update start time for the next iteration
@@ -137,7 +153,7 @@ class Episodes:
         return final_episodes
 
 
-    def get_episodes_for_slot(self, slot, channel_id, dow, year, network, current_schedule=None, air_date=None):
+    def get_episodes_for_slot(self, slot, channel_id, dow, year, network, current_schedule=None, air_date=None, prev_genre=None):
         """
         Retrieve and manage episodes for a given time slot.
         This function looks for a suitable episode or expands the slot if needed.
@@ -151,6 +167,11 @@ class Episodes:
             total_seconds = int(timedelta(hours=time_obj.hour, minutes=time_obj.minute,
                                           seconds=time_obj.second).total_seconds())
 
+            preferred_genres = None
+            if air_date is not None:
+                slot_time = datetime.strptime(slot['start_time'], '%H:%M:%S').time()
+                preferred_genres = self.shows.get_genre_bias_for_slot(slot_time, air_date)
+
             # Attempt to get the next episode for the time slot
             episode = self.get_next_episode(slot, dow, air_date=air_date)
             if episode:
@@ -159,16 +180,14 @@ class Episodes:
                 # non-final part of a multi-part story with its continuation still unaired, in which
                 # case rotating the show out now would orphan the arc mid-story.
                 if not episode.get('has_pending_continuation'):
-                    self.shows.get_replacement_show(episode['show_id'], channel_id, year, total_seconds)
+                    self.shows.get_replacement_show(episode['show_id'], channel_id, year, total_seconds,
+                                                    preferred_genres, prev_genre)
             else:
                 # If no episode is found, check for a scheduled show or attempt to fill the slot
                 show_id = current_schedule.get(slot['start_time'])
                 if not show_id:
-                    preferred_genres = None
-                    if air_date is not None:
-                        slot_time = datetime.strptime(slot['start_time'], '%H:%M:%S').time()
-                        preferred_genres = self.shows.get_genre_bias_for_slot(slot_time, air_date)
-                    show_id = self.shows.get_available_show_id(channel_id, year, total_seconds, network, preferred_genres)
+                    show_id = self.shows.get_available_show_id(channel_id, year, total_seconds, network,
+                                                                preferred_genres, prev_genre)
 
                 self.schedules.insert_schedule_template(slot, dow, network, show_id)
                 episode = self.get_next_episode(slot, dow, air_date=air_date)  # Retry getting the next episode
@@ -180,7 +199,8 @@ class Episodes:
                     final_episodes.append(movie)
                 else:
                     # If no match, try to expand the slot into 30-minute shows
-                    self.manage_time_slot_expansion(slot, dow, final_episodes, network, air_date=air_date)
+                    self.manage_time_slot_expansion(slot, dow, final_episodes, network, air_date=air_date,
+                                                    preferred_show_id=show_id)
 
             return final_episodes
         except Exception as e:

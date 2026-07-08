@@ -305,6 +305,23 @@ class Schedules:
         except Exception as e:
             print(f"Error deleting record: {row_id}. Exception: {e}")
 
+    def override_slot(self, channel_id, air_date, time_slot, episode_id):
+        """
+        Pin a specific channel/date/slot to a specific episode (e.g. a holiday special),
+        taking priority over the normal recurring schedule_template lookup. Does not
+        overwrite an existing reservation (e.g. a pending multi-part continuation).
+        """
+        try:
+            self.cur.execute(
+                """INSERT INTO schedule_overrides (channel_id, air_date, time_slot, episode_id)
+                   VALUES (%s, %s, %s, %s)
+                   ON CONFLICT (channel_id, air_date, time_slot) DO NOTHING;""",
+                (channel_id, air_date, time_slot, episode_id))
+        except Exception as e:
+            print(f"Error overriding slot: {e}")
+        finally:
+            self.db_connection.commit()
+
     @staticmethod
     def nth_weekday_in_month(year: int, month: int, weekday: int, n: int) -> date:
         """

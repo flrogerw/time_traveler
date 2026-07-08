@@ -92,15 +92,44 @@ class Shows:
 
         return ['comedy', 'drama', 'family']
 
+    # Whether a show's declared slot durations include the given runtime (seconds).
+    def show_supports_duration(self, show_id, required_runtime):
+        self.cur.execute("SELECT %s = ANY(show_duration) AS fits FROM shows WHERE show_id = %s;",
+                         (required_runtime, show_id))
+        row = self.cur.fetchone()
+        return bool(row and row['fits'])
+
+    # Return the show's first listed genre, used for lead-in/lead-out adjacency scoring.
+    def get_first_genre(self, show_id):
+        self.cur.execute("SELECT show_genre FROM shows WHERE show_id = %s;", (show_id,))
+        row = self.cur.fetchone()
+        if not row or not row['show_genre']:
+            return None
+        return row['show_genre'].split(',')[0].strip()
+
+    @staticmethod
+    def _genre_order_clause(preferred_genres, prev_genre, params):
+        """
+        Build an ORDER BY prefix (and append the params it needs) that prioritizes:
+        1. shows matching the daypart's preferred genres (e.g. decade/time-of-day bias)
+        2. shows matching the previous slot's genre (lead-in/lead-out adjacency)
+        ahead of whatever tiebreak the caller's query already uses.
+        """
+        clauses = []
+        if preferred_genres:
+            clauses.append("CASE WHEN string_to_array(s.show_genre, ',') && %s::text[] THEN 0 ELSE 1 END")
+            params.append(preferred_genres)
+        if prev_genre:
+            clauses.append("CASE WHEN %s = ANY(string_to_array(s.show_genre, ',')) THEN 0 ELSE 1 END")
+            params.append(prev_genre)
+        return (",".join(clauses) + ",") if clauses else ""
+
     # Get an available show ID based on channel, year, required runtime, and network
-    def get_available_show_id(self, channel_id, year, required_runtime, network, preferred_genres=None):
+    def get_available_show_id(self, channel_id, year, required_runtime, network, preferred_genres=None, prev_genre=None):
         # Condition for whether the show is syndicated or belongs to a specific network
         where_string = 's.show_is_syndicated = TRUE' if network.upper() == 'SYN' else f"s.show_network && ARRAY['{network.upper()}', 'Syndicated']"
-        genre_order_by = ""
         params = [channel_id, f"{year - SCHEDULE_RECURSION}-09-01", required_runtime, channel_id, year]
-        if preferred_genres:
-            genre_order_by = "CASE WHEN string_to_array(s.show_genre, ',') && %s::text[] THEN 0 ELSE 1 END,"
-            params.append(preferred_genres)
+        genre_order_by = self._genre_order_clause(preferred_genres, prev_genre, params)
         params.append(network.upper())
 
         self.cur.execute(
@@ -128,12 +157,14 @@ class Shows:
         return result['show_id'] if result else None
 
     # Replace a show in the schedule if it has no remaining episodes
-    def get_replacement_show(self, show_id, channel_id, year, required_runtime):
-        query = """
+    def get_replacement_show(self, show_id, channel_id, year, required_runtime, preferred_genres=None, prev_genre=None):
+        params = [channel_id, show_id, channel_id, f"{year - SCHEDULE_RECURSION}-09-01", required_runtime]
+        genre_order_by = self._genre_order_clause(preferred_genres, prev_genre, params)
+        query = f"""
         WITH EpisodeCount AS (
-            SELECT e.show_id, COUNT(*) AS remaining_episodes
+            SELECT e.show_id, COUNT(*) FILTER (WHERE bl.episode_id IS NULL) AS remaining_episodes
             FROM episodes e
-            LEFT JOIN broadcast_log bl ON e.episode_id = bl.episode_id
+            LEFT JOIN broadcast_log bl ON e.episode_id = bl.episode_id AND bl.channel_id = %s
             WHERE e.show_id = %s
             GROUP BY e.show_id
         ),
@@ -146,7 +177,7 @@ class Shows:
             AND %s = ANY (s.show_duration)
             AND s.show_is_syndicated = TRUE
             AND s.show_type != 'children'
-            ORDER BY random()
+            ORDER BY {genre_order_by} random()
             LIMIT 1
         )
         UPDATE schedule_template st
@@ -154,7 +185,7 @@ class Shows:
         FROM ReplacementShow rs, EpisodeCount ec
         WHERE st.show_id = ec.show_id AND ec.remaining_episodes = 0;
         """
-        self.cur.execute(query, (show_id, channel_id, f"{year - SCHEDULE_RECURSION}-09-01", required_runtime))
+        self.cur.execute(query, params)
         self.db_connection.commit()
 
     # Calculate time differences between consecutive show time slots
@@ -190,7 +221,7 @@ class Shows:
         return time_differences
 
     # Process scheduled shows, organizing by air date and time
-    def process_scheduled_shows(self, show_results, year):
+    def process_scheduled_shows(self, show_results, year, ended_show_ids=frozenset()):
         schedules = {}
         # Organize show results by air date and air time
         for row in show_results:
@@ -203,8 +234,9 @@ class Shows:
         for y in range(year - 1, year - SCHEDULE_RECURSION, -1):
             if y in schedules:  # Ensure year exists in the schedule
                 for time, show_id in schedules[y].items():
-                    # If the slot is empty in the final schedule, fill it
-                    if time in final_schedule and final_schedule[time] is None:
+                    # If the slot is empty in the final schedule, fill it -- but never resurrect a
+                    # show that had already ended by the target year.
+                    if time in final_schedule and final_schedule[time] is None and show_id not in ended_show_ids:
                         final_schedule[time] = show_id
 
         # Sort the final schedule by time
@@ -214,10 +246,18 @@ class Shows:
 
     # Retrieve scheduled show IDs based on the year and day of the week (dow)
     def get_scheduled_shows_id(self, year, dow):
-        query = """SELECT show_id, air_time, air_date FROM schedules 
+        query = """SELECT show_id, air_time, air_date FROM schedules
                    WHERE air_date = %s AND network = %s AND day_of_week = %s;"""
         self.cur.execute(query, (year, self.network.upper(), calendar.day_name[dow].lower()))
-        results = self.process_scheduled_shows(self.cur.fetchall(), year)
+        rows = self.cur.fetchall()
+
+        self.cur.execute(
+            """SELECT show_id FROM shows
+               WHERE show_id = ANY(%s) AND airdate_end IS NOT NULL AND EXTRACT(YEAR FROM airdate_end) < %s;""",
+            ([r['show_id'] for r in rows], year))
+        ended_show_ids = frozenset(r['show_id'] for r in self.cur.fetchall())
+
+        results = self.process_scheduled_shows(rows, year, ended_show_ids)
         return results
 
     # Retrieve show IDs for a specific network in a given year

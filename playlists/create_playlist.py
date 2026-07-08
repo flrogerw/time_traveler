@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import os
-import random
 import argparse
 import logging
 import datetime
@@ -17,8 +16,6 @@ from playlists.classes.Playlists import Playlists
 from playlists.classes.Shows import Shows
 from playlists.classes.Episodes import Episodes
 from playlists.classes.Schedules import Schedules
-from playlists.classes.Movies import Movies
-from playlists.classes.Specials import Specials
 
 # Load environment variables from .env file
 load_dotenv()
@@ -98,53 +95,22 @@ def main() -> None:
         episodes = Episodes(db, args.hostname, args.year)
         schedule = Schedules(db, args.hostname)
         playlists = Playlists(db, args.hostname)
-        movies = Movies(db, args.year)
-        specials = Specials(db)
 
         final_episodes = []
+        network_name = args.hostname.split('-')[1]
+        schedule_data = {}
 
-        # Handle special holiday playlist generation
-        if args.holiday:
-            current_sum = 0
-            holiday_episodes = episodes.get_episodes_for_holiday(args.holiday)
-            holiday_movies = movies.get_holiday_movies(args.holiday)
-            holiday_specials = specials.get_holiday_specials(args.holiday)
-
-            # Combine and shuffle all media types
-            merged_media = holiday_episodes + holiday_movies + holiday_specials
-            random.shuffle(merged_media)
-
-            # Convert duration string to total seconds
-            time_obj = datetime.strptime(args.duration, '%H:%M:%S')
-            total_seconds = int(datetime.timedelta(hours=time_obj.hour, minutes=time_obj.minute, seconds=time_obj.second).total_seconds())
-
-            # Accumulate items until duration is met or exceeded
-            for item in merged_media:
-                current_sum += item['duration']
-                final_episodes.append(item)
-                if current_sum >= total_seconds:
-                    break
-
-        elif args.hostname.split('-')[1] == 'SYN':
-            # Syndicated shows: retrieve time slots and associated episodes
+        # Determine time slots and (for network channels) the predefined historical show lineup.
+        # channel.type ('network'/'syndicated') is the source of truth for this branch, not the
+        # hostname string -- a channel's on-air branding doesn't always match how it's operated.
+        if channel.type == 'syndicated':
             time_slots = schedule.get_time_slots(channel.id, args.year, args.start, args.duration, dow)
             if not time_slots:
                 schedule.generate_time_slots(channel.id, args.year, dow)
                 time_slots = schedule.get_time_slots(channel.id, args.year, args.start, args.duration, dow)
-
-            for slot in time_slots:
-                episodes_for_slot = episodes.get_episodes_for_slot(
-                    slot, channel.id, dow, args.year, args.hostname.split('-')[1], air_date=eq_date
-                )
-                final_episodes.extend(episodes_for_slot)
-
-            final_episodes.sort(key=lambda x: x['time_slot'])
-
         else:
-            # Network shows: use predefined schedules and fallback to generated time slots
             time_slots = schedule.get_time_slots(channel.id, args.year, args.start, args.duration, dow)
             schedule_data = shows.get_scheduled_shows_id(args.year, dow)
-            print(schedule_data)
 
             if not time_slots:
                 # Attempt to generate from show schedule data if still no time slots
@@ -154,14 +120,40 @@ def main() -> None:
 
             logging.info(f"TIME SLOTS: {time_slots}")
 
+        # Holiday programming: pin whichever of the requested slots have a fitting holiday
+        # episode, via the same schedule_overrides mechanism used for multi-part continuations,
+        # rather than replacing the whole day -- slots without a fitting holiday episode fall
+        # through to the normal engine below. (Movies/specials aren't supported here yet, since
+        # schedule_overrides only references the episodes table.)
+        if args.holiday:
+            holiday_episodes = episodes.get_episodes_for_holiday(args.holiday) or []
+            used_holiday_ids = set()
             for slot in time_slots:
-                episodes_for_slot = episodes.get_episodes_for_slot(
-                    slot, channel.id, dow, args.year, args.hostname.split('-')[1], schedule_data, air_date=eq_date
-                )
-                logging.debug(f"Episodes for slot {slot}: {episodes_for_slot}")
-                final_episodes.extend(episodes_for_slot)
+                time_obj = datetime.datetime.strptime(slot['duration'], '%H:%M:%S')
+                slot_seconds = int(datetime.timedelta(hours=time_obj.hour, minutes=time_obj.minute,
+                                                       seconds=time_obj.second).total_seconds())
+                candidates = [e for e in holiday_episodes if e['episode_id'] not in used_holiday_ids]
+                if not candidates:
+                    continue
+                best = min(candidates, key=lambda e: abs(e['duration'] - slot_seconds))
+                if abs(best['duration'] - slot_seconds) <= 600:  # within 10 minutes of the slot
+                    used_holiday_ids.add(best['episode_id'])
+                    schedule.override_slot(channel.id, eq_date, slot['start_time'], best['episode_id'])
 
-            final_episodes.sort(key=lambda x: x['time_slot'])
+        # Fill every slot through the normal engine -- holiday-pinned slots resolve via the
+        # schedule_overrides priority check inside get_next_episode.
+        prev_genre = None
+        for slot in time_slots:
+            episodes_for_slot = episodes.get_episodes_for_slot(
+                slot, channel.id, dow, args.year, network_name, schedule_data, air_date=eq_date, prev_genre=prev_genre
+            )
+            logging.debug(f"Episodes for slot {slot}: {episodes_for_slot}")
+            final_episodes.extend(episodes_for_slot)
+            last_show_id = episodes_for_slot[-1].get('show_id') if episodes_for_slot else None
+            if last_show_id is not None:
+                prev_genre = shows.get_first_genre(last_show_id)
+
+        final_episodes.sort(key=lambda x: x['time_slot'])
 
         # Build final playlist
         pprint(final_episodes)
