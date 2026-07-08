@@ -32,6 +32,9 @@ from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from nltk.tokenize import sent_tokenize
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # nltk.download("punkt")
 # nltk.download('punkt_tab')
@@ -391,10 +394,10 @@ def get_db_connection() -> psycopg.Connection:
     """Establish and return a database connection."""
     try:
         conn = psycopg.connect(
-            dbname="time_traveler",
-            user="postgres",
-            password="m06Ar14u",
-            host="192.168.1.201",
+            dbname=os.getenv('DATABASE'),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASSWORD'),
+            host=os.getenv('DB_HOST'),
             port=5432
         )
         logging.info("Database connection established.")
