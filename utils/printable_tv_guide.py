@@ -40,7 +40,7 @@ from sympy import ceiling
 width, height = (711, 531)
 x_margin: float = 0.5 * inch
 y_margin: float = 0.85 * inch
-y_bottom: float = 0.75 * inch
+y_bottom: float = 0.65 * inch
 line_height: float = 0.22 * inch
 
 # Column setup (4 columns evenly spaced)
@@ -63,7 +63,7 @@ advert_keys = ['ad_image', 'ad_text', 'network_img', 'channel_img', 'font', 'fon
 column_left_margin = 0.1 * inch
 max_line_width = col_width - column_left_margin
 
-box_size = 0.12 * inch
+box_size = 0.13 * inch
 box_width = box_size + 0.04 * inch
 box_padding = 0.06 * inch
 
@@ -278,9 +278,17 @@ def fit_shows_on_logical_page(shows: list, page_height: float, top_margin: float
     return shows_per_page
 
 
-def truncate_paragraph(paragraph, n_sentences):
+def truncate_paragraph(paragraph, n_sentences=1):
+    if not paragraph:
+        return ""
     sentences = sent_tokenize(paragraph)
-    return sentences[0] if sentences else ""
+
+    if not sentences:
+        return ''
+    elif len(sentences) < n_sentences:
+        return " ".join(sentences)
+    else:
+        return " ".join(sentences[0: n_sentences])
 
 
 def get_page_numbers(num_pages: int):
@@ -336,7 +344,7 @@ def seconds_to_human(seconds: int) -> str:
         hours = seconds // 3600
         minutes = round((seconds % 3600) / 60)
         if minutes == 0:
-            return f"{hours} hr." if hours == 1 else f"{hours} hrs."
+            return f"{hours} hr." if hours == 1 else f"{int(hours)} hrs."
         return f"{hours} hr., {minutes} min." if hours == 1 else f"{hours} hrs, {minutes} min."
 
 
@@ -479,6 +487,228 @@ def get_current_schedule(dow, year: int = 1974):
         **dict(record),
         'time_slot': record['time_slot'].strftime("%H:%M")
     } for record in records]
+    return formatted_records
+
+
+def get_new_current_schedule(dow, year: int = 1974):
+    with get_db_connection() as db:
+        cur = db.cursor(cursor_factory=DictCursor)
+        cur.execute("""-- Normal shows
+                       WITH latest AS (
+                        SELECT channel_id, start_time, MAX(insert_date) AS max_insert_date
+                            FROM schedule_templates_manual
+                            WHERE session_id = '46e3e5a0-9fbd-4068-91e4-bed88ee3458f'
+                            GROUP BY channel_id, start_time)
+                        (SELECT 
+                               split_part(ch.channel_name, '-', 3) AS channel,
+                               st.start_time,
+                               CEIL((e.end_point - e.start_point) / 1800) * 1800 AS show_duration,
+                               sh.show_name AS show,
+                               sh.show_genre,
+                               e.episode_title AS title,
+                               COALESCE(e.episode_description, sh.show_description) AS description,
+                               e.episode_airdate AS date_played,
+                               sa.ad_image,
+                               sa.ad_text,
+                               sa.network_img,
+                               sa.channel_img,
+                               sa.font,
+                               sa.font_size,
+                               sh.show_id,
+                               e.is_bw,
+                               e.episode_co_stars AS actors,
+                               st.insert_date
+                        FROM schedule_templates_manual st
+                        JOIN latest l
+                          ON st.channel_id   = l.channel_id
+                         AND st.start_time    = l.start_time
+                         AND st.insert_date  = l.max_insert_date
+                        LEFT JOIN episodes e 
+                               ON st.episode_id = 'shows_' || e.episode_id
+                        LEFT JOIN channels ch 
+                               ON ch.channel_id = st.channel_id
+                        LEFT JOIN shows sh 
+                               ON st.show_id = sh.show_id
+                        LEFT JOIN show_adverts sa 
+                               ON sa.show_id = sh.show_id
+                        WHERE %s = ANY(st.days_of_week)
+                          AND st.replication_year = %s
+                          AND st.show_id <> 173
+                        )
+                        UNION ALL
+                        (
+                        SELECT 
+                               split_part(ch.channel_name, '-', 3) AS channel,
+                               st.start_time,
+                               CEIL((m.end_point - m.start_point) / 1800) * 1800 AS show_duration,
+                               'MOVIE' AS show,
+                               m.movie_genre AS show_genre,
+                               m.movie_name AS title,
+                               m.movie_description AS description,
+                               TO_DATE(m.movie_release_date::TEXT, 'YYYY') AS movie_release_date,
+                               sa.ad_image,
+                               sa.ad_text,
+                               sa.network_img,
+                               sa.channel_img,
+                               sa.font,
+                               sa.font_size,
+                               173 AS show_id,
+                               m.is_bw,
+                               m.movie_stars AS actors,
+                               st.insert_date   -- <-- added to match the first SELECT
+                        FROM schedule_templates_manual st
+                        JOIN latest l
+                          ON st.channel_id   = l.channel_id
+                         AND st.start_time    = l.start_time
+                         AND st.insert_date  = l.max_insert_date
+                        LEFT JOIN movies m 
+                               ON st.episode_id = 'movies_' || m.movie_id
+                        LEFT JOIN channels ch 
+                               ON ch.channel_id = st.channel_id
+                        LEFT JOIN show_adverts sa 
+                               ON sa.show_id = st.show_id
+                        WHERE %s = ANY(st.days_of_week)
+                          AND st.replication_year = %s
+                          AND st.show_id = 173
+                        );
+
+        --ORDER BY channel, time_slot, sh.show_id, date_played DESC;
+        """, (dow, year, dow, year))
+    records = cur.fetchall()
+    formatted_records = [{
+        **dict(record),
+        'time_slot': record['time_slot'].strftime("%H:%M")
+    } for record in records]
+
+    return formatted_records
+
+
+def get_manual_schedule(session_id: str):
+    with get_db_connection() as db:
+        cur = db.cursor(cursor_factory=DictCursor)
+        cur.execute("""WITH latest AS (
+                                    SELECT channel_id, start_time, session_id
+                                        FROM schedule_templates_manual
+                                        WHERE session_id = %s
+                                        GROUP BY channel_id, start_time, session_id
+                                )
+                                
+                                -- Episodes
+                                SELECT 
+                                       split_part(ch.channel_name, '-', 3) AS channel,
+                                       st.start_time,
+                                       CEIL((e.end_point - e.start_point) / 1800.0) * 1800 AS show_duration,
+                                       sh.show_name AS show,
+                                       sh.show_genre,
+                                       e.episode_title AS title,
+                                       COALESCE(e.episode_description, sh.show_description) AS description,
+                                       e.episode_airdate AS date_played,
+                                       sa.ad_image,
+                                       sa.ad_text,
+                                       sa.network_img,
+                                       sa.channel_img,
+                                       sa.font,
+                                       sa.font_size,
+                                       sh.show_id,
+                                       e.is_bw,
+                                       e.episode_co_stars AS actors,
+                                       st.insert_date
+                                FROM schedule_templates_manual st
+                                JOIN latest l
+                                  ON st.channel_id  = l.channel_id
+                                 AND st.start_time  = l.start_time
+                                  AND st.session_id = l.session_id
+                                LEFT JOIN episodes e 
+                                       ON st.episode_id = 'shows_' || e.episode_id::TEXT
+                                LEFT JOIN channels ch 
+                                       ON ch.channel_id = st.channel_id
+                                LEFT JOIN shows sh 
+                                       ON st.show_id = sh.show_id
+                                LEFT JOIN show_adverts sa 
+                                       ON sa.show_id = sh.show_id
+                                WHERE st.show_id <> 173
+                                AND st.show_id <> 328
+                                
+                                UNION ALL
+                                
+                                -- Movies
+                                SELECT 
+                                       split_part(ch.channel_name, '-', 3) AS channel,
+                                       st.start_time,
+                                       CEIL((m.end_point - m.start_point) / 1800.0) * 1800 AS show_duration,
+                                       'MOVIE' AS show,
+                                       m.movie_genre AS show_genre,
+                                       m.movie_name AS title,
+                                       m.movie_description AS description,
+                                       TO_DATE(m.movie_release_date::TEXT, 'YYYY') AS date_played,
+                                       sa.ad_image,
+                                       sa.ad_text,
+                                       sa.network_img,
+                                       sa.channel_img,
+                                       sa.font,
+                                       sa.font_size,
+                                       173 AS show_id,
+                                       m.is_bw,
+                                       m.movie_stars AS actors,
+                                       st.insert_date
+                                FROM schedule_templates_manual st
+                                JOIN latest l
+                                  ON st.channel_id  = l.channel_id
+                                 AND st.start_time  = l.start_time
+                                  AND st.session_id = l.session_id
+                                LEFT JOIN movies m 
+                                       ON st.episode_id = 'movies_' || m.movie_id::TEXT
+                                LEFT JOIN channels ch 
+                                       ON ch.channel_id = st.channel_id
+                                LEFT JOIN show_adverts sa 
+                                       ON sa.show_id = st.show_id
+                                WHERE st.show_id = 173
+                                
+                                UNION ALL
+                                
+                                -- Specials
+                                SELECT 
+                                       split_part(ch.channel_name, '-', 3) AS channel,
+                                       st.start_time,
+                                       CEIL((sp.end_point - sp.start_point) / 1800.0) * 1800 AS show_duration,
+                                       'SPECIAL' AS show,
+                                       sp.specials_genre AS show_genre,
+                                       sp.specials_title AS title,
+                                       sp.specials_description AS description,
+                                       TO_DATE(sp.specials_airdate::TEXT, 'YYYY') AS date_played,
+                                       sa.ad_image,
+                                       sa.ad_text,
+                                       sa.network_img,
+                                       sa.channel_img,
+                                       sa.font,
+                                       sa.font_size,
+                                       328 AS show_id,
+                                       is_bw,
+                                       sp.specials_stars AS actors,
+                                       st.insert_date
+                                FROM schedule_templates_manual st
+                                JOIN latest l
+                                  ON st.channel_id  = l.channel_id
+                                 AND st.start_time  = l.start_time
+                                  AND st.session_id = l.session_id
+                                
+                                LEFT JOIN specials sp 
+                                       ON st.episode_id = 'specials_' || sp.special_id::TEXT
+                                LEFT JOIN channels ch 
+                                       ON ch.channel_id = st.channel_id
+                                LEFT JOIN show_adverts sa 
+                                       ON sa.show_id = st.show_id
+                                WHERE st.show_id = 328;
+
+        """, (session_id,))
+    records = cur.fetchall()
+    print([dict(row) for row in records])
+
+    formatted_records = [{
+        **dict(record),
+        'time_slot': record['start_time'].strftime("%H:%M")
+    } for record in records]
+
     return formatted_records
 
 
@@ -681,7 +911,8 @@ def render_ad_image(ad_image, ad_text, time_slot, font, col_width, thumb_height,
     return new_im, ad_text, font_obj, text_w, text_h, new_w, new_h
 
 
-def create_show_image(ad_data_list: list, used_ads: list, available_height: float = 0) -> tuple[tuple[float, float], ImageReader] | tuple[None, None]:
+def create_show_image(ad_data_list: list, used_ads: list, available_height: float = 0) -> tuple[tuple[
+    float, float], ImageReader] | tuple[None, None]:
     best_fit = None
     best_height = 0
 
@@ -755,7 +986,7 @@ def create_show_image(ad_data_list: list, used_ads: list, available_height: floa
     return new_im.size, ImageReader(buf)
 
 
-def draw_ad_box(c: canvas.Canvas , x: float, y: float, box_w: float, box_h: float, file_path: str) -> None:
+def draw_ad_box(c: canvas.Canvas, x: float, y: float, box_w: float, box_h: float, file_path: str) -> None:
     """
     Draw an ad in a column at (x, y) with given width and height.
     If label_or_path is an image path, draw it scaled.
@@ -770,47 +1001,71 @@ def draw_ad_box(c: canvas.Canvas , x: float, y: float, box_w: float, box_h: floa
         offset_y = y + (box_h - new_h) / 2
         c.drawImage(img, offset_x, offset_y, new_w, new_h)
     except Exception:
-       return
+        return
 
 
 def fill_column_ads(c, ads: list, col_i: int, col_data: dict) -> None:
-    ad_y = col_data['current_y']
-    ad_bottom = col_data['y_bottom']
-    ad_list = []
-    ad_space = col_data['current_y'] - col_data['y_bottom']
+    ad_y_top = col_data['current_y']
+    ad_y_bottom = col_data['y_bottom']
+    available_height = ad_y_top - ad_y_bottom
     x = col_x_positions[col_i]
 
+    ad_list = []
+    total_ad_height = 0
+    spacing = 10  # space between ads
+
+    ad_bottom = ad_y_bottom
+    ad_y = ad_y_top
+
+    # --- Collect ads ---
     while ad_bottom < ad_y:
-        is_bottom_ad = True if ad_bottom == y_bottom else False
-        filler_scaled_img = None
+        is_bottom_ad = (ad_bottom == ad_y_bottom)
+        available_for_ad = ad_y - ad_bottom
 
-        filler_ad = select_ad_for_column(ads, ad_y - ad_bottom, col_width, used_ads, is_bottom_ad, min_height=50)
+        filler_ad = select_ad_for_column(
+            ads, available_for_ad, col_width, used_ads,
+            is_bottom_ad=is_bottom_ad, min_height=50
+        )
 
-        if filler_ad:
-            filler_scaled_img = get_scaled_image_size(filler_ad, col_width, available_height=(ad_y - ad_bottom))
-
-        if filler_scaled_img:
-            img_width, img_height = filler_scaled_img
-            ad_list.append((filler_ad, img_width, img_height, ad_bottom))
-            ad_bottom += (img_height + 10)
-
-        else:
-            ad_space = col_data['current_y'] - col_data['y_bottom']
+        if not filler_ad:
             break
 
-    for advert in ad_list:
-        ad, img_width, img_height, bottom = advert
-        draw_ad_box(c, x - 4, ad_y - img_height, img_width, img_height, ad)
+        scaled_size = get_scaled_image_size(filler_ad, col_width, available_height=available_for_ad)
+        if not scaled_size:
+            break
+
+        img_width, img_height = scaled_size
+        ad_list.append((filler_ad, img_width, img_height))
+        total_ad_height += img_height + spacing
+        ad_bottom += img_height + spacing
+
+    # Remove last spacing (no extra space below the last ad)
+    if ad_list:
+        total_ad_height -= spacing
+
+    # --- Compute vertical centering offset ---
+    if total_ad_height < available_height:
+        vertical_offset = (available_height - total_ad_height) / 2
+    else:
+        vertical_offset = 0
+
+    # --- Draw ads, preserving bottom alignment where applicable ---
+    draw_y = ad_y_top - vertical_offset
+    for i, advert in enumerate(ad_list):
+        ad, img_width, img_height = advert
+        draw_y -= img_height
+        draw_ad_box(c, x - 4, draw_y, img_width, img_height, ad)
+        draw_y -= spacing
 
 
-def draw_day_date_header(c, dow: int, start_col: int, col_index: int, col_w: float) -> None:
+def draw_day_date_header(c, dow: int, year: int, start_col: int, col_index: int, col_w: float) -> None:
     # DOW
     c.setFont("Helvetica-Bold", 12)
     c.drawString(col_x_positions[start_col], height - 0.35 * inch, weekday_name_from_int(dow))
     c.setFont("Helvetica", 8)
     c.drawString(col_x_positions[start_col], height - 0.5 * inch, "EVENING")
 
-    current_date = datetime.datetime.now().strftime("%B %d") + " 1970"  # e.g., September 17, 2025
+    current_date = datetime.datetime.now().strftime("%B %d") + f" {year}"  # e.g., September 17, 2025
     c.setFont("Helvetica", 9)
     c.drawRightString(col_x_positions[col_index] + (col_w * 1.7), height - 0.4 * inch, current_date)
 
@@ -838,7 +1093,6 @@ def draw_channel_boxes(c: canvas.Canvas, box_x: float, y: float, channel: int | 
 
 def get_wrapped_title_des(c, item, max_line_width, font_size: int = 8):
     string_width = c.stringWidth(item['show'].upper(), "Helvetica-Bold", font_size)
-
     full_title = (
         f"{item['show'].upper()} -{item['show_genre'].split(',')[0].strip().capitalize()}"
         if item['show_duration'] > 1800 and string_width < max_line_width else
@@ -850,8 +1104,8 @@ def get_wrapped_title_des(c, item, max_line_width, font_size: int = 8):
     if item['show_duration'] > 1800:
         temp_description += f" ({seconds_to_human(item['show_duration'])})"
 
-    if item['show_id'] == 173:
-        temp_description = f'"{item["title"]} {temp_description} {item["actors"]} ({item["date_played"].year})'
+    if item['show_id'] in [173, 328]:
+        temp_description = f'"{item["title"]}" {temp_description} {item["actors"]} ({item["date_played"].year})'
 
     description_lines = wrap_text_to_width(
         c, temp_description, max_line_width, font_name="Helvetica", font_size=8
@@ -870,7 +1124,7 @@ def get_wrapped_title_des(c, item, max_line_width, font_size: int = 8):
     return block_height, description_lines, title_lines
 
 
-def draw_title_des(c, x: float, y: float, item: dict, max_line_width: float):
+def draw_title_des(c, x: float, y: float, item: dict, max_line_width: float, year: int):
     _, description_lines, title_lines = get_wrapped_title_des(c, item, max_line_width)
     text_x = draw_channel_boxes(c, x, y, item['channel'], title_lines[0])
 
@@ -883,12 +1137,18 @@ def draw_title_des(c, x: float, y: float, item: dict, max_line_width: float):
         c.drawString(text_x, y, line)
 
         # Only on the last line
-        if cnt == len(title_lines) - 1 and not item['is_bw'] and item['show_id'] != 173:
+        # if cnt == len(title_lines) - 1 and not item['is_bw'] and item['show_id'] != 173:
+        if cnt == len(title_lines) - 1 and item['show_id'] != 173:
             # Measure the width of the text we just drew
             text_width = c.stringWidth(line, "Helvetica-Bold", 8)  # <-- match your font + size
             # Position box just after text
             box_x = text_x + text_width + 2  # 5pt padding
-            draw_clear_number_box(c, box_x, y - 1, box_width, box_size, "C")
+
+            if year < 1972 and not item['is_bw']:
+                draw_clear_number_box(c, box_x, y - 1, box_width, box_size, "C")
+
+            if year >= 1972 and item['is_bw']:
+                draw_clear_number_box(c, box_x, y - 1, box_width, box_size, "BW")
 
         y -= line_height / 1.5
         text_x = x
@@ -919,7 +1179,7 @@ def draw_show_ad(c, show_ads: list, current_x: float, current_y: float, bottom_y
     return None
 
 
-def generate_tv_guide(imposed_sheets: list, dow: int, col_w: float, filename="tv_guide.pdf") -> None:
+def generate_tv_guide(imposed_sheets: list, dow: int, year: int, col_w: float, filename="tv_guide.pdf") -> None:
     c = canvas.Canvas(filename, pagesize=(width, height))
     c.setFont("Helvetica", 10)
     page_numbers = get_page_numbers(len(imposed_sheets) * 2)
@@ -932,11 +1192,11 @@ def generate_tv_guide(imposed_sheets: list, dow: int, col_w: float, filename="tv
 
         if side == "left":
             x = 0.25 * inch
-            c.drawString(x, y, f"A-{page_number} TV GUIDE")
+            c.drawString(x, y, f"A-{page_number + 80} TV GUIDE")
 
         elif side == "right":
             x = width - 0.25 * inch
-            c.drawRightString(x, y, f"A-{page_number} TV GUIDE")
+            c.drawRightString(x, y, f"A-{page_number + 80} TV GUIDE")
 
     def get_show_id_time_slots(timeslot_shows: list) -> list:
         # Only include items where show_id is not None
@@ -969,7 +1229,7 @@ def generate_tv_guide(imposed_sheets: list, dow: int, col_w: float, filename="tv
             matching_ads = [show for show in page_data if show.get("show_id") in shows_ad_list]
             column_space[col_index]["has_ads"] = True if matching_ads else False
 
-            draw_day_date_header(c, dow, start_col, col_index, col_w)
+            draw_day_date_header(c, dow, year, start_col, col_index, col_w)
 
             needed_space = get_needed_draw_space(page_data, col_width)
             best_layout = get_layout_options(needed_space, y_start, col_width, used_ads, min_height=50)
@@ -981,9 +1241,10 @@ def generate_tv_guide(imposed_sheets: list, dow: int, col_w: float, filename="tv
             if layout_type == 'full_column_ad':
                 img_x = col_x_positions[start_col] if side_index == 0 else col_x_positions[end_col - 1]
                 available_space = height - (y_bottom + y_margin)
-                img_width, img_height = get_scaled_image_size(best_layout['ad'], col_width, True, available_height=available_space)
+                img_width, img_height = get_scaled_image_size(best_layout['ad'], col_width, True,
+                                                              available_height=available_space)
                 adjusted_img_x = .4 * inch if side_index == 0 else img_x
-                draw_ad_box(c, adjusted_img_x , y - img_height + 4, img_width, img_height, best_layout['ad'])
+                draw_ad_box(c, adjusted_img_x, y - img_height + 4, img_width, img_height, best_layout['ad'])
                 if side_index == 0:
                     x1 = x2 = adjusted_img_x + img_width + 5
                     y1 = y + 5
@@ -1040,7 +1301,7 @@ def generate_tv_guide(imposed_sheets: list, dow: int, col_w: float, filename="tv
                     x = col_x_positions[col_index]
 
                 time_slot = draw_timeslot(c, x, y, item, time_slot)
-                y = draw_title_des(c, x, y, item, max_line_width)
+                y = draw_title_des(c, x, y, item, max_line_width, year)
 
                 if layout_type == 'full_column_ad':
                     col_i: int = 0 if side_index == 0 else 3
@@ -1103,17 +1364,33 @@ def generate_tv_guide(imposed_sheets: list, dow: int, col_w: float, filename="tv
 
 
 if __name__ == "__main__":
-    DOW = 5
-    YEAR = 1970
+    DOW = 6
+    YEAR = 1971
 
-    shows = get_current_schedule(DOW, YEAR)
+    # shows = get_new_current_schedule(DOW, YEAR)
+    shows = get_manual_schedule('46e3e5a0-9fbd-4068-91e4-bed88ee3458f')
 
     if not shows:
         print("No shows found")
         exit(0)
 
     [show.update({"description": truncate_paragraph(show["description"], 1)}) for show in shows]
-    sorted_list = sorted(shows, key=lambda x: (x['time_slot'], int(x['channel'])))
+
+    pprint(shows)
+
+    sorted_list = sorted(
+        shows,  ## shows
+        key=lambda x: (
+            (datetime.datetime.strptime(x['time_slot'], '%H:%M').hour * 60
+             + datetime.datetime.strptime(x['time_slot'], '%H:%M').minute
+             + (24 * 60 if datetime.datetime.strptime(x['time_slot'], '%H:%M').hour < 6 else 0)),
+            int(x['channel'])
+        )
+    )
+
+    pprint(sorted_list)
+
     max_shows = fit_shows_on_logical_page(shows, height, top_margin=y_margin, bottom_margin=y_bottom)
-    chunks = list(chunk_shows_random(sorted_list, 4, max_shows))
-    generate_tv_guide(imposition_order(chunks), DOW, col_width)
+    chunks = list(chunk_shows_random(sorted_list, 4, 9))
+
+    generate_tv_guide(imposition_order(chunks), DOW, YEAR, col_width)

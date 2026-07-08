@@ -1,3 +1,5 @@
+import argparse
+import calendar
 import logging
 import random
 from datetime import datetime, timedelta, time, date
@@ -7,7 +9,7 @@ from typing import Any
 
 import psycopg2
 from more_itertools.more import raise_
-from psycopg2.extras import RealDictCursor
+from psycopg2.extras import RealDictCursor, RealDictRow
 
 
 def get_db_connection() -> psycopg2.extensions.connection:
@@ -150,6 +152,35 @@ def insert_seen_episode(channel_id: int, episode_id: str):
         conn.close()
 
 
+def insert_schedule(schedules: dict, year):
+    conn = get_db_connection()
+    insert_list = []
+    try:
+
+        for channel in schedules:
+            for row in schedules[channel]:
+                insert_tuple = (
+                    channel,
+                    row['start_time'],
+                    row['show_id'],
+                    f"{int(row['duration'])} seconds",
+                    year,
+                    [0, 1, 2, 3, 4],
+                    row['episode_id']
+                )
+                insert_list.append(insert_tuple)
+        with conn.cursor(cursor_factory=RealDictCursor) as cur:
+            cur.executemany("""INSERT INTO schedule_templates_new
+                                        (channel_id, time_slot, show_id, runtime, replication_year, days_of_week, episode_id)
+                                        VALUES (%s, %s, %s, %s::interval, %s, %s, %s)""", insert_list)
+
+    except Exception as e:
+        raise
+    finally:
+        conn.commit()
+        conn.close()
+
+
 def get_seen_episodes() -> dict[int, set[int]]:
     conn = get_db_connection()
     seen = {}
@@ -251,7 +282,7 @@ def get_category_shows(category: str, year: int, shows: dict) -> list:
 
     for s in shows.values():
         # check active in this year
-        if not (s["end_year"] <= year or s['show_id'] in [173, 275]):
+        if not (s["end_year"] <= (year - 3) or s['show_id'] in [173, 275]):
             continue
 
         # match genres
@@ -504,13 +535,13 @@ def split_slot(candidates, movies, s_slot, target_date, rule, seen_shows, seen_e
 
 
 def schedule_for_channels(
-    channels: list[dict[str, Any]],
-    target_date: datetime,
-    start_time: time,
-    end_time: time,
-    slot_minutes: int = 30,
-    seed: int | None = None,
-    slot_variation: list[int] | None = None
+        channels: list[dict[str, Any]],
+        target_date: datetime,
+        start_time: time,
+        end_time: time,
+        slot_minutes: int = 30,
+        seed: int | None = None,
+        slot_variation: list[int] | None = None
 ) -> dict[int, list[dict[str, Any]]]:
     """
     Build TV schedules for multiple channels for a given day.
@@ -529,6 +560,7 @@ def schedule_for_channels(
 
     Raises:
         ValueError: If a slot cannot be filled with a valid show or episode.
+        :param is_network:
     """
 
     # Seed random generator if provided
@@ -552,16 +584,25 @@ def schedule_for_channels(
         raise ValueError(f"Invalid start/end times: {e}")
 
     # Process each channel
+
     for ch in channels:
         seen_shows: list[int] = []
         sid = ch["channel_id"]
         schedules[sid] = []
+        is_network = True if ch['channel_id'] in [1, 2, 4] else False
 
         try:
             # Fetch channel-specific settings
-            fixed = get_fixed_slots(sid, target_date.weekday())
+            if is_network:
+                network = ch['channel_name'].split('-')[1]
+                print(network)
+                fixed = load_history_db(dt.weekday(), target_date.year, network)
+            else:
+                fixed = get_fixed_slots(sid, target_date.weekday())
+                rules = get_fill_rules(sid)
+
             fixed_map = {f["start_time"]: f for f in fixed}
-            rules = get_fill_rules(sid)
+
         except Exception as e:
             raise RuntimeError(f"Failed to load rules for channel {sid}: {e}")
 
@@ -578,24 +619,27 @@ def schedule_for_channels(
 
         # Iterate over slots
         for slot_time, slot_seconds in slots:
-            show = episode = record = ep_key = None
+            show = episode = None
 
             # Case 1: Fixed slot content
             if slot_time.time() in fixed_map.keys():
                 try:
                     entry = fixed_map[slot_time.time()].copy()
                     show = shows.get(entry['show_id'])
-                    entry['episode_id'] = get_fixed_episode(
-                        show, list(seen_episodes.get(sid, set()))
-                    )['episode_id']
+                    entry['episode_id'] = \
+                    choose_movie_for_show(movies, target_date.year, slot_seconds, seen_episodes_ids)['episode_id'] if \
+                    entry['show_id'] == 173 else get_fixed_episode(show, list(seen_episodes.get(sid, set())))[
+                        'episode_id']
 
                     record = {
                         "start_time": slot_time.time(),
                         "show_id": entry["show_id"],
                         "title": show['title'],
-                        "episode_id": f"shows_{entry['episode_id']}",
+                        "episode_id": f"movies_{entry['episode_id']}" if entry['show_id'] == 173 else f"shows_{entry['episode_id']}",
                         "duration": slot_seconds
                     }
+
+                    print(record)
 
                     update_memory_sets(record, seen_shows, sid,
                                        f"shows_{entry['episode_id']}",
@@ -606,7 +650,11 @@ def schedule_for_channels(
 
             # Case 2: Rule-based content
             try:
-                rule = find_rule_for_slot(rules, slot_time)
+                if is_network:
+                    rule = {"category": ','.join(get_genre_bias(slot_time, target_date))}
+                else:
+                    rule = find_rule_for_slot(rules, slot_time)
+
                 rule = rule if rule else {"category": 'news,drama,comedy,movie,special,documentary'}
 
                 # Candidate shows for this slot
@@ -630,8 +678,8 @@ def schedule_for_channels(
                                                        slot_variation=[30, 60])
                         for s_slot in split_slots:
                             for ep_key, record in split_slot(
-                                candidates, movies, s_slot, target_date,
-                                rule, seen_shows, seen_episodes
+                                    candidates, movies, s_slot, target_date,
+                                    rule, seen_shows, seen_episodes
                             ):
                                 if not record:
                                     raise ValueError(f"No record generated for split slot {s_slot}")
@@ -660,8 +708,190 @@ def schedule_for_channels(
     return schedules
 
 
-channels = get_channels([3, 5, 6, 7])
-dt = datetime(1970, 3, 18)
+#### PRIME TIME LOGIC #####
+
+def get_genre_bias(t: time, show_date: date) -> list[str]:
+    """
+    Return the preferred genres for a given year and hour of day.
+    Automatically selects the closest decade and hour range.
+    """
+    # Define genre bias by decade
+    TIME_OF_DAY_GENRE_BIAS_50s = {
+        range(6, 18): ['local', 'family'],
+        range(18, 19): ['news', 'family'],
+        range(19, 21): ['family', 'comedy'],
+        range(21, 23): ['variety', 'drama'],
+        range(23, 24): ['rerun', 'talk']
+    }
+
+    TIME_OF_DAY_GENRE_BIAS_60s = {
+        range(6, 18): ['local', 'family', 'comedy'],
+        range(18, 19): ['news', 'family', 'comedy'],
+        range(19, 21): ['comedy', 'western', 'family', 'drama'],
+        range(21, 23): ['drama', 'crime', 'variety', 'thriller'],
+        range(23, 24): ['talk', 'rerun', 'variety']
+    }
+
+    TIME_OF_DAY_GENRE_BIAS_70s = {
+        range(6, 18): ['local', 'family', 'comedy'],
+        range(18, 19): ['news', 'family', 'comedy'],
+        range(19, 21): ['comedy', 'family', 'drama', 'western'],
+        range(21, 23): ['drama', 'crime', 'thriller', 'comedy'],
+        range(23, 24): ['talk', 'rerun', 'drama']
+    }
+
+    TIME_OF_DAY_GENRE_BIAS_80s = {
+        range(6, 18): ['local', 'family', 'comedy'],
+        range(18, 19): ['news', 'family', 'comedy'],
+        range(19, 21): ['comedy', 'family', 'drama', 'sitcom'],
+        range(21, 23): ['drama', 'crime', 'thriller', 'action'],
+        range(23, 24): ['talk', 'rerun', 'variety', 'drama']
+    }
+
+    GENRE_BIAS_BY_DECADE = {
+        1950: TIME_OF_DAY_GENRE_BIAS_50s,
+        1960: TIME_OF_DAY_GENRE_BIAS_60s,
+        1970: TIME_OF_DAY_GENRE_BIAS_70s,
+        1980: TIME_OF_DAY_GENRE_BIAS_80s
+    }
+
+    # Pick closest decade
+    decade = min(GENRE_BIAS_BY_DECADE.keys(), key=lambda d: abs(d - show_date.year))
+    bias_table = GENRE_BIAS_BY_DECADE[decade]
+
+    # Find the hour range that matches
+    for hour_range, genres in bias_table.items():
+        if t.hour in hour_range:
+            return genres
+
+    # Fallback if hour not found
+    return ['comedy', 'drama', 'family']
+
+
+def load_history_db(dow: int, year: int, network: str) -> list[RealDictRow]:
+    conn = get_db_connection()
+    history = {}
+    with conn.cursor(cursor_factory=RealDictCursor) as cur:
+        cur.execute("""
+           SELECT
+                  s.air_date,
+                  s.network,
+                  s.air_time as start_time,
+                  s.show_id,
+                  c.channel_id,
+                  (t.start_time + t.duration)::time AS end_time
+                FROM schedules s
+                JOIN channels c
+                  ON c.channel_name ILIKE %s
+                LEFT JOIN LATERAL (
+                  SELECT t.*
+                  FROM time_slot_schedules t
+                  WHERE t.channel_id = c.channel_id
+                    AND t.channel_dow = %s             
+                    AND t.schedule_id = %s
+                    AND s.air_time >= t.start_time
+                    AND s.air_time <  (t.start_time + t.duration)
+                  ORDER BY t.start_time
+                  LIMIT 1
+                ) t ON true
+                WHERE s.network ILIKE %s
+                  AND s.air_date = %s
+                  AND s.show_id IS NOT NULL
+                  AND t.channel_dow = (
+                  CASE LOWER(s.day_of_week)
+                    WHEN 'monday' THEN 0 WHEN 'tuesday' THEN 1 WHEN 'wednesday' THEN 2
+                    WHEN 'thursday' THEN 3 WHEN 'friday' THEN 4 WHEN 'saturday' THEN 5
+                    WHEN 'sunday' THEN 6
+                  END
+                )
+                ORDER BY s.air_time;""", (f"%{network}%", dow, year, network, year))
+        rows = cur.fetchall()
+
+    conn.close()
+    return rows
+
+
+def get_nearest_shows(show_date: date, network: str) -> list[RealDictRow]:
+    conn = get_db_connection()
+    with conn.cursor(cursor_factory=RealDictCursor) as cur:
+        cur.execute("""WITH ranked AS (
+                                SELECT
+                                    e.episode_id,
+                                    e.episode_airdate,
+                                    s.show_id,
+                                    s.show_name,
+                                    ROW_NUMBER() OVER (
+                                        PARTITION BY s.show_id
+                                        ORDER BY ABS(e.episode_airdate - DATE %s)
+                                    ) AS rn
+                                FROM episodes e
+                                JOIN shows s ON s.show_id = e.show_id
+                                WHERE %s = ANY(s.show_network)
+                                  AND s.show_type != 'children'
+                                  AND e.episode_airdate <= DATE %s
+                            )
+                            SELECT *
+                            FROM ranked
+                            WHERE rn = 1 
+                            ORDER BY episode_airdate DESC;""", (show_date, network, show_date))
+        rows = cur.fetchall()
+
+        for row in rows:
+            airdate = row["episode_airdate"]  # dict lookup by column name
+            if isinstance(airdate, date):  # make sure it's a datetime.date
+                day_of_week = airdate.strftime("%A")  # e.g. "Friday"
+                row["day_of_week"] = day_of_week  # add new field
+
+        conn.close()
+    return rows
+
+
+def nth_weekday_in_month(year, month, weekday, n):
+    """
+    Find the nth occurrence of a weekday in a given month/year.
+    weekday: 0=Monday ... 6=Sunday
+    n: occurrence index (1=first, 2=second, etc.)
+    """
+    c = calendar.Calendar()
+    days = [d for d in c.itermonthdates(year, month)
+            if d.month == month and d.weekday() == weekday]
+
+    if n <= len(days):
+        return days[n - 1]
+    else:
+        # fallback: return last occurrence if n too large
+        return days[-1]
+
+
+def equivalent_date(target_year, month=None, day=None):
+    """
+    Map a given date to its equivalent in target_year.
+    If month/day not provided, defaults to today.
+    Returns (date, weekday_name).
+    """
+    today = date.today()
+    src_date = date(today.year, month or today.month, day or today.day)
+
+    weekday = src_date.weekday()
+    month = src_date.month
+
+    # find which occurrence of that weekday in the source month
+    c = calendar.Calendar()
+    month_days = [d for d in c.itermonthdates(src_date.year, month)
+                  if d.month == month and d.weekday() == weekday]
+    occurrence = month_days.index(src_date) + 1
+
+    # get equivalent date in target year
+    eq_date = nth_weekday_in_month(target_year, month, weekday, occurrence)
+
+    # return both date object and formatted string
+    return eq_date, eq_date.strftime("%A")
+
+
+channels = get_channels([1, 2, 3, 4, 5, 6, 7])
+dt = datetime(1970, 10, 5)
 start = time(18, 0)
-end = time(1, 0)
-pprint(schedule_for_channels(channels, dt, start, end, slot_variation=[30, 60, 90, 120]))
+end = time(23, 0)
+
+schedules = schedule_for_channels(channels, dt, start, end, slot_variation=[30, 60, 90, 120])
+insert_schedule(schedules, dt.year)
