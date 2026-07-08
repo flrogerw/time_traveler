@@ -132,11 +132,35 @@ def build_ad_candidates(ad_source: Union[str, Iterable[str]], year, season: str,
     return candidates
 
 
+def list_ad_images(ad_source: Union[str, Iterable[str]]) -> list[str]:
+    """
+    Collect every valid advertisement image file, regardless of year/season/day tagging.
+
+    Used instead of build_ad_candidates' year/season/day matching for the general ad pool:
+    restricting to one real-world ad campaign (e.g. just "70_fall") starves the pool needed to
+    keep ad-bearing layouts viable across a whole guide instead of collapsing to no-ads after
+    the first page or two.
+    """
+    exts = {'.png', '.jpg', '.jpeg', '.tif', '.tiff', '.gif'}
+
+    if isinstance(ad_source, str):
+        try:
+            return [os.path.join(ad_source, fname) for fname in os.listdir(ad_source)
+                    if any(fname.lower().endswith(ext) for ext in exts)]
+        except FileNotFoundError:
+            logging.warning("Ad source directory not found: %s", ad_source)
+            return []
+
+    return [p for p in ad_source if any(os.path.basename(p).lower().endswith(ext) for ext in exts)]
+
+
 def get_sorted_ads():
-    ads = build_ad_candidates(AD_IMAGES, 70, 'fall', 'monday')
+    ads = list_ad_images(AD_IMAGES)
     ads_1 = [a for a in ads if "_1_" in a]
     ads_2 = [a for a in ads if "_2_" in a]
-    ads_full = [a for a in ads if "_full_" in a]
+    # "_page_" ads are full-page/full-column style, same as "_full_" -- merge them so this
+    # sizeable chunk of the library (previously dropped entirely) is actually usable.
+    ads_full = [a for a in ads if "_full_" in a or "_page_" in a]
 
     random.shuffle(ads_1)
     random.shuffle(ads_2)
@@ -172,7 +196,7 @@ def select_ad_for_column(ads, space_left, col_w, used_ads, is_bottom_ad, min_hei
         if not is_bottom_ad and "_B_" in ad_path:
             continue
 
-        scaled = get_scaled_image_size(ad_path, col_w, space_left)
+        scaled = get_scaled_image_size(ad_path, col_w, available_height=space_left)
         if not scaled:
             continue
 
@@ -186,14 +210,16 @@ def select_ad_for_column(ads, space_left, col_w, used_ads, is_bottom_ad, min_hei
     return best_fit
 
 
-def get_scaled_image_size(image_path: str, col_width: float, is_full_column: bool = False, available_height=None):
+def get_scaled_image_size(image_path: str, col_width: float, available_height=None, min_scale_ratio: float = 0.85):
     """
-    Scale image to fit within col_width and available_height (if given),
-    maintaining aspect ratio.
-    - Prefer scaling to col_width.
-    - If that makes the image too tall for available_height,
-      scale to available_height instead.
-    Returns (width, height).
+    Scale image to fit within col_width, maintaining aspect ratio.
+
+    If available_height is given and the natural (col_width-scaled) height exceeds it, the image
+    is shrunk to fit -- but only up to min_scale_ratio (default: at most a 15% reduction), so an
+    ad that would need to shrink more than that to fit is treated as not fitting at all (returns
+    None) rather than being squeezed down to an awkwardly small size.
+
+    Returns (width, height), or None if it doesn't fit within the minimum-shrink allowance.
     """
     with Image.open(image_path) as img:
         orig_width, orig_height = img.size
@@ -202,8 +228,10 @@ def get_scaled_image_size(image_path: str, col_width: float, is_full_column: boo
         scale_w = col_width
         scale_h = (orig_height / orig_width) * scale_w
 
-        if available_height is not None and scale_h > available_height and is_full_column:
-            # Instead, scale based on available height
+        if available_height is not None and scale_h > available_height:
+            if available_height / scale_h < min_scale_ratio:
+                return None
+            # Shrink to fit the available height (bounded above by min_scale_ratio).
             scale_h = available_height
             scale_w = (orig_width / orig_height) * scale_h
 
@@ -1147,8 +1175,12 @@ def generate_tv_guide(imposed_sheets: list, dow: int, year: int, col_w: float, f
             if layout_type == 'full_column_ad':
                 img_x = col_x_positions[start_col] if side_index == 0 else col_x_positions[end_col - 1]
                 available_space = height - (y_bottom + y_margin)
-                img_width, img_height = get_scaled_image_size(best_layout['ad'], col_width, True,
-                                                              available_height=available_space)
+                # min_scale_ratio=0: this ad and layout are already committed to at this point
+                # (chosen during get_layout_options), so it must render at whatever size fits
+                # rather than being rejected here.
+                img_width, img_height = get_scaled_image_size(best_layout['ad'], col_width,
+                                                              available_height=available_space,
+                                                              min_scale_ratio=0)
                 adjusted_img_x = .4 * inch if side_index == 0 else img_x
                 draw_ad_box(c, adjusted_img_x, y - img_height + 4, img_width, img_height, best_layout['ad'])
                 if side_index == 0:
@@ -1183,8 +1215,11 @@ def generate_tv_guide(imposed_sheets: list, dow: int, year: int, col_w: float, f
                     if img_dimensions:
                         y -= (img_dimensions + 10)
 
+                # min_scale_ratio=0: already committed to this ad/layout, must render at
+                # whatever size fits rather than being rejected here.
                 img_width, img_height = get_scaled_image_size(best_layout['ad'], col_width,
-                                                              available_height=int(y - y_bottom))
+                                                              available_height=int(y - y_bottom),
+                                                              min_scale_ratio=0)
                 draw_ad_box(c, x - 10, y - img_height + 10, img_width, img_height, best_layout['ad'])
                 y -= (img_height + 10)
 

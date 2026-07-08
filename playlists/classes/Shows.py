@@ -128,7 +128,7 @@ class Shows:
     def get_available_show_id(self, channel_id, year, required_runtime, network, preferred_genres=None, prev_genre=None):
         # Condition for whether the show is syndicated or belongs to a specific network
         where_string = 's.show_is_syndicated = TRUE' if network.upper() == 'SYN' else f"s.show_network && ARRAY['{network.upper()}', 'Syndicated']"
-        params = [channel_id, f"{year - SCHEDULE_RECURSION}-09-01", required_runtime, channel_id, year]
+        params = [channel_id, f"{year - SCHEDULE_RECURSION}-09-01", required_runtime, year]
         genre_order_by = self._genre_order_clause(preferred_genres, prev_genre, params)
         params.append(network.upper())
 
@@ -143,7 +143,9 @@ class Shows:
             AND {where_string}
             AND s.show_type != 'children'
             AND s.show_id NOT IN (
-                SELECT show_id FROM schedule_template WHERE channel_id = %s AND replication_year = %s
+                -- Exclusive across ALL channels for this replication_year, not just this one --
+                -- a syndicated show is licensed to one station in a market, not several at once.
+                SELECT show_id FROM schedule_template WHERE replication_year = %s
             )
             ORDER BY
                 {genre_order_by}
