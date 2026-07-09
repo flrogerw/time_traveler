@@ -11,6 +11,7 @@ Features:
 - Generates booklet imposition order for duplex printing
 """
 
+import argparse
 import calendar
 import datetime
 import io
@@ -529,6 +530,19 @@ def get_current_schedule(dow, year: int = 1974):
         """, (dow, year, dow, year))
         records = cur.fetchall()
     return _format_schedule_records(records)
+
+
+def resolve_session_id(session_name_or_id: str) -> str:
+    """
+    Accept either a schedule_sessions.friendly_name (e.g. "christmas-2025") or a raw
+    session_id UUID; return the session_id to pass to get_manual_schedule. Falls back to
+    treating the input as an already-valid session_id if no matching friendly_name is found.
+    """
+    with get_db_connection() as db:
+        cur = db.cursor(row_factory=dict_row)
+        cur.execute("SELECT session_id FROM schedule_sessions WHERE friendly_name = %s;", (session_name_or_id,))
+        row = cur.fetchone()
+    return str(row['session_id']) if row else session_name_or_id
 
 
 def get_manual_schedule(session_id: str):
@@ -1321,11 +1335,38 @@ def generate_tv_guide(imposed_sheets: list, dow: int, year: int, col_w: float, f
     print(f"PDF saved to {filename}")
 
 
-if __name__ == "__main__":
-    DOW = 3
-    YEAR = 1971
+def parse_arguments() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Generate a printable TV Guide PDF booklet.")
+    parser.add_argument('--source', choices=['current', 'manual'], default='current',
+                        help="'current' pulls from the automatic schedule (create_playlist.py's "
+                             "output, filtered by --dow/--year); 'manual' pulls from a curated "
+                             "session (create_playlist_manual.py's output, selected by --session). "
+                             "Default: current.")
+    parser.add_argument('--session', type=str, default=None,
+                        help="schedule_sessions.friendly_name (e.g. 'christmas-2025') or a raw "
+                             "session_id UUID. Required when --source=manual.")
+    parser.add_argument('--dow', type=int, default=3, choices=range(0, 7),
+                        help="Day of week (0=Monday..6=Sunday). Used to filter --source=current "
+                             "and to label the guide header for either source. Default: 3 (Thursday).")
+    parser.add_argument('--year', type=int, default=1971,
+                        help="Broadcast year. Used to filter --source=current and to label the "
+                             "guide header for either source. Default: 1971.")
+    parser.add_argument('--filename', type=str, default='tv_guide.pdf',
+                        help="Output PDF filename. Default: tv_guide.pdf")
 
-    shows = get_current_schedule(DOW, YEAR)
+    args = parser.parse_args()
+    if args.source == 'manual' and not args.session:
+        parser.error("--session is required when --source=manual")
+    return args
+
+
+if __name__ == "__main__":
+    args = parse_arguments()
+
+    if args.source == 'manual':
+        shows = get_manual_schedule(resolve_session_id(args.session))
+    else:
+        shows = get_current_schedule(args.dow, args.year)
 
     if not shows:
         print("No shows found")
@@ -1349,4 +1390,4 @@ if __name__ == "__main__":
 
     chunks = list(chunk_shows_random(sorted_list, 4, 9))
 
-    generate_tv_guide(imposition_order(chunks), DOW, YEAR, col_width)
+    generate_tv_guide(imposition_order(chunks), args.dow, args.year, col_width, filename=args.filename)
