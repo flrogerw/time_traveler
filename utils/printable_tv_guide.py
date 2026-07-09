@@ -169,6 +169,17 @@ def get_sorted_ads():
     return ads_1, ads_2, ads_full
 
 
+def _ad_min_scale_ratio(ad_path: str) -> float:
+    """
+    Only "_gen_1_A"/"_gen_1_B" ads may be shrunk to fit a gap, and only by up to 5%. Every
+    other ad (including all "_full_"/"_page_" full-column ads) must fit at its natural size
+    or be treated as not fitting at all.
+    """
+    if "_gen_1_A" in ad_path or "_gen_1_B" in ad_path:
+        return 0.95
+    return 1.0
+
+
 def select_ad_for_column(ads, space_left, col_w, used_ads, is_bottom_ad, min_height: float = 50):
     """
     Returns the path of the largest ad that fits in the available vertical space.
@@ -196,7 +207,8 @@ def select_ad_for_column(ads, space_left, col_w, used_ads, is_bottom_ad, min_hei
         if not is_bottom_ad and "_B_" in ad_path:
             continue
 
-        scaled = get_scaled_image_size(ad_path, col_w, available_height=space_left)
+        scaled = get_scaled_image_size(ad_path, col_w, available_height=space_left,
+                                       min_scale_ratio=_ad_min_scale_ratio(ad_path))
         if not scaled:
             continue
 
@@ -210,7 +222,7 @@ def select_ad_for_column(ads, space_left, col_w, used_ads, is_bottom_ad, min_hei
     return best_fit
 
 
-def get_scaled_image_size(image_path: str, col_width: float, available_height=None, min_scale_ratio: float = 0.85):
+def get_scaled_image_size(image_path: str, col_width: float, available_height=None, min_scale_ratio: float = 1.0):
     """
     Scale image to fit within col_width, maintaining aspect ratio.
 
@@ -772,7 +784,7 @@ def get_layout_options(
     # --- Option 3: Two-column ad at bottom ---
     ad = select_ad_for_column(ads_2, page_height, col_width * 2, used_ads, True, min_height)
     if ad:
-        _, ad_h = get_scaled_image_size(ad, col_width * 2, page_height)
+        _, ad_h = get_scaled_image_size(ad, col_width * 2, page_height, min_scale_ratio=_ad_min_scale_ratio(ad))
         remaining_height = page_height - ad_h
         if total_length <= 2 * remaining_height:
             layouts.append({
@@ -785,7 +797,7 @@ def get_layout_options(
     # --- Option 4: Smaller stacked ads ---
     ad = select_ad_for_column(ads_1, page_height, col_width, used_ads, False, min_height)
     if ad:
-        _, ad_h = get_scaled_image_size(ad, col_width, page_height)
+        _, ad_h = get_scaled_image_size(ad, col_width, page_height, min_scale_ratio=_ad_min_scale_ratio(ad))
         remaining_height = page_height - ad_h
         if total_length <= page_height + remaining_height:
             layouts.append({
@@ -952,7 +964,8 @@ def fill_column_ads(c, ads: list, col_i: int, col_data: dict, used_ads: set[str]
         if not filler_ad:
             break
 
-        scaled_size = get_scaled_image_size(filler_ad, col_width, available_height=available_for_ad)
+        scaled_size = get_scaled_image_size(filler_ad, col_width, available_height=available_for_ad,
+                                            min_scale_ratio=_ad_min_scale_ratio(filler_ad))
         if not scaled_size:
             break
 
@@ -1166,7 +1179,11 @@ def generate_tv_guide(imposed_sheets: list, dow: int, year: int, col_w: float, f
             # recomputing the same text-measurement work up to 3x per item.
             wrapped_items = [get_wrapped_title_des(c, item, max_line_width) for item in page_data]
             needed_space = sum(h for h, _, _ in wrapped_items)
-            best_layout = get_layout_options(needed_space, y_start, col_width, used_ads, min_height=50)
+            # page_height must be the actual usable column height (y_start - y_bottom), not the
+            # raw y_start coordinate -- using y_start alone overstated available space by
+            # y_bottom (~10%), letting layout options accept more content than a real column
+            # can hold and letting full-column ad selection accept ads that don't actually fit.
+            best_layout = get_layout_options(needed_space, y_start - y_bottom, col_width, used_ads, min_height=50)
             layout_type = best_layout.get('type')
 
             column_space[col_index]['type'] = layout_type
