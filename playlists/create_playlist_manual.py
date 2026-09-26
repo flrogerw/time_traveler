@@ -5,26 +5,72 @@ import random
 import argparse
 import logging
 import datetime
-from pprint import pprint
-from typing import Optional
-
-import psycopg2
-from psycopg2.extensions import connection
+import re
+import psycopg
+from psycopg import Connection as connection
 from dotenv import load_dotenv
-
 from playlists.classes.Channels import Channels
 from playlists.classes.Playlists import Playlists
 from playlists.classes.Shows import Shows
 from playlists.classes.Episodes import Episodes
 from playlists.classes.Schedules import Schedules
-from playlists.classes.Movies import Movies
-from playlists.classes.Specials import Specials
 
 # Load environment variables from .env file
 load_dotenv()
 
+DEV_MODE = False
+
+START_RE = re.compile(r'#EXTVLCOPT:start-time=([\d.]+)')
+STOP_RE = re.compile(r'#EXTVLCOPT:stop-time=([\d.]+)')
+IMAGE_DURATION_RE = re.compile(r'#EXTVLCOPT:image-duration=([\d.]+)')
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+def parse_m3u_runtime(m3u_path: str) -> float:
+    total_seconds = 0.0
+
+    current_start = None
+    current_stop = None
+    current_image_duration = None
+
+    with open(m3u_path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+
+            # Parse options
+            if match := START_RE.match(line):
+                current_start = float(match.group(1))
+
+            elif match := STOP_RE.match(line):
+                current_stop = float(match.group(1))
+
+            elif match := IMAGE_DURATION_RE.match(line):
+                current_image_duration = float(match.group(1))
+
+            # Media path line → commit duration
+            elif line and not line.startswith("#"):
+                if current_image_duration is not None:
+                    total_seconds += current_image_duration
+                elif current_start is not None and current_stop is not None:
+                    total_seconds += (current_stop - current_start)
+                else:
+                    raise ValueError(f"Missing timing info before media line: {line}")
+
+                # Reset for next entry
+                current_start = None
+                current_stop = None
+                current_image_duration = None
+
+    return total_seconds
+
+
+def format_runtime(seconds: float) -> str:
+    seconds = int(round(seconds))
+    h = seconds // 3600
+    m = (seconds % 3600) // 60
+    s = seconds % 60
+    return f"{h:02d}:{m:02d}:{s:02d}"
 
 
 def get_db_connection() -> connection:
@@ -32,11 +78,11 @@ def get_db_connection() -> connection:
     Establish and return a PostgreSQL database connection using environment variables.
 
     Returns:
-        psycopg2.extensions.connection: PostgreSQL database connection object.
+        psycopg.Connection: PostgreSQL database connection object.
     """
     try:
-        conn = psycopg2.connect(
-            database=os.getenv('DATABASE'),
+        conn = psycopg.connect(
+            dbname=os.getenv('DATABASE'),
             user=os.getenv('DB_USER'),
             password=os.getenv('DB_PASSWORD'),
             host=os.getenv('DB_HOST'),
@@ -59,23 +105,36 @@ def parse_arguments() -> argparse.Namespace:
     today = datetime.datetime.now()
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--hostname', required=True, type=str,
-                        help='Host making the request (e.g., TV-ABC-7).')
-    parser.add_argument('--year', required=True, type=int, default=1960, choices=range(1960, 1990),
+    parser.add_argument('--session_name', required=True, type=str,
+                        help='The name of the session to process')
+    parser.add_argument('--year', required=False, type=int, default=1960, choices=range(1960, 1990),
                         help='Broadcast year between 1960 and 1989.')
-    parser.add_argument('--dow', type=int, default=today.weekday(), choices=range(0, 7),
-                        help='Day of the week (0=Mon, ..., 6=Sun). Defaults to today.')
-    parser.add_argument('--start', default='19:00:00', type=str,
-                        help='Start time for the playlist (default: 19:00:00).')
-    parser.add_argument('--duration', default='05:00:00', type=str,
-                        help='Duration of the playlist (default: 5 hours).')
-    parser.add_argument('--holiday', required=False, default=None, type=str,
-                        choices=['christmas', 'thanksgiving', 'easter', 'halloween'],
-                        help='Optional holiday to build a special playlist.')
+
 
     args = parser.parse_args()
     logging.info(f"Parsed arguments: {args}")
     return args
+
+
+def normalize_minutes(time_str: str, start_hour: float) -> int:
+    """
+    Convert HH:MM:SS string to minutes since schedule start,
+    treating times before start_hour as next day.
+    """
+    # Parse the string
+    t = datetime.datetime.strptime(time_str, "%H:%M:%S")
+
+    # Total minutes since midnight
+    minutes = t.hour * 60 + t.minute
+
+    # Start hour in minutes
+    start_minutes = int(start_hour * 60)
+
+    # If the time is before the schedule start, treat as next day
+    if minutes < start_minutes:
+        minutes += 24 * 60
+
+    return minutes
 
 
 def main() -> None:
@@ -84,80 +143,31 @@ def main() -> None:
     """
     args = parse_arguments()
 
+    host_names = ['TV-CBS-2','TV-NBC-4','TV-SYN-5','TV-ABC-7','TV-SYN-9','TV-SYN-11','TV-SYN-13']
+
     with get_db_connection() as db:
-        # Instantiate class handlers with DB connection and hostname/year
-        channel = Channels(db, args.hostname)
-        shows = Shows(db, args.hostname)
-        episodes = Episodes(db, args.hostname, args.year)
-        schedule = Schedules(db, args.hostname)
-        playlists = Playlists(db, args.hostname)
-        movies = Movies(db, args.year)
-        specials = Specials(db)
+        for host in host_names:
+            # Instantiate class handlers with DB connection and hostname/year
+            channel = Channels(db, host)
+            episodes = Episodes(db, host, args.year)
+            schedule = Schedules(db, host)
+            playlists = Playlists(db, host, DEV_MODE)
 
-        final_episodes = []
-
-        # Handle special holiday playlist generation
-        if args.holiday:
-            current_sum = 0
-            holiday_episodes = episodes.get_episodes_for_holiday(args.holiday)
-            holiday_movies = movies.get_holiday_movies(args.holiday)
-            holiday_specials = specials.get_holiday_specials(args.holiday)
-
-            # Combine and shuffle all media types
-            merged_media = holiday_episodes + holiday_movies + holiday_specials
-            random.shuffle(merged_media)
-
-            # Convert duration string to total seconds
-            time_obj = datetime.strptime(args.duration, '%H:%M:%S')
-            total_seconds = int(datetime.timedelta(hours=time_obj.hour, minutes=time_obj.minute, seconds=time_obj.second).total_seconds())
-
-            # Accumulate items until duration is met or exceeded
-            for item in merged_media:
-                current_sum += item['duration']
-                final_episodes.append(item)
-                if current_sum >= total_seconds:
-                    break
-
-        elif args.hostname.split('-')[1] == 'SYN':
-            # Syndicated shows: retrieve time slots and associated episodes
-            time_slots = schedule.get_time_slots(channel.id, args.year, args.start, args.duration, args.dow)
-            if not time_slots:
-                schedule.generate_time_slots(channel.id, args.year, args.dow)
-                time_slots = schedule.get_time_slots(channel.id, args.year, args.start, args.duration, args.dow)
-
-            for slot in time_slots:
-                episodes_for_slot = episodes.get_episodes_for_slot(
-                    slot, channel.id, args.dow, args.year, args.hostname.split('-')[1]
-                )
-                final_episodes.extend(episodes_for_slot)
-
-            final_episodes.sort(key=lambda x: x['time_slot'])
-
-        else:
             # Network shows: use predefined schedules and fallback to generated time slots
-            time_slots = schedule.get_time_slots(channel.id, args.year, args.start, args.duration, args.dow)
-            schedule_data = shows.get_scheduled_shows_id(args.year, args.dow)
+            time_slots = schedule.get_manual_time_slots(channel.id, args.session_name)
+            final_episodes = episodes.get_manual_episodes(time_slots)
+            final_episodes.sort(
+                key=lambda x: normalize_minutes(x["time_slot"], 19)
+            )
+            # Build final playlist
+            playlists.get_playlist(final_episodes, holiday=None)
+            if DEV_MODE:
+                m3u_file = f"../playlists/{host}_playlist.m3u"
+                total = parse_m3u_runtime(m3u_file)
 
-            if not time_slots:
-                # Attempt to generate from show schedule data if still no time slots
-                current_time_slots = shows.calculate_time_differences(schedule_data)
-                schedule.generate_time_slots(channel.id, args.year, args.dow, current_time_slots)
-                time_slots = schedule.get_time_slots(channel.id, args.year, args.start, args.duration, args.dow)
-
-            logging.info(f"TIME SLOTS: {time_slots}")
-
-            for slot in time_slots:
-                episodes_for_slot = episodes.get_episodes_for_slot(
-                    slot, channel.id, args.dow, args.year, args.hostname.split('-')[1], schedule_data
-                )
-                logging.debug(f"Episodes for slot {slot}: {episodes_for_slot}")
-                final_episodes.extend(episodes_for_slot)
-
-            final_episodes.sort(key=lambda x: x['time_slot'])
-
-        # Build final playlist
-        pprint(final_episodes)
-        print(playlists.get_playlist(final_episodes, None))
+                print(host)
+                print(f"Total seconds: {total:.3f}")
+                print(f"Total runtime: {format_runtime(total)}")
 
 
 if __name__ == "__main__":

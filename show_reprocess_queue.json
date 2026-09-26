@@ -1,0 +1,1858 @@
+{
+  "untouched": [
+    [
+      71,
+      "New Adventures of Superman",
+      66
+    ],
+    [
+      73,
+      "Pink Panther Show",
+      114
+    ],
+    [
+      87,
+      "Bullwinkle Show",
+      50
+    ],
+    [
+      91,
+      "Wacky Races",
+      33
+    ],
+    [
+      92,
+      "Bill Nye the Science Guy",
+      90
+    ],
+    [
+      116,
+      "ThunderCats",
+      74
+    ],
+    [
+      161,
+      "My Three Sons",
+      183
+    ],
+    [
+      162,
+      "Night Court",
+      57
+    ],
+    [
+      163,
+      "Growing Pains",
+      69
+    ],
+    [
+      174,
+      "Brady Bunch",
+      117
+    ],
+    [
+      175,
+      "Odd Couple",
+      114
+    ],
+    [
+      176,
+      "Magician",
+      22
+    ],
+    [
+      180,
+      "Carol Burnett Show",
+      43
+    ],
+    [
+      181,
+      "Bob Newhart Show",
+      141
+    ],
+    [
+      182,
+      "Jonny Quest",
+      26
+    ],
+    [
+      183,
+      "Love, American Style",
+      24
+    ],
+    [
+      184,
+      "Get Smart",
+      125
+    ],
+    [
+      187,
+      "Room 222",
+      52
+    ],
+    [
+      188,
+      "Hazel",
+      153
+    ],
+    [
+      189,
+      "Courtship of Eddie's Father",
+      73
+    ],
+    [
+      190,
+      "Welcome Back Kotter",
+      92
+    ],
+    [
+      191,
+      "All in the Family",
+      129
+    ],
+    [
+      192,
+      "Jeffersons",
+      135
+    ],
+    [
+      193,
+      "Mork and Mindy",
+      94
+    ],
+    [
+      194,
+      "Taxi",
+      112
+    ],
+    [
+      196,
+      "Beatles",
+      39
+    ],
+    [
+      197,
+      "Scooby-Doo Show",
+      18
+    ],
+    [
+      198,
+      "Hondo",
+      17
+    ],
+    [
+      199,
+      "Barbary Coast",
+      13
+    ],
+    [
+      200,
+      "M*A*S*H",
+      251
+    ],
+    [
+      201,
+      "King of the Hill",
+      255
+    ],
+    [
+      202,
+      "Gidget",
+      32
+    ],
+    [
+      203,
+      "Mothers in Law",
+      56
+    ],
+    [
+      204,
+      "Soap",
+      89
+    ],
+    [
+      205,
+      "Sealab 2020",
+      13
+    ],
+    [
+      207,
+      "Dark Shadows",
+      50
+    ],
+    [
+      208,
+      "Speed Racer",
+      52
+    ],
+    [
+      209,
+      "Cheers",
+      194
+    ],
+    [
+      210,
+      "Flying Nun",
+      56
+    ],
+    [
+      211,
+      "Thriller",
+      52
+    ],
+    [
+      213,
+      "Here's Lucy",
+      143
+    ],
+    [
+      214,
+      "In Search of...",
+      57
+    ],
+    [
+      215,
+      "Johnny Sokko and His Flying Robot",
+      26
+    ],
+    [
+      217,
+      "Bewitched",
+      252
+    ],
+    [
+      218,
+      "Fantasy Island",
+      64
+    ],
+    [
+      219,
+      "Freddy's Nightmares",
+      44
+    ],
+    [
+      220,
+      "Mannix",
+      194
+    ],
+    [
+      221,
+      "Six Million Dollar Man",
+      37
+    ],
+    [
+      222,
+      "Lou Grant",
+      89
+    ],
+    [
+      223,
+      "George of the Jungle",
+      17
+    ],
+    [
+      224,
+      "Tabitha",
+      13
+    ],
+    [
+      225,
+      "Scarecrow and Mrs. King",
+      87
+    ],
+    [
+      227,
+      "Little House on the Prairie",
+      202
+    ],
+    [
+      228,
+      "Hotel",
+      113
+    ],
+    [
+      229,
+      "Night Gallery",
+      44
+    ],
+    [
+      232,
+      "Planet of the Apes",
+      14
+    ],
+    [
+      234,
+      "Baretta",
+      12
+    ],
+    [
+      235,
+      "Matt Helm",
+      14
+    ],
+    [
+      237,
+      "Peter Gunn",
+      38
+    ],
+    [
+      238,
+      "V: The Series",
+      19
+    ],
+    [
+      239,
+      "Invisible Man",
+      13
+    ],
+    [
+      240,
+      "Arrest and Trial",
+      30
+    ],
+    [
+      241,
+      "Cousteau Odyssey",
+      12
+    ],
+    [
+      242,
+      "Cosmos",
+      13
+    ],
+    [
+      243,
+      "Rawhide",
+      202
+    ],
+    [
+      244,
+      "Dennis the Menace",
+      31
+    ],
+    [
+      245,
+      "CPO Sharkey",
+      15
+    ],
+    [
+      248,
+      "Battlestar Galactica",
+      21
+    ],
+    [
+      250,
+      "Life with Lucy",
+      12
+    ],
+    [
+      251,
+      "Hardcastle and McCormick",
+      64
+    ],
+    [
+      252,
+      "ALF",
+      43
+    ],
+    [
+      253,
+      "Outer Limits",
+      46
+    ],
+    [
+      254,
+      "Gemini Man",
+      12
+    ],
+    [
+      255,
+      "Benson",
+      68
+    ],
+    [
+      256,
+      "Cop Rock",
+      11
+    ],
+    [
+      257,
+      "Blue Thunder",
+      9
+    ],
+    [
+      258,
+      "Airwolf",
+      48
+    ],
+    [
+      260,
+      "Automan",
+      13
+    ],
+    [
+      261,
+      "Bearcats",
+      14
+    ],
+    [
+      262,
+      "Branded",
+      48
+    ],
+    [
+      263,
+      "Custer",
+      17
+    ],
+    [
+      264,
+      "Knight Rider",
+      85
+    ],
+    [
+      265,
+      "Man From Atlantis",
+      17
+    ],
+    [
+      266,
+      "Manimal",
+      8
+    ],
+    [
+      267,
+      "Dukes of Hazzard",
+      144
+    ],
+    [
+      268,
+      "Fantastic Journey",
+      10
+    ],
+    [
+      269,
+      "Invisible Man",
+      12
+    ],
+    [
+      270,
+      "Mary Tyler Moore Show",
+      96
+    ],
+    [
+      271,
+      "Kung Fu",
+      16
+    ],
+    [
+      272,
+      "Time Tunnel",
+      30
+    ],
+    [
+      274,
+      "Land of the Giants",
+      51
+    ],
+    [
+      276,
+      "You Bet Your Life",
+      48
+    ],
+    [
+      277,
+      "Decoy",
+      21
+    ],
+    [
+      278,
+      "Andy Griffith Show",
+      219
+    ],
+    [
+      279,
+      "Naked City",
+      130
+    ],
+    [
+      280,
+      "The Hilarious House of Frightenstein",
+      85
+    ],
+    [
+      281,
+      "Smith Family",
+      38
+    ],
+    [
+      282,
+      "F Troop",
+      65
+    ],
+    [
+      283,
+      "Judy Garland Show",
+      25
+    ],
+    [
+      284,
+      "Search",
+      24
+    ],
+    [
+      285,
+      "Man with a Camera",
+      23
+    ],
+    [
+      287,
+      "The Saint",
+      42
+    ],
+    [
+      288,
+      "The Persuaders!",
+      23
+    ],
+    [
+      290,
+      "Pet Set",
+      39
+    ],
+    [
+      291,
+      "Mackenzie's Raiders",
+      24
+    ],
+    [
+      292,
+      "Occasional Wife",
+      27
+    ],
+    [
+      293,
+      "Shazam",
+      19
+    ],
+    [
+      294,
+      "Voyagers!",
+      19
+    ],
+    [
+      295,
+      "Three's a Crowd",
+      22
+    ],
+    [
+      296,
+      "The Westerner",
+      12
+    ],
+    [
+      297,
+      "Annie Oakley",
+      32
+    ],
+    [
+      298,
+      "Four Star Playhouse",
+      55
+    ],
+    [
+      299,
+      "Tate",
+      13
+    ],
+    [
+      300,
+      "Captain Scarlet",
+      32
+    ],
+    [
+      301,
+      "Secrets of Isis",
+      20
+    ],
+    [
+      302,
+      "Gomer Pyle",
+      150
+    ],
+    [
+      305,
+      "High Chaparral",
+      96
+    ],
+    [
+      307,
+      "Hawk",
+      16
+    ],
+    [
+      308,
+      "One Step Beyond",
+      35
+    ],
+    [
+      309,
+      "Tales from the Darkside",
+      24
+    ],
+    [
+      310,
+      "Adventures of Jim Bowie",
+      15
+    ],
+    [
+      311,
+      "Sonny and Cher Comedy Hour",
+      17
+    ],
+    [
+      312,
+      "Rowan & Martin's Laugh-In",
+      39
+    ],
+    [
+      313,
+      "Life and Legend of Wyatt Earp",
+      224
+    ],
+    [
+      315,
+      "Joe 90",
+      30
+    ],
+    [
+      317,
+      "It Takes a Thief",
+      66
+    ],
+    [
+      319,
+      "Smothers Brothers Comedy Hour",
+      23
+    ],
+    [
+      320,
+      "Secret Agent",
+      47
+    ],
+    [
+      321,
+      "Danger Man",
+      39
+    ],
+    [
+      322,
+      "Doris Day Show",
+      128
+    ],
+    [
+      323,
+      "Punky Brewster",
+      84
+    ],
+    [
+      324,
+      "Circle of Fear",
+      9
+    ],
+    [
+      325,
+      "Ghost Story",
+      11
+    ],
+    [
+      326,
+      "Flip Wilson Show",
+      20
+    ],
+    [
+      327,
+      "The Prisoner",
+      16
+    ],
+    [
+      330,
+      "Lucan",
+      12
+    ],
+    [
+      331,
+      "Buck Rogers in the 25th Century",
+      33
+    ],
+    [
+      332,
+      "Strange Report",
+      16
+    ],
+    [
+      333,
+      "Honeymooners",
+      39
+    ],
+    [
+      334,
+      "Amazing Spider-Man",
+      12
+    ],
+    [
+      336,
+      "Roots",
+      8
+    ],
+    [
+      337,
+      "Centennial",
+      12
+    ],
+    [
+      342,
+      "Barbara McNair Show",
+      18
+    ],
+    [
+      343,
+      "Road Runner Show",
+      34
+    ],
+    [
+      344,
+      "Sigmund  and the Sea Monsters",
+      12
+    ],
+    [
+      345,
+      "Archie's Funhouse",
+      23
+    ],
+    [
+      346,
+      "Archie Show",
+      17
+    ],
+    [
+      347,
+      "New Adventures of Gilligan",
+      16
+    ],
+    [
+      348,
+      "Star Trek: The Animated Series",
+      17
+    ],
+    [
+      349,
+      "Lone Ranger: The Animated Series",
+      16
+    ],
+    [
+      352,
+      "Beetle Bailey",
+      12
+    ],
+    [
+      353,
+      "Bill Cosby Show",
+      13
+    ],
+    [
+      354,
+      "Spider-Man: The Animated Series",
+      52
+    ],
+    [
+      355,
+      "Electra Woman and Dyna Girl",
+      8
+    ],
+    [
+      357,
+      "Butch Cassidy",
+      13
+    ],
+    [
+      359,
+      "Batfink",
+      99
+    ],
+    [
+      360,
+      "Coronet Blue",
+      13
+    ],
+    [
+      361,
+      "Patty Duke Show",
+      104
+    ],
+    [
+      362,
+      "Galactica 1980",
+      10
+    ],
+    [
+      363,
+      "Top of the Pops",
+      19
+    ],
+    [
+      364,
+      "McHale's Navy",
+      132
+    ],
+    [
+      365,
+      "Man Called Shenandoah",
+      34
+    ],
+    [
+      366,
+      "Rhoda",
+      109
+    ],
+    [
+      367,
+      "Amen",
+      109
+    ],
+    [
+      368,
+      "Blondie",
+      26
+    ],
+    [
+      370,
+      "Flipper",
+      30
+    ],
+    [
+      371,
+      "Golden Girls",
+      156
+    ],
+    [
+      372,
+      "Hammer House of Horror",
+      13
+    ],
+    [
+      374,
+      "Tales of the Unexpected",
+      111
+    ],
+    [
+      375,
+      "The Immortal",
+      16
+    ],
+    [
+      376,
+      "Daktari",
+      76
+    ],
+    [
+      377,
+      "Father Brown",
+      13
+    ],
+    [
+      378,
+      "Beverly Hillbillies",
+      167
+    ],
+    [
+      381,
+      "Wonder Years",
+      115
+    ],
+    [
+      382,
+      "Facts of Life",
+      196
+    ],
+    [
+      383,
+      "Saved by the Bell",
+      86
+    ],
+    [
+      384,
+      "Gimme a Break",
+      135
+    ],
+    [
+      385,
+      "Adventures of Ozzie and Harriet",
+      435
+    ],
+    [
+      386,
+      "The Yellow Rose",
+      22
+    ],
+    [
+      387,
+      "Wagon Train",
+      168
+    ],
+    [
+      388,
+      "Wendy and Me",
+      22
+    ],
+    [
+      389,
+      "Sam Benedict",
+      27
+    ],
+    [
+      390,
+      "The Rat Patrol",
+      55
+    ],
+    [
+      392,
+      "Here Come the Brides",
+      19
+    ],
+    [
+      393,
+      "Charles in Charge",
+      126
+    ],
+    [
+      394,
+      "Mickey Mouse Club",
+      51
+    ],
+    [
+      395,
+      "Fernwood Tonight",
+      10
+    ],
+    [
+      396,
+      "Mary Hartman Mary Hartman",
+      274
+    ],
+    [
+      398,
+      "Gloria",
+      26
+    ],
+    [
+      399,
+      "Nanny and the Professor",
+      39
+    ],
+    [
+      400,
+      "Laramie",
+      147
+    ],
+    [
+      401,
+      "Sanford",
+      28
+    ],
+    [
+      402,
+      "Bold Ones: The Lawyers",
+      30
+    ],
+    [
+      403,
+      "Bold Ones: The Senator",
+      8
+    ],
+    [
+      404,
+      "McCloud",
+      55
+    ],
+    [
+      405,
+      "Tenspeed and Brown Shoe",
+      16
+    ],
+    [
+      406,
+      "My Little Margie",
+      40
+    ]
+  ],
+  "detection_risk_1_125": [
+    [
+      1,
+      "Lucy Show",
+      135,
+      545
+    ],
+    [
+      2,
+      "Lone Ranger",
+      16,
+      22
+    ],
+    [
+      5,
+      "I Love Lucy",
+      30,
+      103
+    ],
+    [
+      7,
+      "Mister Ed",
+      44,
+      208
+    ],
+    [
+      8,
+      "Monkees",
+      40,
+      198
+    ],
+    [
+      9,
+      "Adam 12",
+      55,
+      309
+    ],
+    [
+      10,
+      "That Girl",
+      29,
+      109
+    ],
+    [
+      11,
+      "Green Acres",
+      30,
+      125
+    ],
+    [
+      12,
+      "Gilligan's Island",
+      99,
+      406
+    ],
+    [
+      13,
+      "Medical Center",
+      25,
+      140
+    ],
+    [
+      14,
+      "Thunderbirds",
+      20,
+      104
+    ],
+    [
+      16,
+      "My Mother the Car",
+      20,
+      75
+    ],
+    [
+      17,
+      "H.R. Pufnstuf",
+      15,
+      52
+    ],
+    [
+      18,
+      "Munsters",
+      27,
+      189
+    ],
+    [
+      19,
+      "Addams Family",
+      26,
+      105
+    ],
+    [
+      20,
+      "Voyage to the Bottom of the Sea",
+      26,
+      174
+    ],
+    [
+      21,
+      "Avengers",
+      18,
+      112
+    ],
+    [
+      22,
+      "Maverick",
+      25,
+      107
+    ],
+    [
+      23,
+      "Dick Van Dyke Show",
+      158,
+      821
+    ],
+    [
+      24,
+      "Leave it to Beaver",
+      136,
+      555
+    ],
+    [
+      25,
+      "Perils of Penelope Pitstop",
+      15,
+      70
+    ],
+    [
+      27,
+      "Sea Hunt",
+      36,
+      168
+    ],
+    [
+      28,
+      "Have Gun Will Travel",
+      15,
+      62
+    ],
+    [
+      29,
+      "12 O'Clock High",
+      19,
+      106
+    ],
+    [
+      30,
+      "Alfred Hitchcock Presents",
+      36,
+      180
+    ],
+    [
+      31,
+      "Donna Reed Show",
+      34,
+      175
+    ],
+    [
+      32,
+      "Perry Mason",
+      13,
+      101
+    ],
+    [
+      34,
+      "Quincy M.E.",
+      12,
+      65
+    ],
+    [
+      35,
+      "Emergency",
+      55,
+      286
+    ],
+    [
+      37,
+      "Many Loves of Dobie Gillis",
+      39,
+      185
+    ],
+    [
+      38,
+      "Lost in Space",
+      83,
+      515
+    ],
+    [
+      39,
+      "Vega$",
+      23,
+      138
+    ],
+    [
+      40,
+      "Ironside",
+      26,
+      147
+    ],
+    [
+      45,
+      "Wanted Dead or Alive",
+      25,
+      126
+    ],
+    [
+      47,
+      "Jetsons",
+      75,
+      343
+    ],
+    [
+      52,
+      "T. J. Hooker",
+      22,
+      132
+    ],
+    [
+      54,
+      "Hardy Boys/Nancy Drew Mysteries",
+      36,
+      242
+    ],
+    [
+      55,
+      "Mission Impossible",
+      25,
+      140
+    ],
+    [
+      57,
+      "Adventures of Superman",
+      10,
+      24
+    ],
+    [
+      58,
+      "Honey West",
+      20,
+      99
+    ],
+    [
+      60,
+      "Flo",
+      29,
+      74
+    ],
+    [
+      61,
+      "Star Trek",
+      80,
+      395
+    ],
+    [
+      63,
+      "Max Headroom",
+      14,
+      74
+    ],
+    [
+      64,
+      "Petticoat Junction",
+      21,
+      84
+    ],
+    [
+      66,
+      "Saturday Night Live",
+      111,
+      243
+    ],
+    [
+      68,
+      "Yancy Derringer",
+      33,
+      153
+    ],
+    [
+      69,
+      "Man from U.N.C.L.E.",
+      59,
+      321
+    ],
+    [
+      70,
+      "Waltons",
+      23,
+      120
+    ],
+    [
+      72,
+      "The Veil",
+      11,
+      30
+    ],
+    [
+      75,
+      "Too Close for Comfort",
+      84,
+      259
+    ],
+    [
+      76,
+      "Topper",
+      10,
+      29
+    ],
+    [
+      79,
+      "Wheelie and the Chopper Bunch",
+      13,
+      51
+    ],
+    [
+      83,
+      "Bananna Splits",
+      18,
+      48
+    ],
+    [
+      84,
+      "Police Squad",
+      6,
+      20
+    ],
+    [
+      85,
+      "Space 1999",
+      48,
+      271
+    ],
+    [
+      86,
+      "Brady Kids",
+      22,
+      110
+    ],
+    [
+      88,
+      "Fonz and the Happy Days Gang",
+      13,
+      52
+    ],
+    [
+      89,
+      "Adventures of Kit Carson",
+      29,
+      75
+    ],
+    [
+      90,
+      "Underdog",
+      56,
+      347
+    ],
+    [
+      93,
+      "Fugitive",
+      110,
+      710
+    ],
+    [
+      94,
+      "Ultraman",
+      13,
+      28
+    ],
+    [
+      95,
+      "Mutual of Omaha's Wild Kingdom\n",
+      89,
+      276
+    ],
+    [
+      96,
+      "Ghost & Mrs. Muir",
+      49,
+      244
+    ],
+    [
+      97,
+      "My Favorite Martian",
+      106,
+      494
+    ],
+    [
+      98,
+      "Ellery Queen",
+      11,
+      24
+    ],
+    [
+      99,
+      "Starsky & Hutch",
+      69,
+      415
+    ],
+    [
+      100,
+      "Hawaii Five O",
+      96,
+      536
+    ],
+    [
+      101,
+      "Columbo",
+      43,
+      206
+    ],
+    [
+      104,
+      "Kojak",
+      62,
+      268
+    ],
+    [
+      105,
+      "Barnaby Jones",
+      61,
+      339
+    ],
+    [
+      106,
+      "Hunter",
+      63,
+      232
+    ],
+    [
+      107,
+      "Police Woman",
+      67,
+      343
+    ],
+    [
+      108,
+      "Charlie's Angels",
+      66,
+      393
+    ],
+    [
+      111,
+      "Barney Miller",
+      57,
+      198
+    ],
+    [
+      113,
+      "Cannon",
+      66,
+      375
+    ],
+    [
+      114,
+      "Harry O",
+      42,
+      286
+    ],
+    [
+      115,
+      "Hart To Hart",
+      42,
+      263
+    ],
+    [
+      117,
+      "Incredible Hulk",
+      23,
+      137
+    ],
+    [
+      118,
+      "Jake and the Fatman",
+      53,
+      228
+    ],
+    [
+      119,
+      "Banacek",
+      16,
+      45
+    ],
+    [
+      120,
+      "Dragnet 1967",
+      60,
+      407
+    ],
+    [
+      121,
+      "Street Hawk",
+      13,
+      91
+    ],
+    [
+      122,
+      "Hogan's Heroes",
+      168,
+      762
+    ],
+    [
+      124,
+      "CHiPs",
+      10,
+      49
+    ],
+    [
+      125,
+      "Hill Street Blues",
+      56,
+      243
+    ]
+  ],
+  "detection_risk_126_152": [
+    [
+      126,
+      "Rockford Files",
+      121,
+      688
+    ],
+    [
+      127,
+      "Twilight Zone",
+      156,
+      624
+    ],
+    [
+      128,
+      "Mod Squad",
+      76,
+      145
+    ],
+    [
+      130,
+      "McMillan & Wife",
+      39,
+      217
+    ],
+    [
+      131,
+      "Angie",
+      36,
+      121
+    ],
+    [
+      132,
+      "Kolchak: The Night Stalker",
+      19,
+      120
+    ],
+    [
+      133,
+      "Maude",
+      24,
+      73
+    ],
+    [
+      134,
+      "Mr. Terrific",
+      17,
+      60
+    ],
+    [
+      135,
+      "Wait Till Your Father Gets Home",
+      18,
+      65
+    ],
+    [
+      136,
+      "Rookies",
+      23,
+      132
+    ],
+    [
+      137,
+      "Flintstones",
+      26,
+      134
+    ],
+    [
+      138,
+      "Jackson 5ive",
+      23,
+      72
+    ],
+    [
+      139,
+      "Three's Company",
+      56,
+      159
+    ],
+    [
+      140,
+      "Lavern and Shirley",
+      62,
+      242
+    ],
+    [
+      141,
+      "Happy Days",
+      62,
+      286
+    ],
+    [
+      142,
+      "Different Strokes",
+      64,
+      180
+    ],
+    [
+      143,
+      "I Dream of Jeannie",
+      85,
+      260
+    ],
+    [
+      144,
+      "Gunsmoke",
+      118,
+      722
+    ],
+    [
+      145,
+      "Partridge Family",
+      96,
+      575
+    ],
+    [
+      146,
+      "Sixth Sense",
+      13,
+      82
+    ],
+    [
+      147,
+      "Scooby Doo, Where Are You!",
+      41,
+      127
+    ],
+    [
+      148,
+      "Moonlighting",
+      24,
+      148
+    ],
+    [
+      151,
+      "Josie and the Pussy Cats in Outer Space",
+      16,
+      111
+    ],
+    [
+      152,
+      "New Scooby-Doo Movies",
+      22,
+      181
+    ]
+  ],
+  "done_153_plus": [
+    [
+      153,
+      "Batman",
+      119
+    ],
+    [
+      154,
+      "Family Affair",
+      88
+    ],
+    [
+      155,
+      "Land of the Lost",
+      42
+    ],
+    [
+      156,
+      "Streets of San Francisco",
+      24
+    ],
+    [
+      157,
+      "Love Boat",
+      73
+    ],
+    [
+      159,
+      "Alice",
+      72
+    ],
+    [
+      160,
+      "F.B.I.",
+      88
+    ],
+    [
+      231,
+      "Quark",
+      7
+    ],
+    [
+      233,
+      "Ace Crawford... Private Eye",
+      5
+    ],
+    [
+      247,
+      "Beyond Westworld",
+      5
+    ],
+    [
+      304,
+      "Ed Sullivan Show",
+      4
+    ],
+    [
+      316,
+      "Darkroom",
+      6
+    ],
+    [
+      318,
+      "Sonny and Cher Show",
+      3
+    ],
+    [
+      335,
+      "Turn On",
+      2
+    ],
+    [
+      350,
+      "The Osmonds",
+      5
+    ],
+    [
+      177,
+      "Shaft",
+      7
+    ],
+    [
+      356,
+      "Fangface",
+      16
+    ],
+    [
+      351,
+      "Ark II",
+      15
+    ],
+    [
+      216,
+      "Lidsville",
+      17
+    ],
+    [
+      185,
+      "Joanie Loves Chachi",
+      17
+    ],
+    [
+      286,
+      "Square Pegs",
+      20
+    ],
+    [
+      195,
+      "Lotsa Luck!",
+      21
+    ],
+    [
+      303,
+      "Gentle Ben",
+      16
+    ],
+    [
+      391,
+      "My World and Welcome to It",
+      19
+    ]
+  ],
+  "skip_ask_first": [
+    [
+      340,
+      "Match Game",
+      2
+    ]
+  ],
+  "skip_confirmed_done_zero_break": [
+    [
+      36,
+      "Atom Ant",
+      26
+    ],
+    [
+      41,
+      "Popeye the Sailor",
+      31
+    ],
+    [
+      42,
+      "Felix the Cat",
+      11
+    ],
+    [
+      43,
+      "Secret Squirrel",
+      26
+    ],
+    [
+      44,
+      "Ant and the Aardvark",
+      17
+    ],
+    [
+      46,
+      "Squiddly Diddly",
+      26
+    ],
+    [
+      48,
+      "Wally Gator",
+      44
+    ],
+    [
+      49,
+      "Tijuana_Toads",
+      17
+    ],
+    [
+      50,
+      "Roger Ramjet",
+      26
+    ],
+    [
+      51,
+      "Dudley Do-Right Show",
+      39
+    ],
+    [
+      62,
+      "Lippy The Lion & Hardy Har Har",
+      50
+    ],
+    [
+      67,
+      "Ricochet Rabbit & Droop-a-long",
+      15
+    ],
+    [
+      150,
+      "School House Rock",
+      38
+    ],
+    [
+      338,
+      "French Chef",
+      36
+    ],
+    [
+      373,
+      "Star Cops",
+      9
+    ],
+    [
+      339,
+      "Firing Line",
+      31
+    ]
+  ]
+}

@@ -28,18 +28,19 @@ import subprocess
 import urllib.parse
 from html import unescape
 from pathlib import Path
+from pprint import pprint
 from typing import List, Tuple, Dict, Optional
 from urllib.parse import urlparse
 from multiprocessing import Pool
 from bs4 import BeautifulSoup
 from nltk.corpus import stopwords
-import psycopg2
+import psycopg
 import requests
 import threading
 
 # --- Database connection ---
-con = psycopg2.connect(
-    database="time_traveler", user="postgres", password="m06Ar14u",
+con = psycopg.connect(
+    dbname="time_traveler", user="postgres", password="m06Ar14u",
     host="192.168.1.201", port=5432
 )
 cur = con.cursor()
@@ -48,16 +49,44 @@ cur = con.cursor()
 stop = set(stopwords.words('english') + list(string.punctuation))
 translator = str.maketrans('', '', string.punctuation)
 
-SHOW_NAME = 'Land_Of_The_Giants'.replace(' ', '_')
-SHOW_ID = 274
-FILES_DIR = "land-of-the-giants"
-IMDB_NUMBER = 'tt0062578'
-SEASONS = [1,2]
-PATTERN = r"S(\d{1,2})E(\d{1,2})*"
+SHOW_NAME = 'French_Chef'.replace(' ', '_')
+SHOW_ID = 338
+FILES_DIR = "s-1.-e-4-best-man-for-the-job"
+IS_MANUAL = False
+IMDB_NUMBER = 'tt0061263'
+IS_WIKI = False
+WIKI_URL = "https://en.wikipedia.org/wiki/The_French_Chef#Season_1_(1963)"
+SEASONS = [2,3,4]
+#PATTERN = r"(?i)s(\d{1,2})e(\d{1,3})*" ## Matches: S01E12
+PATTERN = r"(?i)s(\d{1,2})\.e(\d{1,3})*" ## Matches: S01E12
+#PATTERN = r'^([0-9]{4}-[0-9]{2}-[0-9]{2})_S([0-9]{2})E([0-9]{2}) - (.*)' ## matches: 1975-12-25_S01E12 - XXXX XXXX
 BLACKOUT_DURATION = 1.8
 THREAD_COUNT = 1
-DEV_MODE = False
+DEV_MODE = True
+IS_BW = False
 PROCESS = True
+EXTENSION = "mp4"
+VIDEO_WIDTH = 512
+VIDEO_HEIGHT = 384
+
+HEADERS = {
+        "User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                       "AppleWebKit/537.36 (KHTML, like Gecko) "
+                       "Chrome/120.0.0.0 Safari/537.36"),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Upgrade-Insecure-Requests": "1",
+        "Connection": "keep-alive",
+        "Referer": "https://example.com/",
+        "Origin": "https://example.com",
+        "Cache-Control": "no-cache",
+        "DNT": "1",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-User": "?1"
+    }
 
 
 def run_ffmpeg_blackdetect(video_path: str) -> List[Tuple[float, float]]:
@@ -194,13 +223,13 @@ def crop_to_43(input_file: str) -> str:
     a = urlparse(input_file)
     file = Path(os.path.basename(a.path))
     filename = str(file.with_suffix(''))
-    parent_path = Path(input_file).parent
+    parent_path = Path('/tmp')
     output_file = f"{parent_path}/{filename}.build.mp4"
 
     process_cmd = [
         'ffmpeg', '-y', '-loglevel', 'quiet', '-i', input_file,
         '-r', '30',
-        '-vf', 'crop=ih*4/3:ih:(iw-ih*4/3)/2:0,scale=640:480',
+        '-vf', f'crop=ih*4/3:ih:(iw-ih*4/3)/2:0,scale={VIDEO_WIDTH}:{VIDEO_HEIGHT}',
         '-af', 'loudnorm=I=-26:TP=-2:LRA=7',
         '-b:v', '800k',
         '-c:v', 'h264_videotoolbox',
@@ -220,7 +249,8 @@ def process_remove_bars(input_file: str) -> Optional[str]:
         a = urlparse(input_file)
         file = Path(os.path.basename(a.path))
         filename = str(file.with_suffix(''))
-        parent_path = Path(input_file).parent
+        #parent_path = Path(input_file).parent
+        parent_path = Path('/tmp')
         cropdetect_cmd = ['ffmpeg', '-i', input_file, '-vf', 'cropdetect', '-f', 'null', '-']
         result = subprocess.run(cropdetect_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
@@ -239,7 +269,8 @@ def process_remove_bars(input_file: str) -> Optional[str]:
         crop_cmd = [
             'ffmpeg', '-y', '-loglevel', 'quiet', '-i', input_file,
             '-r', '30',
-            '-vf', f'crop={crop_values},scale=640:480,setdar=4/3',
+            #'-vf', f'crop={crop_values},scale=512:384,setdar=4/3',
+             '-vf', f'crop={crop_values},scale={VIDEO_WIDTH}:{VIDEO_HEIGHT},setdar=4/3',
             '-af', 'loudnorm=I=-26:TP=-2:LRA=7',
             '-b:v', '800k',
             '-c:v', 'h264_videotoolbox',
@@ -252,6 +283,7 @@ def process_remove_bars(input_file: str) -> Optional[str]:
     except Exception as e:
         print(f"[ERROR] process_remove_bars failed: {e}")
         return None
+
 
 def random_string(length: int = 10) -> str:
     """
@@ -317,8 +349,8 @@ def get_date(release_date: Optional[dict], last_year: str) -> Tuple[datetime.dat
     release_date.setdefault('month', 12)
 
     year = release_date.get('year', last_year)
-    day = release_date.get('day', 1)
-    month = release_date.get('month', 1)
+    day = release_date.get('day') or 1
+    month = release_date.get('month') or 1
     return datetime.datetime.strptime(f"{year}-{month}-{day}", '%Y-%m-%d'), year
 
 
@@ -331,48 +363,121 @@ def get_file_name(url_string: str) -> str:
     filename = str(file.with_suffix('')).translate(translator).lower().strip()
     return filename.replace(' ', '')
 
+def get_manual_episodes() -> dict:
 
-def get_imdb_episodes2() -> dict:
-    """
-    Parse episodes from a saved IMDb HTML file (for backup usage).
-    """
-    with open('utils/<HTML FILE>', 'r') as f:
-        text = f.read()
-        return_rows = {'items': []}
-        soup = BeautifulSoup(text, "html.parser")
-        rows = soup.find_all("article")
-        for row in rows:
-            release_date = row.find('span', class_="sc-ccd6e31b-10 dYquTu").text
-            date_obj = datetime.datetime.strptime(release_date, '%a, %b %d, %Y')
-            season_episode, title = row.find('div', class_="ipc-title__text").text.split('∙')
-            season, episode = season_episode.split('.')
-            append_row = {
-                'releaseDate': {
-                    "month": date_obj.month,
-                    "day": date_obj.day,
-                    "year": date_obj.year
-                },
-                'plot': re.sub(r'\s+', ' ',
-                               row.find('div', class_="ipc-html-content-inner-div").text.replace('\n', '')),
-                'titleText': title.strip(),
-                'season': int(season.strip()[1:]),
-                'episode': int(episode.strip().replace('E', ''))
-            }
-            return_rows['items'].append(append_row)
-        return return_rows
+    episodes = {}
+    last_year = '1900'
+
+    files = glob.glob(f"/Volumes/TTBS/dump/{FILES_DIR}/*.{EXTENSION}")
+
+
+    for i, row in enumerate(files):
+        just_file = row.split("/")[-1]
+
+        match = re.search(PATTERN, just_file, re.IGNORECASE)
+        if match:
+            season_no = int(match.group(2))
+            episode_no = int(match.group(3))
+            airdate = match.group(1)
+            string_title = match.group(4).split('.')[0]
+
+        dt = airdate.split('-')
+        airdate_dict = {"month": dt[1], "day": dt[2], "year": dt[0]}
+        d, year = get_date(airdate_dict, last_year)
+        year = int(str(d.year)[2:])
+
+        key = just_file.split('.')[0].replace(' ', '')
+        episodes[key] = {
+            "season": season_no,
+            "episode": episode_no,
+            "title": string_title,
+            "description": 'None',
+            "airdate": d.date(),
+            "year": year,
+            "decade": f"{int(year) - (int(year) % 10)}s"
+        }
+    return episodes
+
+
+def get_wiki_episodes(season: int) -> dict:
+    page = requests.get(WIKI_URL, headers=HEADERS)
+    soup = BeautifulSoup(page.content, "html.parser")
+    rows = soup.find_all("tr", class_="module-episode-list-row")
+    description_rows = soup.find_all("tr", class_="expand-child")
+
+    episodes = {}
+    last_year = '1900'
+
+    for i, row in enumerate(rows):
+        if not row.find_all('th')[0].text.isnumeric():
+            # if not row.find_all('td')[1].text.isnumeric():
+            continue
+        # episode_no = row.find_all('td')[0].text
+        episode_no = row.find_all('th')[0].text
+        # if int(episode_no) == 1: season += 1
+        if row.find("td", class_="summary").find("a"):
+            title = row.find("td", class_="summary").find("a").get('title')
+        else:
+            title_text = row.find("td", class_="summary").text
+            title = re.findall(r'"([^"]*)"', title_text)[0]
+
+        airdate = row.find("span", class_="bday dtstart published updated itvstart").text
+        dt = airdate.split('-')
+
+        airdate_dict = {"month": dt[1], "day": dt[2], "year": dt[0]}
+
+        d, year = get_date(airdate_dict, last_year)
+        year = int(str(d.year)[2:])
+
+        key = title.replace(' ', '').translate(translator)
+        if len(description_rows) > 0 and description_rows[i]:
+            description = description_rows[i].find("div", class_="shortSummaryText").text.split("\n")[1].strip()
+        else:
+            description = 'None'
+
+        episodes[key] = {
+            "season": season,
+            "episode": episode_no,
+            "title": title.replace('\xa0', ' '),
+            "description": description.replace('\xa0', ' '),
+            "airdate": d.date(),
+            "year": year,
+            "decade": f"{int(year) - (int(year) % 10)}s"
+        }
+    return episodes
 
 
 def get_imdb_episodes(season: int) -> dict:
     """
     Fetch and parse episode metadata for a season from IMDb.
     """
-    headers = {'User-Agent': 'Mozilla/5.0'}
     imdb_url = f'https://www.imdb.com/title/{IMDB_NUMBER}/episodes/?season={season}'
-    page = requests.get(imdb_url, headers=headers)
+    page = requests.get(imdb_url, headers=HEADERS)
     soup = BeautifulSoup(page.content, "html.parser")
     rows = soup.find_all("script", type='application/json')
     data = json.loads(rows[0].text)
-    return data['props']['pageProps']['contentData']['section']['episodes']
+    episodes = {}
+    last_year = '1900'
+
+    for row in data['props']['pageProps']['contentData']['section']['episodes']['items']:
+        episode_no = row['episode']
+        season_num = row['season']
+        title = unescape(row['titleText'])
+        d, last_year = get_date(row['releaseDate'], last_year)
+        year = int(str(d.year)[2:])
+        key = title.replace(' ', '').translate(translator)
+        description = BeautifulSoup(unescape(row.get('plot', '')), "html.parser").get_text()
+
+        episodes[key] = {
+            "season": season_num,
+            "episode": episode_no,
+            "title": title.replace('\xa0', ' '),
+            "description": description.replace('\xa0', ' ') if description else 'None',
+            "airdate": d.date(),
+            "year": f"{year:02}",
+            "decade": f"{(year // 10) % 10}0s"
+        }
+    return episodes
 
 
 def process_file(file: str, episodes: Dict[str, dict]) -> None:
@@ -381,21 +486,31 @@ def process_file(file: str, episodes: Dict[str, dict]) -> None:
     and saving metadata to the database.
     """
     try:
+        date_str = None
         url_string = urllib.parse.unquote(file)
         ep_season, ep_no = get_episode_season(url_string)
+        #match = re.search(r'\d{4}-\d{2}-\d{2}', url_string)
+        #if match:
+            #date_str = match.group()
+            #date_str = datetime.datetime.strptime(date_str, "%Y-%m-%d").date()
 
         for e in episodes:
+            #if date_str == episodes[e]['airdate']:
             if (int(episodes[e]['episode']) == int(ep_no) and
                     int(episodes[e]['season']) == int(ep_season) and
                     len(episodes[e]['title']) > 2):
                 e = episodes[e]
-                save_file = f"{SHOW_NAME}_{e['title'].translate(translator).replace(' ', '_')}.mp4"
-                save_path_str = f"/Volumes/TTBS/time_traveler/{e['decade']}/{e['year']}/{save_file}"
+                #save_file = f"{SHOW_NAME}_{e['title'].translate(translator).replace(' ', '_')}.mp4"
+                save_file = f"{SHOW_NAME}_S{e['season']}E{e['episode']}.mp4"
+
+                #save_file = f"{SHOW_NAME}_Epidosed_S{ep_season}E{ep_no}.mp4"
+                # save_path_str = f"/Volumes/TTBS/time_traveler/{e['decade']}/{e['year']}/{save_file}"
+                save_path_str = f"/Volumes/TTBS/time_traveler/{e['decade']}/{e['year']}/{SHOW_NAME}_S{e['season']}E{e['episode']}.mp4"
                 print(save_path_str)
 
                 if not DEV_MODE:
-                    #processed_file = process_remove_bars(file) if PROCESS else file
-                    processed_file = crop_to_43(file) if PROCESS else file
+                    processed_file = process_remove_bars(file) if PROCESS else file
+                    # processed_file = crop_to_43(file) if PROCESS else file
                     if processed_file:
                         processed_file_path = Path(processed_file)
                         save_path = Path(save_path_str)
@@ -407,7 +522,8 @@ def process_file(file: str, episodes: Dict[str, dict]) -> None:
                             os.remove(processed_file_path)
 
                         episode_length = int(get_length(save_path))
-                        breaks = detect_commercials(save_path)
+                        #breaks = detect_commercials(save_path)
+                        breaks = []
                         save_episode_to_db(e, save_file, episode_length, breaks)
                     else:
                         print(f"Crop values could not be detected for {file}")
@@ -429,6 +545,7 @@ def save_episode_to_db(e: dict, save_file: str, episode_length: int, breaks: Lis
         "show_season_number": e['season'],
         "episode_number": e['episode'],
         "episode_airdate": e['airdate'],
+        "is_bw": IS_BW,
         "start_point": 0,
         "end_point": episode_length if not DEV_MODE else 0
     }
@@ -462,38 +579,23 @@ def main() -> None:
     keep_alive_thread = threading.Thread(target=keep_ttbs_alive, daemon=True)
     keep_alive_thread.start()
 
-    files = glob.glob(f"/Volumes/TTBS/dump/{FILES_DIR}/*.mp4")
-    last_year = '1900'
+    files = glob.glob(f"/Volumes/TTBS/dump/{FILES_DIR}/*.{EXTENSION}")
 
     for season in SEASONS:
-        episodes = {}
-        rows = get_imdb_episodes(season)
+        print("SEASON: ",season)
+        #episodes = get_wiki_episodes(season) if IS_WIKI else get_imdb_episodes(season)
 
-        for row in rows['items']:
-            episode_no = row['episode']
-            season_num = row['season']
-            title = unescape(row['titleText'])
-            d, last_year = get_date(row['releaseDate'], last_year)
-            year = int(str(d.year)[2:])
-            key = title.replace(' ', '').translate(translator)
-            description = BeautifulSoup(unescape(row.get('plot', '')), "html.parser").get_text()
-
-            episodes[key] = {
-                "season": season_num,
-                "episode": episode_no,
-                "title": title.replace('\xa0', ' '),
-                "description": description.replace('\xa0', ' ') if description else 'None',
-                "airdate": d.date(),
-                "year": f"{year:02}",
-                "decade": f"{(year // 10) % 10}0s"
-            }
+        episodes = (
+            get_wiki_episodes(season) if IS_WIKI
+            else get_manual_episodes() if IS_MANUAL
+            else get_imdb_episodes(season)
+        )
 
         with Pool(THREAD_COUNT) as p:
             p.starmap(process_file, [(file, episodes) for file in files])
 
     cur.close()
     con.close()
-
 
 if __name__ == '__main__':
     main()

@@ -2,14 +2,14 @@
 import logging
 from datetime import datetime, timedelta
 
-from psycopg2.extras import DictCursor
-from psycopg2 import sql
+from psycopg.rows import dict_row
+from psycopg import sql
 
 
 class Specials:
     def __init__(self, db):
         self.db_connection = db
-        self.cur = db.cursor(cursor_factory=DictCursor)
+        self.cur = db.cursor(row_factory=dict_row)
 
     def get_holiday_specials(self, holiday):
         try:

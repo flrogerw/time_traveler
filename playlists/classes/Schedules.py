@@ -293,6 +293,34 @@ class Schedules:
             # Commit the transaction to the database to save changes
             self.db_connection.commit()
 
+    def sync_schedule_template_show_id(self, channel_id, dow, replication_year, time_slot_str, show_id):
+        """
+        Re-point an already-templated schedule_template row at `show_id` if it currently points
+        somewhere else -- lets a mid-season historical show swap (see
+        migrate_schedule_date_ranges.py / Shows.get_scheduled_shows_id) actually take effect on a
+        later run for the same (channel, dow, replication_year), instead of the slot staying
+        permanently locked to whichever show first templated it.
+
+        Deliberately network-only in practice: only create_playlist.py's network branch calls
+        this, right after computing the date-aware `schedule_data`. It must NOT be wired into the
+        syndicated branch's per-run schedule_data -- that's a weighted *random* pick meant to stay
+        stable once templated (sequential non-repeating playback continuity), not a deterministic
+        date-keyed answer; force-resyncing it every run would re-roll a syndicated slot's show on
+        every single playlist generation instead of just once.
+
+        A no-op (0 rows touched) if the slot isn't templated yet (the normal first-time path,
+        Episodes.get_episodes_for_slot's insert_schedule_template call, handles that case) or if
+        it's already pointing at `show_id`.
+        """
+        self.cur.execute(
+            """UPDATE schedule_template
+               SET show_id = %s
+               WHERE channel_id = %s AND time_slot = %s AND replication_year = %s
+               AND %s = ANY(days_of_week) AND show_id != %s""",
+            (show_id, channel_id, time_slot_str, replication_year, dow, show_id),
+        )
+        self.db_connection.commit()
+
     def delete_row(self, row_id):
         """
         Delete a specific row from the time_slot_schedules table.

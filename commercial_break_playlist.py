@@ -1,5 +1,5 @@
 import os
-import psycopg2
+import psycopg
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -21,7 +21,7 @@ def get_file_path(airdate, episode_file):
     return f'{ROOT_DIR}/{decade}/{year}/{episode_file}'
 
 def fetch_commercial_breaks(show_id):
-    conn = psycopg2.connect(**db_config)
+    conn = psycopg.connect(**db_config)
     cur = conn.cursor()
 
     query = """

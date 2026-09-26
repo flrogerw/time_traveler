@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 from pprint import pprint
 
-from psycopg2.extras import execute_values, DictCursor
-import psycopg2
-from psycopg2 import sql
+from psycopg.rows import dict_row
+import psycopg
+from psycopg import sql
 from datetime import datetime, timedelta
 import logging
 import sys
 
 
 # Sample list of shows
-def get_db_connection() -> psycopg2.extensions.connection:
+def get_db_connection() -> psycopg.Connection:
     """Establish and return a database connection."""
     try:
-        conn = psycopg2.connect(
-            database="time_traveler",
+        conn = psycopg.connect(
+            dbname="time_traveler",
             user="postgres",
             password="m06Ar14u",
             host="192.168.1.201",
@@ -30,7 +30,7 @@ def get_db_connection() -> psycopg2.extensions.connection:
 def get_current_schedule(dow):
     print(dow)
     with get_db_connection() as db:
-        cur = db.cursor(cursor_factory=DictCursor)
+        cur = db.cursor(row_factory=dict_row)
         cur.execute("""SELECT DISTINCT ON (st.channel_id, st.show_id, st.time_slot)
                             split_part(ch.channel_name, '-', 3) AS channel,
                             st.time_slot,

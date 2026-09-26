@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-from psycopg2.extras import DictCursor
+from psycopg.rows import dict_row
 import random
 
 
 class Commercials:
     def __init__(self, db):
         self.db_connection = db
-        self.cur = db.cursor(cursor_factory=DictCursor)
+        self.cur = db.cursor(row_factory=dict_row)
 
     # Method to retrieve commercial breaks for a given media ID
     def get_commercial_breaks(self, media_id):
@@ -42,12 +42,32 @@ class Commercials:
         return best_combination
 
     def get_commercials(self, target_duration, year):
-        self.cur.execute("""
-            SELECT *, commercial_id, commercial_end - commercial_start as duration FROM commercials
-            WHERE commercial_end - commercial_start <= %s 
-            AND commercial_airdate >= %s AND commercial_airdate <= %s
-            ORDER BY random();
-        """, (target_duration, year - 3, year))
-        records = [dict(record) for record in self.cur.fetchall()]
-        return records
+        # Case 1: Year = 5000 → ignore year filtering entirely
+        if year == 5000:
+            query = """
+                SELECT *, commercial_id,
+                       commercial_end - commercial_start AS duration
+                FROM commercials
+                WHERE commercial_end - commercial_start <= %s
+                ORDER BY random();
+            """
+            params = (target_duration,)
+
+        # Case 2: Normal behavior → apply airdate range
+        else:
+            query = """
+                SELECT *, commercial_id,
+                       commercial_end - commercial_start AS duration
+                FROM commercials
+                WHERE commercial_end - commercial_start <= %s
+                  AND commercial_airdate >= %s
+                  AND commercial_airdate <= %s
+                ORDER BY random();
+            """
+            params = (target_duration, year - 3, year)
+
+        # Execute and return results
+        self.cur.execute(query, params)
+        return [dict(record) for record in self.cur.fetchall()]
+
 

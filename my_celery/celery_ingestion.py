@@ -1,9 +1,9 @@
 import json
 import os
 import time
-import psycopg2
-from psycopg2.extras import RealDictCursor
-from celery.celery_tasks import process_video
+import psycopg
+from psycopg.rows import dict_row
+from my_celery.celery_tasks import process_video
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -23,8 +23,8 @@ def update_task_status(update_list: list, status: str = 'working', message=None)
         message = {}
     # query = f"""UPDATE video_tasks SET status = %s, message = %s WHERE episode_id = ANY(%s)"""
     query = f"""UPDATE ingestion_tasks SET status = %s, message = %s WHERE task_id = ANY(%s::int[])"""
-    conn = psycopg2.connect(**db_config)
-    cur = conn.cursor(cursor_factory=RealDictCursor)
+    conn = psycopg.connect(**db_config)
+    cur = conn.cursor(row_factory=dict_row)
     cur.execute(query, (status, json.dumps(message), update_list))
     conn.commit()
     cur.close()
@@ -32,8 +32,8 @@ def update_task_status(update_list: list, status: str = 'working', message=None)
 
 
 def get_db_rows(query: str) -> list[dict]:
-    conn = psycopg2.connect(**db_config)
-    cur = conn.cursor(cursor_factory=RealDictCursor)
+    conn = psycopg.connect(**db_config)
+    cur = conn.cursor(row_factory=dict_row)
     cur.execute(query)
     rows = cur.fetchall()
     conn.commit()

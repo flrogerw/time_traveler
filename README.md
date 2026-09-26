@@ -33,7 +33,7 @@ Time Traveler is a Python-based simulation engine for a retro (1950s-1980s) broa
 - **Multi-part episode continuity** — a multi-part story reserves the very next broadcast day's occurrence of its slot for the continuation via `schedule_overrides`, and is protected from being rotated out mid-arc.
 - **Manual/curated scheduling path** (`playlists/create_playlist_manual.py`) for hand-built schedules (e.g. holiday programming) stored in `schedule_templates_manual`/`schedule_sessions`.
 - **Holiday programming** blended into the normal schedule via the same override mechanism, rather than replacing an entire day.
-- **`.m3u` playlist generation** (`playlists/classes/Playlists.py`) with era-matched commercial breaks inserted between and within programs, VLC-compatible playback options (start/stop time, aspect ratio, sharpening), and a sign-off sequence.
+- **`.m3u` playlist generation** (`playlists/classes/Playlists.py`) with era-matched commercial breaks selected (`playlists/classes/Commercials.py`) and inserted between and within programs, VLC-compatible playback options (start/stop time, aspect ratio, sharpening), and a sign-off sequence.
 - **Printable TV Guide PDF** (`utils/printable_tv_guide.py`) — a 4-column booklet layout with correct saddle-stitch duplex-print imposition, period print advertisements, and multiple ad-layout styles (no-ad, full-column ad, two-column bottom-band ad, stacked ads) chosen to fit each page's actual content.
 - **Content ingestion pipeline** — IMDb episode metadata scraping with season-by-season resumability (`imdb_scrapper_season_loop.py`), movie metadata scraping (`movies_parser.py`), and holiday special metadata (`specials_parse.py`).
 - **Video processing utilities** (`utils/`) — black-frame/silence-based commercial break detection, black-and-white detection, letterbox removal, audio loudness normalization (EBU R128), and format conversion, all via `ffmpeg`/OpenCV.
@@ -76,6 +76,8 @@ flowchart TD
 ```
 
 **Key design point:** the automatic pipeline's episode selection is deliberately DB-driven and stateful — `Episodes.get_next_episode()` always queries `schedule_template` joined against `broadcast_log` to find the lowest unaired `(season, episode)` for a show on a given channel, rather than tracking state in application memory. This lets the pipeline be re-run for any date without losing continuity.
+
+> **Current state (verified against the live database):** `schedule_template` and `broadcast_log` are both empty. The automatic pipeline is implemented but has not actually been run/populated. All real scheduling right now happens through the manual/curated path — `schedule_templates_manual` currently holds one session (`christmas-2025`, `schedule_sessions`). A newer, UUID/session-keyed `schedule_grid_templates` table also exists and appears to be a parallel, in-progress scheduling mechanism not yet described by either pipeline above.
 
 ## Technology Stack
 
@@ -189,6 +191,8 @@ Discovered by searching all `.py` files for `os.getenv(...)` calls.
 | `DB_PORT` | No | `5432` (hardcoded in most connection calls) | PostgreSQL port. Read from the environment in some scripts; hardcoded to `5432` in others. |
 | `LOCAL_PATH` | Yes (for playlist generation) | None | Base path (typically a network share, e.g. `/mnt/nas_server/time_traveler`) where video/commercial/image assets referenced by generated `.m3u` playlists live. |
 | `SHARPEN_RATIO` | Yes (for playlist generation) | None | VLC `sharpen-sigma` value written into generated `.m3u` entries. |
+| `DIR_ROOT` | Yes (for `commercial_break_playlist.py`) | None | Base directory `commercial_break_playlist.py` reads/writes commercial-break playlist content under. |
+| `DIR_ROOT_PI` | Yes (for `my_celery/celery_ingestion.py`) | None | Base directory the Celery ingestion loop reads source video from — distinct variable name because it points at the path as seen from the ingestion host (e.g. a Raspberry Pi), not the main workstation. |
 
 > **TODO:** No `.env.example` file exists. The variables above were reconstructed from source code; there may be additional variables used by scripts not fully audited (e.g. `my_celery/` task modules).
 
@@ -233,19 +237,26 @@ python printable_tv_guide.py --source manual --session christmas-2025 --dow 1 --
 
 ## Database
 
-No schema migration files exist in this repository; the table list and relationships below are reconstructed from SQL embedded in `playlists/classes/*.py` and `utils/printable_tv_guide.py`.
+No schema migration files exist in this repository. The table list, columns, and row counts below were
+captured directly from the live PostgreSQL instance (27 tables total — more than the code alone reveals,
+since several are read/written only from data, not from SQL embedded in the scripts).
 
 ```mermaid
 erDiagram
     channels ||--o{ schedule_template : "airs on"
     channels ||--o{ broadcast_log : "logs airings on"
+    channels ||--o{ syndicated_fixed_slots : "fixed slots on"
+    channels ||--o{ fill_rules : "genre-fill rules for"
     shows ||--o{ episodes : "has"
+    shows ||--o{ sub_shows : "aliases/contains"
     shows ||--o{ schedule_template : "scheduled in"
     episodes ||--o{ broadcast_log : "recorded in"
     episodes ||--o{ schedule_overrides : "reserved via"
+    episodes ||--o{ episode_durations : "true runtime in"
     movies ||--o{ broadcast_log : "recorded in"
     schedule_template ||--o{ broadcast_log : "resolved to"
     schedule_sessions ||--o{ schedule_templates_manual : "contains"
+    schedule_sessions ||--o{ schedule_grid_templates : "contains"
     shows ||--o{ show_adverts : "promoted by"
 ```
 
@@ -253,20 +264,34 @@ Tables referenced in code:
 
 | Table | Purpose |
 |---|---|
-| `channels` | Simulated channel definitions (`channel_id`, `channel_name`, `channel_type`: `network`/`syndicated`). |
-| `shows` | Show metadata: genre, duration options, network affiliation, syndication flag, air-date range. |
-| `episodes` | Individual episodes: season/episode number, air date, multi-part flag, file reference. |
-| `movies` | Movie metadata and file references. |
-| `specials` | Holiday special metadata and file references. |
-| `commercials` / `commercial_breaks` | Commercial clip metadata and detected break points within episodes/movies. |
-| `episode_durations` | True runtime of an episode after subtracting commercial breaks. |
-| `show_adverts` | Show-specific promotional ad assets used by the printable guide. |
-| `schedule_template` | The automatically-generated recurring schedule (channel, time slot, show, days of week). |
-| `broadcast_log` | Record of every episode/movie actually aired per channel/date, used to enforce sequential non-repeating playback. |
-| `schedule_overrides` | Date-specific overrides to the recurring template (used for multi-part continuations and holiday programming). |
-| `time_slot_schedules` | Generated time-slot boundaries per channel/day prior to content assignment. |
-| `schedule_templates_manual` / `schedule_sessions` | Human-curated schedules, grouped into named sessions. |
-| `schedules` | Historical real-world broadcast records used to seed network-channel reruns. |
+| `channels` | Simulated channel definitions (`channel_id`, `channel_name`, `channel_type`: `network`/`syndicated`, `channel_number`). 7 rows. |
+| `shows` | Show metadata: genre, duration options, network affiliation, syndication flag, air-date range. 343 rows. |
+| `episodes` | Individual episodes: season/episode number, air date, multi-part flag, file reference, B&W/processed flags. 17,527 rows. |
+| `movies` | Movie metadata and file references. 270 rows. |
+| `specials` | Holiday special metadata and file references. 67 rows. |
+| `commercials` | Curated commercial clip metadata (sponsor, era, exact-year flag). 529 rows. |
+| `commercial_breaks` | Detected break points (`break_point`/`resume_point`) within episode/movie media files. 60,738 rows. |
+| `commercials_processed` | Tracks which `media_id`s have already had commercial-break detection run (`has_breaks` flag), decoupled from `episodes.is_processed`. 17,927 rows. |
+| `tmp_commercials` | Staging table mirroring `commercials` (note: fixes the `commercial_sponser` → `commercial_sponsor` column-name typo) — looks like an in-progress migration of the `commercials` table. 27 rows. |
+| `episode_durations` | True runtime of an episode after subtracting commercial breaks. 17,350 rows. |
+| `show_adverts` | Show-specific promotional ad assets used by the printable guide. 3 rows. |
+| `sub_shows` | Maps a `show_id` to a list of `sub_show_ids` (anthology/umbrella shows containing linked sub-shows, e.g. NBC Mystery Movie → Columbo/McCloud/Banacek/McMillan & Wife). 2 rows. Now read by `Episodes.get_next_episode()`/`Shows.get_replacement_show()` — see the Architecture section. |
+| `bumpers` | Network-branded interstitial clips, tagged to specific networks (`bumper_networks`) and an air-date. 1 row. |
+| `schedule_template` | The automatically-generated recurring schedule (channel, time slot, show, days of week). **Currently empty** — the automatic pipeline has not been run against this database. |
+| `broadcast_log` | Record of every episode/movie actually aired per channel/date, used to enforce sequential non-repeating playback. **Currently empty**, consistent with `schedule_template` being unused. |
+| `seen_episodes` | Per-channel list of already-aired episode IDs. 424 rows. Overlaps in purpose with `broadcast_log`; likely an earlier or parallel tracking mechanism. |
+| `schedule_overrides` | Date-specific overrides to the recurring template (used for multi-part continuations and holiday programming). Currently empty. |
+| `time_slot_schedules` | Generated time-slot boundaries per channel/day prior to content assignment. 4,257 rows. |
+| `schedule_templates_manual` / `schedule_sessions` | Human-curated schedules, grouped into named sessions. Currently 42 rows / 1 session (`christmas-2025`) — this is the path actually populated with real data today. |
+| `schedule_grid_templates` | A newer, UUID/session-keyed scheduling table (`start_slot`/`duration_slots`, linked to `schedule_sessions`) not exercised by either documented pipeline's code paths — appears to be an in-progress third scheduling mechanism. 42 rows. |
+| `syndicated_fixed_slots` | Fixed day-of-week/time/show slots per syndicated channel — a simpler, separate scheduling mechanism from the template-based pipelines. 15 rows. |
+| `fill_rules` | Per-channel, per-time-window, per-day-of-week rules for which genre categories may fill a slot and at what weight — formalizes the "decade-appropriate genre-biased random selection" behavior as data. 42 rows. |
+| `schedules` | Historical real-world broadcast records used to seed network-channel reruns. 3,911 rows. |
+| `ingestion_tasks` | Text-status task queue (`pending`/`complete`/`error`) polled by `my_celery/celery_ingestion.py`. 3,195 rows (3,190 complete, 5 errored). |
+| `video_tasks` | A typed-enum (`task_status`) task queue, functionally similar to `ingestion_tasks` but with a proper Postgres enum instead of free text — appears to be a newer/parallel queue. 587 rows, all `complete`. |
+| `unwanted_frames` | Flags bad/unwanted video frames by `frame_image_path`/`video_id`, with a vector `embedding` column (`pgvector`) — the only embedding/ML-search-backed table in the schema. 1 row. |
+
+> **Note:** several of these tables (`fill_rules`, `schedule_grid_templates`, `syndicated_fixed_slots`, `bumpers`, `seen_episodes`, `commercials_processed`, `tmp_commercials`, `video_tasks`, `unwanted_frames`) are not referenced anywhere in the current Python source — they were only discovered by inspecting the live database directly. Treat them as evidence of schema evolution/migration in progress rather than dead weight to remove. (`sub_shows` was in this list until it was wired up for umbrella/rotation scheduling — see Architecture.)
 
 ## Frontend / API / Mobile
 
@@ -281,10 +306,30 @@ There is no embedding-based search, vector database, or ONNX inference pipeline 
 - **OpenCV-based black-and-white classification** (`my_celery/classes/video_utils.py`) — analyzes video frames to determine if content should be tagged black-and-white.
 - **Coqui `TTS`** (`utils/speech_generator.py`) — a standalone voice-cloning/text-to-speech demo script, unrelated to the scheduling/playlist pipeline.
 - **spaCy** is declared in `requirements.txt` but no direct `import spacy` usage was found outside of transitive imports from other packages.
+- **`unwanted_frames` table** (discovered live in the database, not referenced in current source) has a `pgvector` `embedding` column alongside `frame_image_path`/`video_id` — evidence of a similarity-search-based unwanted-frame-detection feature that is either planned or was removed from the codebase but left its data behind.
+
+## Background Video Processing (Celery)
+
+`my_celery/` defines a standalone Celery-based subsystem for offloading per-episode video work. It is **not invoked by any other part of this codebase** (confirmed via full-repo search) — it must be run and fed independently of the scheduling/playlist/guide pipelines.
+
+**Tasks** (`my_celery/celery_tasks.py`), all routed to a single `video_queue` (`my_celery/celery_app.py`):
+
+| Task | What it does |
+|---|---|
+| `is_blackwhite(input_file, episode_id, dev_mode=True)` | Runs `IsBlackWhite.is_video_black_and_white_opencv()` (OpenCV frame analysis) and, outside `dev_mode`, writes the result back via `IsBlackWhite.insert_bw(episode_id, is_bw)`. |
+| `commercial_breaks(input_file, episode_id, start_point, end_point, dev_mode=True)` | Runs ffmpeg `blackdetect` and `silencedetect` over the file, merges the two candidate-break lists, filters out any that fall at the very start/end of the episode, and (outside `dev_mode`) inserts the result via `CommercialBreaks.insert_commercial_break()`. |
+| `process_video(task_id, episode)` | Writes ID3-style metadata (title, artist, comment, year) into the episode's video file via `VideoReProcess.reprocess()`, cleaning up a temp file afterward. |
+
+**Ingestion loop** (`my_celery/celery_ingestion.py`, run via `python -m my_celery.celery_ingestion`): polls the `ingestion_tasks` table every `poll_interval` seconds (2s when run as `__main__`), atomically claiming `pending` rows with `UPDATE ... WHERE task_id IN (SELECT ... FOR UPDATE SKIP LOCKED)` so multiple ingestion processes can't double-claim a row. Each claimed row's `episode_data` (JSON) is submitted to `process_video.apply_async(...)`; the loop blocks on `task.get()` for every submitted batch and writes the outcome back to `ingestion_tasks.status`/`.message` (`complete` or `error`).
+
+**Queue configuration** (`my_celery/celery_app.py`): broker and result backend are both hardcoded to `redis://192.168.1.201:6379` (databases `0` and `1` respectively) rather than read from the environment; `task_acks_late=True` and `task_reject_on_worker_lost=True` are set so an in-flight job is requeued if its worker dies, with a 2-hour hard time limit (`task_time_limit`) and a ~1h56m soft limit.
+
+> **TODO:** No `Procfile`, systemd unit, or documented `celery worker` invocation exists in the repository. Given `celery_tasks.py` imports `from celery_app import celery_app` and `from classes.video_utils import ...` (unqualified — expects `my_celery/` itself to be the working directory / on `sys.path`), while `celery_ingestion.py` imports `from my_celery.celery_tasks import process_video` (package-qualified — expects the repository root on the path), a worker most likely needs to be started from inside `my_celery/` (e.g. `cd my_celery && celery -A celery_app worker -Q video_queue`) while the ingestion loop is run from the repository root (`python -m my_celery.celery_ingestion`). This is inferred from the import styles, not from a documented run procedure.
 
 ## Security
 
-- Database and file-share credentials are loaded from environment variables via `python-dotenv`; `.env` is excluded from version control via `.gitignore`.
+- Most scripts load database and file-share credentials from environment variables via `python-dotenv`; `.env` is excluded from version control via `.gitignore`.
+- **Exception:** `specials_parse.py`, `movies_parser.py`, and `imdb_scrapper_season_loop.py` do not use `dotenv`/`os.getenv` at all — they hardcode the PostgreSQL connection, including a plaintext password, directly in source. This is a real credential-exposure issue since these files are tracked in version control.
 - There is no authentication layer anywhere in the system — all scripts are run locally/manually against a trusted database and file share.
 - `my_celery/celery_app.py` hardcodes a Redis broker/backend URL (a private LAN IP) directly in source rather than via environment configuration.
 

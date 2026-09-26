@@ -8,9 +8,9 @@ from time import sleep
 import numpy as np
 import matplotlib
 import pandas as pd
-import psycopg2
+import psycopg
 from dotenv import load_dotenv
-from psycopg2.extras import RealDictCursor
+from psycopg.rows import dict_row
 
 matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
@@ -48,8 +48,8 @@ class IsBlackWhite:
 
 
         try:
-            conn = psycopg2.connect(**db_config)
-            cur = conn.cursor(cursor_factory=RealDictCursor)
+            conn = psycopg.connect(**db_config)
+            cur = conn.cursor(row_factory=dict_row)
             cur.execute(update_query, (episode_id, is_bw))
             conn.commit()
             cur.close()
@@ -85,8 +85,8 @@ class CommercialBreaks:
     @staticmethod
     def get_episode_name(db_config, episode_ids: list):
         query = f"""SELECT episode_id, episode_file, episode_airdate FROM episodes WHERE episode_id = ANY(%s);"""
-        conn = psycopg2.connect(**db_config)
-        cur = conn.cursor(cursor_factory=RealDictCursor)
+        conn = psycopg.connect(**db_config)
+        cur = conn.cursor(row_factory=dict_row)
         cur.execute(query, (episode_ids,))
         rows = cur.fetchall()
         cur.close()
@@ -97,8 +97,8 @@ class CommercialBreaks:
     @staticmethod
     def get_show_name(db_config, show_id):
         query = f"""SELECT show_name FROM shows WHERE show_id = {show_id};"""
-        conn = psycopg2.connect(**db_config)
-        cur = conn.cursor(cursor_factory=RealDictCursor)
+        conn = psycopg.connect(**db_config)
+        cur = conn.cursor(row_factory=dict_row)
         cur.execute(query)
         row = cur.fetchone()
         cur.close()
@@ -119,7 +119,7 @@ class CommercialBreaks:
             WHERE s.show_id = {show_id}
             ORDER BY s.show_id, e.episode_id, cb.break_point;
         """
-        conn = psycopg2.connect(**db_config)
+        conn = psycopg.connect(**db_config)
         df = pd.read_sql_query(query, conn)
         conn.close()
 
@@ -214,8 +214,8 @@ class CommercialBreaks:
         data = [(episode_id, round(start,2), round(end, 2)) for start, end in breaks]
 
         try:
-            conn = psycopg2.connect(**db_config)
-            cur = conn.cursor(cursor_factory=RealDictCursor)
+            conn = psycopg.connect(**db_config)
+            cur = conn.cursor(row_factory=dict_row)
             cur.executemany(insert_query, data)
             conn.commit()
             cur.close()
@@ -607,7 +607,7 @@ class VideoContactSheet:
     def __init__(self, video_path: str, episode_id: int, metadata=None, matlib_show: bool = True, cols: int = 6) -> None:
         if metadata is None:
             metadata = {}
-        from celery.classes import VideoAnnotationGenerator
+        from my_celery.classes import VideoAnnotationGenerator
         """
         Initialize the VideoContactSheet.
 

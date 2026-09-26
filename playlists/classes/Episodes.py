@@ -293,19 +293,38 @@ class Episodes:
                         (time_slot['channel_id'], air_date, time_slot['start_time']))
 
             if episode_row is None:
+                # An "umbrella" show (e.g. NBC Mystery Movie) has a row in sub_shows mapping its
+                # show_id to the component series that actually rotated through that slot (e.g.
+                # Columbo, McCloud, Banacek, McMillan & Wife). component_shows resolves st.show_id
+                # to those component show_ids when it's an umbrella, or to itself otherwise, so an
+                # ordinary show's selection is completely unaffected.
+                #
+                # For an umbrella slot, ordering by the real episode_airdate (already ingested per
+                # episode) reconstructs the actual historical rotation across component series
+                # directly from data, instead of a hand-maintained synthetic rotation map -- for a
+                # non-umbrella show that column is NULL so it falls through to the normal
+                # season/episode ordering, unchanged.
                 query = sql.SQL("""
                                 WITH NextEpisode AS (
                                     SELECT
                                         st.channel_id,
                                         st.time_slot,
-                                        st.show_id,
+                                        e.show_id,
                                         e.episode_id,
                                         st.runtime,
                                         st.replication_year,
                                         st.days_of_week
                                     FROM
                                         schedule_template st
-                                    JOIN episodes e ON e.show_id = st.show_id
+                                    JOIN LATERAL (
+                                        SELECT unnest(ss.sub_show_ids) AS show_id
+                                        FROM sub_shows ss WHERE ss.show_id = st.show_id
+                                        UNION ALL
+                                        SELECT st.show_id WHERE NOT EXISTS (
+                                            SELECT 1 FROM sub_shows ss WHERE ss.show_id = st.show_id
+                                        )
+                                    ) cs ON TRUE
+                                    JOIN episodes e ON e.show_id = cs.show_id
                                     LEFT JOIN broadcast_log bl ON bl.episode_id = e.episode_id
                                                                AND bl.channel_id = st.channel_id
                                     WHERE
@@ -314,7 +333,7 @@ class Episodes:
                                         AND st.replication_year = %s
                                         AND st.time_slot::text = %s
                                         AND %s = ANY(st.days_of_week)
-                                    ORDER BY e.show_season_number, e.episode_number
+                                    ORDER BY e.episode_airdate ASC NULLS LAST, e.show_season_number, e.episode_number
                                     LIMIT 1
                                 )
                                 INSERT INTO broadcast_log (channel_id, show_id, episode_id, date_played, time_slot, replication_year)

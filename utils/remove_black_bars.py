@@ -31,9 +31,9 @@ def process_remove_bars(input_file):
         crop_cmd = [
             'ffmpeg', '-y', '-loglevel', 'quiet', '-i', input_file,
             '-r', '30',
-            '-vf', f'crop={crop_values},scale=640:480,setdar=4/3',
+            '-vf', f'crop={crop_values},scale=512:384,setdar=4/3',
             '-af', 'loudnorm=I=-26:TP=-2:LRA=7',
-            '-b:v', '500k',
+            '-b:v', '800k',
             '-c:v', 'h264_videotoolbox',
             '-c:a', 'aac',
             '-b:a', '128k',
@@ -44,4 +44,4 @@ def process_remove_bars(input_file):
     return None
 
 if __name__ == "__main__":
-    process_remove_bars("/Volumes/TTBS/time_traveler/40s/movies/Miracle_on_34th_Street_1947.mp4")
+    process_remove_bars("/Volumes/TTBS/time_traveler/60s/movies/Rudolph_the_RedNosed_Reindeer_1964.mp4")

@@ -158,17 +158,35 @@ class Shows:
         result = self.cur.fetchone()
         return result['show_id'] if result else None
 
-    # Replace a show in the schedule if it has no remaining episodes
+    # Replace a show in the schedule if it has no remaining episodes. `show_id` here is the
+    # concrete show that just aired an episode -- for an umbrella slot (e.g. NBC Mystery Movie)
+    # that's the component series (e.g. Columbo), not the umbrella itself, since get_next_episode
+    # returns the real component show_id. `umbrella`/`target_show` walk back to whichever show_id
+    # actually sits in schedule_template (the umbrella, if this show is one of its components) so
+    # the UPDATE below matches the right row, and remaining episodes are counted across every
+    # component so the umbrella is only rotated out once ALL of its component series are exhausted.
     def get_replacement_show(self, show_id, channel_id, year, required_runtime, preferred_genres=None, prev_genre=None):
-        params = [channel_id, show_id, channel_id, f"{year - SCHEDULE_RECURSION}-09-01", required_runtime]
+        params = [show_id, show_id, channel_id, channel_id, f"{year - SCHEDULE_RECURSION}-09-01", required_runtime]
         genre_order_by = self._genre_order_clause(preferred_genres, prev_genre, params)
         query = f"""
-        WITH EpisodeCount AS (
-            SELECT e.show_id, COUNT(*) FILTER (WHERE bl.episode_id IS NULL) AS remaining_episodes
+        WITH umbrella AS (
+            SELECT ss.show_id AS umbrella_id FROM sub_shows ss WHERE %s = ANY(ss.sub_show_ids) LIMIT 1
+        ),
+        target_show AS (
+            SELECT COALESCE((SELECT umbrella_id FROM umbrella), %s) AS show_id
+        ),
+        component_ids AS (
+            SELECT unnest(ss.sub_show_ids) AS show_id
+            FROM sub_shows ss, target_show ts WHERE ss.show_id = ts.show_id
+            UNION ALL
+            SELECT ts.show_id FROM target_show ts
+            WHERE NOT EXISTS (SELECT 1 FROM sub_shows ss WHERE ss.show_id = ts.show_id)
+        ),
+        EpisodeCount AS (
+            SELECT COUNT(*) FILTER (WHERE bl.episode_id IS NULL) AS remaining_episodes
             FROM episodes e
+            JOIN component_ids ci ON ci.show_id = e.show_id
             LEFT JOIN broadcast_log bl ON e.episode_id = bl.episode_id AND bl.channel_id = %s
-            WHERE e.show_id = %s
-            GROUP BY e.show_id
         ),
         ReplacementShow AS (
             SELECT s.show_id
@@ -184,8 +202,8 @@ class Shows:
         )
         UPDATE schedule_template st
         SET show_id = rs.show_id
-        FROM ReplacementShow rs, EpisodeCount ec
-        WHERE st.show_id = ec.show_id AND ec.remaining_episodes = 0;
+        FROM ReplacementShow rs, EpisodeCount ec, target_show ts
+        WHERE st.show_id = ts.show_id AND ec.remaining_episodes = 0;
         """
         self.cur.execute(query, params)
         self.db_connection.commit()
@@ -222,45 +240,45 @@ class Shows:
         time_differences[sorted_times[-1]] = final_difference
         return time_differences
 
-    # Process scheduled shows, organizing by air date and time
-    def process_scheduled_shows(self, show_results, year, ended_show_ids=frozenset()):
-        schedules = {}
-        # Organize show results by air date and air time
+    # Process scheduled shows, organizing by air time.
+    def process_scheduled_shows(self, show_results):
+        final_schedule = {}
         for row in show_results:
-            show_id, air_time, air_date = row['show_id'], row['air_time'], row['air_date']
-            air_time_str = air_time.strftime('%H:%M:%S')
-            schedules.setdefault(air_date, {})[air_time_str] = show_id
+            air_time_str = row['air_time'].strftime('%H:%M:%S')
+            final_schedule[air_time_str] = row['show_id']
 
-        final_schedule = schedules[year]
-        # Generate schedule recursively from past years
-        for y in range(year - 1, year - SCHEDULE_RECURSION, -1):
-            if y in schedules:  # Ensure year exists in the schedule
-                for time, show_id in schedules[y].items():
-                    # If the slot is empty in the final schedule, fill it -- but never resurrect a
-                    # show that had already ended by the target year.
-                    if time in final_schedule and final_schedule[time] is None and show_id not in ended_show_ids:
-                        final_schedule[time] = show_id
-
-        # Sort the final schedule by time
         sorted_schedule = dict(sorted(final_schedule.items(), key=lambda item: datetime.strptime(item[0], '%H:%M:%S')))
         return sorted_schedule
 
 
-    # Retrieve scheduled show IDs based on the year and day of the week (dow)
-    def get_scheduled_shows_id(self, year, dow):
-        query = """SELECT show_id, air_time, air_date FROM schedules
-                   WHERE air_date = %s AND network = %s AND day_of_week = %s;"""
-        self.cur.execute(query, (year, self.network.upper(), calendar.day_name[dow].lower()))
+    # Retrieve scheduled show IDs for a specific calendar date and day of the week (dow).
+    def get_scheduled_shows_id(self, sim_date, dow):
+        # Matches on `schedules.effective_start_date`/`effective_end_date` (real date ranges,
+        # added so mid-season show replacements can be represented precisely) rather than the
+        # legacy year-only `air_date` int -- see migrate_schedule_date_ranges.py. Every row
+        # defaults to (Jan 1, air_date)-(Dec 31, air_date) unless specifically researched and
+        # narrowed, so this is backward compatible for any row that hasn't needed splitting.
+        #
+        # This replaces a previous version of this method that queried by exact year and fed
+        # multiple years' rows into a "recurse into prior years for empty slots" loop in
+        # process_scheduled_shows -- that loop was actually unreachable dead code (the query only
+        # ever fetched one year's rows, so its recursion could never find a second year to fall
+        # back to), so it was removed rather than ported forward. If you want real cross-year
+        # gap-filling for slots with no exact-date match, that would need to be (re)built here as
+        # a deliberate feature, not implied by date-range matching alone.
+        #
+        # ORDER BY schedule_id: multiple rows can still legitimately match the same date/time
+        # (e.g. two still-unresolved date ranges that overlap -- see
+        # migrate_schedule_date_ranges.py's printed summary for known cases); pinning the order
+        # keeps that fallback explicit/reproducible rather than an accident of scan order.
+        query = """SELECT show_id, air_time FROM schedules
+                   WHERE %s BETWEEN effective_start_date AND effective_end_date
+                   AND network = %s AND day_of_week = %s
+                   ORDER BY schedule_id;"""
+        self.cur.execute(query, (sim_date, self.network.upper(), calendar.day_name[dow].lower()))
         rows = self.cur.fetchall()
 
-        self.cur.execute(
-            """SELECT show_id FROM shows
-               WHERE show_id = ANY(%s) AND airdate_end IS NOT NULL AND EXTRACT(YEAR FROM airdate_end) < %s;""",
-            ([r['show_id'] for r in rows], year))
-        ended_show_ids = frozenset(r['show_id'] for r in self.cur.fetchall())
-
-        results = self.process_scheduled_shows(rows, year, ended_show_ids)
-        return results
+        return self.process_scheduled_shows(rows)
 
     # Retrieve show IDs for a specific network in a given year
     def get_network_shows_id(self, year):

@@ -1,3 +1,9 @@
+#### Move TMP_COMMERCIALS to COMMERCIALS ####
+INSERT INTO commercials (
+   commercial_type,commercial_file,commercial_start,commercial_end,commercial_sponser,commercial_airdate,commercial_season,use_exact_year)
+SELECT
+    commercial_type,commercial_file,commercial_start,commercial_end,commercial_sponsor,commercial_airdate,commercial_season,use_exact_year
+FROM tmp_commercials;
 
 #####  Update the schedules table with show ids #####
 UPDATE public.schedules
@@ -29,6 +35,16 @@ FROM episodes e JOIN shows s ON e.show_id = s.show_id ORDER BY is_80_percent_or_
 INSERT INTO episode_durations (episode_id, start_point, end_point)
 SELECT episode_id, start_point, end_point
 FROM episodes;
+
+## Remove duplicate rows
+SELECT *
+FROM (
+  SELECT
+    t.*,
+    ROW_NUMBER() OVER (PARTITION BY episode_file ORDER BY episode_file) AS rn
+  FROM episodes t
+) sub
+WHERE rn > 1;
 
 ## Update episode_season for holidays
 UPDATE public.episodes SET episode_season = 'easter'

@@ -1,4 +1,4 @@
-import psycopg2
+import psycopg
 import string
 from pathlib import Path
 import json
@@ -15,8 +15,8 @@ DEV_MODE = False
 
 translator = str.maketrans('', '', string.punctuation)
 
-con = psycopg2.connect(
-    database="time_traveler",
+con = psycopg.connect(
+    dbname="time_traveler",
     user="postgres",
     password="m06Ar14u",
     host="192.168.1.201",

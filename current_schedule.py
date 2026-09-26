@@ -9,10 +9,10 @@ import random
 from pathlib import Path
 
 import inflect
-import psycopg2
+import psycopg
 from dotenv import load_dotenv
-from psycopg2 import sql
-from psycopg2.extras import DictCursor
+from psycopg import sql
+from psycopg.rows import dict_row
 
 load_dotenv()
 
@@ -42,15 +42,15 @@ def write_to_file(data: str, filename: str) -> None:
         f.write(data)
 
 
-def get_db_connection() -> psycopg2.extensions.connection:
+def get_db_connection() -> psycopg.Connection:
     """
     Establish and return a database connection.
 
-    :return: psycopg2 database connection object.
+    :return: psycopg database connection object.
     """
     try:
-        conn = psycopg2.connect(
-            database=os.getenv('DATABASE'),
+        conn = psycopg.connect(
+            dbname=os.getenv('DATABASE'),
             user=os.getenv('DB_USER'),
             password=os.getenv('DB_PASSWORD'),
             host=os.getenv('DB_HOST'),
@@ -203,7 +203,7 @@ def get_json(grouped_by_hour):
 def get_db_data(show_list: list, tables_to_search: list) -> list:
     meta_data = []
     db = get_db_connection()
-    cur = db.cursor(cursor_factory=DictCursor)
+    cur = db.cursor(row_factory=dict_row)
 
     for t in tables_to_search:
         table_name, column_name = t
@@ -211,7 +211,7 @@ def get_db_data(show_list: list, tables_to_search: list) -> list:
         if table_name == 'episodes':
             query_str = """SELECT t.*, s.show_name, s.show_genre FROM {table} t 
                             JOIN shows s ON t.show_id = s.show_id WHERE {column} IN %s"""
-        # Construct the query safely using psycopg2.sql
+        # Construct the query safely using psycopg.sql
         query = sql.SQL(query_str).format(
             table=sql.Identifier(table_name),
             column=sql.Identifier(column_name),

@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0702a1d5-a5e1-445c-a91d-b2b9435922aa" name="Changes" comment="keeping up">
+      <change afterPath="$PROJECT_DIR$/prompts/mystery_movie.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/time_traveler.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/time_traveler.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commercial_break_playlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/commercial_break_playlist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/current_schedule.py" beforeDir="false" afterPath="$PROJECT_DIR$/current_schedule.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imdb_scrapper_season_loop.py" beforeDir="false" afterPath="$PROJECT_DIR$/imdb_scrapper_season_loop.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies.json" beforeDir="false" afterPath="$PROJECT_DIR$/movies.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/movies_parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_celery/celery_ingestion.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_celery/celery_ingestion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_celery/classes/video_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_celery/classes/video_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playlists/classes/Cartoons.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlists/classes/Cartoons.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playlists/classes/Commercials.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlists/classes/Commercials.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playlists/classes/Episodes.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlists/classes/Episodes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playlists/classes/Playlists.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlists/classes/Playlists.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playlists/classes/Shows.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlists/classes/Shows.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playlists/classes/Specials.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlists/classes/Specials.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/playlists/create_playlist_manual.py" beforeDir="false" afterPath="$PROJECT_DIR$/playlists/create_playlist_manual.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/specials.json" beforeDir="false" afterPath="$PROJECT_DIR$/specials.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/specials_parse.py" beforeDir="false" afterPath="$PROJECT_DIR$/specials_parse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tv-guide.py" beforeDir="false" afterPath="$PROJECT_DIR$/tv-guide.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/chop_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/chop_file.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/concat_commercials.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/concat_commercials.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/concat_files.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/concat_files.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/find_commercial_break_anomalies.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/find_commercial_break_anomalies.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/find_silent_commercials.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/find_silent_commercials.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/get_loudest_point.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/get_loudest_point.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/normalize_audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/normalize_audio.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/playlist_playtime.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/playlist_playtime.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/playlist_to file.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/playlist_to file.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/queries.txt" beforeDir="false" afterPath="$PROJECT_DIR$/utils/queries.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/remove_black_bars.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/remove_black_bars.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/speech_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/prompts/commercial_breaks.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/timeline_fix.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/timeline_fix.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;flrogerw&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/flrogerw/time_traveler.git&quot;,
+    &quot;accountId&quot;: &quot;330f4ef0-80e1-4aab-97ec-5b9d100ba7e3&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2z1MVUfw88nyMjwizhVfTVoRq6S" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.app.executor": "Run",
+    "Python.app2.executor": "Run",
+    "Python.batch_process_shows.executor": "Run",
+    "Python.celery_ingestion (1).executor": "Run",
+    "Python.celery_ingestion.executor": "Run",
+    "Python.chop_file.executor": "Run",
+    "Python.concat_commercials.executor": "Run",
+    "Python.concat_files.executor": "Run",
+    "Python.crap.executor": "Run",
+    "Python.create_playlist (1).executor": "Run",
+    "Python.create_playlist.executor": "Run",
+    "Python.create_playlist_manual.executor": "Run",
+    "Python.current_schedule.executor": "Run",
+    "Python.discogs_api_client.executor": "Run",
+    "Python.discogs_client.executor": "Run",
+    "Python.dvd-scraper-wiki.executor": "Run",
+    "Python.extract_frames.executor": "Run",
+    "Python.file_copy_if_in_not_db.executor": "Run",
+    "Python.file_not_in_db.executor": "Run",
+    "Python.find_commercial_break_anomalies.executor": "Run",
+    "Python.find_intro_end.executor": "Run",
+    "Python.find_silent_commercials.executor": "Run",
+    "Python.find_unwanted_frames.executor": "Run",
+    "Python.get_aspect_ratio_many.executor": "Run",
+    "Python.get_loudest_point.executor": "Run",
+    "Python.imdb_scraper_II.executor": "Run",
+    "Python.imdb_scraper_III.executor": "Run",
+    "Python.imdb_scrapper_season_loop.executor": "Run",
+    "Python.insert_into_vectors.executor": "Run",
+    "Python.is_black_and_white.executor": "Run",
+    "Python.movie_parse.executor": "Run",
+    "Python.movies_2.executor": "Run",
+    "Python.new_comercial_breaks.executor": "Run",
+    "Python.new_make_schedule.executor": "Run",
+    "Python.new_schedule_builder.executor": "Run",
+    "Python.normalize_audio.executor": "Run",
+    "Python.playlist_playtime.executor": "Run",
+    "Python.playlist_to file.executor": "Run",
+    "Python.printable TV_guide_II.executor": "Run",
+    "Python.printable_tv_guide.executor": "Run",
+    "Python.printable_tv_guide_org.executor": "Run",
+    "Python.remove_black_bars.executor": "Run",
+    "Python.rework_rocford.executor": "Run",
+    "Python.single_compare.executor": "Run",
+    "Python.specials_parse.executor": "Run",
+    "Python.speech_generator.executor": "Run",
+    "Python.split_video.executor": "Run",
+    "Python.syndicated_schedule.executor": "Run",
+    "Python.timeline_fix.executor": "Run",
+    "Python.tv-guide.executor": "Run",
+    "Python.vector_intro_cleaner.executor": "Run",
+    "Python.video_playlist.executor": "Run",
+    "Python.wiki-scraper.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Volumes/ExternalDrive/time_traveler",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/utils/assets" />
+      <recent name="$PROJECT_DIR$/utils/tmp" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/playlists" />
+      <recent name="$PROJECT_DIR$/advertising/logos" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/celery" />
+      <recent name="$PROJECT_DIR$/utils" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/advertising/images" />
+      <recent name="$PROJECT_DIR$/advertising/logos" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.batch_process_shows">
+    <configuration name="batch_process_shows" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="time_traveler" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="false" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/batch_process_shows.py" />
+      <option name="PARAMETERS" value="--out-root batch_runs --queue-file show_reprocess_queue.json --categories untouched detection_risk_1_125 detection_risk_126_152" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="celery_ingestion" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="time_traveler" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/my_celery" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="false" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/my_celery/celery_ingestion.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="concat_files" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="time_traveler" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/concat_files.py" />
+      <option name="PARAMETERS" value="$PROJECT_DIR$/../../TTBS/time_traveler/50s/commercials/ready $PROJECT_DIR$/../../TTBS/time_traveler/50s/commercials" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="create_playlist" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="time_traveler" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/playlists" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/playlists/create_playlist.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="get_loudest_point" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="time_traveler" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/get_loudest_point.py" />
+      <option name="PARAMETERS" value="$PROJECT_DIR$/../../TTBS/time_traveler/70s/commercials/1970s_1_15.mp4" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="new_make_schedule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="time_traveler" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="false" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/new_make_schedule.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="new_schedule_builder" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="time_traveler" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="false" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/new_schedule_builder.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="normalize_audio" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="time_traveler" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/normalize_audio.py" />
+      <option name="PARAMETERS" value="$PROJECT_DIR$/../../TTBS/time_traveler/90s/commercials  $PROJECT_DIR$/../../TTBS/dump/commercials/ready" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="printable_tv_guide" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="time_traveler" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="false" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/printable_tv_guide.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.batch_process_shows" />
+      <item itemvalue="Python.concat_files" />
+      <item itemvalue="Python.get_loudest_point" />
+      <item itemvalue="Python.normalize_audio" />
+      <item itemvalue="Python.celery_ingestion" />
+      <item itemvalue="Python.new_schedule_builder" />
+      <item itemvalue="Python.printable_tv_guide" />
+      <item itemvalue="Python.new_make_schedule" />
+      <item itemvalue="Python.create_playlist" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.celery_ingestion" />
+        <item itemvalue="Python.printable_tv_guide" />
+        <item itemvalue="Python.new_schedule_builder" />
+        <item itemvalue="Python.new_make_schedule" />
+        <item itemvalue="Python.create_playlist" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-50341a9f1f9c-c2ffad84badb-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-261.26222.68" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0702a1d5-a5e1-445c-a91d-b2b9435922aa" name="Changes" comment="" />
+      <created>1742327106443</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1742327106443</updated>
+      <workItem from="1783482829968" duration="1348000" />
+      <workItem from="1783484186088" duration="306000" />
+      <workItem from="1783484521360" duration="1156000" />
+      <workItem from="1783485697198" duration="61000" />
+      <workItem from="1783537500353" duration="598000" />
+      <workItem from="1783538172371" duration="13841000" />
+      <workItem from="1784397929556" duration="13205000" />
+    </task>
+    <task id="LOCAL-00001" summary="keeping up">
+      <option name="closed" value="true" />
+      <created>1756680169368</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1756680169368</updated>
+    </task>
+    <task id="LOCAL-00002" summary="keeping up">
+      <option name="closed" value="true" />
+      <created>1758477185985</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1758477185985</updated>
+    </task>
+    <task id="LOCAL-00003" summary="keeping up">
+      <option name="closed" value="true" />
+      <created>1759448418612</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1759448418612</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="keeping up" />
+    <option name="LAST_COMMIT_MESSAGE" value="keeping up" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/time_traveler$printable_tv_guide.coverage" NAME="printable_tv_guide Coverage Results" MODIFIED="1783552086773" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/time_traveler$create_playlist.coverage" NAME="create_playlist Coverage Results" MODIFIED="1783484800759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/playlists" />
+    <SUITE FILE_PATH="coverage/time_traveler$new_schedule_builder.coverage" NAME="new_schedule_builder Coverage Results" MODIFIED="1783538703344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/time_traveler$new_make_schedule.coverage" NAME="new_make_schedule Coverage Results" MODIFIED="1783538668697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

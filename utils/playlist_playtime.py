@@ -52,7 +52,7 @@ def format_runtime(seconds: float) -> str:
 
 
 if __name__ == "__main__":
-    m3u_file = "./playlists/TV-CBS-2_playlist.m3u"  # <-- change this
+    m3u_file = "../playlists/TV-CBS-2_playlist.m3u"  # <-- change this
     total = parse_m3u_runtime(m3u_file)
 
     print(f"Total seconds: {total:.3f}")

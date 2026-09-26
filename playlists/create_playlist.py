@@ -16,6 +16,7 @@ from playlists.classes.Playlists import Playlists
 from playlists.classes.Shows import Shows
 from playlists.classes.Episodes import Episodes
 from playlists.classes.Schedules import Schedules
+from playlists.classes.SyndicatedScheduler import SyndicatedScheduler
 
 # Load environment variables from .env file
 load_dotenv()
@@ -108,15 +109,43 @@ def main() -> None:
             if not time_slots:
                 schedule.generate_time_slots(channel.id, args.year, dow)
                 time_slots = schedule.get_time_slots(channel.id, args.year, args.start, args.duration, dow)
+
+            # Era-aware syndicated daytime scheduling (see CLAUDE_SYNDICATED_SCHEDULING_HANDOFF.md
+            # on the Desktop): resolve each slot to a show_id via fixed slots / weighted era-genre
+            # fill rules, and feed it through the exact same schedule_data mechanism the network
+            # branch already uses below -- Episodes.get_episodes_for_slot() falls back to
+            # Shows.get_available_show_id() unchanged whenever resolve_syndicated_slot() can't
+            # resolve a slot (e.g. outside the 06:00-19:00 weekday daypart system, or a fully
+            # starved category with no eligible show), so this never needs its own fallback path.
+            syndicated_scheduler = SyndicatedScheduler(db)
+            already_used_show_ids = set()
+            for slot in time_slots:
+                slot_time = datetime.datetime.strptime(slot['start_time'], '%H:%M:%S').time()
+                show_id = syndicated_scheduler.resolve_syndicated_slot(
+                    channel.id, args.year, dow, slot_time, args.year, already_used_show_ids
+                )
+                if show_id is not None:
+                    schedule_data[slot['start_time']] = show_id
+                    already_used_show_ids.add(show_id)
         else:
             time_slots = schedule.get_time_slots(channel.id, args.year, args.start, args.duration, dow)
-            schedule_data = shows.get_scheduled_shows_id(args.year, dow)
+            schedule_data = shows.get_scheduled_shows_id(eq_date, dow)
 
             if not time_slots:
                 # Attempt to generate from show schedule data if still no time slots
                 current_time_slots = shows.calculate_time_differences(schedule_data)
                 schedule.generate_time_slots(channel.id, args.year, dow, current_time_slots)
                 time_slots = schedule.get_time_slots(channel.id, args.year, args.start, args.duration, dow)
+
+            # Re-point an already-templated slot at schedule_data's show whenever a mid-season
+            # historical switch (see migrate_schedule_date_ranges.py) means today's eq_date
+            # resolves to a different show than whatever first templated this slot -- otherwise
+            # schedule_template's "first run wins for the whole replication_year" caching would
+            # silently keep airing the earlier show forever. Network-only; see
+            # sync_schedule_template_show_id's docstring for why this must not apply to syndicated.
+            for start_time, show_id in schedule_data.items():
+                if show_id is not None:
+                    schedule.sync_schedule_template_show_id(channel.id, dow, args.year, start_time, show_id)
 
             logging.info(f"TIME SLOTS: {time_slots}")
 

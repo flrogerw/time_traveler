@@ -4,7 +4,7 @@ import re
 import shutil
 from urllib.parse import urlparse
 
-import psycopg2
+import psycopg
 import string
 from pathlib import Path
 import requests
@@ -21,7 +21,7 @@ FILES_DIR = '/Volumes/TTBS/dump/specials/'
 DEV_MODE = False
 
 translator = str.maketrans('', '', string.punctuation)
-con = psycopg2.connect(database="time_traveler", user="postgres", password="m06Ar14u", host="192.168.1.201", port=5432)
+con = psycopg.connect(dbname="time_traveler", user="postgres", password="m06Ar14u", host="192.168.1.201", port=5432)
 cur = con.cursor()
 
 with open('specials.json', 'r') as file:
@@ -50,22 +50,26 @@ def process_remove_bars(input_file):
     crop_values = counter[largest_list_key].pop()
 
     if crop_values:
-        output_file = f"{parent_path}/{filename}.build.mp4"
+        output_file = f"/tmp/{filename}.build.mp4"
         crop_cmd = [
             'ffmpeg', '-y', '-loglevel', 'quiet', '-i', input_file,
             '-r', '30',
-            '-vf', f'crop={crop_values},scale=640:480,setdar=4/3',
+            '-vf', f'crop={crop_values},scale=512:384:flags=lanczos,setdar=4/3',
             '-af', 'loudnorm=I=-26:TP=-2:LRA=7',
-            '-b:v', '500k',
-            '-c:v', 'h264_videotoolbox',
-            '-c:a', 'aac',
-            '-b:a', '128k',
+            "-c:v", "libx264",
+            "-crf", "22",
+            "-preset", "slow",
+            "-tune", "film",
+            "-profile:v", "baseline",
+            "-level", "3.0",
+            "-pix_fmt", "yuv420p",
+            "-c:a", "aac",
+            "-b:a", "128k",
             output_file
         ]
         subprocess.run(crop_cmd)
         return output_file
     return None
-
 
 
 def get_blackout(filename):
@@ -94,7 +98,24 @@ def get_length(filename):
 
 
 
-headers = {'User-Agent': 'Mozilla/5.0'}
+headers = {
+        "User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                       "AppleWebKit/537.36 (KHTML, like Gecko) "
+                       "Chrome/120.0.0.0 Safari/537.36"),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Upgrade-Insecure-Requests": "1",
+        "Connection": "keep-alive",
+        "Referer": "https://example.com/",
+        "Origin": "https://example.com",
+        "Cache-Control": "no-cache",
+        "DNT": "1",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-User": "?1"
+    }
 
 for special in specials:
     file_name, imdb_id, extras = special
@@ -105,7 +126,7 @@ for special in specials:
     year = soup.find_all("script", type="application/ld+json")[0].text
 
     data = json.loads("".join(soup.find("script", {"type": "application/ld+json"}).contents))
-    release_date = extras['movie_release_date'] if 'movie_release_date' in extras else data['datePublished'][:4]
+    release_date = extras['specials_release_date'] if 'specials_release_date' in extras else data['datePublished'][:4]
     data['contentRating'] = 'Not Rated' if 'contentRating' not in data else data['contentRating']
     data['name'] = extras['name'] if 'name' in extras else data['name']
     year = int(str(release_date)[2:])
@@ -126,11 +147,11 @@ for special in specials:
         'specials_stars': ', '.join([record['name'] for record in data.get('actor', [])]) or None,
         'start_point': 0,
         'end_point': special_end_point,
-        'specials_rating': 'G' if data['contentRating'] == 'Approved' else data['contentRating']
+        'specials_rating': extras['specials_rating']
     }
 
-    if 'special_season' in extras:
-        insert_dict['special_season'] = extras['special_season']
+    if 'specials_season' in extras:
+        insert_dict['specials_season'] = extras['specials_season']
 
     if DEV_MODE:
         print(insert_dict)

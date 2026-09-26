@@ -31,22 +31,61 @@ def parse_playlist(playlist):
     return segments
 
 
-def generate_ffmpeg_command(segments, output_file):
-    # Create the FFmpeg command using the parsed segments
-    ffmpeg_command = ["ffmpeg"]
+def generate_ffmpeg_command(segments, output_file, width=512, height=384, fps=30):
+    cmd = ["ffmpeg", "-y"]
 
-    # Append each input segment with start and stop times
+    # Inputs
     for file_path, start, stop in segments:
-        ffmpeg_command += ["-ss", str(start), "-to", str(stop), "-i", file_path]
+        cmd += [
+            "-ss", str(start),
+            "-to", str(stop),
+            "-i", file_path
+        ]
 
-    # Remove metadata and reset timestamps
-    ffmpeg_command += ["-map_metadata", "-1", "-reset_timestamps", "1"]
+    filter_parts = []
+    concat_inputs = []
 
-    # Create the filter_complex string for concatenation
-    filter_complex = f"[0:v][0:a]concat=n={len(segments)}:v=1:a=1[outv][outa]"
-    ffmpeg_command += ["-filter_complex", filter_complex, "-map", "[outv]", "-map", "[outa]", "-y", output_file]
+    for i in range(len(segments)):
+        filter_parts.append(
+            f"[{i}:v]"
+            f"scale={width}:{height}:flags=bicubic,"
+            f"fps={fps},"
+            f"setsar=1,"
+            f"setdar=4/3,"
+            f"format=yuv420p"
+            f"[v{i}]"
+        )
+        filter_parts.append(
+            f"[{i}:a]"
+            f"aresample=48000"
+            f"[a{i}]"
+        )
+        concat_inputs.append(f"[v{i}][a{i}]")
 
-    return ffmpeg_command
+    filter_complex = (
+        ";".join(filter_parts)
+        + ";"
+        + "".join(concat_inputs)
+        + f"concat=n={len(segments)}:v=1:a=1[outv][outa]"
+    )
+
+    cmd += [
+        "-filter_complex", filter_complex,
+        "-map", "[outv]",
+        "-map", "[outa]",
+        "-c:v", "libx264",
+        "-pix_fmt", "yuv420p",
+        "-profile:v", "high",
+        "-level", "3.1",
+        "-r", str(fps),
+        "-c:a", "aac",
+        "-movflags", "+faststart",
+        output_file
+    ]
+
+    return cmd
+
+
 
 
 def run_ffmpeg_command(command):
@@ -66,17 +105,20 @@ def read_playlist_from_file(filename):
 
 
 # Example usage
-playlist_file = '/Volumes/shared/time_traveler/sys/playlists/TV-ABC-7_playlist.m3u'  # Path to the playlist file
+STATIONS2 = ['TV-CBS-2','TV-NBC-4','TV-SYN-5','TV-ABC-7','TV-SYN-9','TV-SYN-11','TV-SYN-13']
+STATIONS = ['TV-ABC-7']
+for station in STATIONS:
+    playlist_file = f'../playlists/{station}_playlist.m3u'  # Path to the playlist file
 
-# Read playlist from the file
-playlist = read_playlist_from_file(playlist_file)
+    # Read playlist from the file
+    playlist = read_playlist_from_file(playlist_file)
 
-# Parse the playlist
-segments = parse_playlist(playlist)
+    # Parse the playlist
+    segments = parse_playlist(playlist)
 
-# Generate the FFmpeg command
-output_file = "output.mp4"  # Name of the output file
-ffmpeg_command = generate_ffmpeg_command(segments, output_file)
+    # Generate the FFmpeg command
+    output_file = f"output_{station}.mp4"  # Name of the output file
+    ffmpeg_command = generate_ffmpeg_command(segments, output_file)
 
-# Run the FFmpeg command
-run_ffmpeg_command(ffmpeg_command)
+    # Run the FFmpeg command
+    run_ffmpeg_command(ffmpeg_command)
