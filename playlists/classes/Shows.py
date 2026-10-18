@@ -24,7 +24,15 @@ class Shows:
                    ORDER BY duration ASC
                    LIMIT 1;"""
         self.cur.execute(query, (show_id, duration))
-        return self.cur.fetchone()['duration']
+        row = self.cur.fetchone()
+        if row is None:
+            # The episode runs longer than every listed length (e.g. a 90-minute pilot of a one-hour
+            # show): use the show's longest listed length so the playlist still builds, with no
+            # commercial time left to fill.
+            self.cur.execute("SELECT MAX(d) AS duration FROM (SELECT unnest(show_duration) AS d FROM shows WHERE show_id = %s) x",
+                             (show_id,))
+            row = self.cur.fetchone()
+        return row['duration']
 
     # Fetch show counts grouped by duration for a specific channel and year
     def get_show_count_by_duration(self, channel_id, year):
@@ -267,14 +275,15 @@ class Shows:
         # gap-filling for slots with no exact-date match, that would need to be (re)built here as
         # a deliberate feature, not implied by date-range matching alone.
         #
-        # ORDER BY schedule_id: multiple rows can still legitimately match the same date/time
-        # (e.g. two still-unresolved date ranges that overlap -- see
-        # migrate_schedule_date_ranges.py's printed summary for known cases); pinning the order
-        # keeps that fallback explicit/reproducible rather than an accident of scan order.
+        # ORDER BY range width DESC, schedule_id: multiple rows can legitimately match the same
+        # date/time (a season row narrowed to Sep-Apr overlaps the next year's still-default
+        # Jan-Dec row for Jan-Apr). process_scheduled_shows keeps the LAST row per air_time, so
+        # sorting widest-first makes the narrowest (most specific, researched) range win; ties
+        # fall back to schedule_id so the result stays reproducible.
         query = """SELECT show_id, air_time FROM schedules
                    WHERE %s BETWEEN effective_start_date AND effective_end_date
                    AND network = %s AND day_of_week = %s
-                   ORDER BY schedule_id;"""
+                   ORDER BY (effective_end_date - effective_start_date) DESC, schedule_id;"""
         self.cur.execute(query, (sim_date, self.network.upper(), calendar.day_name[dow].lower()))
         rows = self.cur.fetchall()
 

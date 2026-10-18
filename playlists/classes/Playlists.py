@@ -6,7 +6,7 @@ import psycopg
 from dotenv import load_dotenv
 
 from psycopg.rows import dict_row
-from playlists.classes.Commercials import Commercials
+from playlists.classes.Commercials import Commercials, AUDIENCE_CHILDREN
 from playlists.classes.Episodes import Episodes
 from playlists.classes.Shows import Shows
 
@@ -54,11 +54,125 @@ class Playlists:
         self.playlist.write(f"#EXTVLCOPT:sharpen-sigma={SHARPEN_RATIO}\n")
         self.playlist.write(f"{com_file_path}\n")
 
-    def get_playlist(self, final_episodes: list, holiday: str | None) -> None:
+    def _audience_for(self, episode: dict, dow: int | None = None) -> str | None:
+        """AUDIENCE_CHILDREN when ads must be kid-appropriate, else None (any commercial may run).
+        The restriction is a MORNING rule: afternoon and primetime take any ad, even on cartoons.
+        Before noon it applies to children's programming (a children's/cartoon/kids show or an
+        interstitial like School House Rock) and to anything in a Saturday-morning slot, when the
+        audience is kids whatever the show."""
+        if episode.get('type') != 'episode':
+            return None
+        slot_time = episode.get('time_slot')
+        if slot_time is not None and slot_time.hour >= 12:
+            return None
+        if episode.get('interstitial'):
+            return AUDIENCE_CHILDREN
+
+        show_id = episode['show_id']
+        if not hasattr(self, '_childrens_show_cache'):
+            self._childrens_show_cache = {}
+        if show_id not in self._childrens_show_cache:
+            self.cur.execute(
+                """SELECT s.show_type, s.show_genre, e.mapped_genre
+                   FROM shows s LEFT JOIN show_syndication_eligibility e USING (show_id)
+                   WHERE s.show_id = %s""", (show_id,))
+            row = self.cur.fetchone() or {}
+            genre = (row.get('show_genre') or '').lower()
+            self._childrens_show_cache[show_id] = (
+                row.get('show_type') == 'children'
+                or row.get('mapped_genre') in ('kids', 'interstitial')
+                or 'cartoon' in genre or 'child' in genre
+            )
+        if self._childrens_show_cache[show_id]:
+            return AUDIENCE_CHILDREN
+
+        if dow == 5 and slot_time is not None and 7 <= slot_time.hour < 12:
+            return AUDIENCE_CHILDREN
+        return None
+
+    @staticmethod
+    def _interstitial_seconds_after(final_episodes: list, index: int) -> float:
+        """Seconds of interstitial (School House Rock) that immediately follows final_episodes[index].
+        It plays in that program's closing break, so its time comes OUT of the break's commercial
+        budget instead of extending the schedule."""
+        if index + 1 < len(final_episodes):
+            nxt = final_episodes[index + 1]
+            if nxt.get('type') == 'episode' and nxt.get('interstitial'):
+                return float(nxt['end_point'] - nxt['start_point'])
+        return 0.0
+
+    @staticmethod
+    def _episode_path(episode: dict) -> str:
+        sub_year = int(str(episode['episode_airdate'].year)[-2:])
+        decade = f"{str((sub_year - (sub_year % 10))).zfill(2)}s"
+        return f"{LOCAL_PATH}/{decade}/{str(sub_year).zfill(2)}/{episode['episode_file']}"
+
+    def _write_episode_content(self, episode: dict) -> None:
+        """Write an episode's program content with no commercial pods, cutting out the original
+        ad breaks (commercial_breaks) so only real content airs -- the same cut points the normal
+        path uses, which is what keeps a block's airtime equal to its content plus era-matched ads."""
+        file_path = self._episode_path(episode)
+        cursor = episode['start_point']
+        segments = []
+        for brk in self.commercials.get_commercial_breaks(episode['episode_id']):
+            if brk['break_point'] > cursor:
+                segments.append((cursor, brk['break_point']))
+            cursor = max(cursor, brk['resume_point'])
+        segments.append((cursor, episode['end_point']))
+        for start, stop in segments:
+            self.playlist.write(f"#EXTVLCOPT:start-time={start}\n")
+            self.playlist.write(f"#EXTVLCOPT:stop-time={stop}\n")
+            self.playlist.write(f"#EXTVLCOPT:aspect-ratio={episode['aspect_ratio']}\n")
+            self.playlist.write(f"#EXTVLCOPT:sharpen-sigma={SHARPEN_RATIO}\n")
+            self.playlist.write(f"{file_path}\n")
+
+    def _build_pack_pods(self, members: list, audience: str | None = None, reserved_seconds: float = 0.0) -> list:
+        """Commercial pods for a block of packed shorts: one pod before each short plus one after
+        the last (len(members) + 1). The block's commercial time is the slot length minus the
+        shorts' combined content, chosen once and spread evenly across the pods -- never per short,
+        which would give every 5-minute short a full half hour of ads."""
+        content = sum(float(Episodes.get_true_duration(self.cur, m['episode_id'])) for m in members)
+        target = max(0.0, float(members[0]['pack_slot_seconds']) - content - reserved_seconds)
+        commercials = self.commercials.get_commercials(target, members[0]['replication_year'], audience=audience)
+        by_id = {c['commercial_id']: c for c in commercials}
+        chosen = self.commercials.randomized_search(
+            [(c['commercial_id'], float(c['duration'])) for c in commercials], target, max_attempts=100)
+        pods = [[] for _ in range(len(members) + 1)]
+        for i, commercial_id in enumerate(chosen):
+            pods[i % len(pods)].append(by_id[commercial_id])
+        return pods
+
+    def get_playlist(self, final_episodes: list, holiday: str | None, dow: int | None = None) -> None:
         """Generate the playlist by inserting episodes and associated commercials."""
         commercial_break_flag = None
+        pack_pods = {}  # pack_id -> commercial pods, built once per block of packed shorts
 
-        for episode in final_episodes:
+        for index, episode in enumerate(final_episodes):
+            # Interstitials (e.g. School House Rock) air in the break between programs: the clip
+            # alone, no commercial pods of their own.
+            if episode['type'] == 'episode' and episode.get('interstitial'):
+                self._write_episode_content(episode)
+                continue
+
+            # Packed shorts: one commercial budget for the whole block, a pod before each short and
+            # one after the last. (Holiday playlists keep the normal per-episode handling.)
+            if episode['type'] == 'episode' and episode.get('pack_size', 1) > 1 and not holiday:
+                pack_id = episode['pack_id']
+                if pack_id not in pack_pods:
+                    members = [e for e in final_episodes if e.get('pack_id') == pack_id and e['type'] == 'episode']
+                    last_index = max(i for i, e in enumerate(final_episodes) if e.get('pack_id') == pack_id)
+                    pack_pods[pack_id] = self._build_pack_pods(
+                        members, self._audience_for(episode, dow),
+                        self._interstitial_seconds_after(final_episodes, last_index))
+                pods = pack_pods[pack_id]
+                for commercial in pods[episode['pack_index']]:
+                    self.insert_commercial(commercial)
+                self._write_episode_content(episode)
+                if episode['pack_index'] == episode['pack_size'] - 1:
+                    for commercial in pods[-1]:
+                        self.insert_commercial(commercial)
+                continue
+
             movie_duration = None
             episode_true_duration = None
             commercial_break_counter = 0  # Initialize counter for commercial breaks
@@ -72,6 +186,9 @@ class Playlists:
                 episode_true_duration = Episodes.get_true_duration(self.cur, episode['episode_id'])
                 show_duration = self.shows.get_show_duration(episode['show_id'], episode_true_duration)
                 target_duration = show_duration - episode_true_duration  # Remaining time to fill with commercials
+                reserved = self._interstitial_seconds_after(final_episodes, index)
+                if reserved:  # an interstitial airs in this program's closing break
+                    target_duration = max(target_duration - type(target_duration)(reserved), type(target_duration)(0))
                 number_of_breaks = len(commercial_breaks) + 2  # Adding 2 breaks: before and after the show
                 breaks = [[] for _ in range(number_of_breaks)]  # Create empty lists for each commercial break
                 episode_breaks = list(filter(lambda b: b['media_id'] == episode['episode_id'], commercial_breaks))
@@ -108,7 +225,8 @@ class Playlists:
                 target_duration = movie_duration if movie_duration else episode_true_duration
 
             # Retrieve commercials based on target duration and year
-            commercials = self.commercials.get_commercials(target_duration, commercial_year)
+            commercials = self.commercials.get_commercials(
+                target_duration, commercial_year, audience=self._audience_for(episode, dow))
             commercial_ids = [(record['commercial_id'], record['duration']) for record in commercials]
             commercial_selector = self.commercials.randomized_search(commercial_ids, target_duration, max_attempts=100)
 

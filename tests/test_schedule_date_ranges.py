@@ -113,3 +113,19 @@ def test_sync_schedule_template_show_id_is_a_noop_for_an_untemplated_slot(db_con
         (TEST_REPLICATION_YEAR,),
     )
     assert cur.fetchone() is None
+
+
+def test_narrowest_overlapping_range_wins_regardless_of_schedule_id(db_conn):
+    """A season row narrowed to Sep-Apr (low schedule_id) overlaps the next year's still-default
+    Jan-Dec row (higher schedule_id) for Jan-Apr. The researched narrow range must win in the
+    overlap, and the wide row must take over once the narrow one ends. Uses a sentinel network
+    so no real schedule row is involved (rolled back at teardown)."""
+    cur = db_conn.cursor()
+    ins = ("INSERT INTO schedules (network, show_title, air_date, day_of_week, air_time, show_id,"
+           " effective_start_date, effective_end_date) VALUES ('TESTNET', %s, %s, 'saturday',"
+           " '20:00', %s, %s, %s)")
+    cur.execute(ins, ("narrow", 1990, 1, date(1990, 9, 15), date(1991, 4, 30)))
+    cur.execute(ins, ("wide", 1991, 2, date(1991, 1, 1), date(1991, 12, 31)))
+    shows = Shows(db_conn, "TV-TESTNET-1")
+    assert shows.get_scheduled_shows_id(date(1991, 2, 2), SATURDAY).get("20:00:00") == 1
+    assert shows.get_scheduled_shows_id(date(1991, 6, 1), SATURDAY).get("20:00:00") == 2

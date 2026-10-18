@@ -3,6 +3,17 @@ from psycopg.rows import dict_row
 import random
 
 
+# Commercial placement by audience. Children's programming (cartoons, children's shows, Saturday
+# morning) only gets an allow-list of kid-appropriate ad types -- never beer, tobacco, medicine,
+# finance, cars, household cleaners or political ads. `hygiene` mixes toothpaste and baby products
+# with razors, deodorant and perfume, so only the kid-appropriate sponsors pass.
+AUDIENCE_CHILDREN = "children"
+CHILDREN_ALLOWED_TYPES = [
+    "toy", "cereal", "candy", "food", "fastfood", "apparel", "pets", "psa", "entertainment", "camera",
+]
+CHILDREN_HYGIENE_SPONSORS = r"crest|toothpaste|baby|bubble"
+
+
 class Commercials:
     def __init__(self, db):
         self.db_connection = db
@@ -41,17 +52,25 @@ class Commercials:
 
         return best_combination
 
-    def get_commercials(self, target_duration, year):
+    def get_commercials(self, target_duration, year, audience=None):
+        # Audience filter (see AUDIENCE_CHILDREN): appended to whichever query runs below.
+        audience_sql, audience_params = "", ()
+        if audience == AUDIENCE_CHILDREN:
+            audience_sql = """
+                  AND (commercial_type = ANY(%s)
+                       OR (commercial_type = 'hygiene' AND commercial_sponser ~* %s))"""
+            audience_params = (CHILDREN_ALLOWED_TYPES, CHILDREN_HYGIENE_SPONSORS)
+
         # Case 1: Year = 5000 → ignore year filtering entirely
         if year == 5000:
             query = """
                 SELECT *, commercial_id,
                        commercial_end - commercial_start AS duration
                 FROM commercials
-                WHERE commercial_end - commercial_start <= %s
+                WHERE commercial_end - commercial_start <= %s""" + audience_sql + """
                 ORDER BY random();
             """
-            params = (target_duration,)
+            params = (target_duration,) + audience_params
 
         # Case 2: Normal behavior → apply airdate range
         else:
@@ -61,10 +80,10 @@ class Commercials:
                 FROM commercials
                 WHERE commercial_end - commercial_start <= %s
                   AND commercial_airdate >= %s
-                  AND commercial_airdate <= %s
+                  AND commercial_airdate <= %s""" + audience_sql + """
                 ORDER BY random();
             """
-            params = (target_duration, year - 3, year)
+            params = (target_duration, year - 3, year) + audience_params
 
         # Execute and return results
         self.cur.execute(query, params)

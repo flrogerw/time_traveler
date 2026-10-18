@@ -1,0 +1,2220 @@
+{
+"block_mix": {
+"1965-66": {
+"SAT|12": {
+"adventure": 114,
+"drama": 87,
+"family": 38,
+"game": 4,
+"kids": 162,
+"movie": 187,
+"other": 1,
+"variety": 22,
+"western": 27
+},
+"SAT|14": {
+"adventure": 59,
+"drama": 116,
+"family": 59,
+"game": 30,
+"kids": 93,
+"movie": 439,
+"other": 1,
+"variety": 38,
+"western": 58
+},
+"SAT|17": {
+"adventure": 50,
+"drama": 84,
+"family": 45,
+"game": 9,
+"kids": 18,
+"movie": 235,
+"variety": 27,
+"western": 84
+},
+"SAT|7": {
+"adventure": 78,
+"drama": 20,
+"family": 19,
+"kids": 532,
+"movie": 84,
+"other": 74,
+"variety": 2,
+"western": 5
+},
+"SAT|9": {
+"adventure": 47,
+"drama": 159,
+"family": 18,
+"game": 6,
+"kids": 788,
+"movie": 203,
+"other": 78,
+"variety": 16,
+"western": 35
+},
+"SUN|12": {
+"adventure": 29,
+"drama": 66,
+"family": 12,
+"game": 85,
+"kids": 36,
+"movie": 188,
+"other": 221,
+"variety": 65,
+"western": 42
+},
+"SUN|14": {
+"adventure": 57,
+"drama": 185,
+"family": 36,
+"game": 41,
+"kids": 50,
+"movie": 643,
+"other": 77,
+"variety": 91,
+"western": 124
+},
+"SUN|17": {
+"adventure": 36,
+"drama": 212,
+"family": 171,
+"game": 69,
+"kids": 23,
+"movie": 229,
+"other": 15,
+"variety": 133,
+"western": 87
+},
+"SUN|7": {
+"adventure": 25,
+"drama": 26,
+"family": 1,
+"game": 26,
+"kids": 187,
+"movie": 26,
+"other": 1013,
+"variety": 43,
+"western": 6
+},
+"SUN|9": {
+"adventure": 6,
+"drama": 109,
+"family": 33,
+"game": 87,
+"kids": 276,
+"movie": 483,
+"other": 674,
+"variety": 200,
+"western": 40
+},
+"WKD|10": {
+"adventure": 18,
+"drama": 74,
+"family": 1202,
+"game": 1057,
+"kids": 438,
+"movie": 9,
+"other": 61,
+"variety": 192,
+"western": 23
+},
+"WKD|12": {
+"adventure": 1,
+"drama": 881,
+"family": 1123,
+"game": 988,
+"kids": 191,
+"movie": 296,
+"other": 548,
+"variety": 146,
+"western": 61
+},
+"WKD|14": {
+"adventure": 35,
+"drama": 265,
+"family": 325,
+"game": 703,
+"kids": 507,
+"movie": 1306,
+"other": 16,
+"variety": 339,
+"western": 255
+},
+"WKD|16": {
+"adventure": 819,
+"drama": 271,
+"family": 791,
+"game": 8,
+"kids": 2779,
+"movie": 933,
+"other": 162,
+"variety": 850,
+"western": 773
+},
+"WKD|18": {
+"adventure": 208,
+"drama": 201,
+"family": 508,
+"game": 7,
+"kids": 693,
+"movie": 189,
+"other": 81,
+"variety": 65,
+"western": 695
+},
+"WKD|6": {
+"adventure": 43,
+"drama": 45,
+"family": 25,
+"game": 36,
+"kids": 1607,
+"movie": 179,
+"other": 322,
+"variety": 191,
+"western": 46
+},
+"WKD|8": {
+"drama": 168,
+"family": 272,
+"game": 1133,
+"kids": 1504,
+"movie": 651,
+"other": 674,
+"variety": 194,
+"western": 192
+}
+},
+"1967-68": {
+"SAT|12": {
+"adventure": 41,
+"drama": 97,
+"family": 10,
+"game": 8,
+"kids": 132,
+"movie": 242,
+"other": 3,
+"variety": 50,
+"western": 34
+},
+"SAT|14": {
+"adventure": 119,
+"drama": 165,
+"family": 29,
+"game": 17,
+"kids": 114,
+"movie": 490,
+"other": 3,
+"variety": 79,
+"western": 78
+},
+"SAT|17": {
+"adventure": 167,
+"drama": 157,
+"family": 63,
+"game": 37,
+"kids": 14,
+"movie": 103,
+"other": 6,
+"variety": 120,
+"western": 61
+},
+"SAT|7": {
+"adventure": 32,
+"drama": 23,
+"family": 5,
+"kids": 697,
+"movie": 41,
+"other": 182,
+"variety": 14,
+"western": 11
+},
+"SAT|9": {
+"adventure": 18,
+"drama": 21,
+"family": 4,
+"game": 4,
+"kids": 565,
+"movie": 256,
+"other": 13,
+"variety": 9,
+"western": 22
+},
+"SUN|12": {
+"adventure": 35,
+"drama": 98,
+"family": 9,
+"game": 21,
+"kids": 30,
+"movie": 284,
+"other": 197,
+"variety": 80,
+"western": 20
+},
+"SUN|14": {
+"adventure": 73,
+"drama": 156,
+"family": 51,
+"game": 57,
+"kids": 55,
+"movie": 678,
+"other": 398,
+"variety": 112,
+"western": 111
+},
+"SUN|17": {
+"adventure": 174,
+"drama": 231,
+"family": 140,
+"game": 61,
+"kids": 29,
+"movie": 359,
+"other": 94,
+"variety": 85,
+"western": 60
+},
+"SUN|7": {
+"adventure": 10,
+"drama": 16,
+"family": 2,
+"game": 32,
+"kids": 167,
+"movie": 59,
+"other": 1174,
+"variety": 37,
+"western": 4
+},
+"SUN|9": {
+"adventure": 29,
+"drama": 50,
+"family": 81,
+"game": 33,
+"kids": 413,
+"movie": 356,
+"other": 519,
+"variety": 212,
+"western": 78
+},
+"WKD|10": {
+"adventure": 42,
+"drama": 513,
+"family": 708,
+"game": 837,
+"kids": 242,
+"movie": 25,
+"other": 92,
+"variety": 373,
+"western": 3
+},
+"WKD|12": {
+"adventure": 12,
+"drama": 696,
+"family": 569,
+"game": 989,
+"kids": 255,
+"movie": 631,
+"other": 538,
+"variety": 767,
+"western": 2
+},
+"WKD|14": {
+"adventure": 99,
+"drama": 634,
+"family": 524,
+"game": 1226,
+"kids": 602,
+"movie": 940,
+"other": 163,
+"variety": 817,
+"western": 17
+},
+"WKD|16": {
+"adventure": 538,
+"drama": 447,
+"family": 1541,
+"game": 193,
+"kids": 2795,
+"movie": 358,
+"other": 146,
+"variety": 1159,
+"western": 617
+},
+"WKD|18": {
+"adventure": 137,
+"drama": 240,
+"family": 1224,
+"game": 114,
+"kids": 783,
+"movie": 543,
+"other": 174,
+"variety": 495,
+"western": 182
+},
+"WKD|6": {
+"adventure": 3,
+"drama": 54,
+"family": 16,
+"game": 41,
+"kids": 479,
+"movie": 320,
+"other": 1762,
+"variety": 8,
+"western": 8
+},
+"WKD|8": {
+"adventure": 3,
+"drama": 311,
+"family": 160,
+"game": 1006,
+"kids": 2051,
+"movie": 464,
+"other": 750,
+"variety": 39,
+"western": 1
+}
+},
+"1969-70": {
+"SAT|12": {
+"adventure": 27,
+"drama": 44,
+"game": 4,
+"kids": 149,
+"movie": 132,
+"other": 1,
+"variety": 76,
+"western": 40
+},
+"SAT|14": {
+"adventure": 51,
+"drama": 73,
+"family": 51,
+"game": 15,
+"kids": 31,
+"movie": 206,
+"other": 1,
+"variety": 91,
+"western": 52
+},
+"SAT|17": {
+"adventure": 57,
+"drama": 55,
+"family": 34,
+"game": 2,
+"movie": 39,
+"other": 2,
+"variety": 51,
+"western": 7
+},
+"SAT|7": {
+"adventure": 2,
+"drama": 4,
+"kids": 181,
+"movie": 14,
+"other": 13,
+"variety": 1,
+"western": 5
+},
+"SAT|9": {
+"adventure": 5,
+"drama": 14,
+"kids": 233,
+"movie": 80,
+"variety": 3,
+"western": 4
+},
+"SUN|12": {
+"adventure": 3,
+"drama": 23,
+"family": 55,
+"game": 5,
+"kids": 8,
+"movie": 117,
+"other": 43,
+"variety": 11,
+"western": 4
+},
+"SUN|14": {
+"adventure": 26,
+"drama": 70,
+"family": 15,
+"game": 25,
+"kids": 3,
+"movie": 232,
+"other": 151,
+"variety": 33,
+"western": 19
+},
+"SUN|17": {
+"adventure": 12,
+"drama": 100,
+"family": 18,
+"game": 27,
+"kids": 7,
+"movie": 193,
+"other": 118,
+"variety": 42,
+"western": 29
+},
+"SUN|7": {
+"drama": 63,
+"family": 3,
+"kids": 142,
+"movie": 87,
+"other": 318,
+"variety": 1,
+"western": 3
+},
+"SUN|9": {
+"adventure": 9,
+"drama": 80,
+"family": 39,
+"kids": 180,
+"movie": 137,
+"other": 28,
+"variety": 7,
+"western": 13
+},
+"WKD|10": {
+"adventure": 8,
+"drama": 192,
+"family": 264,
+"game": 586,
+"kids": 563,
+"movie": 172,
+"other": 3,
+"variety": 88,
+"western": 4
+},
+"WKD|12": {
+"adventure": 12,
+"drama": 61,
+"family": 297,
+"game": 435,
+"kids": 101,
+"movie": 415,
+"other": 108,
+"variety": 104,
+"western": 11
+},
+"WKD|14": {
+"adventure": 23,
+"drama": 202,
+"family": 326,
+"game": 330,
+"kids": 229,
+"movie": 167,
+"other": 34,
+"variety": 390,
+"western": 13
+},
+"WKD|16": {
+"adventure": 442,
+"drama": 213,
+"family": 1066,
+"game": 226,
+"kids": 975,
+"movie": 230,
+"other": 31,
+"variety": 570,
+"western": 44
+},
+"WKD|18": {
+"adventure": 29,
+"drama": 241,
+"family": 182,
+"game": 25,
+"kids": 346,
+"movie": 163,
+"other": 4,
+"variety": 90,
+"western": 3
+},
+"WKD|6": {
+"drama": 20,
+"family": 48,
+"game": 39,
+"kids": 207,
+"movie": 212,
+"other": 194,
+"variety": 99
+},
+"WKD|8": {
+"adventure": 3,
+"drama": 20,
+"family": 76,
+"game": 197,
+"kids": 235,
+"movie": 184,
+"other": 211,
+"variety": 95,
+"western": 1
+}
+},
+"1973-77": {
+"SAT|12": {
+"adventure": 5,
+"drama": 3,
+"family": 2,
+"kids": 4,
+"movie": 6,
+"other": 2,
+"variety": 1,
+"western": 1
+},
+"SAT|14": {
+"adventure": 1,
+"drama": 3,
+"family": 7,
+"game": 1,
+"kids": 2,
+"movie": 11,
+"other": 1,
+"variety": 1
+},
+"SAT|17": {
+"adventure": 3,
+"drama": 1,
+"family": 2,
+"game": 1,
+"kids": 2,
+"movie": 3,
+"other": 2,
+"variety": 1,
+"western": 3
+},
+"SAT|7": {
+"kids": 1
+},
+"SAT|9": {
+"drama": 2,
+"family": 3,
+"game": 1,
+"kids": 27,
+"movie": 4,
+"other": 2,
+"variety": 1,
+"western": 3
+},
+"SUN|12": {
+"adventure": 1,
+"drama": 5,
+"movie": 10,
+"other": 3,
+"western": 3
+},
+"SUN|14": {
+"drama": 3,
+"family": 1,
+"movie": 13,
+"other": 2,
+"variety": 2,
+"western": 1
+},
+"SUN|17": {
+"adventure": 1,
+"drama": 6,
+"family": 2,
+"game": 1,
+"movie": 6,
+"other": 1,
+"variety": 1,
+"western": 2
+},
+"SUN|7": {
+"drama": 1,
+"kids": 6,
+"movie": 2,
+"other": 11
+},
+"SUN|9": {
+"adventure": 3,
+"drama": 3,
+"family": 5,
+"kids": 17,
+"movie": 1,
+"other": 7,
+"variety": 1
+},
+"WKD|10": {
+"drama": 7,
+"game": 50,
+"movie": 12,
+"other": 9,
+"variety": 3,
+"western": 2
+},
+"WKD|12": {
+"adventure": 2,
+"drama": 9,
+"family": 19,
+"game": 18,
+"kids": 8,
+"movie": 19,
+"other": 4,
+"variety": 3,
+"western": 4
+},
+"WKD|14": {
+"drama": 9,
+"family": 19,
+"game": 30,
+"kids": 33,
+"movie": 10,
+"variety": 1,
+"western": 1
+},
+"WKD|16": {
+"adventure": 8,
+"drama": 22,
+"family": 37,
+"game": 6,
+"kids": 19,
+"movie": 7,
+"variety": 2,
+"western": 8
+},
+"WKD|18": {
+"adventure": 9,
+"drama": 8,
+"family": 3,
+"kids": 8,
+"movie": 3,
+"variety": 1,
+"western": 1
+},
+"WKD|6": {
+"kids": 6,
+"movie": 1,
+"other": 1
+},
+"WKD|8": {
+"drama": 7,
+"family": 28,
+"game": 28,
+"kids": 41,
+"movie": 8,
+"other": 12,
+"western": 4
+}
+},
+"1980-83": {
+"SAT|12": {
+"adventure": 4,
+"drama": 13,
+"family": 7,
+"game": 2,
+"kids": 20,
+"movie": 54,
+"other": 4,
+"variety": 8,
+"western": 25
+},
+"SAT|14": {
+"adventure": 14,
+"drama": 19,
+"family": 18,
+"game": 4,
+"kids": 13,
+"movie": 80,
+"other": 7,
+"variety": 16,
+"western": 21
+},
+"SAT|17": {
+"adventure": 5,
+"drama": 15,
+"family": 36,
+"game": 19,
+"kids": 7,
+"movie": 12,
+"other": 4,
+"variety": 30,
+"western": 3
+},
+"SAT|7": {
+"adventure": 2,
+"drama": 1,
+"family": 1,
+"game": 1,
+"kids": 81,
+"movie": 10,
+"other": 6,
+"variety": 1,
+"western": 5
+},
+"SAT|9": {
+"adventure": 20,
+"drama": 27,
+"family": 17,
+"game": 1,
+"kids": 192,
+"movie": 60,
+"other": 18,
+"variety": 19,
+"western": 14
+},
+"SUN|12": {
+"adventure": 3,
+"drama": 15,
+"family": 9,
+"kids": 9,
+"movie": 51,
+"other": 16,
+"variety": 4,
+"western": 3
+},
+"SUN|14": {
+"adventure": 9,
+"drama": 26,
+"family": 16,
+"game": 2,
+"kids": 3,
+"movie": 100,
+"other": 13,
+"variety": 12,
+"western": 11
+},
+"SUN|17": {
+"adventure": 7,
+"drama": 24,
+"family": 12,
+"game": 5,
+"kids": 12,
+"movie": 24,
+"other": 13,
+"variety": 20,
+"western": 5
+},
+"SUN|7": {
+"adventure": 9,
+"drama": 2,
+"family": 10,
+"kids": 109,
+"movie": 12,
+"other": 222,
+"variety": 7,
+"western": 6
+},
+"SUN|9": {
+"adventure": 36,
+"drama": 27,
+"family": 36,
+"game": 1,
+"kids": 169,
+"movie": 63,
+"other": 207,
+"variety": 9,
+"western": 23
+},
+"WKD|10": {
+"adventure": 13,
+"drama": 141,
+"family": 303,
+"game": 551,
+"kids": 287,
+"movie": 115,
+"other": 146,
+"variety": 44,
+"western": 19
+},
+"WKD|12": {
+"adventure": 28,
+"drama": 68,
+"family": 118,
+"game": 48,
+"kids": 109,
+"movie": 120,
+"other": 54,
+"variety": 44,
+"western": 6
+},
+"WKD|14": {
+"adventure": 29,
+"drama": 108,
+"family": 192,
+"game": 50,
+"kids": 636,
+"movie": 83,
+"other": 44,
+"variety": 8,
+"western": 8
+},
+"WKD|16": {
+"adventure": 98,
+"drama": 183,
+"family": 883,
+"game": 95,
+"kids": 457,
+"movie": 105,
+"other": 57,
+"variety": 19,
+"western": 45
+},
+"WKD|18": {
+"adventure": 28,
+"drama": 47,
+"family": 241,
+"game": 106,
+"kids": 77,
+"movie": 27,
+"other": 23,
+"variety": 11,
+"western": 9
+},
+"WKD|6": {
+"adventure": 35,
+"drama": 15,
+"family": 37,
+"game": 4,
+"kids": 493,
+"movie": 26,
+"other": 162,
+"variety": 7,
+"western": 10
+},
+"WKD|8": {
+"adventure": 9,
+"drama": 42,
+"family": 118,
+"game": 109,
+"kids": 494,
+"movie": 57,
+"other": 112,
+"variety": 13,
+"western": 16
+}
+}
+},
+"issues_per_era": {
+"1965-66": 103,
+"1967-68": 104,
+"1969-70": 60,
+"1973-77": 3,
+"1980-83": 21
+},
+"show_slots": {
+"1": {
+"SAT 12-19": 1,
+"SUN 12-19": 1,
+"WKD 06-10": 5,
+"WKD 10-16": 7
+},
+"10": {
+"SAT 12-19": 1,
+"WKD 06-10": 7,
+"WKD 10-16": 148,
+"WKD 16-19": 83
+},
+"101": {
+"WKD 10-16": 1
+},
+"102": {
+"WKD 16-19": 3
+},
+"104": {
+"SAT 12-19": 1
+},
+"105": {
+"SUN 12-19": 1,
+"WKD 10-16": 7
+},
+"108": {
+"SUN 12-19": 1,
+"WKD 10-16": 5,
+"WKD 16-19": 24
+},
+"11": {
+"SUN 12-19": 1,
+"WKD 06-10": 11,
+"WKD 10-16": 23,
+"WKD 16-19": 3
+},
+"111": {
+"SAT 12-19": 2,
+"SUN 12-19": 3,
+"WKD 10-16": 1,
+"WKD 16-19": 12
+},
+"117": {
+"WKD 10-16": 4,
+"WKD 16-19": 1
+},
+"12": {
+"SAT 07-12": 1,
+"SAT 12-19": 3,
+"SUN 07-12": 3,
+"SUN 12-19": 8,
+"WKD 06-10": 10,
+"WKD 10-16": 28,
+"WKD 16-19": 378
+},
+"122": {
+"SAT 07-12": 1,
+"SAT 12-19": 2,
+"WKD 06-10": 2,
+"WKD 10-16": 7,
+"WKD 16-19": 39
+},
+"126": {
+"WKD 10-16": 5,
+"WKD 16-19": 10
+},
+"127": {
+"SAT 07-12": 1,
+"SAT 12-19": 16,
+"SUN 07-12": 9,
+"SUN 12-19": 46,
+"WKD 06-10": 1,
+"WKD 10-16": 22,
+"WKD 16-19": 292
+},
+"128": {
+"SAT 12-19": 1,
+"WKD 06-10": 1,
+"WKD 16-19": 3
+},
+"13": {
+"WKD 06-10": 1,
+"WKD 10-16": 29,
+"WKD 16-19": 1
+},
+"133": {
+"WKD 10-16": 1
+},
+"134": {
+"SUN 12-19": 24
+},
+"136": {
+"SAT 07-12": 1,
+"SUN 12-19": 1
+},
+"137": {
+"SAT 07-12": 122,
+"SAT 12-19": 59,
+"SUN 07-12": 8,
+"SUN 12-19": 2,
+"WKD 06-10": 66,
+"WKD 10-16": 73,
+"WKD 16-19": 509
+},
+"139": {
+"WKD 16-19": 6
+},
+"14": {
+"SAT 12-19": 10,
+"SUN 12-19": 13,
+"WKD 16-19": 58
+},
+"140": {
+"SAT 07-12": 1,
+"WKD 06-10": 3,
+"WKD 10-16": 36,
+"WKD 16-19": 1
+},
+"141": {
+"SAT 12-19": 1,
+"WKD 06-10": 1,
+"WKD 10-16": 4,
+"WKD 16-19": 4
+},
+"142": {
+"WKD 06-10": 2,
+"WKD 10-16": 5
+},
+"143": {
+"WKD 06-10": 1,
+"WKD 10-16": 1
+},
+"144": {
+"SAT 07-12": 3,
+"SAT 12-19": 14,
+"WKD 06-10": 2,
+"WKD 10-16": 5,
+"WKD 16-19": 1
+},
+"145": {
+"SAT 12-19": 1,
+"SUN 07-12": 2,
+"SUN 12-19": 1,
+"WKD 06-10": 3,
+"WKD 10-16": 31,
+"WKD 16-19": 2
+},
+"153": {
+"SAT 07-12": 3,
+"SAT 12-19": 1,
+"SUN 07-12": 25,
+"WKD 06-10": 16,
+"WKD 10-16": 15,
+"WKD 16-19": 228
+},
+"154": {
+"SAT 07-12": 1,
+"SAT 12-19": 5,
+"SUN 07-12": 1,
+"SUN 12-19": 1,
+"WKD 06-10": 6,
+"WKD 10-16": 6,
+"WKD 16-19": 21
+},
+"155": {
+"SUN 07-12": 1
+},
+"156": {
+"SAT 12-19": 1,
+"WKD 10-16": 3,
+"WKD 16-19": 37
+},
+"157": {
+"SAT 12-19": 1,
+"WKD 06-10": 3,
+"WKD 10-16": 33
+},
+"159": {
+"WKD 06-10": 15,
+"WKD 10-16": 14,
+"WKD 16-19": 18
+},
+"16": {
+"SAT 12-19": 1,
+"SUN 07-12": 1,
+"SUN 12-19": 12,
+"WKD 16-19": 8
+},
+"161": {
+"SAT 12-19": 4,
+"SUN 12-19": 1,
+"WKD 06-10": 5,
+"WKD 10-16": 29,
+"WKD 16-19": 41
+},
+"17": {
+"SAT 07-12": 1,
+"SAT 12-19": 8,
+"SUN 07-12": 1,
+"WKD 06-10": 1
+},
+"174": {
+"SAT 07-12": 1,
+"SAT 12-19": 1,
+"SUN 07-12": 5,
+"SUN 12-19": 7,
+"WKD 06-10": 3,
+"WKD 10-16": 22,
+"WKD 16-19": 135
+},
+"175": {
+"SAT 12-19": 1,
+"WKD 06-10": 2,
+"WKD 10-16": 21,
+"WKD 16-19": 22
+},
+"176": {
+"WKD 16-19": 1
+},
+"18": {
+"SAT 07-12": 1,
+"SAT 12-19": 7,
+"SUN 12-19": 1,
+"WKD 06-10": 8,
+"WKD 10-16": 58,
+"WKD 16-19": 322
+},
+"182": {
+"SAT 07-12": 6,
+"SAT 12-19": 77,
+"WKD 16-19": 31
+},
+"183": {
+"SAT 12-19": 1,
+"WKD 06-10": 3,
+"WKD 10-16": 20,
+"WKD 16-19": 2
+},
+"184": {
+"SAT 07-12": 4,
+"SAT 12-19": 3,
+"WKD 06-10": 5,
+"WKD 10-16": 14,
+"WKD 16-19": 17
+},
+"185": {
+"WKD 16-19": 1
+},
+"187": {
+"SUN 07-12": 4,
+"WKD 06-10": 5,
+"WKD 16-19": 1
+},
+"188": {
+"SUN 07-12": 1,
+"WKD 06-10": 7,
+"WKD 10-16": 6,
+"WKD 16-19": 5
+},
+"189": {
+"SAT 12-19": 1,
+"WKD 10-16": 38,
+"WKD 16-19": 13
+},
+"19": {
+"SAT 12-19": 18,
+"SUN 12-19": 4,
+"WKD 06-10": 2,
+"WKD 10-16": 11,
+"WKD 16-19": 153
+},
+"190": {
+"WKD 10-16": 7,
+"WKD 16-19": 15
+},
+"191": {
+"SAT 12-19": 1,
+"WKD 10-16": 20,
+"WKD 16-19": 64
+},
+"192": {
+"SAT 12-19": 4,
+"SUN 12-19": 1,
+"WKD 06-10": 22,
+"WKD 10-16": 37,
+"WKD 16-19": 6
+},
+"193": {
+"WKD 16-19": 8
+},
+"196": {
+"SAT 07-12": 108,
+"SAT 12-19": 4,
+"SUN 07-12": 31,
+"SUN 12-19": 1,
+"WKD 06-10": 68,
+"WKD 10-16": 1,
+"WKD 16-19": 59
+},
+"2": {
+"SAT 07-12": 98,
+"SAT 12-19": 56,
+"SUN 07-12": 10,
+"SUN 12-19": 4,
+"WKD 06-10": 10
+},
+"20": {
+"SAT 07-12": 1,
+"SUN 12-19": 1,
+"WKD 10-16": 2
+},
+"202": {
+"SAT 12-19": 18,
+"SUN 12-19": 43,
+"WKD 10-16": 1,
+"WKD 16-19": 3
+},
+"205": {
+"SAT 07-12": 1
+},
+"207": {
+"WKD 06-10": 12,
+"WKD 10-16": 374,
+"WKD 16-19": 351
+},
+"208": {
+"SUN 07-12": 1,
+"WKD 06-10": 4,
+"WKD 10-16": 30,
+"WKD 16-19": 71
+},
+"21": {
+"SAT 07-12": 1,
+"SAT 12-19": 11,
+"SUN 12-19": 1,
+"WKD 10-16": 3,
+"WKD 16-19": 1
+},
+"210": {
+"WKD 10-16": 1,
+"WKD 16-19": 16
+},
+"211": {
+"SAT 12-19": 22,
+"SUN 07-12": 3,
+"SUN 12-19": 2,
+"WKD 06-10": 1
+},
+"213": {
+"WKD 06-10": 5,
+"WKD 10-16": 3,
+"WKD 16-19": 19
+},
+"214": {
+"SAT 12-19": 4,
+"WKD 10-16": 2
+},
+"216": {
+"SAT 07-12": 1
+},
+"217": {
+"SAT 07-12": 1,
+"SAT 12-19": 2,
+"SUN 07-12": 2,
+"WKD 06-10": 7,
+"WKD 10-16": 512,
+"WKD 16-19": 308
+},
+"218": {
+"SAT 12-19": 1
+},
+"22": {
+"SAT 07-12": 1,
+"SAT 12-19": 1,
+"SUN 12-19": 5,
+"WKD 10-16": 4
+},
+"220": {
+"SAT 07-12": 3,
+"SUN 07-12": 1
+},
+"221": {
+"SAT 12-19": 2,
+"SUN 07-12": 1,
+"SUN 12-19": 2,
+"WKD 10-16": 1,
+"WKD 16-19": 32
+},
+"223": {
+"SAT 07-12": 69,
+"SAT 12-19": 5,
+"SUN 07-12": 16,
+"WKD 06-10": 1,
+"WKD 10-16": 1
+},
+"227": {
+"SUN 12-19": 2,
+"WKD 10-16": 7,
+"WKD 16-19": 30
+},
+"237": {
+"SAT 12-19": 36,
+"SUN 07-12": 1,
+"SUN 12-19": 8,
+"WKD 10-16": 30,
+"WKD 16-19": 25
+},
+"239": {
+"WKD 16-19": 1
+},
+"24": {
+"SAT 07-12": 2,
+"SAT 12-19": 11,
+"SUN 07-12": 43,
+"SUN 12-19": 21,
+"WKD 06-10": 26,
+"WKD 10-16": 326,
+"WKD 16-19": 821
+},
+"240": {
+"SUN 07-12": 1
+},
+"241": {
+"SAT 12-19": 1,
+"SUN 12-19": 1
+},
+"242": {
+"SAT 07-12": 1,
+"SAT 12-19": 1,
+"SUN 12-19": 1,
+"WKD 10-16": 1
+},
+"243": {
+"SAT 12-19": 29,
+"SUN 07-12": 43,
+"SUN 12-19": 8,
+"WKD 06-10": 1,
+"WKD 10-16": 3,
+"WKD 16-19": 138
+},
+"244": {
+"SAT 07-12": 31,
+"WKD 06-10": 2,
+"WKD 10-16": 97,
+"WKD 16-19": 493
+},
+"25": {
+"SAT 07-12": 1
+},
+"253": {
+"SAT 07-12": 1,
+"SAT 12-19": 22,
+"SUN 07-12": 6,
+"SUN 12-19": 35,
+"WKD 06-10": 1,
+"WKD 10-16": 3,
+"WKD 16-19": 38
+},
+"255": {
+"WKD 16-19": 1
+},
+"262": {
+"SAT 12-19": 1,
+"SUN 12-19": 1,
+"WKD 10-16": 1,
+"WKD 16-19": 26
+},
+"263": {
+"WKD 16-19": 1
+},
+"266": {
+"SUN 12-19": 1
+},
+"267": {
+"WKD 16-19": 1
+},
+"27": {
+"SAT 07-12": 1,
+"SAT 12-19": 29,
+"SUN 12-19": 47,
+"WKD 06-10": 2,
+"WKD 10-16": 1,
+"WKD 16-19": 163
+},
+"271": {
+"SAT 12-19": 2,
+"SUN 12-19": 3,
+"WKD 10-16": 1,
+"WKD 16-19": 6
+},
+"272": {
+"SAT 12-19": 29,
+"WKD 06-10": 1,
+"WKD 10-16": 2,
+"WKD 16-19": 25
+},
+"274": {
+"SAT 12-19": 31,
+"SUN 12-19": 4
+},
+"276": {
+"WKD 06-10": 5,
+"WKD 10-16": 10
+},
+"279": {
+"SAT 12-19": 33,
+"SUN 07-12": 29,
+"SUN 12-19": 114,
+"WKD 10-16": 2,
+"WKD 16-19": 56
+},
+"28": {
+"SAT 12-19": 1,
+"WKD 10-16": 2,
+"WKD 16-19": 8
+},
+"280": {
+"WKD 06-10": 1
+},
+"282": {
+"WKD 06-10": 1
+},
+"284": {
+"SUN 07-12": 51,
+"WKD 06-10": 13
+},
+"287": {
+"SAT 07-12": 1,
+"SAT 12-19": 1,
+"SUN 12-19": 15,
+"WKD 16-19": 5
+},
+"293": {
+"SAT 07-12": 9,
+"SUN 07-12": 1
+},
+"294": {
+"SUN 12-19": 1
+},
+"296": {
+"SAT 07-12": 3,
+"SAT 12-19": 54,
+"SUN 07-12": 7,
+"SUN 12-19": 15,
+"WKD 06-10": 2,
+"WKD 16-19": 23
+},
+"297": {
+"SAT 07-12": 8,
+"SAT 12-19": 5,
+"SUN 07-12": 18,
+"SUN 12-19": 10,
+"WKD 06-10": 18,
+"WKD 16-19": 5
+},
+"302": {
+"WKD 06-10": 2,
+"WKD 10-16": 8,
+"WKD 16-19": 4
+},
+"303": {
+"SAT 07-12": 1,
+"SUN 12-19": 2
+},
+"305": {
+"SUN 07-12": 4
+},
+"308": {
+"SAT 12-19": 2,
+"SUN 07-12": 1,
+"SUN 12-19": 1,
+"WKD 06-10": 1,
+"WKD 16-19": 17
+},
+"317": {
+"SUN 12-19": 10,
+"WKD 06-10": 2,
+"WKD 16-19": 2
+},
+"32": {
+"SAT 07-12": 1,
+"SAT 12-19": 123,
+"SUN 07-12": 2,
+"SUN 12-19": 99,
+"WKD 06-10": 2,
+"WKD 10-16": 136,
+"WKD 16-19": 567
+},
+"320": {
+"SAT 07-12": 1,
+"SAT 12-19": 10,
+"SUN 12-19": 11,
+"WKD 10-16": 4,
+"WKD 16-19": 43
+},
+"321": {
+"SAT 12-19": 39,
+"WKD 16-19": 1
+},
+"327": {
+"SAT 12-19": 5,
+"WKD 16-19": 2
+},
+"333": {
+"SAT 12-19": 8,
+"SUN 12-19": 50,
+"WKD 06-10": 1,
+"WKD 10-16": 3,
+"WKD 16-19": 1
+},
+"336": {
+"SUN 12-19": 2,
+"WKD 10-16": 5
+},
+"338": {
+"SUN 07-12": 1,
+"SUN 12-19": 146,
+"WKD 06-10": 3,
+"WKD 10-16": 94,
+"WKD 16-19": 195
+},
+"339": {
+"SAT 12-19": 1,
+"SUN 12-19": 23,
+"WKD 06-10": 1,
+"WKD 10-16": 2
+},
+"340": {
+"WKD 10-16": 949,
+"WKD 16-19": 61
+},
+"35": {
+"WKD 10-16": 12,
+"WKD 16-19": 7
+},
+"350": {
+"SUN 07-12": 1
+},
+"352": {
+"SUN 07-12": 1
+},
+"357": {
+"SAT 07-12": 1
+},
+"36": {
+"SAT 07-12": 64,
+"SAT 12-19": 19
+},
+"361": {
+"WKD 16-19": 2
+},
+"362": {
+"SUN 12-19": 1
+},
+"364": {
+"SAT 07-12": 1,
+"SAT 12-19": 29,
+"SUN 12-19": 14,
+"WKD 06-10": 16,
+"WKD 10-16": 30,
+"WKD 16-19": 538
+},
+"366": {
+"WKD 10-16": 3,
+"WKD 16-19": 20
+},
+"370": {
+"SAT 07-12": 1,
+"SAT 12-19": 5,
+"SUN 07-12": 1,
+"SUN 12-19": 34,
+"WKD 06-10": 6,
+"WKD 10-16": 27,
+"WKD 16-19": 69
+},
+"376": {
+"SAT 12-19": 7,
+"SUN 12-19": 6,
+"WKD 16-19": 3
+},
+"378": {
+"SAT 12-19": 2,
+"SUN 12-19": 7,
+"WKD 06-10": 767,
+"WKD 10-16": 26,
+"WKD 16-19": 75
+},
+"38": {
+"SAT 07-12": 1,
+"SAT 12-19": 102,
+"SUN 07-12": 3,
+"WKD 10-16": 23,
+"WKD 16-19": 86
+},
+"382": {
+"SUN 12-19": 1,
+"WKD 10-16": 11
+},
+"386": {
+"WKD 06-10": 1
+},
+"387": {
+"SAT 07-12": 1,
+"SAT 12-19": 41,
+"SUN 07-12": 1,
+"SUN 12-19": 5
+},
+"390": {
+"SAT 12-19": 23,
+"SUN 12-19": 4,
+"WKD 10-16": 2,
+"WKD 16-19": 5
+},
+"392": {
+"SAT 12-19": 10,
+"SUN 12-19": 1
+},
+"394": {
+"WKD 06-10": 99,
+"WKD 10-16": 6,
+"WKD 16-19": 162
+},
+"397": {
+"SAT 12-19": 1,
+"WKD 06-10": 7,
+"WKD 10-16": 5,
+"WKD 16-19": 15
+},
+"398": {
+"WKD 10-16": 1
+},
+"399": {
+"WKD 10-16": 3
+},
+"40": {
+"SAT 12-19": 2,
+"SUN 12-19": 1,
+"WKD 10-16": 34,
+"WKD 16-19": 3
+},
+"400": {
+"SAT 12-19": 4,
+"SUN 07-12": 6,
+"SUN 12-19": 16,
+"WKD 10-16": 67,
+"WKD 16-19": 69
+},
+"401": {
+"SAT 07-12": 3,
+"SAT 12-19": 1,
+"WKD 16-19": 1
+},
+"406": {
+"SAT 07-12": 10,
+"SAT 12-19": 1,
+"WKD 06-10": 2
+},
+"42": {
+"SAT 12-19": 2,
+"WKD 06-10": 4
+},
+"43": {
+"SAT 07-12": 101,
+"SAT 12-19": 5
+},
+"45": {
+"SAT 07-12": 2,
+"SAT 12-19": 8,
+"WKD 10-16": 1
+},
+"47": {
+"SAT 07-12": 110,
+"SAT 12-19": 21,
+"SUN 07-12": 12,
+"SUN 12-19": 10,
+"WKD 06-10": 2
+},
+"5": {
+"WKD 16-19": 3
+},
+"50": {
+"SAT 07-12": 7,
+"SAT 12-19": 8,
+"SUN 07-12": 18,
+"SUN 12-19": 5,
+"WKD 06-10": 227,
+"WKD 10-16": 2
+},
+"55": {
+"SAT 07-12": 1,
+"SAT 12-19": 1,
+"SUN 07-12": 1,
+"SUN 12-19": 3,
+"WKD 10-16": 2,
+"WKD 16-19": 1
+},
+"58": {
+"SAT 07-12": 1,
+"SAT 12-19": 17,
+"WKD 16-19": 13
+},
+"61": {
+"SAT 07-12": 2,
+"SAT 12-19": 3,
+"SUN 07-12": 6,
+"SUN 12-19": 4,
+"WKD 06-10": 4,
+"WKD 10-16": 12,
+"WKD 16-19": 99
+},
+"64": {
+"SAT 07-12": 3,
+"SAT 12-19": 1,
+"SUN 12-19": 1,
+"WKD 06-10": 6,
+"WKD 10-16": 5,
+"WKD 16-19": 3
+},
+"69": {
+"SUN 12-19": 11,
+"WKD 06-10": 2,
+"WKD 10-16": 3,
+"WKD 16-19": 15
+},
+"7": {
+"SUN 12-19": 46,
+"WKD 10-16": 50,
+"WKD 16-19": 336
+},
+"70": {
+"WKD 10-16": 6,
+"WKD 16-19": 30
+},
+"76": {
+"SAT 12-19": 1,
+"WKD 06-10": 2,
+"WKD 16-19": 64
+},
+"8": {
+"SAT 07-12": 4,
+"SAT 12-19": 40,
+"SUN 07-12": 4,
+"SUN 12-19": 1,
+"WKD 06-10": 5,
+"WKD 10-16": 2,
+"WKD 16-19": 2
+},
+"83": {
+"SAT 07-12": 45,
+"SAT 12-19": 19,
+"SUN 07-12": 2,
+"WKD 10-16": 17,
+"WKD 16-19": 1
+},
+"85": {
+"SUN 12-19": 3
+},
+"86": {
+"SAT 07-12": 2,
+"SUN 07-12": 2,
+"WKD 06-10": 4,
+"WKD 10-16": 2
+},
+"90": {
+"SAT 07-12": 155,
+"SAT 12-19": 1,
+"SUN 07-12": 37,
+"SUN 12-19": 1,
+"WKD 06-10": 29,
+"WKD 10-16": 18
+},
+"91": {
+"SAT 07-12": 39,
+"SAT 12-19": 17,
+"WKD 10-16": 5
+},
+"93": {
+"WKD 10-16": 209,
+"WKD 16-19": 17
+},
+"95": {
+"SUN 12-19": 5
+},
+"96": {
+"SAT 12-19": 1,
+"SUN 12-19": 3,
+"WKD 10-16": 6,
+"WKD 16-19": 3
+},
+"97": {
+"SAT 07-12": 1,
+"SAT 12-19": 1,
+"SUN 12-19": 30,
+"WKD 06-10": 4,
+"WKD 10-16": 1,
+"WKD 16-19": 332
+},
+"99": {
+"WKD 10-16": 9,
+"WKD 16-19": 50
+}
+},
+"slot_shares": {
+"1965-66": {
+"SAT 07-12": {
+"adventure/sci-fi": 0.0666,
+"cartoons/children": 0.7029,
+"comedy": 0.0197,
+"crime/mystery/suspense": 0.0032,
+"drama": 0.0921,
+"education": 0.049,
+"game/quiz": 0.0032,
+"religion": 0.0319,
+"serial": 0.0005,
+"variety/music": 0.0096,
+"western": 0.0213
+},
+"SAT 12-19": {
+"adventure/sci-fi": 0.1819,
+"cartoons/children": 0.2227,
+"comedy": 0.1158,
+"crime/mystery/suspense": 0.0767,
+"drama": 0.1574,
+"education": 0.0008,
+"game/quiz": 0.0351,
+"religion": 0.0008,
+"variety/music": 0.071,
+"western": 0.1378
+},
+"SUN 07-12": {
+"adventure/sci-fi": 0.0113,
+"cartoons/children": 0.1682,
+"comedy": 0.0124,
+"crime/mystery/suspense": 0.0015,
+"drama": 0.0476,
+"education": 0.0229,
+"game/quiz": 0.0411,
+"religion": 0.5901,
+"variety/music": 0.0883,
+"western": 0.0167
+},
+"SUN 12-19": {
+"adventure/sci-fi": 0.0621,
+"cartoons/children": 0.0555,
+"comedy": 0.1116,
+"crime/mystery/suspense": 0.0219,
+"drama": 0.214,
+"education": 0.0112,
+"game/quiz": 0.0993,
+"religion": 0.1482,
+"variety/music": 0.1472,
+"western": 0.1289
+},
+"WKD 06-10": {
+"adventure/sci-fi": 0.0066,
+"cartoons/children": 0.4778,
+"comedy": 0.0456,
+"drama": 0.0327,
+"education": 0.1243,
+"game/quiz": 0.1795,
+"religion": 0.0287,
+"serial": 0.0091,
+"variety/music": 0.0591,
+"western": 0.0366
+},
+"WKD 10-16": {
+"adventure/sci-fi": 0.0043,
+"cartoons/children": 0.0907,
+"comedy": 0.2116,
+"crime/mystery/suspense": 0.0041,
+"drama": 0.0933,
+"education": 0.0499,
+"game/quiz": 0.2194,
+"serial": 0.2455,
+"variety/music": 0.0541,
+"western": 0.0271
+},
+"WKD 16-19": {
+"adventure/sci-fi": 0.1138,
+"cartoons/children": 0.3849,
+"comedy": 0.144,
+"crime/mystery/suspense": 0.0019,
+"drama": 0.0504,
+"education": 0.0269,
+"game/quiz": 0.0017,
+"serial": 0.0122,
+"variety/music": 0.1014,
+"western": 0.1627
+}
+},
+"1967-68": {
+"SAT 07-12": {
+"adventure/sci-fi": 0.0309,
+"cartoons/children": 0.779,
+"comedy": 0.0056,
+"crime/mystery/suspense": 0.0043,
+"drama": 0.0228,
+"education": 0.0735,
+"game/quiz": 0.0025,
+"religion": 0.0469,
+"variety/music": 0.0142,
+"western": 0.0204
+},
+"SAT 12-19": {
+"adventure/sci-fi": 0.2039,
+"cartoons/children": 0.1621,
+"comedy": 0.0636,
+"crime/mystery/suspense": 0.0873,
+"drama": 0.1739,
+"education": 0.0056,
+"game/quiz": 0.0387,
+"religion": 0.0019,
+"variety/music": 0.1552,
+"western": 0.1079
+},
+"SUN 07-12": {
+"adventure/sci-fi": 0.0137,
+"cartoons/children": 0.203,
+"comedy": 0.0291,
+"crime/mystery/suspense": 0.006,
+"drama": 0.0172,
+"education": 0.0431,
+"game/quiz": 0.0228,
+"religion": 0.5495,
+"variety/music": 0.0872,
+"western": 0.0287
+},
+"SUN 12-19": {
+"adventure/sci-fi": 0.1186,
+"cartoons/children": 0.048,
+"comedy": 0.0841,
+"crime/mystery/suspense": 0.0328,
+"drama": 0.1712,
+"education": 0.0088,
+"game/quiz": 0.0585,
+"religion": 0.281,
+"variety/music": 0.1165,
+"western": 0.0804
+},
+"WKD 06-10": {
+"adventure/sci-fi": 0.0009,
+"cartoons/children": 0.3774,
+"comedy": 0.0263,
+"drama": 0.0544,
+"education": 0.3358,
+"game/quiz": 0.1562,
+"religion": 0.0389,
+"serial": 0.0018,
+"variety/music": 0.007,
+"western": 0.0013
+},
+"WKD 10-16": {
+"adventure/sci-fi": 0.011,
+"cartoons/children": 0.0791,
+"comedy": 0.1296,
+"crime/mystery/suspense": 0.0098,
+"drama": 0.1228,
+"education": 0.053,
+"game/quiz": 0.2196,
+"religion": 0.004,
+"serial": 0.2288,
+"variety/music": 0.1408,
+"western": 0.0016
+},
+"WKD 16-19": {
+"adventure/sci-fi": 0.0618,
+"cartoons/children": 0.3276,
+"comedy": 0.2532,
+"crime/mystery/suspense": 0.0366,
+"drama": 0.0263,
+"education": 0.0287,
+"game/quiz": 0.0281,
+"religion": 0.0005,
+"serial": 0.0125,
+"variety/music": 0.1514,
+"western": 0.0732
+}
+},
+"1969-70": {
+"SAT 07-12": {
+"adventure/sci-fi": 0.0151,
+"cartoons/children": 0.8903,
+"crime/mystery/suspense": 0.0043,
+"drama": 0.0344,
+"education": 0.028,
+"variety/music": 0.0086,
+"western": 0.0194
+},
+"SAT 12-19": {
+"adventure/sci-fi": 0.1477,
+"cartoons/children": 0.1969,
+"comedy": 0.093,
+"crime/mystery/suspense": 0.0481,
+"drama": 0.14,
+"education": 0.0044,
+"game/quiz": 0.023,
+"variety/music": 0.2385,
+"western": 0.1083
+},
+"SUN 07-12": {
+"adventure/sci-fi": 0.0102,
+"cartoons/children": 0.3634,
+"comedy": 0.0474,
+"crime/mystery/suspense": 0.0023,
+"drama": 0.1591,
+"education": 0.0655,
+"religion": 0.3251,
+"variety/music": 0.009,
+"western": 0.0181
+},
+"SUN 12-19": {
+"adventure/sci-fi": 0.0484,
+"cartoons/children": 0.0213,
+"comedy": 0.1039,
+"crime/mystery/suspense": 0.0791,
+"drama": 0.1488,
+"education": 0.0508,
+"game/quiz": 0.0673,
+"religion": 0.3176,
+"variety/music": 0.1015,
+"western": 0.0614
+},
+"WKD 06-10": {
+"adventure/sci-fi": 0.002,
+"cartoons/children": 0.3019,
+"comedy": 0.0847,
+"crime/mystery/suspense": 0.0041,
+"drama": 0.0232,
+"education": 0.2561,
+"game/quiz": 0.1612,
+"religion": 0.0205,
+"serial": 0.013,
+"variety/music": 0.1325,
+"western": 0.0007
+},
+"WKD 10-16": {
+"adventure/sci-fi": 0.0077,
+"cartoons/children": 0.1589,
+"comedy": 0.1578,
+"crime/mystery/suspense": 0.0149,
+"drama": 0.066,
+"education": 0.0256,
+"game/quiz": 0.2404,
+"religion": 0.0002,
+"serial": 0.2199,
+"variety/music": 0.1036,
+"western": 0.005
+},
+"WKD 16-19": {
+"adventure/sci-fi": 0.1029,
+"cartoons/children": 0.2886,
+"comedy": 0.2727,
+"crime/mystery/suspense": 0.0537,
+"drama": 0.0454,
+"education": 0.0076,
+"game/quiz": 0.0548,
+"serial": 0.0197,
+"variety/music": 0.1442,
+"western": 0.0103
+}
+},
+"1973-77": {
+"SAT 07-12": {
+"cartoons/children": 0.7,
+"comedy": 0.075,
+"drama": 0.05,
+"game/quiz": 0.025,
+"religion": 0.05,
+"variety/music": 0.025,
+"western": 0.075
+},
+"SAT 12-19": {
+"adventure/sci-fi": 0.18,
+"cartoons/children": 0.16,
+"comedy": 0.22,
+"crime/mystery/suspense": 0.02,
+"drama": 0.12,
+"game/quiz": 0.04,
+"religion": 0.1,
+"serial": 0.02,
+"variety/music": 0.06,
+"western": 0.08
+},
+"SUN 07-12": {
+"adventure/sci-fi": 0.0556,
+"cartoons/children": 0.4259,
+"comedy": 0.0926,
+"drama": 0.0741,
+"religion": 0.3333,
+"variety/music": 0.0185
+},
+"SUN 12-19": {
+"adventure/sci-fi": 0.0571,
+"comedy": 0.0857,
+"drama": 0.4,
+"education": 0.0286,
+"game/quiz": 0.0286,
+"religion": 0.1429,
+"variety/music": 0.0857,
+"western": 0.1714
+},
+"WKD 06-10": {
+"cartoons/children": 0.3701,
+"comedy": 0.2205,
+"drama": 0.0551,
+"game/quiz": 0.2205,
+"religion": 0.1024,
+"western": 0.0315
+},
+"WKD 10-16": {
+"adventure/sci-fi": 0.0067,
+"cartoons/children": 0.138,
+"comedy": 0.1279,
+"crime/mystery/suspense": 0.0101,
+"drama": 0.0741,
+"game/quiz": 0.33,
+"religion": 0.0438,
+"serial": 0.2222,
+"variety/music": 0.0236,
+"western": 0.0236
+},
+"WKD 16-19": {
+"adventure/sci-fi": 0.1288,
+"cartoons/children": 0.2045,
+"comedy": 0.303,
+"drama": 0.2273,
+"game/quiz": 0.0455,
+"variety/music": 0.0227,
+"western": 0.0682
+}
+},
+"1980-83": {
+"SAT 07-12": {
+"adventure/sci-fi": 0.0541,
+"cartoons/children": 0.6708,
+"comedy": 0.0442,
+"crime/mystery/suspense": 0.0049,
+"drama": 0.0639,
+"education": 0.0074,
+"game/quiz": 0.0049,
+"religion": 0.0516,
+"serial": 0.0025,
+"variety/music": 0.0491,
+"western": 0.0467
+},
+"SAT 12-19": {
+"adventure/sci-fi": 0.0732,
+"cartoons/children": 0.1274,
+"comedy": 0.1943,
+"crime/mystery/suspense": 0.0096,
+"drama": 0.1401,
+"education": 0.0191,
+"game/quiz": 0.0796,
+"religion": 0.0287,
+"variety/music": 0.172,
+"western": 0.1561
+},
+"SUN 07-12": {
+"adventure/sci-fi": 0.0514,
+"cartoons/children": 0.3174,
+"comedy": 0.0525,
+"crime/mystery/suspense": 0.0011,
+"drama": 0.032,
+"education": 0.0068,
+"game/quiz": 0.0011,
+"religion": 0.4829,
+"serial": 0.0034,
+"variety/music": 0.0183,
+"western": 0.0331
+},
+"SUN 12-19": {
+"adventure/sci-fi": 0.076,
+"cartoons/children": 0.096,
+"comedy": 0.148,
+"crime/mystery/suspense": 0.024,
+"drama": 0.236,
+"education": 0.012,
+"game/quiz": 0.028,
+"religion": 0.156,
+"serial": 0.004,
+"variety/music": 0.144,
+"western": 0.076
+},
+"WKD 06-10": {
+"adventure/sci-fi": 0.0245,
+"cartoons/children": 0.5489,
+"comedy": 0.0862,
+"drama": 0.0317,
+"education": 0.0089,
+"game/quiz": 0.0628,
+"religion": 0.1435,
+"serial": 0.0679,
+"variety/music": 0.0111,
+"western": 0.0145
+},
+"WKD 10-16": {
+"adventure/sci-fi": 0.0187,
+"cartoons/children": 0.2759,
+"comedy": 0.1639,
+"crime/mystery/suspense": 0.0043,
+"drama": 0.0805,
+"education": 0.0078,
+"game/quiz": 0.1735,
+"religion": 0.0575,
+"serial": 0.1836,
+"variety/music": 0.0257,
+"western": 0.0088
+},
+"WKD 16-19": {
+"adventure/sci-fi": 0.0528,
+"cartoons/children": 0.2237,
+"comedy": 0.4709,
+"crime/mystery/suspense": 0.0189,
+"drama": 0.0775,
+"education": 0.0117,
+"game/quiz": 0.0842,
+"religion": 0.0218,
+"serial": 0.0034,
+"variety/music": 0.0126,
+"western": 0.0226
+}
+}
+}
+}

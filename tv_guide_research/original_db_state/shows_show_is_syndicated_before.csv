@@ -1,0 +1,357 @@
+show_id,show_name,show_is_syndicated
+1,Lucy Show,True
+2,Lone Ranger,True
+5,I Love Lucy,True
+7,Mister Ed,True
+8,Monkees,True
+9,Adam 12,True
+10,That Girl,True
+11,Green Acres,True
+12,Gilligan's Island,True
+13,Medical Center,True
+14,Thunderbirds,True
+16,My Mother the Car,True
+17,H.R. Pufnstuf,False
+18,Munsters,True
+19,Addams Family,True
+20,Voyage to the Bottom of the Sea,True
+21,Avengers,True
+22,Maverick,True
+23,Dick Van Dyke Show,True
+24,Leave it to Beaver,True
+25,Perils of Penelope Pitstop,False
+27,Sea Hunt,True
+28,Have Gun Will Travel,True
+29,12 O'Clock High,True
+30,Alfred Hitchcock Presents,True
+31,Donna Reed Show,True
+32,Perry Mason,True
+34,Quincy M.E.,True
+35,Emergency,True
+36,Atom Ant,True
+37,Many Loves of Dobie Gillis,True
+38,Lost in Space,True
+39,Vega$,True
+40,Ironside,True
+41,Popeye the Sailor,True
+42,Felix the Cat,True
+43,Secret Squirrel,False
+44,Ant and the Aardvark,False
+45,Wanted Dead or Alive,True
+46,Squiddly Diddly,True
+47,Jetsons,True
+48,Wally Gator,True
+49,Tijuana_Toads,True
+50,Roger Ramjet,True
+51,Dudley Do-Right Show,True
+52,T. J. Hooker,False
+54,Hardy Boys/Nancy Drew Mysteries,True
+55,Mission Impossible,True
+57,Adventures of Superman,True
+58,Honey West,True
+60,Flo,False
+61,Star Trek,True
+62,Lippy The Lion & Hardy Har Har,True
+63,Max Headroom,False
+64,Petticoat Junction,True
+66,Saturday Night Live,False
+67,Ricochet Rabbit & Droop-a-long,True
+68,Yancy Derringer,True
+69,Man from U.N.C.L.E.,True
+70,Waltons,True
+71,New Adventures of Superman,False
+72,The Veil,True
+73,Pink Panther Show,True
+75,Too Close for Comfort,True
+76,Topper,True
+79,Wheelie and the Chopper Bunch,False
+83,Bananna Splits,True
+84,Police Squad,True
+85,Space 1999,True
+86,Brady Kids,True
+87,Bullwinkle Show,True
+88,Fonz and the Happy Days Gang,False
+89,Adventures of Kit Carson,True
+90,Underdog,True
+91,Wacky Races,True
+92,Bill Nye the Science Guy,True
+93,Fugitive,True
+94,Ultraman,True
+95,"Mutual of Omaha's Wild Kingdom
+",True
+96,Ghost & Mrs. Muir,True
+97,My Favorite Martian,True
+98,Ellery Queen,False
+99,Starsky & Hutch,True
+100,Hawaii Five O,True
+101,Columbo,True
+102,"WKRP in Cincinnati
+",True
+104,Kojak,True
+105,Barnaby Jones,True
+106,Hunter,True
+107,Police Woman,True
+108,Charlie's Angels,True
+111,Barney Miller,True
+113,Cannon,True
+114,Harry O,False
+115,Hart To Hart,False
+116,ThunderCats,True
+117,Incredible Hulk,False
+118,Jake and the Fatman,False
+119,Banacek,True
+120,Dragnet 1967,True
+121,Street Hawk,False
+122,Hogan's Heroes,False
+124,CHiPs,True
+125,Hill Street Blues,True
+126,Rockford Files,True
+127,Twilight Zone,True
+128,Mod Squad,True
+130,McMillan & Wife,False
+131,Angie,False
+132,Kolchak: The Night Stalker,True
+133,Maude,True
+134,Mr. Terrific,False
+135,Wait Till Your Father Gets Home,True
+136,Rookies,True
+137,Flintstones,True
+138,Jackson 5ive,False
+139,Three's Company,True
+140,Lavern and Shirley,True
+141,Happy Days,True
+142,Different Strokes,True
+143,I Dream of Jeannie,True
+144,Gunsmoke,True
+145,Partridge Family,True
+146,Sixth Sense,False
+147,"Scooby Doo, Where Are You!",False
+148,Moonlighting,False
+150,School House Rock,False
+151,Josie and the Pussy Cats in Outer Space,False
+152,New Scooby-Doo Movies,True
+153,Batman,True
+154,Family Affair,True
+155,Land of the Lost,True
+156,Streets of San Francisco,False
+157,Love Boat,True
+159,Alice,True
+160,F.B.I.,True
+161,My Three Sons,True
+162,Night Court,True
+163,Growing Pains,True
+173,Movie,False
+174,Brady Bunch,True
+175,Odd Couple,True
+176,Magician,True
+177,Shaft,True
+178,NBC Mystery Movie,True
+179,New CBS Tuesday Night Movies,False
+180,Carol Burnett Show,True
+181,Bob Newhart Show,True
+182,Jonny Quest,True
+183,"Love, American Style",False
+184,Get Smart,True
+185,Joanie Loves Chachi,False
+187,Room 222,False
+188,Hazel,True
+189,Courtship of Eddie's Father,False
+190,Welcome Back Kotter,False
+191,All in the Family,True
+192,Jeffersons,True
+193,Mork and Mindy,True
+194,Taxi,True
+195,Lotsa Luck!,False
+196,Beatles,True
+197,Scooby-Doo Show,True
+198,Hondo,True
+199,Barbary Coast,True
+200,M*A*S*H,True
+201,King of the Hill,True
+202,Gidget,True
+203,Mothers in Law,True
+204,Soap,True
+205,Sealab 2020,True
+207,Dark Shadows,True
+208,Speed Racer,True
+209,Cheers,True
+210,Flying Nun,True
+211,Thriller,True
+213,Here's Lucy,True
+214,In Search of...,True
+215,Johnny Sokko and His Flying Robot,True
+216,Lidsville,True
+217,Bewitched,True
+218,Fantasy Island,True
+219,Freddy's Nightmares,True
+220,Mannix,True
+221,Six Million Dollar Man,True
+222,Lou Grant,True
+223,George of the Jungle,True
+224,Tabitha,True
+225,Scarecrow and Mrs. King,True
+227,Little House on the Prairie,True
+228,Hotel,True
+229,Night Gallery,True
+231,Quark,True
+232,Planet of the Apes,True
+233,Ace Crawford... Private Eye,True
+234,Baretta,True
+235,Matt Helm,True
+237,Peter Gunn,True
+238,V: The Series,True
+239,Invisible Man,True
+240,Arrest and Trial,True
+241,Cousteau Odyssey,True
+242,Cosmos,True
+243,Rawhide,True
+244,Dennis the Menace,True
+245,CPO Sharkey,True
+247,Beyond Westworld,True
+248,Battlestar Galactica,True
+250,Life with Lucy,True
+251,Hardcastle and McCormick,True
+252,ALF,True
+253,Outer Limits,True
+254,Gemini Man,True
+255,Benson,True
+256,Cop Rock,True
+257,Blue Thunder,True
+258,Airwolf,True
+259,Local,False
+260,Automan,True
+261,Bearcats,False
+262,Branded,True
+263,Custer,True
+264,Knight Rider,True
+265,Man From Atlantis,True
+266,Manimal,True
+267,Dukes of Hazzard,True
+268,Fantastic Journey,True
+269,Invisible Man,True
+270,Mary Tyler Moore Show,True
+271,Kung Fu,True
+272,Time Tunnel,True
+274,Land of the Giants,True
+276,You Bet Your Life,True
+277,Decoy,True
+278,Andy Griffith Show,True
+279,Naked City,True
+280,The Hilarious House of Frightenstein,True
+281,Smith Family,True
+282,F Troop,True
+283,Judy Garland Show,False
+284,Search,True
+285,Man with a Camera,True
+286,Square Pegs,True
+287,The Saint,True
+288,The Persuaders!,True
+290,Pet Set,True
+291,Mackenzie's Raiders,True
+292,Occasional Wife,True
+293,Shazam,True
+294,Voyagers!,True
+295,Three's a Crowd,True
+296,The Westerner,True
+297,Annie Oakley,True
+298,Four Star Playhouse,True
+299,Tate,True
+300,Captain Scarlet,True
+301,Secrets of Isis,True
+302,Gomer Pyle,True
+303,Gentle Ben,True
+304,Ed Sullivan Show,False
+305,High Chaparral,True
+307,Hawk,True
+308,One Step Beyond,True
+309,Tales from the Darkside,True
+310,Adventures of Jim Bowie,True
+311,Sonny and Cher Comedy Hour,False
+312,Rowan & Martin's Laugh-In,False
+313,Life and Legend of Wyatt Earp,True
+315,Joe 90,True
+316,Darkroom,True
+317,It Takes a Thief,True
+318,Sonny and Cher Show,False
+319,Smothers Brothers Comedy Hour,False
+320,Secret Agent,True
+321,Danger Man,True
+322,Doris Day Show,True
+323,Punky Brewster,True
+324,Circle of Fear,True
+325,Ghost Story,True
+326,Flip Wilson Show,False
+327,The Prisoner,True
+328,Special,False
+330,Lucan,True
+331,Buck Rogers in the 25th Century,True
+332,Strange Report,True
+333,Honeymooners,True
+334,Amazing Spider-Man,True
+335,Turn On,False
+336,Roots,False
+337,Centennial,False
+338,French Chef,True
+339,Firing Line,True
+340,Match Game,False
+342,Barbara McNair Show,False
+343,Road Runner Show,True
+344,Sigmund  and the Sea Monsters,True
+345,Archie's Funhouse,True
+346,Archie Show,True
+347,New Adventures of Gilligan,True
+348,Star Trek: The Animated Series,True
+349,Lone Ranger: The Animated Series,True
+350,The Osmonds,True
+351,Ark II,True
+352,Beetle Bailey,True
+353,Bill Cosby Show,True
+354,Spider-Man: The Animated Series,True
+355,Electra Woman and Dyna Girl,True
+356,Fangface,True
+357,Butch Cassidy,True
+359,Batfink,True
+360,Coronet Blue,True
+361,Patty Duke Show,True
+362,Galactica 1980,True
+363,Top of the Pops,True
+364,McHale's Navy,True
+365,Man Called Shenandoah,True
+366,Rhoda,True
+367,Amen,True
+368,Blondie,True
+370,Flipper,True
+371,Golden Girls,True
+372,Hammer House of Horror,True
+373,Star Cops,True
+374,Tales of the Unexpected,True
+375,The Immortal,True
+376,Daktari,True
+377,Father Brown,True
+378,Beverly Hillbillies,True
+381,Wonder Years,True
+382,Facts of Life,True
+383,Saved by the Bell,True
+384,Gimme a Break,True
+385,Adventures of Ozzie and Harriet,True
+386,The Yellow Rose,False
+387,Wagon Train,True
+388,Wendy and Me,True
+389,Sam Benedict,True
+390,The Rat Patrol,True
+391,My World and Welcome to It,True
+392,Here Come the Brides,True
+393,Charles in Charge,True
+394,Mickey Mouse Club,True
+395,Fernwood Tonight,True
+396,Mary Hartman Mary Hartman,True
+397,Mayberry RFD,True
+398,Gloria,True
+399,Nanny and the Professor,True
+400,Laramie,True
+401,Sanford,True
+402,Bold Ones: The Lawyers,True
+403,Bold Ones: The Senator,True
+404,McCloud,True
+405,Tenspeed and Brown Shoe,True
+406,My Little Margie,True

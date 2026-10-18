@@ -7,6 +7,17 @@ candidate break (plus, for any break longer than --long-threshold seconds, extra
 sampled across its span — a long duration is a red flag worth checking at multiple points,
 not just the midpoint). Frames are written to <out_dir>/<episode_id>_<break_index>_<t>.png.
 
+Also extracts --context-count frames (default 5) spaced --context-spacing seconds apart
+(default 0.25s) immediately BEFORE break_point and the same number immediately AFTER
+resume_point, for EVERY candidate, clamped to the episode's start_point/end_point. Tagged
+pre_0..pre_N (pre_0 closest to the break) and post_0..post_N (post_0 closest to the break).
+This exists because a black frame's content alone (or lack of it) can't distinguish a real
+ad-break splice from an ordinary in-program scene transition (a fade to black between two
+scenes) -- both can look identical from inside the black window. A short filmstrip of the
+actual scene right before and after (not just one frame each side) lets a reviewer judge
+actual motion/narrative continuity across the cut -- 2026-09-25 methodology addition, see
+COMMERCIAL_BREAK_AUDIT.md.
+
 Also extracts frames from the gap BETWEEN any two breaks in the same episode that are under
 --close-pair-threshold seconds apart (per the charter's close-pair rule: close pairs must be
 resolved by viewing the frames between them, never by position/duration/pattern alone).
@@ -44,6 +55,10 @@ def main():
                          help="max gap (seconds) between two breaks to trigger gap-frame extraction")
     parser.add_argument("--close-pair-samples", type=int, default=3,
                          help="number of frames sampled across a close pair's gap")
+    parser.add_argument("--context-count", type=int, default=5,
+                         help="number of frames to sample on each side of the break for narrative-continuity context")
+    parser.add_argument("--context-spacing", type=float, default=0.25,
+                         help="seconds between consecutive context frames")
     args = parser.parse_args()
 
     os.makedirs(args.out_dir, exist_ok=True)
@@ -62,6 +77,8 @@ def main():
         path = ep.get("path")
         if not path:
             continue
+        ep_start = ep.get("start_point", 0.0)
+        ep_end = ep.get("end_point")
         breaks = ep.get("breaks", [])
         for bi, b in enumerate(breaks):
             b_start, b_end = bounds(b)
@@ -73,6 +90,14 @@ def main():
                     frac = (si + 1) / (n + 1)
                     t = b_start + frac * (b_end - b_start)
                     jobs.append((episode_id, bi, f"s{si}", t, path))
+
+            for ci in range(args.context_count):
+                pre_t = max(ep_start, b_start - (ci + 1) * args.context_spacing)
+                jobs.append((episode_id, bi, f"pre_{ci}", pre_t, path))
+                post_t = b_end + (ci + 1) * args.context_spacing
+                if ep_end is not None:
+                    post_t = min(ep_end, post_t)
+                jobs.append((episode_id, bi, f"post_{ci}", post_t, path))
 
         # close-pair gap frames: consecutive breaks (sorted by start) whose gap is under
         # --close-pair-threshold get sampled between the pair, per the charter's close-pair rule.

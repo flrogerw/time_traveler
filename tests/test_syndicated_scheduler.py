@@ -61,8 +61,10 @@ def _make_show_eligible(conn, show_id, mapped_genre, eligible_year_start, eligib
 
 
 def _any_real_show_id(conn):
+    """A real, SYNDICATED show (the scheduler only picks shows with shows.show_is_syndicated)."""
     cur = conn.cursor()
-    cur.execute("SELECT show_id FROM show_syndication_eligibility LIMIT 1")
+    cur.execute("""SELECT e.show_id FROM show_syndication_eligibility e JOIN shows s USING (show_id)
+                   WHERE s.show_is_syndicated ORDER BY e.show_id LIMIT 1""")
     return cur.fetchone()[0]
 
 

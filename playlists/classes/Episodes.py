@@ -8,9 +8,32 @@ from datetime import datetime, timedelta
 from playlists.classes.Shows import Shows
 from playlists.classes.Schedules import Schedules
 from playlists.classes.Movies import Movies
+from playlists.classes.SyndicatedScheduler import daypart_column_for
 
 # Configure logging to capture important events and errors
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+
+# Short-form shows (cartoon shorts like Bullwinkle, Road Runner, Wally Gator) have episodes far
+# shorter than their slot: pack several into one block instead of airing one 5-minute short in a
+# 30-minute slot. A show is "shorts" when its typical episode is under this fraction of the slot;
+# content is packed up to PACK_CONTENT_FRACTION of the slot, leaving the rest for commercials.
+SHORTS_FRACTION_OF_SLOT = 0.6
+PACK_CONTENT_FRACTION = 0.8
+MAX_PACKED_EPISODES = 12
+
+# Episode-level fit: an episode must run no longer than its slot (plus a small tolerance) to be the
+# preferred pick; see get_next_episode.
+EPISODE_FITS_SLOT_SQL = "AND (e.end_point - e.start_point) <= EXTRACT(EPOCH FROM st.runtime) * 1.05"
+
+# Interstitial shows (mapped_genre 'interstitial', e.g. School House Rock) air between programs. They
+# were an ABC property, so besides every syndicated channel they air on these networks' channels.
+INTERSTITIAL_NETWORKS = {"ABC"}
+
+
+def channel_airs_interstitials(channel_type, network_name):
+    """Whether a channel plays interstitials: all syndicated channels, plus INTERSTITIAL_NETWORKS."""
+    return channel_type == "syndicated" or (network_name or "").upper() in INTERSTITIAL_NETWORKS
 
 
 # Class to handle episode-related database operations
@@ -176,6 +199,7 @@ class Episodes:
             episode = self.get_next_episode(slot, dow, air_date=air_date)
             if episode:
                 final_episodes.append(episode)
+                self._pack_short_episodes(slot, dow, final_episodes, total_seconds, air_date)
                 # Rotate in a new show once its episodes are exhausted -- unless this episode is a
                 # non-final part of a multi-part story with its continuation still unaired, in which
                 # case rotating the show out now would orphan the arc mid-story.
@@ -193,6 +217,7 @@ class Episodes:
                 episode = self.get_next_episode(slot, dow, air_date=air_date)  # Retry getting the next episode
                 if episode:
                     final_episodes.append(episode)
+                    self._pack_short_episodes(slot, dow, final_episodes, total_seconds, air_date)
                 elif show_id == 173 or total_seconds > 3600:
                     # If it's a movie slot (show_id 173) or a length greater than one hour, insert a random movie
                     movie = self.movies.get_random_movie(total_seconds, slot)
@@ -215,17 +240,120 @@ class Episodes:
             raise
 
 
+    def _episode_seconds(self, episode):
+        return float(episode['end_point'] - episode['start_point'])
+
+    def _pack_short_episodes(self, slot, dow, final_episodes, total_seconds, air_date=None):
+        """If the slot's first episode is a short (see SHORTS_FRACTION_OF_SLOT), pull more of the
+        same show's next unaired episodes into the slot until about PACK_CONTENT_FRACTION of it is
+        content, then tag every packed episode (pack_id/pack_index/pack_size/pack_slot_seconds) so
+        the playlist fills the block's commercial time ONCE, with a pod between the shorts, instead
+        of treating each short as a full program. No-op for ordinary shows.
+
+        The stop test uses the show's typical episode length, not the next episode's, so no episode
+        is consumed (and logged as aired) unless it will fit."""
+        if not final_episodes or final_episodes[0].get('type') != 'episode':
+            return
+        first = final_episodes[0]
+        self.cur.execute(
+            "SELECT AVG(end_point - start_point) AS typical FROM episodes WHERE show_id = %s", (first['show_id'],))
+        row = self.cur.fetchone()
+        typical = float(row['typical']) if row and row['typical'] is not None else 0.0
+        if typical <= 0 or typical >= SHORTS_FRACTION_OF_SLOT * total_seconds:
+            return
+
+        accumulated = self._episode_seconds(first)
+        while (len(final_episodes) < MAX_PACKED_EPISODES
+               and accumulated + typical <= PACK_CONTENT_FRACTION * total_seconds):
+            nxt = self.get_next_episode(slot, dow, air_date=air_date)
+            if not nxt or nxt['show_id'] != first['show_id']:
+                break
+            final_episodes.append(nxt)
+            accumulated += self._episode_seconds(nxt)
+
+        if len(final_episodes) > 1:
+            for index, episode in enumerate(final_episodes):
+                episode['pack_id'] = slot['start_time']
+                episode['pack_index'] = index
+                episode['pack_size'] = len(final_episodes)
+                episode['pack_slot_seconds'] = total_seconds
+
+    def get_interstitial_show_id(self, year, dow, start_time):
+        """show_id of an interstitial show (mapped_genre 'interstitial') eligible to air in the break
+        at `start_time` on `dow` in `year`, or None. Interstitials never take a slot of their own --
+        no fill rule asks for that category -- they air between programs, in the daypart blocks and
+        years their eligibility row allows."""
+        column = daypart_column_for(start_time, dow)
+        if column is None:
+            return None
+        self.cur.execute(
+            f"""
+            SELECT show_id FROM show_syndication_eligibility
+            WHERE mapped_genre = 'interstitial' AND {column} = TRUE
+              AND eligible_year_start IS NOT NULL AND eligible_year_end IS NOT NULL
+              AND %s BETWEEN eligible_year_start AND eligible_year_end
+            ORDER BY show_id LIMIT 1
+            """,
+            (year,),
+        )
+        row = self.cur.fetchone()
+        return row["show_id"] if row else None
+
+    def get_next_interstitial(self, show_id, channel_id, replication_year, time_slot):
+        """
+        Next episode of an interstitial show (e.g. School House Rock), which airs in the breaks
+        BETWEEN regular programs instead of owning a slot. Picks the lowest unaired
+        (season, episode) for this channel; once every episode has aired it reuses the least
+        recently aired one, since a short interstitial library repeats many times over a run.
+        Logs the pick to broadcast_log against `time_slot` (the program it follows), so the
+        playlist's time_slot sort keeps it right after that program. Returns None if the show
+        has no episodes.
+        """
+        try:
+            self.cur.execute(
+                """
+                SELECT e.episode_id
+                FROM episodes e
+                LEFT JOIN (
+                    SELECT episode_id, MAX(date_played) AS last_played
+                    FROM broadcast_log WHERE channel_id = %s GROUP BY episode_id
+                ) bl ON bl.episode_id = e.episode_id
+                WHERE e.show_id = %s
+                ORDER BY (bl.last_played IS NOT NULL), bl.last_played ASC, e.show_season_number, e.episode_number
+                LIMIT 1;""",
+                (channel_id, show_id))
+            row = self.cur.fetchone()
+            if row is None:
+                return None
+
+            self.cur.execute(
+                """INSERT INTO broadcast_log (channel_id, show_id, episode_id, date_played, time_slot, replication_year)
+                   VALUES (%s, %s, %s, current_date, %s::time, %s)
+                   ON CONFLICT (channel_id, show_id, episode_id, date_played) DO NOTHING;""",
+                (channel_id, show_id, row['episode_id'], time_slot, replication_year))
+
+            self.cur.execute("SELECT e.* FROM episodes e WHERE e.episode_id = %s", (row['episode_id'],))
+            episode = {**dict(self.cur.fetchone()), 'type': 'episode', 'has_pending_continuation': False,
+                       'interstitial': True,
+                       'time_slot': datetime.strptime(time_slot, '%H:%M:%S').time() if isinstance(time_slot, str) else time_slot,
+                       'replication_year': replication_year}
+            return episode
+        except Exception as e:
+            logging.error(f"Could not get next interstitial: {e}")
+        finally:
+            self.db_connection.commit()
+
     @staticmethod
     def get_true_duration(db, episode_id):
         """
         Get the true duration of an episode by subtracting commercial breaks from the runtime.
+        Reads start/end points from the episodes table (episode_durations is not used).
         """
-        db.execute("""SELECT (end_point - start_point) - COALESCE(SUM(resume_point - break_point), 0) AS final_duration
-                          FROM public.episode_durations
-                          LEFT JOIN public.commercial_breaks 
-                          ON episode_durations.episode_id = commercial_breaks.media_id 
-                          WHERE episode_durations.episode_id = %s
-                          GROUP BY end_point, start_point;""", (episode_id,))
+        db.execute("""SELECT (e.end_point - e.start_point) - COALESCE(SUM(cb.resume_point - cb.break_point), 0) AS final_duration
+                          FROM public.episodes e
+                          LEFT JOIN public.commercial_breaks cb ON e.episode_id = cb.media_id
+                          WHERE e.episode_id = %s
+                          GROUP BY e.end_point, e.start_point;""", (episode_id,))
         return db.fetchone()['final_duration']
 
 
@@ -333,6 +461,7 @@ class Episodes:
                                         AND st.replication_year = %s
                                         AND st.time_slot::text = %s
                                         AND %s = ANY(st.days_of_week)
+                                        {fit}
                                     ORDER BY e.episode_airdate ASC NULLS LAST, e.show_season_number, e.episode_number
                                     LIMIT 1
                                 )
@@ -346,10 +475,15 @@ class Episodes:
                                     ne.replication_year
                                 FROM NextEpisode ne RETURNING episode_id;""")
 
-                # Execute the query and retrieve the next episode
-                self.cur.execute(query,
-                                 (time_slot['channel_id'], time_slot['schedule_id'], time_slot['start_time'], day_of_week))
-                episode_row = self.cur.fetchone()
+                # Prefer the next unaired episode that FITS the slot (a 64-minute pilot of a one-hour
+                # show doesn't belong in its 60-minute slot); if none fits, fall back to the plain
+                # next unaired episode so a show is never starved by this preference.
+                for fit_clause in (EPISODE_FITS_SLOT_SQL, ""):
+                    self.cur.execute(query.format(fit=sql.SQL(fit_clause)),
+                                     (time_slot['channel_id'], time_slot['schedule_id'], time_slot['start_time'], day_of_week))
+                    episode_row = self.cur.fetchone()
+                    if episode_row is not None:
+                        break
 
             if episode_row is None:
                 return None

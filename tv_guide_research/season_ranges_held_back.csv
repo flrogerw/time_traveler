@@ -1,0 +1,34 @@
+schedule_id,network,show_title,air_date(season year),day,time,current_start,current_end,proposed_start,proposed_end,episodes_in_season,reason
+682,CBS,Topper,1953,friday,20:30,1953-01-01,1953-12-31,1954-01-08,1954-07-02,10,proposed start is after the row's air_date year -- row would leave its own year; verify
+1006,NBC,You Bet Your Life,1955,thursday,20:00,1955-01-01,1955-12-31,1956-01-05,1956-06-21,7,proposed start is after the row's air_date year -- row would leave its own year; verify
+1987,CBS,The Ed Sullivan Show,1963,sunday,20:00,1963-01-01,1963-12-31,1964-02-09,1964-02-23,3,proposed start is after the row's air_date year -- row would leave its own year; verify
+2086,ABC,Voyage to the Bottom of the Sea,1964,monday,19:30,1964-01-01,1964-12-31,1964-09-14,1966-03-20,26,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data
+2133,CBS,The Munsters,1964,thursday,19:30,1964-01-01,1964-12-31,1964-09-24,1966-04-21,27,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data
+2144,ABC,The Addams Family,1964,friday,20:30,1964-01-01,1964-12-31,1964-09-18,1966-04-08,26,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data
+2312,ABC,That Girl,1967,thursday,21:00,1967-01-01,1967-12-31,1967-12-21,1967-12-21,1,single-day range (1 episode) -- keep current range
+2352,CBS,The Smothers Brothers Comedy Hour,1968,sunday,21:00,1968-01-01,1968-12-31,1968-09-29,1993-01-01,10,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data
+2439,NBC,Wild Kingdom,1969,sunday,19:00,1969-01-01,1969-12-31,1969-10-12,1971-02-14,2,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data
+2478,ABC,That Girl,1969,thursday,20:00,1969-01-01,1969-12-31,1970-01-08,1970-01-08,1,single-day range (1 episode) -- keep current range
+2569,NBC,The Flip Wilson Show,1970,thursday,19:30,1970-01-01,1970-12-31,1970-10-22,1974-02-28,4,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data
+2704,CBS,Medical Center,1972,wednesday,21:00,1972-01-01,1972-12-31,1972-11-01,1972-11-01,1,single-day range (1 episode) -- keep current range
+2729,ABC,The Streets of San Francisco,1972,saturday,21:00,1972-01-01,1972-12-31,1972-09-16,1972-09-16,1,single-day range (1 episode) -- keep current range
+2914,ABC,The Streets of San Francisco,1975,thursday,21:00,1975-01-01,1975-12-31,1976-01-15,1976-03-18,5,proposed start is after the row's air_date year -- row would leave its own year; verify
+3016,CBS,Rhoda,1977,sunday,20:00,1977-01-01,1977-12-31,1977-10-02,1978-12-09,37,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data
+3995,CBS,The Ed Sullivan Show,1965,sunday,20:00,1965-01-01,1965-12-31,1965-09-12,1965-09-12,1,single-day range (1 episode) -- keep current range
+4020,CBS,Daktari,1965,tuesday,19:30,1965-01-01,1965-12-31,1966-04-12,1966-05-17,6,proposed start is after the row's air_date year -- row would leave its own year; verify
+4034,ABC,Batman,1965,wednesday,19:30,1965-01-01,1965-12-31,1966-01-12,1966-05-05,34,proposed start is after the row's air_date year -- row would leave its own year; verify
+4048,ABC,Batman,1965,thursday,19:30,1965-01-01,1965-12-31,1966-01-12,1966-05-05,34,proposed start is after the row's air_date year -- row would leave its own year; verify
+4093,CBS,Secret Agent,1965,saturday,20:30,1965-12-01,1965-12-31,1965-09-04,1966-04-30,23,current range was already hand-researched/narrowed -- keep it
+4120,NBC,Circle of Fear,1972,friday,21:00,1972-01-01,1972-12-31,1973-01-05,1973-03-30,9,proposed start is after the row's air_date year -- row would leave its own year; verify
+4125,CBS,Bugs Bunny/Road Runner Show,1970,saturday,08:00,1970-01-01,1970-12-31,1971-02-05,1972-02-26,25,proposed start is after the row's air_date year -- row would leave its own year; verify
+4139,ABC,Bugs Bunny/Road Runner Show,1970,saturday,08:00,1970-01-01,1970-12-31,1971-02-05,1972-02-26,25,proposed start is after the row's air_date year -- row would leave its own year; verify
+4177,NBC,The Pink Panther Show,1974,saturday,10:00,1974-01-01,1974-12-31,1974-09-01,1977-09-01,11,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data
+4181,NBC,The Pink Panther Show,1978,saturday,10:00,1978-01-01,1978-12-31,1978-09-01,1978-09-01,32,single-day range (1 episode) -- keep current range
+4186,NBC,Sigmund and the Sea Monsters,1974,saturday,11:00,1974-01-01,1974-12-31,1974-09-20,1974-09-20,1,single-day range (1 episode) -- keep current range
+4219,CBS,Match Game,1977,monday,09:00,1977-01-01,1977-12-31,1977-10-07,1977-10-07,1,single-day range (1 episode) -- keep current range
+4220,CBS,Match Game,1977,tuesday,09:00,1977-01-01,1977-12-31,1977-10-07,1977-10-07,1,single-day range (1 episode) -- keep current range
+4221,CBS,Match Game,1977,wednesday,09:00,1977-01-01,1977-12-31,1977-10-07,1977-10-07,1,single-day range (1 episode) -- keep current range
+4222,CBS,Match Game,1977,thursday,09:00,1977-01-01,1977-12-31,1977-10-07,1977-10-07,1,single-day range (1 episode) -- keep current range
+4223,CBS,Match Game,1977,friday,09:00,1977-01-01,1977-12-31,1977-10-07,1977-10-07,1,single-day range (1 episode) -- keep current range
+4444,NBC,The Pink Panther Show,1969,saturday,09:00,1969-01-01,1969-12-31,1969-09-01,1971-09-01,71,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data
+4445,NBC,H.R. Pufnstuf,1969,saturday,09:30,1969-01-01,1969-12-31,1969-09-06,1970-12-06,15,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data

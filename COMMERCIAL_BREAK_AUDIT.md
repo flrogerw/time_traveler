@@ -356,6 +356,35 @@ zero kept) before user flagged the reason and review was stopped. **All 22 origi
 if ever prioritized), 6 genuinely commercial-free (PBS/cartoon/UK), 2 explicit user skip
 decisions (School House Rock, French Chef).
 
+**2026-09-25 finding — Manimal (`show_id 266`) had a dramatically higher VLM false-"keep" rate
+than any show reviewed so far, concentrated almost entirely in the pilot/TV-movie episode.**
+Full frame-by-frame review of all 128 raw candidates across all 8 episodes (untouched show,
+first pass): 45 confirmed real breaks inserted into `commercial_breaks_v2`, 83 rejected. The
+regular 7 half-hour episodes behaved normally (30-70% keep rate, consistent with other shows in
+this audit). The 39-candidate pilot/TV-movie episode (`episode_id 13091`, ~71.6min runtime) was
+a severe outlier: only **2 of 39** candidates were genuine breaks (both within the final ~40s of
+the episode), and the VLM's own "keep" verdicts were wrong on the large majority of them —
+repeatedly calling clearly-visible content (faces, a car, a building facade, a staircase, a
+bedroom scene, panther close-ups) "solid black, no discernible content" at *high* confidence.
+Two candidates (episode 13091's #26, and episode 13095's #8) had self-contradictory VLM output:
+the model's own `vlm_reasoning` text described visible program content ("two people
+interacting", "a close-up of a character") while still emitting a `keep` verdict — a distinct
+bug from the already-documented dim-scene-misread pattern, since here the model's stated
+observation and its verdict directly disagreed with each other.
+
+Given the pilot's very low final break count is concentrated entirely near the episode's true
+end, this matches the already-documented "cleanly re-edited print, most ad-break duration/
+evidence removed" pattern (see the Shaft finding above) rather than a detection gap — not
+escalating further, but flagging since a 71-minute single episode with only 2 breaks is
+positionally unusual per the charter's relative-position check and should be remembered as
+precedent rather than assumed to be a review error if seen again.
+
+**Practical implication for remaining `batch_runs/` output:** do not treat any VLM "keep"
+verdict on this show/print type as reliable pre-sort without full visual confirmation (already
+required for every candidate regardless — this is not a policy change, just a reminder that this
+show's automated pre-sort is unusually unreliable, so budget full review time accordingly rather
+than expecting the trusted-bucket shortcuts that worked on cleaner-print shows).
+
 **Session-to-session pointer:** Police Squad (`show_id 84`) re-reviewed against the newer
 `batch_runs/84` detection pass as of 2026-09-23 — episodes 2724, 2725, 2726, 2727, 2728 fully
 reviewed/finalized (new confirmed breaks found and inserted for 2725 and 2727 beyond what the
@@ -453,176 +482,198 @@ session.
 
 ## Per-show log
 
-| show_id | show_name | episodes | done |
-|---|---|---|---|
-| 1 | Lucy Show | 135 | yes |
-| 2 | Lone Ranger | 16 | yes |
-| 5 | I Love Lucy | 30 | yes |
-| 7 | Mister Ed | 44 | yes |
-| 8 | Monkees | 40 | yes |
-| 9 | Adam 12 | 55 | yes |
-| 10 | That Girl | 29 | yes |
-| 11 | Green Acres | 30 | yes |
-| 12 | Gilligan's Island | 99 | yes |
-| 13 | Medical Center | 25 | yes |
-| 14 | Thunderbirds | 20 | yes |
-| 16 | My Mother the Car | 20 | yes |
-| 17 | H.R. Pufnstuf | 15 | yes |
-| 18 | Munsters | 27 | yes |
-| 19 | Addams Family | 26 | yes |
-| 20 | Voyage to the Bottom of the Sea | 26 | yes |
-| 21 | Avengers | 18 | yes |
-| 22 | Maverick | 25 | yes |
-| 23 | Dick Van Dyke Show | 158 | yes |
-| 24 | Leave it to Beaver | 136 | yes |
-| 25 | Perils of Penelope Pitstop | 15 | yes |
-| 27 | Sea Hunt | 36 | yes |
-| 28 | Have Gun Will Travel | 15 | yes |
-| 29 | 12 O'Clock High | 19 | yes |
-| 30 | Alfred Hitchcock Presents | 36 | yes |
-| 31 | Donna Reed Show | 34 | yes |
-| 32 | Perry Mason | 13 | yes |
-| 34 | Quincy M.E. | 12 | yes |
-| 35 | Emergency | 55 | yes |
-| 36 | Atom Ant | 26 | yes |
-| 37 | Many Loves of Dobie Gillis | 39 | yes |
-| 38 | Lost in Space | 83 | yes |
-| 39 | Vega$ | 23 | yes |
-| 40 | Ironside | 26 | yes |
-| 41 | Popeye the Sailor | 31 | yes |
-| 42 | Felix the Cat | 11 | yes |
-| 43 | Secret Squirrel | 26 | yes |
-| 44 | Ant and the Aardvark | 17 | yes |
-| 45 | Wanted Dead or Alive | 25 | yes |
-| 46 | Squiddly Diddly | 26 | yes |
-| 47 | Jetsons | 75 | yes |
-| 48 | Wally Gator | 44 | yes |
-| 49 | Tijuana Toads | 17 | yes |
-| 50 | Roger Ramjet | 26 | yes |
-| 51 | Dudley Do-Right Show | 39 | yes |
-| 52 | T. J. Hooker | 22 | yes |
-| 54 | Hardy Boys/Nancy Drew Mysteries | 36 | yes |
-| 55 | Mission Impossible | 25 | yes |
-| 57 | Adventures of Superman | 10 | yes |
-| 58 | Honey West | 20 | yes |
-| 60 | Flo | 29 | yes |
-| 61 | Star Trek (TOS) | 80 | yes |
-| 62 | Lippy the Lion | 50 | yes |
-| 63 | Max Headroom | 14 | yes |
-| 64 | Petticoat Junction | 21 | yes |
-| 66 | Saturday Night Live | 111 | yes |
-| 67 | Ricochet Rabbit | 15 | yes |
-| 68 | Yancy Derringer | 33 | yes |
-| 69 | Man From U.N.C.L.E. | 59 | yes |
-| 70 | The Waltons | 23 | yes |
-| 71 | New Adventures of Superman | 66 | yes |
-| 72 | The Veil | 11 | yes |
-| 73 | Pink Panther Show | 114 | yes |
-| 75 | Too Close for Comfort | 84 | yes |
-| 76 | Topper | 10 | yes |
-| 78 | Brady Bunch Variety Hour | — | no |
-| 79 | Wheelie and the Chopper Bunch | 13 | yes |
-| 83 | Banana Splits | 18 | yes |
-| 84 | Police Squad | 6 | no (was stale `yes` from old detection_risk_1_125 pass; 5/6 episodes re-reviewed 2026-09-23, 2729 blocked on pipeline re-run) |
-| 85 | Space 1999 | 48 | yes |
-| 86 | Brady Kids | 22 | yes |
-| 87 | Bullwinkle Show | 50 | yes |
-| 88 | Fonz and the Happy Days Gang | 13 | yes |
-| 89 | Adventures of Kit Carson | 29 | yes |
-| 90 | Underdog | 56 | yes |
-| 91 | Wacky Races | 33 | yes |
-| 92 | Bill Nye the Science Guy | 90 | yes |
-| 93 | Fugitive | 110 | yes |
-| 94 | Ultraman | 13 | yes |
-| 95 | Mutual of Omaha's Wild Kingdom | 89 | yes |
-| 96 | Ghost and Mrs. Muir | 49 | yes |
-| 97 | My Favorite Martian | 106 | yes |
-| 98 | Ellery Queen | 11 | yes |
-| 99 | Starsky & Hutch | 69 | yes |
-| 100 | Hawaii Five-O | 96 | yes |
-| 101 | Columbo | 43 | yes |
-| 104 | Kojak | 62 | yes |
-| 105 | Barnaby Jones | 61 | yes |
-| 106 | Hunter | 63 | yes |
-| 107 | Police Woman | 67 | yes |
-| 108 | Charlie's Angels | 66 | yes |
-| 111 | Barney Miller | 57 | yes |
-| 113 | Cannon | 66 | yes |
-| 114 | Harry O | 42 | yes |
-| 115 | Hart to Hart | 42 | yes |
-| 116 | ThunderCats | 74 | yes |
-| 117 | The Incredible Hulk | 23 | yes |
-| 118 | Jake and the Fatman | 53 | yes |
-| 119 | Banacek | 16 | yes |
-| 120 | Dragnet 1967 | 60 | yes |
-| 121 | Street Hawk | 13 | yes |
-| 122 | Hogan's Heroes | 168 | yes |
-| 124 | CHiPs | 10 | yes |
-| 125 | Hill Street Blues | 56 | yes |
-| 126 | The Rockford Files | 121 | yes |
-| 127 | Twilight Zone | 156 | yes |
-| 128 | Mod Squad | 76 | yes |
-| 130 | McMillan & Wife | 39 | yes |
-| 131 | Angie | 36 | yes |
-| 132 | Kolchak: The Night Stalker | 19 | yes |
-| 133 | Maude | 24 | yes |
-| 134 | Mr. Terrific | 17 | yes |
-| 135 | Wait Till Your Father Gets Home | 18 | yes |
-| 136 | Rookies | 23 | yes |
-| 137 | Flintstones | 26 | yes |
-| 138 | Jackson 5ive | 23 | yes |
-| 139 | Three's Company | 56 | yes |
-| 140 | Laverne and Shirley | 62 | yes |
-| 141 | Happy Days | 62 | yes |
-| 142 | Different Strokes | 64 | yes |
-| 143 | I Dream of Jeannie | 85 | yes |
-| 144 | Gunsmoke | 115 | yes |
-| 145 | Partridge Family | 96 | yes |
-| 146 | Sixth Sense | 13 | yes |
-| 147 | Scooby Doo, Where Are You! | 41 | yes |
-| 148 | Moonlighting | 24 | yes |
-| 150 | School House Rock | 38 | yes |
-| 151 | Josie and the Pussycats in Outer Space | 16 | yes |
-| 152 | New Scooby-Doo Movies | 22 | yes |
-| 153 | Batman | 119 | yes |
-| 154 | Family Affair | 88 | yes |
-| 155 | Land of the Lost | 42 | yes |
-| 156 | Streets of San Francisco | 24 | yes |
-| 157 | Love Boat | 73 | yes |
-| 159 | Alice | 72 | yes |
-| 160 | F.B.I. | 88 | yes |
-| 211 | Thriller | 55 | no |
-| 231 | Quark | 7 | yes |
-| 224 | Tabitha | 13 | yes |
-| 233 | Ace Crawford... Private Eye | 5 | yes |
-| 242 | Cosmos | 13 | yes |
-| 245 | CPO Sharkey | 15 | yes |
-| 247 | Beyond Westworld | 5 | yes |
-| 250 | Life with Lucy | 12 | yes |
-| 299 | Tate | 13 | yes |
-| 304 | Ed Sullivan Show | 4 | yes |
-| 316 | Darkroom | 6 | yes |
-| 318 | Sonny and Cher Show | 3 | yes |
-| 334 | Amazing Spider-Man | 12 | yes |
-| 335 | Turn On | 2 | yes |
-| 338 | French Chef | 36 | yes |
-| 340 | Match Game | 2 | no |
-| 344 | Sigmund and the Sea Monsters | 12 | yes |
-| 350 | The Osmonds | 5 | yes |
-| 357 | Butch Cassidy | 13 | yes |
-| 363 | Top of the Pops | 19 | yes |
-| 353 | Bill Cosby Show | 13 | yes |
-| 373 | Star Cops | 9 | yes (legitimately zero breaks -- BBC/UK production, no commercial breaks; reviewed 37 of 46 candidates 2026-09-23, all false positives from dark/space-scene lighting, none kept -- stopped review, same "commercial-free" pattern as the PBS/short-cartoon shows above) |
-| 355 | Electra Woman and Dyna Girl | 8 | yes |
-| 403 | Bold Ones: The Senator | 8 | yes |
-| 395 | Fernwood Tonight | 10 | yes |
-| 177 | Shaft | 7 | yes (batch pipeline output from 2026-09-17 reviewed frame-by-frame 2026-09-23: 160 raw candidates across all 7 episodes, 18 confirmed real black-cut splice points inserted into commercial_breaks_v2, 142 rejected -- extremely dark 1970s cinematography meant nearly every level-2/3 candidate was a misdetected dim scene, while level-0/1 candidates were almost all genuine; ~73min runtime per episode indicates this print was already re-edited for broadcast with most ad-break duration removed, leaving only splice-point evidence, similar to other cleanly-re-edited prints in this audit) |
-| 356 | Fangface | 16 | yes (batch pipeline output reviewed frame-by-frame 2026-09-23: 57 raw candidates across all 16 episodes, 51 confirmed and inserted into commercial_breaks_v2, 6 rejected. Structural pattern: nearly every episode has a genuine break near ~60s, ~600-810s, and ~1234s (3-act structure in a ~21min cartoon slot); "extra" candidates at odd positions, mostly level 2/3, were real content (starfield/night scenes, a staircase interior, a blue-sky flying-object shot) and rejected. NEW finding: episode 16573 (A Toothy Shark Is No Lark) had a literal "PLACE COMMERCIAL HERE" placeholder title card at one break, with two more solid navy/blue frames at other break points in the same episode that are almost certainly the same card sampled off the text (fade-in/out) -- all three kept as genuine ad-break markers per user confirmation, even though they are not black frames. This is the first non-black break kept in this rebuild; watch for the same card on other Sid & Marty Krofft/Filmation-era Saturday-morning prints, since a placeholder card is even stronger direct evidence of a real break than a black frame.) |
-| 351 | Ark II | 15 | yes (batch pipeline output reviewed frame-by-frame 2026-09-23: 62 raw candidates across all 15 episodes, 60 confirmed and inserted into commercial_breaks_v2, 2 rejected. Exceptionally clean print -- consistent 4-per-episode structure at ~60s, ~140-235s, ~560-770s, and ~1325s, virtually all genuinely solid black with almost no false-positive rate (lowest of the whole rebuild so far). Only 1 episode (16466, The Lottery) had 2 extra real-content candidates: a "140" on-screen countdown/timer graphic and a close-up dirt/ground texture shot, both rejected.) |
-| 216 | Lidsville | 17 | yes (batch pipeline output reviewed frame-by-frame 2026-09-23: 67 raw candidates across all 17 episodes, all 67 confirmed and inserted into commercial_breaks_v2, 0 rejected -- perfect coverage, cleanest show in the rebuild so far. Print has a distinctly elevated black floor for this whole show (pixel mean ~35-37/255 rather than near-0, consistent with a raised-black-level transfer per the Topper/Brady Kids pattern) but every single candidate was genuinely uniform with no discernible content at any threshold level, including the loosened level-2/3 candidates that are usually the false-positive source in other shows.) |
-| 185 | Joanie Loves Chachi | 17 | yes (batch pipeline output reviewed frame-by-frame 2026-09-23: 68 raw candidates across all 17 episodes, 62 confirmed and inserted into commercial_breaks_v2, 6 rejected. Very clean sitcom print, near-identical mean/max pixel values (~0.003/2) across essentially every level-0 candidate. All 6 rejections were real content flagged by the pixel-triage outlier check and confirmed visually: episode 7237 (Christmas Show) had 4 consecutive level-3 candidates that were all one continuous car-interior scene (misdetected dim night driving, same recurring genre pattern as prior night-scene shows), plus single level-3 outliers in 7245 (Best Foot Forward, a lit-lamp/night scene) and 7250 (I Do, I Don't, I Do, an interior "Rome" set scene).) |
-| 286 | Square Pegs | 20 | yes (batch pipeline output reviewed frame-by-frame 2026-09-23: 75 raw candidates across all 20 episodes, 69 confirmed and inserted into commercial_breaks_v2, 6 rejected. Another very clean sitcom print, near-uniform 2.0s-duration level-0 breaks. All 6 rejections were real content caught by the pixel-triage outlier check: episode 14327 (Halloween XII) had a Halloween-mask/eyeglasses POV shot; 14334 (It's Academical) had a "TO BE CONTINUED" cliffhanger title card at its end (real episode content, not an ad marker -- distinct from the Fangface "PLACE COMMERCIAL HERE" card, which explicitly indicated an ad splice); 14337 (Pilot) had a night-exterior walking scene; 14339 (The Arrangement) had 3 consecutive candidates that were all one continuous dim theater/auditorium scene. One episode (14333, Child's Christmas in Weemawee Part 1) is a double-length 48.5min episode with 5 breaks, all genuinely black.) |
-| 195 | Lotsa Luck! | 21 | yes (batch pipeline output reviewed frame-by-frame 2026-09-23: 84 raw candidates across all 21 episodes, all 84 confirmed and inserted into commercial_breaks_v2, 0 rejected -- perfect coverage, second show in a row with zero false positives (after Lidsville). Print is exceptionally clean, every candidate's pixel stats near-identical (max never exceeded 15/255 across all 84 frames) and visually confirmed genuinely black. Consistent 4-per-episode structure at ~55-90s, mid-episode, ~1380-1460s, and near end-point.) |
-| 339 | Firing Line | 31 | yes (2026-09-23: PBS production, no commercial breaks by user confirmation -- same "commercial-free" category as Star Cops/French Chef/School House Rock. 0 rows in commercial_breaks_v2, no batch_runs candidates reviewed or inserted.) |
-| 303 | Gentle Ben | 16 | yes (batch pipeline output reviewed frame-by-frame 2026-09-23: 86 raw candidates across all 16 episodes, 79 confirmed and inserted into commercial_breaks_v2, 7 rejected. NEW failure-mode instance for this animal-adventure show: episode 14866 (Wayward Bear Part 1) had a 4-candidate consecutive chain (idx4-7) that was all one continuous night-forest scene with a raccoon; episode 14868 had a single dim green-gradient forest shot; episode 14878 had 2 candidates showing a dim shed/shack ("HOUSE" sign) and two people walking with a bucket. Baseline elevated-black-level print (pixel means ~1-8/255 per episode, consistent with the Lidsville-style raised black floor) made outlier detection via pixel triage especially effective here.) |
-| 391 | My World and Welcome to It | 19 | yes (batch pipeline output reviewed frame-by-frame 2026-09-23/24: 89 raw candidates across all 19 episodes, 76 confirmed and inserted into commercial_breaks_v2, 13 rejected. Grainier/noisier print than most shows in this rebuild (individual dust-speck pixels inflated max values even on genuinely black frames), so pixel-triage outliers were confirmed by direct visual inspection rather than trusted on stats alone. Rejections spanned a wider variety of content types than usual for this whimsical-fantasy-sequence sitcom: a bowling-ball-on-stairs shot and a solid blue card (19988); a 5-candidate consecutive chain of a night-forest policeman scene (19993); a man reading a notice board plus a B&W archival "CHECK ROOM" cutaway sequence (19996); a night-woods flashlight scene (20000); a moon shot and a man walking at night in sunglasses (20002).) |
+| show_id | show_name | episodes | done | method |
+|---|---|---|---|---|
+| 1 | Lucy Show | 135 | yes | AUTO |
+| 2 | Lone Ranger | 16 | yes | AUTO |
+| 5 | I Love Lucy | 30 | yes | AUTO |
+| 7 | Mister Ed | 44 | yes | AUTO |
+| 8 | Monkees | 40 | yes | AUTO |
+| 9 | Adam 12 | 55 | yes | AUTO |
+| 10 | That Girl | 29 | yes | AUTO |
+| 11 | Green Acres | 30 | yes | AUTO |
+| 12 | Gilligan's Island | 99 | yes | AUTO |
+| 13 | Medical Center | 25 | yes | AUTO |
+| 14 | Thunderbirds | 20 | yes | AUTO |
+| 16 | My Mother the Car | 20 | yes | AUTO |
+| 17 | H.R. Pufnstuf | 15 | yes | AUTO |
+| 18 | Munsters | 27 | yes | AUTO |
+| 19 | Addams Family | 26 | yes | AUTO |
+| 20 | Voyage to the Bottom of the Sea | 26 | yes | AUTO |
+| 21 | Avengers | 18 | yes | AUTO |
+| 22 | Maverick | 25 | yes | AUTO |
+| 23 | Dick Van Dyke Show | 158 | yes | AUTO |
+| 24 | Leave it to Beaver | 136 | yes | AUTO |
+| 25 | Perils of Penelope Pitstop | 15 | yes | AUTO |
+| 27 | Sea Hunt | 36 | yes | AUTO |
+| 28 | Have Gun Will Travel | 15 | yes | AUTO |
+| 29 | 12 O'Clock High | 19 | yes | AUTO |
+| 30 | Alfred Hitchcock Presents | 36 | yes | AUTO |
+| 31 | Donna Reed Show | 34 | yes | AUTO |
+| 32 | Perry Mason | 13 | yes | AUTO |
+| 34 | Quincy M.E. | 12 | yes | AUTO |
+| 35 | Emergency | 55 | yes | AUTO |
+| 36 | Atom Ant | 26 | yes | AUTO |
+| 37 | Many Loves of Dobie Gillis | 39 | yes | AUTO |
+| 38 | Lost in Space | 83 | yes | AUTO |
+| 39 | Vega$ | 23 | yes | AUTO |
+| 40 | Ironside | 26 | yes | AUTO |
+| 41 | Popeye the Sailor | 31 | yes | AUTO |
+| 42 | Felix the Cat | 11 | yes | AUTO |
+| 43 | Secret Squirrel | 26 | yes | AUTO |
+| 44 | Ant and the Aardvark | 17 | yes | AUTO |
+| 45 | Wanted Dead or Alive | 25 | yes | AUTO |
+| 46 | Squiddly Diddly | 26 | yes | AUTO |
+| 47 | Jetsons | 75 | yes | AUTO |
+| 48 | Wally Gator | 44 | yes | AUTO |
+| 49 | Tijuana Toads | 17 | yes | AUTO |
+| 50 | Roger Ramjet | 26 | yes | AUTO |
+| 51 | Dudley Do-Right Show | 39 | yes | AUTO |
+| 52 | T. J. Hooker | 22 | yes | AUTO |
+| 54 | Hardy Boys/Nancy Drew Mysteries | 36 | yes | AUTO |
+| 55 | Mission Impossible | 25 | yes | AUTO |
+| 57 | Adventures of Superman | 10 | yes | AUTO |
+| 58 | Honey West | 20 | yes | AUTO |
+| 60 | Flo | 29 | yes | AUTO |
+| 61 | Star Trek (TOS) | 80 | yes | AUTO |
+| 62 | Lippy the Lion | 50 | yes | AUTO |
+| 63 | Max Headroom | 14 | yes | AUTO |
+| 64 | Petticoat Junction | 21 | yes | AUTO |
+| 66 | Saturday Night Live | 111 | yes | AUTO |
+| 67 | Ricochet Rabbit | 15 | yes | AUTO |
+| 68 | Yancy Derringer | 33 | yes | AUTO |
+| 69 | Man From U.N.C.L.E. | 59 | yes | AUTO |
+| 70 | The Waltons | 23 | yes | AUTO |
+| 71 | New Adventures of Superman | 66 | yes | AUTO |
+| 72 | The Veil | 11 | yes | AUTO |
+| 73 | Pink Panther Show | 114 | yes | AUTO |
+| 75 | Too Close for Comfort | 84 | yes | AUTO |
+| 76 | Topper | 10 | yes | AUTO |
+| 78 | Brady Bunch Variety Hour | — | no | AUTO |
+| 79 | Wheelie and the Chopper Bunch | 13 | yes | AUTO |
+| 83 | Banana Splits | 18 | yes | AUTO |
+| 84 | Police Squad | 6 | no (was stale `yes` from old detection_risk_1_125 pass; 5/6 episodes re-reviewed 2026-09-23, 2729 blocked on pipeline re-run) | AUTO |
+| 85 | Space 1999 | 48 | yes | AUTO |
+| 86 | Brady Kids | 22 | yes | AUTO |
+| 87 | Bullwinkle Show | 50 | yes | AUTO |
+| 88 | Fonz and the Happy Days Gang | 13 | yes | AUTO |
+| 89 | Adventures of Kit Carson | 29 | yes | AUTO |
+| 90 | Underdog | 56 | yes | AUTO |
+| 91 | Wacky Races | 33 | yes | AUTO |
+| 92 | Bill Nye the Science Guy | 90 | yes | AUTO |
+| 93 | Fugitive | 110 | yes | AUTO |
+| 94 | Ultraman | 13 | yes | AUTO |
+| 95 | Mutual of Omaha's Wild Kingdom | 89 | yes | AUTO |
+| 96 | Ghost and Mrs. Muir | 49 | yes | AUTO |
+| 97 | My Favorite Martian | 106 | yes | AUTO |
+| 98 | Ellery Queen | 11 | yes | AUTO |
+| 99 | Starsky & Hutch | 69 | yes | AUTO |
+| 100 | Hawaii Five-O | 96 | yes | AUTO |
+| 101 | Columbo | 43 | yes | AUTO |
+| 104 | Kojak | 62 | yes | AUTO |
+| 105 | Barnaby Jones | 61 | yes | AUTO |
+| 106 | Hunter | 63 | yes | AUTO |
+| 107 | Police Woman | 67 | yes | AUTO |
+| 108 | Charlie's Angels | 66 | yes | AUTO |
+| 111 | Barney Miller | 57 | yes | AUTO |
+| 113 | Cannon | 66 | yes | AUTO |
+| 114 | Harry O | 42 | yes | AUTO |
+| 115 | Hart to Hart | 42 | yes | AUTO |
+| 116 | ThunderCats | 74 | yes | AUTO |
+| 117 | The Incredible Hulk | 23 | yes | AUTO |
+| 118 | Jake and the Fatman | 53 | yes | AUTO |
+| 119 | Banacek | 16 | yes | AUTO |
+| 120 | Dragnet 1967 | 60 | yes | AUTO |
+| 121 | Street Hawk | 13 | yes | AUTO |
+| 122 | Hogan's Heroes | 168 | yes | AUTO |
+| 124 | CHiPs | 10 | yes | AUTO |
+| 125 | Hill Street Blues | 56 | yes | AUTO |
+| 126 | The Rockford Files | 121 | yes | AUTO |
+| 127 | Twilight Zone | 156 | yes | AUTO |
+| 128 | Mod Squad | 76 | yes | AUTO |
+| 130 | McMillan & Wife | 39 | yes | AUTO |
+| 131 | Angie | 36 | yes | AUTO |
+| 132 | Kolchak: The Night Stalker | 19 | yes | AUTO |
+| 133 | Maude | 24 | yes | AUTO |
+| 134 | Mr. Terrific | 17 | yes | AUTO |
+| 135 | Wait Till Your Father Gets Home | 18 | yes | AUTO |
+| 136 | Rookies | 23 | yes | AUTO |
+| 137 | Flintstones | 26 | yes | AUTO |
+| 138 | Jackson 5ive | 23 | yes | AUTO |
+| 139 | Three's Company | 56 | yes | AUTO |
+| 140 | Laverne and Shirley | 62 | yes | AUTO |
+| 141 | Happy Days | 62 | yes | AUTO |
+| 142 | Different Strokes | 64 | yes | AUTO |
+| 143 | I Dream of Jeannie | 85 | yes | AUTO |
+| 144 | Gunsmoke | 115 | yes | AUTO |
+| 145 | Partridge Family | 96 | yes | AUTO |
+| 146 | Sixth Sense | 13 | yes | AUTO |
+| 147 | Scooby Doo, Where Are You! | 41 | yes | AUTO |
+| 148 | Moonlighting | 24 | yes | AUTO |
+| 150 | School House Rock | 38 | yes | AUTO |
+| 151 | Josie and the Pussycats in Outer Space | 16 | yes | AUTO |
+| 152 | New Scooby-Doo Movies | 22 | yes | AUTO |
+| 153 | Batman | 119 | yes | AUTO |
+| 154 | Family Affair | 88 | yes | AUTO |
+| 155 | Land of the Lost | 42 | yes | AUTO |
+| 156 | Streets of San Francisco | 24 | yes | AUTO |
+| 157 | Love Boat | 73 | yes | AUTO |
+| 159 | Alice | 72 | yes | AUTO |
+| 160 | F.B.I. | 88 | yes | AUTO |
+| 211 | Thriller | 55 | no | AUTO |
+| 231 | Quark | 7 | yes | AUTO |
+| 224 | Tabitha | 13 | yes | AUTO |
+| 233 | Ace Crawford... Private Eye | 5 | yes | AUTO |
+| 242 | Cosmos | 13 | yes | AUTO |
+| 245 | CPO Sharkey | 15 | yes | AUTO |
+| 247 | Beyond Westworld | 5 | yes | AUTO |
+| 250 | Life with Lucy | 12 | yes | AUTO |
+| 299 | Tate | 13 | yes | AUTO |
+| 304 | Ed Sullivan Show | 4 | yes | AUTO |
+| 316 | Darkroom | 6 | yes | AUTO |
+| 318 | Sonny and Cher Show | 3 | yes | AUTO |
+| 334 | Amazing Spider-Man | 12 | yes | AUTO |
+| 335 | Turn On | 2 | yes | AUTO |
+| 338 | French Chef | 36 | yes | AUTO |
+| 340 | Match Game | 2 | no | AUTO |
+| 344 | Sigmund and the Sea Monsters | 12 | yes | AUTO |
+| 350 | The Osmonds | 5 | yes | AUTO |
+| 357 | Butch Cassidy | 13 | yes | AUTO |
+| 363 | Top of the Pops | 19 | yes | AUTO |
+| 353 | Bill Cosby Show | 13 | yes | AUTO |
+| 373 | Star Cops | 9 | yes (legitimately zero breaks -- BBC/UK production, no commercial breaks; reviewed 37 of 46 candidates 2026-09-23, all false positives from dark/space-scene lighting, none kept -- stopped review, same "commercial-free" pattern as the PBS/short-cartoon shows above) | AUTO |
+| 355 | Electra Woman and Dyna Girl | 8 | yes | AUTO |
+| 403 | Bold Ones: The Senator | 8 | yes | AUTO |
+| 395 | Fernwood Tonight | 10 | yes | AUTO |
+| 177 | Shaft | 7 | yes (batch pipeline output from 2026-09-17 reviewed frame-by-frame 2026-09-23: 160 raw candidates across all 7 episodes, 18 confirmed real black-cut splice points inserted into commercial_breaks_v2, 142 rejected -- extremely dark 1970s cinematography meant nearly every level-2/3 candidate was a misdetected dim scene, while level-0/1 candidates were almost all genuine; ~73min runtime per episode indicates this print was already re-edited for broadcast with most ad-break duration removed, leaving only splice-point evidence, similar to other cleanly-re-edited prints in this audit) | AUTO |
+| 356 | Fangface | 16 | yes (batch pipeline output reviewed frame-by-frame 2026-09-23: 57 raw candidates across all 16 episodes, 51 confirmed and inserted into commercial_breaks_v2, 6 rejected. Structural pattern: nearly every episode has a genuine break near ~60s, ~600-810s, and ~1234s (3-act structure in a ~21min cartoon slot); "extra" candidates at odd positions, mostly level 2/3, were real content (starfield/night scenes, a staircase interior, a blue-sky flying-object shot) and rejected. NEW finding: episode 16573 (A Toothy Shark Is No Lark) had a literal "PLACE COMMERCIAL HERE" placeholder title card at one break, with two more solid navy/blue frames at other break points in the same episode that are almost certainly the same card sampled off the text (fade-in/out) -- all three kept as genuine ad-break markers per user confirmation, even though they are not black frames. This is the first non-black break kept in this rebuild; watch for the same card on other Sid & Marty Krofft/Filmation-era Saturday-morning prints, since a placeholder card is even stronger direct evidence of a real break than a black frame.) | AUTO |
+| 351 | Ark II | 15 | yes (batch pipeline output reviewed frame-by-frame 2026-09-23: 62 raw candidates across all 15 episodes, 60 confirmed and inserted into commercial_breaks_v2, 2 rejected. Exceptionally clean print -- consistent 4-per-episode structure at ~60s, ~140-235s, ~560-770s, and ~1325s, virtually all genuinely solid black with almost no false-positive rate (lowest of the whole rebuild so far). Only 1 episode (16466, The Lottery) had 2 extra real-content candidates: a "140" on-screen countdown/timer graphic and a close-up dirt/ground texture shot, both rejected.) | AUTO |
+| 216 | Lidsville | 17 | yes (batch pipeline output reviewed frame-by-frame 2026-09-23: 67 raw candidates across all 17 episodes, all 67 confirmed and inserted into commercial_breaks_v2, 0 rejected -- perfect coverage, cleanest show in the rebuild so far. Print has a distinctly elevated black floor for this whole show (pixel mean ~35-37/255 rather than near-0, consistent with a raised-black-level transfer per the Topper/Brady Kids pattern) but every single candidate was genuinely uniform with no discernible content at any threshold level, including the loosened level-2/3 candidates that are usually the false-positive source in other shows.) | AUTO |
+| 185 | Joanie Loves Chachi | 17 | yes (batch pipeline output reviewed frame-by-frame 2026-09-23: 68 raw candidates across all 17 episodes, 62 confirmed and inserted into commercial_breaks_v2, 6 rejected. Very clean sitcom print, near-identical mean/max pixel values (~0.003/2) across essentially every level-0 candidate. All 6 rejections were real content flagged by the pixel-triage outlier check and confirmed visually: episode 7237 (Christmas Show) had 4 consecutive level-3 candidates that were all one continuous car-interior scene (misdetected dim night driving, same recurring genre pattern as prior night-scene shows), plus single level-3 outliers in 7245 (Best Foot Forward, a lit-lamp/night scene) and 7250 (I Do, I Don't, I Do, an interior "Rome" set scene).) | AUTO |
+| 286 | Square Pegs | 20 | yes (batch pipeline output reviewed frame-by-frame 2026-09-23: 75 raw candidates across all 20 episodes, 69 confirmed and inserted into commercial_breaks_v2, 6 rejected. Another very clean sitcom print, near-uniform 2.0s-duration level-0 breaks. All 6 rejections were real content caught by the pixel-triage outlier check: episode 14327 (Halloween XII) had a Halloween-mask/eyeglasses POV shot; 14334 (It's Academical) had a "TO BE CONTINUED" cliffhanger title card at its end (real episode content, not an ad marker -- distinct from the Fangface "PLACE COMMERCIAL HERE" card, which explicitly indicated an ad splice); 14337 (Pilot) had a night-exterior walking scene; 14339 (The Arrangement) had 3 consecutive candidates that were all one continuous dim theater/auditorium scene. One episode (14333, Child's Christmas in Weemawee Part 1) is a double-length 48.5min episode with 5 breaks, all genuinely black.) | AUTO |
+| 195 | Lotsa Luck! | 21 | yes (batch pipeline output reviewed frame-by-frame 2026-09-23: 84 raw candidates across all 21 episodes, all 84 confirmed and inserted into commercial_breaks_v2, 0 rejected -- perfect coverage, second show in a row with zero false positives (after Lidsville). Print is exceptionally clean, every candidate's pixel stats near-identical (max never exceeded 15/255 across all 84 frames) and visually confirmed genuinely black. Consistent 4-per-episode structure at ~55-90s, mid-episode, ~1380-1460s, and near end-point.) | AUTO |
+| 339 | Firing Line | 31 | yes (2026-09-23: PBS production, no commercial breaks by user confirmation -- same "commercial-free" category as Star Cops/French Chef/School House Rock. 0 rows in commercial_breaks_v2, no batch_runs candidates reviewed or inserted.) | AUTO |
+| 303 | Gentle Ben | 16 | yes (batch pipeline output reviewed frame-by-frame 2026-09-23: 86 raw candidates across all 16 episodes, 79 confirmed and inserted into commercial_breaks_v2, 7 rejected. NEW failure-mode instance for this animal-adventure show: episode 14866 (Wayward Bear Part 1) had a 4-candidate consecutive chain (idx4-7) that was all one continuous night-forest scene with a raccoon; episode 14868 had a single dim green-gradient forest shot; episode 14878 had 2 candidates showing a dim shed/shack ("HOUSE" sign) and two people walking with a bucket. Baseline elevated-black-level print (pixel means ~1-8/255 per episode, consistent with the Lidsville-style raised black floor) made outlier detection via pixel triage especially effective here.) | AUTO |
+| 391 | My World and Welcome to It | 19 | yes (batch pipeline output reviewed frame-by-frame 2026-09-23/24: 89 raw candidates across all 19 episodes, 76 confirmed and inserted into commercial_breaks_v2, 13 rejected. Grainier/noisier print than most shows in this rebuild (individual dust-speck pixels inflated max values even on genuinely black frames), so pixel-triage outliers were confirmed by direct visual inspection rather than trusted on stats alone. Rejections spanned a wider variety of content types than usual for this whimsical-fantasy-sequence sitcom: a bowling-ball-on-stairs shot and a solid blue card (19988); a 5-candidate consecutive chain of a night-forest policeman scene (19993); a man reading a notice board plus a B&W archival "CHECK ROOM" cutaway sequence (19996); a night-woods flashlight scene (20000); a moon shot and a man walking at night in sunglasses (20002).) | AUTO |
+| 266 | Manimal | 8 | yes (batch pipeline output reviewed frame-by-frame 2026-09-25: 128 raw candidates across all 8 episodes, 45 confirmed and inserted into commercial_breaks_v2, 83 rejected. See the 2026-09-25 finding above -- the 39-candidate pilot/TV-movie episode (13091) was a severe VLM-accuracy outlier, only 2 of 39 candidates genuine (both near the true end), with the model repeatedly calling clearly-visible content "solid black" at high confidence, including two candidates where the model's own stated reasoning described real content while still verdicting "keep". The 7 regular half-hour episodes behaved normally. A recurring title-montage clip (a clawed hand reaching into frame, ~90-133s in most episodes) was correctly identified as real content and rejected consistently across episodes, never assumed identical without checking each occurrence.) | AUTO |
+| 336 | Roots | 8 | yes (199 candidates reviewed, 69 confirmed, 130 rejected) | MANUAL |
+| 257 | Blue Thunder | 9 | yes (113 candidates reviewed, 53 confirmed, 60 rejected) | MANUAL |
+| 324 | Circle of Fear | 9 | yes (162 candidates reviewed, 45 confirmed, 117 rejected) | MANUAL |
+| 268 | Fantastic Journey | 10 | yes (126 candidates reviewed, 43 confirmed, 83 rejected) | MANUAL |
+| 362 | Galactica 1980 | 10 | yes (184 candidates reviewed, 18 confirmed, 166 rejected) | MANUAL |
+| 256 | Cop Rock | 11 | yes (199 candidates reviewed, 63 confirmed, 136 rejected) | MANUAL |
+| 325 | Ghost Story | 11 | yes (180 candidates reviewed, 79 confirmed, 101 rejected) | MANUAL |
+| 234 | Baretta | 12 | yes (206 candidates reviewed, 38 confirmed, 168 rejected) | MANUAL |
+| 241 | Cousteau Odyssey | 12 | yes (141 candidates reviewed, 48 confirmed, 93 rejected) | MANUAL |
+| 254 | Gemini Man | 12 | yes (130 candidates reviewed, 58 confirmed, 72 rejected) | MANUAL |
+| 269 | Invisible Man | 12 | yes (146 candidates reviewed, 52 confirmed, 94 rejected) | MANUAL |
+| 296 | The Westerner | 12 | yes (130 candidates reviewed, 51 confirmed, 79 rejected) | MANUAL |
+| 330 | Lucan | 12 | yes (136 candidates reviewed, 67 confirmed, 69 rejected) | MANUAL |
+| 337 | Centennial | 12 | yes (319 candidates reviewed, 84 confirmed, 235 rejected) | MANUAL |
+| 199 | Barbary Coast | 13 | yes (242 candidates reviewed, 84 confirmed, 158 rejected) | MANUAL |
+| 239 | Invisible Man | 13 | yes (162 candidates reviewed, 42 confirmed, 120 rejected) | MANUAL |
+| 260 | Automan | 13 | yes (239 candidates reviewed, 91 confirmed, 148 rejected) | MANUAL |
+| 214 | In Search of... | 57 | yes (471 candidates reviewed, 151 confirmed, 320 rejected) | MANUAL |
+| 360 | Coronet Blue | 13 | yes (131 candidates reviewed, 65 confirmed, 66 rejected) | MANUAL |
+| 203 | Mothers in Law | 56 | yes (272 candidates reviewed, 178 confirmed, 94 rejected) | MANUAL |
+| 372 | Hammer House of Horror | 13 | yes (156 candidates reviewed, 26 confirmed, 130 rejected) | MANUAL |
