@@ -1,0 +1,11 @@
+schedule_id,network,show_title,air_date(season year),day,time,current_start,current_end,proposed_start,proposed_end,episodes_in_season,reason
+2086,ABC,Voyage to the Bottom of the Sea,1964,monday,19:30,1964-01-01,1964-12-31,1964-09-14,1965-03-01,10,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data
+2133,CBS,The Munsters,1964,thursday,19:30,1964-01-01,1964-12-31,1964-09-24,1965-06-10,21,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data
+2144,ABC,The Addams Family,1964,friday,20:30,1964-01-01,1964-12-31,1964-09-18,1965-05-21,12,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data
+2352,CBS,The Smothers Brothers Comedy Hour,1968,sunday,21:00,1968-01-01,1968-12-31,1968-09-29,1969-04-20,9,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data
+3016,CBS,Rhoda,1977,sunday,20:00,1977-01-01,1977-12-31,1977-10-02,1978-04-23,28,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data
+4034,ABC,Batman,1965,wednesday,19:30,1965-01-01,1965-12-31,1966-01-12,1966-05-05,34,proposed start is after the row's air_date year -- row would leave its own year; verify
+4048,ABC,Batman,1965,thursday,19:30,1965-01-01,1965-12-31,1966-01-12,1966-05-05,34,proposed start is after the row's air_date year -- row would leave its own year; verify
+4120,NBC,Circle of Fear,1972,friday,21:00,1972-01-01,1972-12-31,1973-01-05,1973-03-30,9,proposed start is after the row's air_date year -- row would leave its own year; verify
+4444,NBC,The Pink Panther Show,1969,saturday,09:00,1969-01-01,1969-12-31,1969-09-01,1969-12-27,62,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data
+4445,NBC,H.R. Pufnstuf,1969,saturday,09:30,1969-01-01,1969-12-31,1969-09-06,1969-12-27,14,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data

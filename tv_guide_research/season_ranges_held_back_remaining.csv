@@ -1,0 +1,24 @@
+schedule_id,network,show_title,air_date(season year),day,time,current_start,current_end,proposed_start,proposed_end,episodes_in_season,reason
+682,CBS,Topper,1953,friday,20:30,1953-01-01,1953-12-31,1954-01-08,1954-07-02,10,proposed start is after the row's air_date year -- row would leave its own year; verify; Topper really premiered 1953-10-09 on CBS; DB airdates only start 1954-01
+1006,NBC,You Bet Your Life,1955,thursday,20:00,1955-01-01,1955-12-31,1956-01-05,1956-06-21,7,"proposed start is after the row's air_date year -- row would leave its own year; verify; not a clean mid-season premiere (n=7, span=168d) -- keep current range"
+1987,CBS,The Ed Sullivan Show,1963,sunday,20:00,1963-01-01,1963-12-31,1964-02-09,1964-02-23,3,"proposed start is after the row's air_date year -- row would leave its own year; verify; not a clean mid-season premiere (n=3, span=14d) -- keep current range"
+2312,ABC,That Girl,1967,thursday,21:00,1967-01-01,1967-12-31,1967-12-21,1967-12-21,1,single-day range (1 episode) -- keep current range
+2439,NBC,Wild Kingdom,1969,sunday,19:00,1969-01-01,1969-12-31,1969-10-12,1971-02-14,2,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data; windowed re-derive had only 1 episode(s) -- still unresolved
+2478,ABC,That Girl,1969,thursday,20:00,1969-01-01,1969-12-31,1970-01-08,1970-01-08,1,single-day range (1 episode) -- keep current range
+2569,NBC,The Flip Wilson Show,1970,thursday,19:30,1970-01-01,1970-12-31,1970-10-22,1974-02-28,4,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data; windowed re-derive had only 3 episode(s) -- still unresolved
+2704,CBS,Medical Center,1972,wednesday,21:00,1972-01-01,1972-12-31,1972-11-01,1972-11-01,1,single-day range (1 episode) -- keep current range
+2729,ABC,The Streets of San Francisco,1972,saturday,21:00,1972-01-01,1972-12-31,1972-09-16,1972-09-16,1,single-day range (1 episode) -- keep current range
+2914,ABC,The Streets of San Francisco,1975,thursday,21:00,1975-01-01,1975-12-31,1976-01-15,1976-03-18,5,"proposed start is after the row's air_date year -- row would leave its own year; verify; not a clean mid-season premiere (n=5, span=63d) -- keep current range"
+3995,CBS,The Ed Sullivan Show,1965,sunday,20:00,1965-01-01,1965-12-31,1965-09-12,1965-09-12,1,single-day range (1 episode) -- keep current range
+4020,CBS,Daktari,1965,tuesday,19:30,1965-01-01,1965-12-31,1966-04-12,1966-05-17,6,"proposed start is after the row's air_date year -- row would leave its own year; verify; not a clean mid-season premiere (n=6, span=35d) -- keep current range"
+4093,CBS,Secret Agent,1965,saturday,20:30,1965-12-01,1965-12-31,1965-09-04,1966-04-30,23,current range was already hand-researched/narrowed -- keep it
+4125,CBS,Bugs Bunny/Road Runner Show,1970,saturday,08:00,1970-01-01,1970-12-31,1971-02-05,1972-02-26,25,"proposed start is after the row's air_date year -- row would leave its own year; verify; not a clean mid-season premiere (n=25, span=386d) -- keep current range"
+4139,ABC,Bugs Bunny/Road Runner Show,1970,saturday,08:00,1970-01-01,1970-12-31,1971-02-05,1972-02-26,25,"proposed start is after the row's air_date year -- row would leave its own year; verify; not a clean mid-season premiere (n=25, span=386d) -- keep current range"
+4177,NBC,The Pink Panther Show,1974,saturday,10:00,1974-01-01,1974-12-31,1974-09-01,1977-09-01,11,range > 400 days: episode airdates span multiple seasons -- bad/mixed airdate data; windowed re-derive had only 1 episode(s) -- still unresolved
+4181,NBC,The Pink Panther Show,1978,saturday,10:00,1978-01-01,1978-12-31,1978-09-01,1978-09-01,32,single-day range (1 episode) -- keep current range
+4186,NBC,Sigmund and the Sea Monsters,1974,saturday,11:00,1974-01-01,1974-12-31,1974-09-20,1974-09-20,1,single-day range (1 episode) -- keep current range
+4219,CBS,Match Game,1977,monday,09:00,1977-01-01,1977-12-31,1977-10-07,1977-10-07,1,single-day range (1 episode) -- keep current range
+4220,CBS,Match Game,1977,tuesday,09:00,1977-01-01,1977-12-31,1977-10-07,1977-10-07,1,single-day range (1 episode) -- keep current range
+4221,CBS,Match Game,1977,wednesday,09:00,1977-01-01,1977-12-31,1977-10-07,1977-10-07,1,single-day range (1 episode) -- keep current range
+4222,CBS,Match Game,1977,thursday,09:00,1977-01-01,1977-12-31,1977-10-07,1977-10-07,1,single-day range (1 episode) -- keep current range
+4223,CBS,Match Game,1977,friday,09:00,1977-01-01,1977-12-31,1977-10-07,1977-10-07,1,single-day range (1 episode) -- keep current range

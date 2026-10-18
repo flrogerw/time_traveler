@@ -172,6 +172,9 @@ because `process_scheduled_shows` keeps the last row per time). `tv_guide_resear
 `proposed_schedules_season_ranges.csv` into `season_ranges_applicable.csv` (560 rows, APPLIED 2026-10-18) + `apply_season_ranges.sql` /
 `rollback_season_ranges.sql` and `season_ranges_held_back.csv` (33 rows: bad airdate data or an already-researched range).
 Redundant `schedules` row 4454 was deleted (2026-10-18).
+`tv_guide_research/resolve_held_back.py` (read-only) re-derives 10 of the 33 held rows (`apply_resolved_held.sql`) and proposes 262 summer
+extensions to Aug 31 for shows with a later season on the same network (`apply_summer_extensions.sql`); both have rollbacks and are
+NOT applied (apply resolved first). 23 rows stay held (`season_ranges_held_back_remaining.csv`).
 
 ## TV Guide research (the basis for daypart/schedule decisions)
 
