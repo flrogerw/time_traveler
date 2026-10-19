@@ -129,3 +129,20 @@ def test_narrowest_overlapping_range_wins_regardless_of_schedule_id(db_conn):
     shows = Shows(db_conn, "TV-TESTNET-1")
     assert shows.get_scheduled_shows_id(date(1991, 2, 2), SATURDAY).get("20:00:00") == 1
     assert shows.get_scheduled_shows_id(date(1991, 6, 1), SATURDAY).get("20:00:00") == 2
+
+
+def test_anchored_show_slot_is_capped_at_its_own_length_when_the_gap_is_large(db_conn):
+    """Dark Shadows (30 min) anchored at 15:00 with the next anchor at 20:00 used to get a 5-hour slot,
+    which shorts-packing then filled with 11 episodes. It now holds its own length; ordinary adjacent
+    primetime anchors and the final anchor are unchanged."""
+    shows = Shows(db_conn, ABC)
+    longest = shows.get_longest_show_duration(207)   # Dark Shadows
+    diffs = shows.calculate_time_differences({"15:00:00": 207, "20:00:00": 174, "20:30:00": 145})
+    assert diffs["15:00:00"] == longest
+    assert diffs["20:00:00"] == 1800
+    # a gap within the tolerance is left alone (show stretches to the next anchor, as before)
+    near = shows.calculate_time_differences({"20:00:00": 174, "20:30:00": 145, "21:00:00": 187})
+    assert near["20:00:00"] == 1800
+    # movies and unlinked shows keep the whole gap
+    assert shows.calculate_time_differences({"19:00:00": 173, "23:00:00": 174})["19:00:00"] == 4 * 3600
+    assert shows.calculate_time_differences({"15:00:00": None, "20:00:00": 174})["15:00:00"] == 5 * 3600

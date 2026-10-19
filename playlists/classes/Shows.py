@@ -6,6 +6,7 @@ from datetime import datetime, timedelta, time, date
 # Constants
 SCHEDULE_RECURSION = 3  # Number of past years to consider for schedule recursion
 MOVIE_ID = 173  # Special ID for movies, used in time calculations
+UNEXPLAINED_GAP_SECONDS = 1800  # a gap this much longer than an anchored show can run is other programming, not the show
 
 
 class Shows:
@@ -33,6 +34,12 @@ class Shows:
                              (show_id,))
             row = self.cur.fetchone()
         return row['duration']
+
+    def get_longest_show_duration(self, show_id):
+        self.cur.execute("SELECT MAX(d) AS duration FROM (SELECT unnest(show_duration) AS d FROM shows WHERE show_id = %s) x",
+                         (show_id,))
+        row = self.cur.fetchone()
+        return row['duration'] if row else None
 
     # Fetch show counts grouped by duration for a specific channel and year
     def get_show_count_by_duration(self, channel_id, year):
@@ -228,6 +235,16 @@ class Shows:
             t1 = datetime.strptime(sorted_times[i - 1], time_format)
             t2 = datetime.strptime(sorted_times[i], time_format)
             time_difference = int((t2 - t1).total_seconds())
+            # An anchored show only holds its own length: when the gap to the next anchor is more than
+            # UNEXPLAINED_GAP_SECONDS longer than the longest length it can run, the leftover is other
+            # programming, which generate_schedule fills. Without this a 30-minute show anchored at 15:00
+            # with the next anchor at 20:00 got a 5-hour slot (and 11 packed episodes). Movies and shows
+            # with no linked show_id keep the full gap, since their real length isn't known here.
+            show_id = time_dict[sorted_times[i - 1]]
+            if show_id is not None and show_id != MOVIE_ID:
+                longest = self.get_longest_show_duration(show_id)
+                if longest and time_difference > longest + UNEXPLAINED_GAP_SECONDS:
+                    time_difference = longest
             time_differences[sorted_times[i - 1]] = time_difference
 
         # Handle the time difference for the last time slot
