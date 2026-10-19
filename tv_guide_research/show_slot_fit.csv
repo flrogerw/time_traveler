@@ -1,0 +1,270 @@
+show_id,show_name,show_genre,mapped_genre,eligible_year_start,eligible_year_end,weekend_morning,weekend_afternoon,weekday_morning,weekday_afternoon,weekend_morning_after_vetoes,weekend_afternoon_after_vetoes,weekday_morning_after_vetoes,weekday_afternoon_after_vetoes
+29,12 O'Clock High,drama,drama,1968,1989,,yes,yes,yes,,yes,yes,yes
+9,Adam 12,drama,drama,1976,1989,,yes,yes,yes,,yes,yes,yes
+19,Addams Family,comedy,family,1967,1989,yes,yes,yes,yes,yes,yes,yes,yes
+310,Adventures of Jim Bowie,"adventure,drama,western",western,1959,1989,,yes,yes,yes,,yes,yes,yes
+89,Adventures of Kit Carson,western,western,1951,1989,,yes,yes,yes,,yes,yes,yes
+385,Adventures of Ozzie and Harriet,comedy,family,1967,1989,yes,yes,yes,yes,yes,yes,yes,yes
+57,Adventures of Superman,drama,drama,1952,1989,,yes,yes,yes,,yes,yes,yes
+258,Airwolf,"scifi,action,drama",adventure,1987,1989,yes,yes,yes,yes,,yes,yes,yes
+252,ALF,comedy,family,,,yes,yes,yes,yes,yes,yes,yes,yes
+30,Alfred Hitchcock Presents,mystery,drama,1966,1989,,yes,yes,yes,,yes,,yes
+159,Alice,comedy,family,1986,1989,yes,yes,yes,yes,yes,yes,yes,yes
+191,All in the Family,comedy,family,1980,1989,yes,yes,yes,yes,yes,yes,yes,yes
+334,Amazing Spider-Man,"scifi,crime,drama",adventure,1980,1989,yes,yes,yes,yes,,yes,yes,yes
+367,Amen,comedy,family,,,yes,yes,yes,yes,yes,yes,yes,yes
+278,Andy Griffith Show,"comedy,family",family,1969,1989,yes,yes,yes,yes,yes,yes,yes,yes
+131,Angie,comedy,family,1981,1989,yes,yes,yes,yes,yes,yes,yes,yes
+297,Annie Oakley,western,western,1954,1989,,yes,yes,yes,,yes,yes,yes
+44,Ant and the Aardvark,cartoon,kids,1969,1989,yes,,yes,yes,yes,,yes,yes
+346,Archie Show,cartoon,kids,1970,1989,yes,,yes,yes,yes,,yes,yes
+345,Archie's Funhouse,cartoon,kids,1972,1989,yes,,yes,yes,yes,,yes,yes
+351,Ark II,"adventure,scifi",kids,1977,1989,yes,,yes,yes,yes,,yes,yes
+36,Atom Ant,cartoon,kids,1968,1989,yes,,yes,yes,yes,,yes,yes
+21,Avengers,drama,drama,1961,1989,,yes,yes,yes,,yes,yes,yes
+119,Banacek,"crime,drama",drama,1975,1989,,yes,yes,yes,,yes,,yes
+83,Bananna Splits,comedy,kids,1971,1989,yes,,yes,yes,yes,,yes,yes
+342,Barbara McNair Show,"variety,comedy,music",variety,1969,1989,yes,yes,yes,yes,,yes,yes,yes
+234,Baretta,"crime,drama",drama,1979,1989,,yes,yes,yes,,yes,,yes
+105,Barnaby Jones,"crime,drama",drama,1981,1989,,yes,yes,yes,,yes,yes,yes
+111,Barney Miller,comedy,family,1983,1989,yes,yes,yes,yes,yes,yes,yes,yes
+359,Batfink,cartoon,kids,1966,1989,yes,,yes,yes,yes,,yes,yes
+153,Batman,comedy,family,1969,1989,yes,yes,yes,yes,yes,yes,yes,yes
+248,Battlestar Galactica,"scifi,drama",adventure,1980,1989,yes,yes,yes,yes,,yes,yes,yes
+261,Bearcats,"action,adventure",adventure,1972,1989,yes,yes,yes,yes,,yes,yes,yes
+196,Beatles,cartoon,kids,1968,1989,yes,,yes,yes,yes,,yes,yes
+352,Beetle Bailey,cartoon,kids,1963,1989,yes,,yes,yes,yes,,yes,yes
+255,Benson,comedy,family,1987,1989,yes,yes,yes,yes,yes,yes,yes,yes
+378,Beverly Hillbillies,"comedy,family",family,1972,1989,yes,yes,yes,yes,yes,yes,yes,yes
+217,Bewitched,comedy,family,1973,1989,yes,yes,yes,yes,yes,yes,yes,yes
+92,Bill Nye the Science Guy,educational,other,,,yes,yes,,yes,yes,yes,,yes
+181,Bob Newhart Show,comedy,family,1979,1989,yes,yes,yes,yes,yes,yes,yes,yes
+174,Brady Bunch,comedy,family,1975,1989,yes,yes,yes,yes,yes,yes,yes,yes
+86,Brady Kids,cartoon,kids,1974,1989,yes,,yes,yes,yes,,yes,yes
+262,Branded,"western,drama",western,1967,1989,,yes,yes,yes,,yes,yes,yes
+331,Buck Rogers in the 25th Century,"scifi,adventure,action",adventure,1982,1989,yes,yes,yes,yes,,yes,yes,yes
+87,Bullwinkle Show,cartoon,kids,1965,1989,yes,,yes,yes,yes,,yes,yes
+113,Cannon,"crime,drama",drama,1977,1989,,yes,yes,yes,,yes,,yes
+300,Captain Scarlet,"scifi,family",kids,1967,1989,yes,,yes,yes,yes,,yes,yes
+180,Carol Burnett Show,"variety,comedy,musical",variety,1979,1989,yes,yes,yes,yes,,yes,yes,yes
+393,Charles in Charge,comedy,family,,,yes,yes,yes,yes,yes,yes,yes,yes
+108,Charlie's Angels,"crime,drama",drama,1982,1989,,yes,yes,yes,,yes,yes,yes
+209,Cheers,comedy,family,,,yes,yes,yes,yes,yes,yes,yes,yes
+124,CHiPs,"crime,drama",drama,1984,1989,,yes,yes,yes,,yes,,yes
+101,Columbo,"crime,drama",drama,1979,1989,,yes,yes,yes,,yes,yes,yes
+242,Cosmos,documentary,other,1980,1989,yes,yes,,yes,yes,yes,,yes
+189,Courtship of Eddie's Father,comedy,family,1973,1989,yes,yes,yes,yes,yes,yes,yes,yes
+241,Cousteau Odyssey,documentary,other,1977,1989,yes,yes,,yes,yes,yes,,yes
+245,CPO Sharkey,comedy,family,1979,1989,yes,yes,yes,yes,yes,yes,yes,yes
+376,Daktari,drama,drama,1970,1989,,yes,yes,yes,,yes,yes,yes
+321,Danger Man,"action,crime,mystery",adventure,1960,1989,yes,yes,yes,yes,yes,yes,yes,yes
+207,Dark Shadows,"drama,horror",drama,1972,1989,,yes,yes,yes,,yes,yes,yes
+277,Decoy,"crime,drama,police",drama,1957,1989,,yes,yes,yes,,yes,,yes
+244,Dennis the Menace,comedy,family,1964,1989,yes,yes,yes,yes,yes,yes,yes,yes
+23,Dick Van Dyke Show,comedy,family,1967,1989,yes,yes,yes,yes,yes,yes,yes,yes
+142,Different Strokes,comedy,family,1987,1989,yes,yes,yes,yes,yes,yes,yes,yes
+31,Donna Reed Show,comedy,family,1967,1989,yes,yes,yes,yes,yes,yes,yes,yes
+322,Doris Day Show,comedy,family,1974,1989,yes,yes,yes,yes,yes,yes,yes,yes
+120,Dragnet 1967,"crime,drama",drama,1971,1989,,yes,yes,yes,,yes,,yes
+51,Dudley Do-Right Show,cartoon,kids,1961,1989,yes,,yes,yes,yes,,yes,yes
+267,Dukes of Hazzard,"action,comedy",family,1986,1989,yes,yes,yes,yes,yes,yes,yes,yes
+304,Ed Sullivan Show,"variety,musical",variety,1972,1989,yes,yes,yes,yes,,yes,yes,yes
+355,Electra Woman and Dyna Girl,scifi,kids,1977,1989,yes,,yes,yes,yes,,yes,yes
+35,Emergency,drama,drama,1978,1989,,yes,yes,yes,,yes,yes,yes
+282,F Troop,"western,comedy",western,1968,1989,,yes,yes,yes,,yes,yes,yes
+160,F.B.I.,"crime,drama",drama,1975,1989,,yes,yes,yes,,yes,,yes
+382,Facts of Life,"comedy,drama,family",family,1989,1989,yes,yes,yes,yes,yes,yes,yes,yes
+154,Family Affair,comedy,family,1972,1989,yes,yes,yes,yes,yes,yes,yes,yes
+356,Fangface,cartoon,kids,1980,1989,yes,,yes,yes,yes,,yes,yes
+218,Fantasy Island,drama,drama,1985,1989,,yes,yes,yes,,yes,yes,yes
+42,Felix the Cat,cartoon,kids,1958,1989,yes,,yes,yes,yes,,yes,yes
+395,Fernwood Tonight,comedy,family,1977,1989,yes,yes,yes,yes,yes,yes,yes,yes
+339,Firing Line,"talk,politics",talk,1966,1989,yes,yes,yes,yes,yes,yes,yes,yes
+137,Flintstones,cartoon,kids,1967,1989,yes,,yes,yes,yes,,yes,yes
+326,Flip Wilson Show,"variety,comedy,music",variety,1975,1989,yes,yes,yes,yes,,yes,yes,yes
+370,Flipper,"adventure,drama",adventure,1968,1989,yes,yes,yes,yes,yes,yes,yes,yes
+210,Flying Nun,comedy,family,1971,1989,yes,yes,yes,yes,yes,yes,yes,yes
+298,Four Star Playhouse,"comedy,drama,crime",family,1957,1989,yes,yes,yes,yes,yes,yes,yes,yes
+219,Freddy's Nightmares,horror,drama,1988,1989,,yes,yes,yes,,yes,,yes
+93,Fugitive,drama,drama,1968,1989,,yes,yes,yes,,yes,yes,yes
+362,Galactica 1980,"scifi,drama",adventure,1981,1989,yes,yes,yes,yes,,yes,yes,yes
+303,Gentle Ben,"adventure,drama,family",family,1970,1989,yes,yes,yes,yes,yes,yes,yes,yes
+223,George of the Jungle,cartoon,kids,1968,1989,yes,,yes,yes,yes,,yes,yes
+184,Get Smart,comedy,family,1971,1989,yes,yes,yes,yes,yes,yes,yes,yes
+96,Ghost & Mrs. Muir,comedy,family,1971,1989,yes,yes,yes,yes,yes,yes,yes,yes
+202,Gidget,comedy,family,1967,1989,yes,yes,yes,yes,yes,yes,yes,yes
+12,Gilligan's Island,comedy,family,1968,1989,yes,yes,yes,yes,yes,yes,yes,yes
+384,Gimme a Break,comedy,family,1988,1989,yes,yes,yes,yes,yes,yes,yes,yes
+371,Golden Girls,"comedy,drama",family,,,yes,yes,yes,yes,yes,yes,yes,yes
+302,Gomer Pyle,"comedy,family",family,1970,1989,yes,yes,yes,yes,yes,yes,yes,yes
+11,Green Acres,comedy,family,1972,1989,yes,yes,yes,yes,yes,yes,yes,yes
+163,Growing Pains,comedy,family,,,yes,yes,yes,yes,yes,yes,yes,yes
+144,Gunsmoke,"western,drama",western,1976,1989,,yes,yes,yes,,yes,yes,yes
+17,H.R. Pufnstuf,comedy,kids,1970,1989,yes,,yes,yes,yes,,yes,yes
+141,Happy Days,comedy,family,1985,1989,yes,yes,yes,yes,yes,yes,yes,yes
+251,Hardcastle and McCormick,"action,crime,drama",adventure,1987,1989,yes,yes,yes,yes,,yes,yes,yes
+54,Hardy Boys/Nancy Drew Mysteries,drama,drama,1980,1989,,yes,yes,yes,,yes,yes,yes
+114,Harry O,"crime,drama",drama,1977,1989,,yes,yes,yes,,yes,,yes
+115,Hart To Hart,"crime,drama",drama,1985,1989,,yes,yes,yes,,yes,,yes
+28,Have Gun Will Travel,western,western,1964,1989,,yes,yes,yes,,yes,yes,yes
+100,Hawaii Five O,"crime,drama",drama,1981,1989,,yes,yes,yes,,yes,,yes
+307,Hawk,"crime,drama,police",drama,1967,1989,,yes,yes,yes,,yes,,yes
+188,Hazel,comedy,family,1967,1989,yes,yes,yes,yes,yes,yes,yes,yes
+392,Here Come the Brides,"western,adventure",western,1971,1989,,yes,yes,yes,,yes,yes,yes
+213,Here's Lucy,comedy,family,1975,1989,yes,yes,yes,yes,yes,yes,yes,yes
+305,High Chaparral,"western,drama",western,1972,1989,,yes,yes,yes,,yes,yes,yes
+125,Hill Street Blues,"crime,drama",drama,1988,1989,,yes,yes,yes,,yes,,yes
+122,Hogan's Heroes,comedy,family,1972,1989,yes,yes,yes,yes,yes,yes,yes,yes
+333,Honeymooners,"comedy,family",family,1957,1989,yes,yes,yes,yes,yes,yes,yes,yes
+228,Hotel,drama,drama,1989,1989,,yes,yes,yes,,yes,yes,yes
+106,Hunter,"crime,drama",drama,,,,yes,yes,yes,,yes,,yes
+143,I Dream of Jeannie,comedy,family,1971,1989,yes,yes,yes,yes,yes,yes,yes,yes
+5,I Love Lucy,comedy,family,1968,1989,yes,yes,yes,yes,yes,yes,yes,yes
+214,In Search of...,scifi,adventure,1976,1989,yes,yes,yes,yes,,yes,yes,yes
+117,Incredible Hulk,"scfi,drama",adventure,1983,1989,yes,yes,yes,yes,,yes,yes,yes
+239,Invisible Man,scifi,adventure,1958,1989,yes,yes,yes,yes,,yes,yes,yes
+40,Ironside,drama,drama,1976,1989,,yes,yes,yes,,yes,yes,yes
+317,It Takes a Thief,"action,crime,drama",adventure,1971,1989,yes,yes,yes,yes,yes,yes,yes,yes
+138,Jackson 5ive,cartoon,kids,1973,1989,yes,,yes,yes,yes,,yes,yes
+118,Jake and the Fatman,"crime,drama",drama,,,,yes,yes,yes,,yes,,yes
+192,Jeffersons,comedy,family,1986,1989,yes,yes,yes,yes,yes,yes,yes,yes
+47,Jetsons,cartoon,kids,1964,1989,yes,,yes,yes,yes,,yes,yes
+315,Joe 90,"scifi,drama,action,adventure",kids,1968,1989,yes,,yes,yes,yes,,yes,yes
+215,Johnny Sokko and His Flying Robot,scifi,kids,1967,1989,yes,,yes,yes,yes,,yes,yes
+182,Jonny Quest,cartoon,kids,1966,1989,yes,,yes,yes,yes,,yes,yes
+151,Josie and the Pussy Cats in Outer Space,cartoon,kids,1973,1989,yes,,yes,yes,yes,,yes,yes
+201,King of the Hill,cartoon,kids,,,yes,,yes,yes,yes,,yes,yes
+264,Knight Rider,"action,crime,drama",adventure,1987,1989,yes,yes,yes,yes,,yes,yes,yes
+104,Kojak,"crime,drama",drama,1979,1989,,yes,yes,yes,,yes,,yes
+132,Kolchak: The Night Stalker,"crime,scifi,drama",adventure,1976,1989,yes,yes,yes,yes,,yes,,yes
+271,Kung Fu,drama,drama,1976,1989,,yes,yes,yes,,yes,yes,yes
+274,Land of the Giants,"scifi,drama",adventure,1971,1989,yes,yes,yes,yes,yes,yes,yes,yes
+155,Land of the Lost,drama,kids,1977,1989,yes,,yes,yes,yes,,yes,yes
+400,Laramie,western,western,1964,1989,,yes,yes,yes,,yes,yes,yes
+140,Lavern and Shirley,comedy,family,1984,1989,yes,yes,yes,yes,yes,yes,yes,yes
+24,Leave it to Beaver,comedy,family,1964,1989,yes,yes,yes,yes,yes,yes,yes,yes
+313,Life and Legend of Wyatt Earp,"drama,western",western,1962,1989,,yes,yes,yes,,yes,yes,yes
+62,Lippy The Lion & Hardy Har Har,cartoon,kids,1962,1989,yes,,yes,yes,yes,,yes,yes
+227,Little House on the Prairie,drama,drama,1984,1989,,yes,yes,yes,,yes,yes,yes
+2,Lone Ranger,western,western,1958,1989,,yes,yes,yes,,yes,yes,yes
+38,Lost in Space,scfi,adventure,1969,1989,yes,yes,yes,yes,yes,yes,yes,yes
+222,Lou Grant,drama,drama,1983,1989,,yes,yes,yes,,yes,yes,yes
+157,Love Boat,"drama,romance,comedy",family,1987,1989,yes,yes,yes,yes,yes,yes,yes,yes
+183,"Love, American Style",comedy,family,1975,1989,yes,yes,yes,yes,yes,yes,yes,yes
+1,Lucy Show,comedy,family,1969,1989,yes,yes,yes,yes,yes,yes,yes,yes
+200,M*A*S*H,drama,drama,1984,1989,,yes,yes,yes,,yes,yes,yes
+291,Mackenzie's Raiders,"western,drama",western,1958,1989,,yes,yes,yes,,yes,yes,yes
+265,Man From Atlantis,"scifi,adventure",adventure,1979,1989,yes,yes,yes,yes,,yes,yes,yes
+69,Man from U.N.C.L.E.,drama,drama,1969,1989,,yes,yes,yes,,yes,yes,yes
+220,Mannix,"crime,drama",drama,1976,1989,,yes,yes,yes,,yes,,yes
+37,Many Loves of Dobie Gillis,comedy,family,1964,1989,yes,yes,yes,yes,yes,yes,yes,yes
+396,Mary Hartman Mary Hartman,comedy,family,1976,1989,yes,yes,yes,yes,yes,yes,yes,yes
+270,Mary Tyler Moore Show,comedy,family,1978,1989,yes,yes,yes,yes,yes,yes,yes,yes
+340,Match Game,game,game,1977,1989,yes,yes,yes,yes,yes,yes,yes,yes
+133,Maude,comedy,family,1979,1989,yes,yes,yes,yes,yes,yes,yes,yes
+22,Maverick,western,western,1963,1989,,yes,yes,yes,,yes,yes,yes
+397,Mayberry RFD,comedy,family,1972,1989,yes,yes,yes,yes,yes,yes,yes,yes
+404,McCloud,"drama,police",drama,1978,1989,,yes,yes,yes,,yes,yes,yes
+364,McHale's Navy,comedy,family,1967,1989,yes,yes,yes,yes,yes,yes,yes,yes
+130,McMillan & Wife,"crime,drame",drama,1978,1989,,yes,yes,yes,,yes,,yes
+13,Medical Center,drama,drama,1977,1989,,yes,yes,yes,,yes,yes,yes
+394,Mickey Mouse Club,variety,kids,1960,1989,yes,,yes,yes,yes,,yes,yes
+55,Mission Impossible,drama,drama,1974,1989,,yes,yes,yes,,yes,yes,yes
+7,Mister Ed,comedy,family,1967,1989,yes,yes,yes,yes,yes,yes,yes,yes
+128,Mod Squad,"crime,drama",drama,1974,1989,,yes,yes,yes,,yes,,yes
+8,Monkees,comedy,family,1969,1989,yes,yes,yes,yes,yes,yes,yes,yes
+193,Mork and Mindy,comedy,family,1983,1989,yes,yes,yes,yes,yes,yes,yes,yes
+203,Mothers in Law,comedy,family,1970,1989,yes,yes,yes,yes,yes,yes,yes,yes
+18,Munsters,comedy,family,1967,1989,yes,yes,yes,yes,yes,yes,yes,yes
+95,Mutual of Omaha's Wild Kingdom,documentary,other,1989,1989,yes,yes,,yes,yes,yes,,yes
+97,My Favorite Martian,comedy,family,1967,1989,yes,yes,yes,yes,yes,yes,yes,yes
+406,My Little Margie,comedy,family,1956,1989,yes,yes,yes,yes,yes,yes,yes,yes
+161,My Three Sons,comedy,family,1973,1989,yes,yes,yes,yes,yes,yes,yes,yes
+279,Naked City,"police,crime,drama",drama,1964,1989,,yes,yes,yes,,yes,yes,yes
+399,Nanny and the Professor,comedy,family,1972,1989,yes,yes,yes,yes,yes,yes,yes,yes
+178,NBC Mystery Movie,"crime,drama",movie,1977,1989,,yes,yes,yes,,yes,,yes
+152,New Scooby-Doo Movies,cartoon,kids,1974,1989,yes,,yes,yes,yes,,yes,yes
+162,Night Court,comedy,family,,,yes,yes,yes,yes,yes,yes,yes,yes
+229,Night Gallery,"horror,thriller",drama,1974,1989,,yes,yes,yes,,yes,,yes
+175,Odd Couple,comedy,family,1976,1989,yes,yes,yes,yes,yes,yes,yes,yes
+308,One Step Beyond,"drama,scifi,thriller",adventure,1962,1989,yes,yes,yes,yes,yes,yes,yes,yes
+253,Outer Limits,scifi,adventure,1966,1989,yes,yes,yes,yes,yes,yes,yes,yes
+145,Partridge Family,comedy,family,1975,1989,yes,yes,yes,yes,yes,yes,yes,yes
+361,Patty Duke Show,comedy,family,1967,1989,yes,yes,yes,yes,yes,yes,yes,yes
+25,Perils of Penelope Pitstop,cartoon,kids,1971,1989,yes,,yes,yes,yes,,yes,yes
+32,Perry Mason,drama,drama,1967,1989,,yes,yes,yes,,yes,yes,yes
+237,Peter Gunn,"crime,drama",drama,1962,1989,,yes,yes,yes,,yes,yes,yes
+64,Petticoat Junction,comedy,family,1971,1989,yes,yes,yes,yes,yes,yes,yes,yes
+73,Pink Panther Show,cartoon,kids,1980,1989,yes,,yes,yes,yes,,yes,yes
+107,Police Woman,"crime,drama",drama,1979,1989,,yes,yes,yes,,yes,,yes
+41,Popeye the Sailor,cartoon,kids,1960,1989,yes,,yes,yes,yes,,yes,yes
+323,Punky Brewster,"comedy,family",family,1989,1989,yes,yes,yes,yes,yes,yes,yes,yes
+34,Quincy M.E.,drama,drama,1984,1989,,yes,yes,yes,,yes,yes,yes
+243,Rawhide,western,western,1966,1989,,yes,yes,yes,,yes,yes,yes
+366,Rhoda,comedy,family,1979,1989,yes,yes,yes,yes,yes,yes,yes,yes
+67,Ricochet Rabbit & Droop-a-long,cartoon,kids,1964,1989,yes,,yes,yes,yes,,yes,yes
+343,Road Runner Show,cartoon,kids,1973,1989,yes,,yes,yes,yes,,yes,yes
+126,Rockford Files,"crime,drama",drama,1981,1989,,yes,yes,yes,,yes,yes,yes
+50,Roger Ramjet,cartoon,kids,1966,1989,yes,,yes,yes,yes,,yes,yes
+136,Rookies,"crime,drama",drama,1977,1989,,yes,yes,yes,,yes,,yes
+187,Room 222,comedy,family,1975,1989,yes,yes,yes,yes,yes,yes,yes,yes
+336,Roots,"drama,history",movie,1978,1989,,yes,yes,yes,,yes,yes,yes
+312,Rowan & Martin's Laugh-In,"variety,musical,comedy",variety,1974,1989,yes,yes,yes,yes,,yes,yes,yes
+66,Saturday Night Live,comedy,family,1981,1989,yes,yes,yes,yes,yes,yes,yes,yes
+383,Saved by the Bell,"comedy,family",family,,,yes,yes,yes,yes,yes,yes,yes,yes
+225,Scarecrow and Mrs. King,"drama,adventure",adventure,1988,1989,yes,yes,yes,yes,,yes,yes,yes
+150,School House Rock,"cartoon,educational",interstitial,1973,1985,yes,,,,yes,,,
+147,"Scooby Doo, Where Are You!",cartoon,kids,1971,1989,yes,,yes,yes,yes,,yes,yes
+197,Scooby-Doo Show,cartoon,kids,1979,1989,yes,,yes,yes,yes,,yes,yes
+27,Sea Hunt,drama,drama,1958,1989,,yes,yes,yes,,yes,yes,yes
+320,Secret Agent,"action,crime,mystery",adventure,1968,1989,yes,yes,yes,yes,yes,yes,yes,yes
+43,Secret Squirrel,cartoon,kids,1967,1989,yes,,yes,yes,yes,,yes,yes
+301,Secrets of Isis,"fantasy,drama,adventure",adventure,1977,1989,yes,yes,yes,yes,,yes,yes,yes
+344,Sigmund  and the Sea Monsters,"comedy,family",kids,1976,1989,yes,,yes,yes,yes,,yes,yes
+221,Six Million Dollar Man,"action,crime,drama",adventure,1979,1989,yes,yes,yes,yes,yes,yes,yes,yes
+146,Sixth Sense,"thriller,drama",drama,1973,1989,,yes,yes,yes,,yes,,yes
+204,Soap,comedy,family,1982,1989,yes,yes,yes,yes,yes,yes,yes,yes
+311,Sonny and Cher Comedy Hour,"variety,musical",variety,1975,1989,yes,yes,yes,yes,,yes,yes,yes
+85,Space 1999,scfi,adventure,1975,1989,yes,yes,yes,yes,,yes,yes,yes
+208,Speed Racer,cartoon,kids,1967,1989,yes,,yes,yes,yes,,yes,yes
+354,Spider-Man: The Animated Series,cartoon,kids,1967,1989,yes,,yes,yes,yes,,yes,yes
+286,Square Pegs,"comedy,family",family,1984,1989,yes,yes,yes,yes,yes,yes,yes,yes
+46,Squiddly Diddly,cartoon,kids,1965,1989,yes,,yes,yes,yes,,yes,yes
+61,Star Trek,drama,drama,1970,1989,,yes,yes,yes,,yes,yes,yes
+348,Star Trek: The Animated Series,"scifi,cartoon",kids,1975,1989,yes,,yes,yes,yes,,yes,yes
+99,Starsky & Hutch,"crime,drama",drama,1980,1989,,yes,yes,yes,,yes,yes,yes
+156,Streets of San Francisco,"crime,drama",drama,1978,1989,,yes,yes,yes,,yes,yes,yes
+52,T. J. Hooker,drama,drama,1987,1989,,yes,yes,yes,,yes,yes,yes
+309,Tales from the Darkside,"scifi,thriller",adventure,1983,1989,yes,yes,yes,yes,,yes,yes,yes
+194,Taxi,comedy,family,1984,1989,yes,yes,yes,yes,yes,yes,yes,yes
+10,That Girl,comedy,family,1979,1989,yes,yes,yes,yes,yes,yes,yes,yes
+280,The Hilarious House of Frightenstein,"comedy,family,horror",family,1971,1989,yes,yes,yes,yes,yes,yes,yes,yes
+327,The Prisoner,"drama,mystery,scifi",adventure,1969,1989,yes,yes,yes,yes,,yes,yes,yes
+390,The Rat Patrol,"action,drama",adventure,1969,1989,yes,yes,yes,yes,yes,yes,yes,yes
+287,The Saint,"crime,drama,mystery",drama,1962,1989,,yes,yes,yes,,yes,yes,yes
+296,The Westerner,"western,drama",western,1961,1989,,yes,yes,yes,,yes,yes,yes
+295,Three's a Crowd,comedy,family,1986,1989,yes,yes,yes,yes,yes,yes,yes,yes
+139,Three's Company,comedy,family,1985,1989,yes,yes,yes,yes,yes,yes,yes,yes
+211,Thriller,"drama,mystery",drama,1963,1989,,yes,yes,yes,,yes,yes,yes
+14,Thunderbirds,scfi,adventure,1965,1989,yes,yes,yes,yes,yes,yes,yes,yes
+116,ThunderCats,cartoon,kids,1985,1989,yes,,yes,yes,yes,,yes,yes
+49,Tijuana_Toads,cartoon,kids,1969,1989,yes,,yes,yes,yes,,yes,yes
+272,Time Tunnel,"scifi,drama",adventure,1968,1989,yes,yes,yes,yes,yes,yes,yes,yes
+75,Too Close for Comfort,comedy,family,1984,1989,yes,yes,yes,yes,yes,yes,yes,yes
+76,Topper,comedy,family,1956,1989,yes,yes,yes,yes,yes,yes,yes,yes
+127,Twilight Zone,thriller,drama,1965,1989,,yes,yes,yes,,yes,yes,yes
+94,Ultraman,scfi,kids,1966,1989,yes,,yes,yes,yes,,yes,yes
+90,Underdog,cartoon,kids,1968,1989,yes,,yes,yes,yes,,yes,yes
+39,Vega$,drama,drama,1982,1989,,yes,yes,yes,,yes,yes,yes
+20,Voyage to the Bottom of the Sea,drama,drama,1969,1989,,yes,yes,yes,,yes,yes,yes
+91,Wacky Races,cartoon,kids,1970,1989,yes,,yes,yes,yes,,yes,yes
+387,Wagon Train,"western,drama",western,1966,1989,,yes,yes,yes,,yes,yes,yes
+135,Wait Till Your Father Gets Home,cartoon,kids,1972,1989,yes,,yes,yes,yes,,yes,yes
+48,Wally Gator,cartoon,kids,1962,1989,yes,,yes,yes,yes,,yes,yes
+70,Waltons,drama,drama,1982,1989,,yes,yes,yes,,yes,yes,yes
+45,Wanted Dead or Alive,western,western,1962,1989,,yes,yes,yes,,yes,yes,yes
+190,Welcome Back Kotter,comedy,family,1980,1989,yes,yes,yes,yes,yes,yes,yes,yes
+102,WKRP in Cincinnati,comedy,family,1983,1989,yes,yes,yes,yes,yes,yes,yes,yes
+381,Wonder Years,"comedy,drama,family",family,,,yes,yes,yes,yes,yes,yes,yes,yes
+68,Yancy Derringer,drama,drama,1960,1989,,yes,yes,yes,,yes,yes,yes
+276,You Bet Your Life,game,game,1962,1989,yes,yes,yes,yes,yes,yes,yes,yes

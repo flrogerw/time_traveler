@@ -1,0 +1,207 @@
+show_id,show_name,mapped_genre,turn_on,turn_off
+9,Adam 12,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_noon; -weekday_early_afternoon
+19,Addams Family,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -weekday_morning; -weekday_late_morning
+310,Adventures of Jim Bowie,western,+sunday_midday,-weekday_early_morning; -weekday_morning; -weekday_late_morning; -weekday_early_evening
+89,Adventures of Kit Carson,western,+sunday_midday,-weekday_morning
+385,Adventures of Ozzie and Harriet,family,+weekday_early_morning,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -weekday_morning
+57,Adventures of Superman,drama,+saturday_early_morning; +sunday_early_morning; +saturday_morning; +sunday_morning; +weekday_early_morning; +weekday_morning; +weekday_after_school,-weekday_noon; -weekday_early_afternoon; -weekday_early_evening
+258,Airwolf,adventure,,-saturday_early_morning; -saturday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_morning; -weekday_early_afternoon; -weekday_after_school
+252,ALF,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning
+30,Alfred Hitchcock Presents,drama,+weekday_after_school,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon
+159,Alice,family,+weekday_early_morning,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning
+191,All in the Family,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon; -weekday_after_school
+334,Amazing Spider-Man,adventure,,-saturday_early_morning; -saturday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning
+367,Amen,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon
+278,Andy Griffith Show,family,+weekday_early_morning; +weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+131,Angie,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_after_school; -weekday_early_evening
+297,Annie Oakley,western,+sunday_midday,-weekday_morning; -weekday_late_morning; -weekday_early_evening
+119,Banacek,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon; -weekday_early_evening
+342,Barbara McNair Show,variety,+weekday_early_afternoon,-saturday_morning; -saturday_midday; -sunday_midday; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_early_evening
+234,Baretta,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+105,Barnaby Jones,drama,+weekday_after_school,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+111,Barney Miller,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning
+153,Batman,family,+weekday_early_morning; +weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon
+248,Battlestar Galactica,adventure,+weekday_late_morning,-saturday_early_morning; -saturday_morning
+261,Bearcats,adventure,+weekday_noon,-saturday_early_morning; -saturday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_after_school; -weekday_early_evening
+255,Benson,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+378,Beverly Hillbillies,family,,-saturday_early_morning; -sunday_early_morning; -weekday_morning
+217,Bewitched,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+92,Bill Nye the Science Guy,other,+saturday_early_morning; +saturday_morning; +weekday_after_school,-weekday_noon; -weekday_early_afternoon; -weekday_early_evening
+181,Bob Newhart Show,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_morning
+174,Brady Bunch,family,+weekday_early_morning,
+262,Branded,western,+sunday_midday,-weekday_morning; -weekday_early_evening
+331,Buck Rogers in the 25th Century,adventure,,-saturday_early_morning; -saturday_morning; -weekday_morning
+113,Cannon,drama,+weekday_after_school,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+393,Charles in Charge,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon
+108,Charlie's Angels,drama,+weekday_after_school,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon
+209,Cheers,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_early_afternoon
+124,CHiPs,drama,+weekday_after_school,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon
+101,Columbo,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_early_evening
+242,Cosmos,other,+saturday_early_morning; +saturday_morning,
+189,Courtship of Eddie's Father,family,+weekday_early_morning,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_early_afternoon
+241,Cousteau Odyssey,other,+saturday_early_morning; +saturday_morning; +weekday_after_school,
+245,CPO Sharkey,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning
+376,Daktari,drama,,-weekday_early_evening
+321,Danger Man,adventure,,-saturday_early_morning; -saturday_morning; -weekday_morning
+207,Dark Shadows,drama,+weekday_after_school,-saturday_midday; -sunday_midday
+277,Decoy,drama,+weekday_after_school,-weekday_early_evening
+244,Dennis the Menace,family,+weekday_early_morning,
+23,Dick Van Dyke Show,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon
+142,Different Strokes,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning
+31,Donna Reed Show,family,+weekday_early_morning,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_early_evening
+322,Doris Day Show,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_early_evening
+120,Dragnet 1967,drama,+weekday_after_school,-weekday_early_evening
+267,Dukes of Hazzard,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_morning
+35,Emergency,drama,+weekday_after_school,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+282,F Troop,western,+sunday_midday; +weekday_after_school,
+160,F.B.I.,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon
+382,Facts of Life,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning
+154,Family Affair,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_early_evening
+218,Fantasy Island,drama,+weekday_after_school,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_late_morning; -weekday_early_evening
+395,Fernwood Tonight,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon; -weekday_after_school; -weekday_early_evening
+339,Firing Line,talk,+saturday_early_morning; +saturday_morning; +saturday_midday; +saturday_afternoon; +sunday_afternoon,-weekday_morning; -weekday_late_morning; -weekday_noon
+370,Flipper,adventure,+sunday_early_morning; +sunday_morning; +weekday_early_morning,
+210,Flying Nun,family,+weekday_early_morning; +weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+298,Four Star Playhouse,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon; -weekday_after_school; -weekday_early_evening
+219,Freddy's Nightmares,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon; -weekday_early_evening
+93,Fugitive,drama,+weekday_after_school,-saturday_midday; -sunday_midday
+362,Galactica 1980,adventure,,-saturday_early_morning; -saturday_morning; -weekday_morning
+303,Gentle Ben,family,+weekday_early_morning,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+184,Get Smart,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon
+96,Ghost & Mrs. Muir,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -weekday_morning; -weekday_after_school; -weekday_early_evening
+202,Gidget,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -weekday_early_evening
+12,Gilligan's Island,family,+weekday_early_morning; +weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning
+384,Gimme a Break,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+371,Golden Girls,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_morning
+302,Gomer Pyle,family,+weekday_early_morning; +weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon
+11,Green Acres,family,+weekday_early_morning; +weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday
+163,Growing Pains,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_morning; -weekday_early_evening
+144,Gunsmoke,western,+sunday_midday; +weekday_after_school,-weekday_early_morning; -weekday_morning; -weekday_late_morning
+141,Happy Days,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon
+251,Hardcastle and McCormick,adventure,+weekday_late_morning; +weekday_noon,-saturday_early_morning; -saturday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_morning
+54,Hardy Boys/Nancy Drew Mysteries,drama,,-saturday_early_evening; -sunday_early_evening; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon; -weekday_early_evening
+114,Harry O,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon; -weekday_early_evening
+115,Hart To Hart,drama,+weekday_after_school,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+28,Have Gun Will Travel,western,+sunday_midday,-weekday_early_morning; -weekday_morning; -weekday_late_morning; -weekday_early_evening
+100,Hawaii Five O,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_late_morning; -weekday_early_evening
+307,Hawk,drama,+weekday_after_school,
+188,Hazel,family,+weekday_early_morning; +weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_early_evening
+392,Here Come the Brides,western,+sunday_midday,-weekday_early_morning; -weekday_morning; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon; -weekday_early_evening
+213,Here's Lucy,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday
+305,High Chaparral,western,+sunday_midday; +weekday_after_school,-weekday_early_morning; -weekday_morning
+125,Hill Street Blues,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon; -weekday_early_evening
+122,Hogan's Heroes,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning
+333,Honeymooners,family,+weekday_early_morning; +weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+228,Hotel,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_late_morning; -weekday_noon; -weekday_early_evening
+106,Hunter,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_noon; -weekday_early_afternoon
+143,I Dream of Jeannie,family,+weekday_early_morning; +weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday
+5,I Love Lucy,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon
+214,In Search of...,adventure,,-saturday_early_morning; -saturday_morning; -weekday_morning
+117,Incredible Hulk,adventure,,-saturday_early_morning; -saturday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_morning
+239,Invisible Man,adventure,,-saturday_early_morning; -saturday_morning; -weekday_morning; -weekday_early_evening
+40,Ironside,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon
+317,It Takes a Thief,adventure,+weekday_late_morning,-saturday_early_morning; -saturday_morning; -weekday_morning
+118,Jake and the Fatman,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon
+192,Jeffersons,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_morning
+315,Joe 90,kids,+saturday_midday; +sunday_midday; +saturday_afternoon; +sunday_afternoon; +saturday_early_evening; +sunday_early_evening,
+201,King of the Hill,kids,+saturday_afternoon; +sunday_afternoon; +saturday_early_evening; +sunday_early_evening; +weekday_early_evening,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -weekday_early_morning; -weekday_morning; -weekday_early_afternoon; -weekday_after_school
+264,Knight Rider,adventure,+weekday_late_morning; +weekday_noon,-saturday_early_morning; -saturday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_morning
+104,Kojak,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon
+271,Kung Fu,drama,+weekday_after_school,-saturday_midday; -sunday_midday
+274,Land of the Giants,adventure,+sunday_morning,-saturday_early_morning; -weekday_morning; -weekday_early_afternoon; -weekday_after_school; -weekday_early_evening
+400,Laramie,western,+sunday_midday,-weekday_early_morning; -weekday_morning
+140,Lavern and Shirley,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_morning
+24,Leave it to Beaver,family,+weekday_early_morning,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_late_morning; -weekday_early_evening
+313,Life and Legend of Wyatt Earp,western,+sunday_midday,-weekday_early_morning; -weekday_morning; -weekday_early_evening
+227,Little House on the Prairie,drama,+weekday_after_school,
+2,Lone Ranger,western,+saturday_early_morning; +sunday_early_morning; +saturday_morning; +sunday_morning; +sunday_midday; +weekday_after_school,-weekday_noon; -weekday_early_evening
+38,Lost in Space,adventure,,-saturday_early_morning; -saturday_morning; -saturday_midday; -sunday_midday; -weekday_morning; -weekday_early_afternoon; -weekday_after_school; -weekday_early_evening
+222,Lou Grant,drama,+weekday_after_school,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_late_morning
+157,Love Boat,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_morning; -weekday_late_morning; -weekday_early_evening
+183,"Love, American Style",family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon; -weekday_after_school; -weekday_early_evening
+1,Lucy Show,family,+weekday_early_morning; +weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+200,M*A*S*H,drama,+weekday_after_school,
+291,Mackenzie's Raiders,western,+sunday_midday,-weekday_early_morning; -weekday_morning; -weekday_early_evening
+265,Man From Atlantis,adventure,,-saturday_early_morning; -saturday_morning; -saturday_midday; -sunday_midday; -weekday_morning; -weekday_early_afternoon; -weekday_after_school; -weekday_early_evening
+69,Man from U.N.C.L.E.,drama,,-weekday_late_morning; -weekday_noon; -weekday_early_afternoon
+220,Mannix,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon; -weekday_early_evening
+37,Many Loves of Dobie Gillis,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_evening
+396,Mary Hartman Mary Hartman,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon; -weekday_after_school; -weekday_early_evening
+270,Mary Tyler Moore Show,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning
+340,Match Game,game,,-saturday_morning; -saturday_midday; -sunday_midday; -saturday_early_evening; -sunday_early_evening; -weekday_early_evening
+133,Maude,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -weekday_morning; -weekday_late_morning
+22,Maverick,western,+sunday_midday; +weekday_after_school,-weekday_early_morning; -weekday_morning; -weekday_late_morning
+397,Mayberry RFD,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon
+404,McCloud,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon; -weekday_early_evening
+364,McHale's Navy,family,+weekday_early_morning; +weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning
+130,McMillan & Wife,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon; -weekday_early_evening
+55,Mission Impossible,drama,,-saturday_midday; -sunday_midday; -weekday_late_morning; -weekday_noon
+7,Mister Ed,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_early_evening
+128,Mod Squad,drama,,-weekday_late_morning; -weekday_noon; -weekday_early_afternoon
+8,Monkees,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_late_morning; -weekday_early_afternoon; -weekday_early_evening
+193,Mork and Mindy,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_after_school; -weekday_early_evening
+203,Mothers in Law,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_after_school; -weekday_early_evening
+18,Munsters,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon
+95,Mutual of Omaha's Wild Kingdom,other,,-sunday_early_morning; -sunday_morning; -weekday_noon; -weekday_early_afternoon; -weekday_early_evening
+97,My Favorite Martian,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday
+406,My Little Margie,family,+weekday_early_morning,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_early_afternoon; -weekday_after_school; -weekday_early_evening
+161,My Three Sons,family,+weekday_early_morning; +weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+279,Naked City,drama,,-weekday_early_evening
+399,Nanny and the Professor,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_after_school; -weekday_early_evening
+162,Night Court,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon; -weekday_after_school
+229,Night Gallery,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon; -weekday_early_evening
+175,Odd Couple,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon; -weekday_after_school
+308,One Step Beyond,adventure,,-saturday_early_morning; -saturday_morning; -weekday_morning
+253,Outer Limits,adventure,,-saturday_early_morning; -saturday_morning; -weekday_morning; -weekday_early_afternoon
+145,Partridge Family,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon
+361,Patty Duke Show,family,+weekday_early_morning; +weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+32,Perry Mason,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_late_morning; -weekday_early_evening
+237,Peter Gunn,drama,+weekday_after_school,
+64,Petticoat Junction,family,+weekday_early_morning; +weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+107,Police Woman,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon
+323,Punky Brewster,family,+weekday_early_morning,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -weekday_late_morning
+34,Quincy M.E.,drama,+weekday_after_school,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon
+243,Rawhide,western,+sunday_midday; +weekday_after_school,-weekday_early_morning; -weekday_morning; -weekday_early_evening
+366,Rhoda,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening
+126,Rockford Files,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon
+136,Rookies,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon
+187,Room 222,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon; -weekday_after_school
+383,Saved by the Bell,family,,-saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_early_evening
+27,Sea Hunt,drama,+weekday_after_school,-weekday_late_morning; -weekday_noon
+320,Secret Agent,adventure,+weekday_late_morning; +weekday_noon,-saturday_early_morning; -saturday_morning; -saturday_midday; -sunday_midday; -weekday_morning; -weekday_after_school; -weekday_early_evening
+301,Secrets of Isis,adventure,+sunday_early_morning; +sunday_morning,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_early_evening
+221,Six Million Dollar Man,adventure,+weekday_noon,-saturday_early_morning; -saturday_morning; -saturday_midday; -sunday_midday; -weekday_morning; -weekday_after_school; -weekday_early_evening
+146,Sixth Sense,drama,,-saturday_midday; -sunday_midday; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon; -weekday_early_evening
+204,Soap,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon; -weekday_after_school; -weekday_early_evening
+85,Space 1999,adventure,,-saturday_early_morning; -saturday_morning; -weekday_morning
+286,Square Pegs,family,+weekday_early_morning; +weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -weekday_early_evening
+61,Star Trek,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon
+99,Starsky & Hutch,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon
+156,Streets of San Francisco,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon
+52,T. J. Hooker,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon
+309,Tales from the Darkside,adventure,,-saturday_early_morning; -saturday_morning; -saturday_midday; -sunday_midday; -weekday_morning; -weekday_early_afternoon; -weekday_after_school; -weekday_early_evening
+194,Taxi,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon; -weekday_after_school
+10,That Girl,family,+weekday_noon,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning
+280,The Hilarious House of Frightenstein,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon; -weekday_after_school; -weekday_early_evening
+327,The Prisoner,adventure,,-saturday_early_morning; -saturday_morning; -saturday_midday; -sunday_midday; -weekday_morning
+390,The Rat Patrol,adventure,,-saturday_early_morning; -saturday_morning; -weekday_morning; -weekday_after_school; -weekday_early_evening
+296,The Westerner,western,+sunday_midday,-weekday_early_morning; -weekday_morning; -weekday_late_morning; -weekday_early_evening
+295,Three's a Crowd,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon
+139,Three's Company,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon
+211,Thriller,drama,,-saturday_midday; -sunday_midday; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon; -weekday_early_evening
+14,Thunderbirds,adventure,+sunday_early_morning; +sunday_morning; +weekday_early_morning,-weekday_early_evening
+272,Time Tunnel,adventure,,-saturday_early_morning; -saturday_morning; -weekday_morning; -weekday_early_afternoon; -weekday_early_evening
+75,Too Close for Comfort,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon; -weekday_after_school
+76,Topper,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon; -weekday_after_school; -weekday_early_evening
+127,Twilight Zone,drama,,-saturday_midday; -sunday_midday; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon
+39,Vega$,drama,+weekday_after_school,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_late_morning
+20,Voyage to the Bottom of the Sea,drama,+weekday_after_school,-saturday_midday; -sunday_midday; -weekday_late_morning; -weekday_noon
+387,Wagon Train,western,+sunday_midday; +weekday_after_school,
+135,Wait Till Your Father Gets Home,kids,+weekday_early_evening,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -weekday_early_morning; -weekday_morning; -weekday_early_afternoon; -weekday_after_school
+70,Waltons,drama,,-saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -weekday_late_morning; -weekday_noon; -weekday_early_evening
+45,Wanted Dead or Alive,western,+sunday_midday; +weekday_after_school,-weekday_early_morning; -weekday_morning; -weekday_late_morning
+190,Welcome Back Kotter,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon; -weekday_after_school
+102,WKRP in Cincinnati,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_early_afternoon; -weekday_after_school
+381,Wonder Years,family,,-saturday_early_morning; -sunday_early_morning; -saturday_morning; -sunday_morning; -saturday_midday; -sunday_midday; -saturday_afternoon; -sunday_afternoon; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning
+68,Yancy Derringer,drama,,-weekday_late_morning; -weekday_noon; -weekday_early_afternoon; -weekday_early_evening
+276,You Bet Your Life,game,,-saturday_morning; -saturday_midday; -sunday_midday; -saturday_early_evening; -sunday_early_evening; -weekday_morning; -weekday_late_morning; -weekday_noon; -weekday_early_afternoon; -weekday_early_evening

@@ -139,6 +139,10 @@ per show for weekday and weekend) AND `shows.show_is_syndicated` -> filler ladde
   first deletes every era-aware `fill_rules` row.
 - A weekday `SYN` slot is one Mon-Fri strip (`Schedules.insert_schedule_template` copies it to all five days); a show is
   licensed to one slot per replication year.
+- **Late night** (23:00-06:00, all days): one `show_syndication_eligibility.late_night` column; `daypart_column_for` returns it for hours 23 and 0-5.
+  Calendar-day semantics: run 23:00-24:00 on a date and 00:00-06:00 on the NEXT date (that date's own dow); `create_playlist` exits on a window
+  that crosses midnight (it would append a duplicate random grid every run). Primetime (19-23) and a weekend's 06:00 hour stay outside the system.
+  Migration `tv_guide_research/add_late_night.sql` (column + picks + all-era `fill_rules`) is proposed, NOT applied until the user says so.
 - **Filler** (`resolve_filler`): when a slot's categories have no unused eligible show -> adjacent daypart, related
   category, rerun on same channel, rerun from another channel, back-to-back as last resort; `use_filler=False` restores
   old behavior. `dryrun_fill_ladder.py` mirrors it in memory -- keep the two in sync.
@@ -186,6 +190,9 @@ derived from that evidence, not from genre guesses; read it before changing them
 eligibility per show and diffs it against `show_syndication_eligibility`, read-only; `missing_kids_shows.py` ranks
 kids' shows the guides show a lot that the library lacks). Rebuild the data with `download_guides.py` +
 `run_parse_all.py` (the ~130 MB JSONL is not committed).
+
+`veto_flags.py` (read-only) is a proposed (not yet approved) approach for flags: veto-only (never turns a flag ON), tiered A/B/C, output
+`proposed_flag_vetoes.csv` (880 flags / 243 shows) -- NOT applied, awaiting the user's per-tier decision.
 
 **Never write to the database for this work** -- deliver proposed changes as files (CSV/SQL/JSON) and dry-run only; "apply"
 or "fix it" is not permission to write. `TV_GUIDE_RESEARCH.md` also records what the DB already holds

@@ -1,0 +1,881 @@
+tier,show_id,show_name,show_genre,mapped_genre,flag_to_turn_off,guide_slot,primary_class,primary_class_share_in_slot,show_total_guide_listings
+C,233,Ace Crawford... Private Eye,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,233,Ace Crawford... Private Eye,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,19,Addams Family,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,188
+A,19,Addams Family,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,188
+A,19,Addams Family,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,188
+A,19,Addams Family,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,188
+B,310,Adventures of Jim Bowie,"adventure,drama,western",western,weekday_late_morning,WKD 10-16,adventure/sci-fi,1.9%,0
+B,310,Adventures of Jim Bowie,"adventure,drama,western",western,weekday_noon,WKD 10-16,adventure/sci-fi,1.9%,0
+B,310,Adventures of Jim Bowie,"adventure,drama,western",western,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+C,385,Adventures of Ozzie and Harriet,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,385,Adventures of Ozzie and Harriet,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,258,Airwolf,"scifi,action,drama",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,258,Airwolf,"scifi,action,drama",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,258,Airwolf,"scifi,action,drama",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+C,252,ALF,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,252,ALF,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+B,30,Alfred Hitchcock Presents,mystery,drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,30,Alfred Hitchcock Presents,mystery,drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,30,Alfred Hitchcock Presents,mystery,drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,159,Alice,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,47
+A,159,Alice,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,47
+A,159,Alice,comedy,family,saturday_midday,SAT 12-19,comedy,22.0%,47
+A,159,Alice,comedy,family,saturday_afternoon,SAT 12-19,comedy,22.0%,47
+A,159,Alice,comedy,family,saturday_early_evening,SAT 12-19,comedy,22.0%,47
+A,159,Alice,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,47
+A,159,Alice,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,47
+A,159,Alice,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,47
+A,159,Alice,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,47
+A,159,Alice,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,47
+A,191,All in the Family,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,85
+A,191,All in the Family,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,85
+A,191,All in the Family,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,85
+A,191,All in the Family,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,85
+A,191,All in the Family,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,85
+A,191,All in the Family,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,85
+A,191,All in the Family,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,85
+A,191,All in the Family,comedy,family,weekday_morning,WKD 06-10,comedy,22.1%,85
+C,334,Amazing Spider-Man,"scifi,crime,drama",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,334,Amazing Spider-Man,"scifi,crime,drama",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,334,Amazing Spider-Man,"scifi,crime,drama",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+C,367,Amen,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,367,Amen,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,278,Andy Griffith Show,"comedy,family",family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,278,Andy Griffith Show,"comedy,family",family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,131,Angie,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,131,Angie,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,297,Annie Oakley,western,western,weekday_late_morning,WKD 10-16,western,2.7%,64
+A,297,Annie Oakley,western,western,weekday_noon,WKD 10-16,western,2.7%,64
+A,297,Annie Oakley,western,western,weekday_early_afternoon,WKD 10-16,western,2.7%,64
+B,240,Arrest and Trial,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,1
+B,240,Arrest and Trial,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,1
+B,240,Arrest and Trial,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,1
+A,36,Atom Ant,cartoon,kids,sunday_early_morning,SUN 07-12,cartoons/children,42.6%,83
+A,36,Atom Ant,cartoon,kids,sunday_morning,SUN 07-12,cartoons/children,42.6%,83
+A,36,Atom Ant,cartoon,kids,weekday_early_morning,WKD 06-10,cartoons/children,54.9%,83
+A,36,Atom Ant,cartoon,kids,weekday_morning,WKD 06-10,cartoons/children,54.9%,83
+A,36,Atom Ant,cartoon,kids,weekday_early_afternoon,WKD 10-16,cartoons/children,27.6%,83
+A,36,Atom Ant,cartoon,kids,weekday_after_school,WKD 16-19,cartoons/children,38.5%,83
+C,260,Automan,"scifi,comedy,crime",family,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,260,Automan,"scifi,comedy,crime",family,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,260,Automan,"scifi,comedy,crime",family,weekday_late_morning,WKD 10-16,adventure/sci-fi,1.9%,0
+B,260,Automan,"scifi,comedy,crime",family,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+B,119,Banacek,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,119,Banacek,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,119,Banacek,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,83,Bananna Splits,comedy,kids,weekday_early_morning,WKD 06-10,cartoons/children,54.9%,84
+A,83,Bananna Splits,comedy,kids,weekday_morning,WKD 06-10,cartoons/children,54.9%,84
+C,342,Barbara McNair Show,"variety,comedy,music",variety,saturday_morning,SAT 07-12,variety/music,4.9%,0
+B,234,Baretta,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,234,Baretta,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,234,Baretta,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,105,Barnaby Jones,"crime,drama",drama,saturday_midday,SAT 12-19,crime/mystery/suspense,8.7%,8
+A,105,Barnaby Jones,"crime,drama",drama,saturday_afternoon,SAT 12-19,crime/mystery/suspense,8.7%,8
+A,105,Barnaby Jones,"crime,drama",drama,saturday_early_evening,SAT 12-19,crime/mystery/suspense,8.7%,8
+A,105,Barnaby Jones,"crime,drama",drama,weekday_early_evening,WKD 16-19,crime/mystery/suspense,5.4%,8
+A,111,Barney Miller,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,18
+A,111,Barney Miller,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,18
+A,111,Barney Miller,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,18
+A,111,Barney Miller,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,18
+A,111,Barney Miller,comedy,family,weekday_morning,WKD 06-10,comedy,22.1%,18
+A,153,Batman,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,288
+A,153,Batman,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,288
+A,153,Batman,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,288
+C,248,Battlestar Galactica,"scifi,drama",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,248,Battlestar Galactica,"scifi,drama",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,248,Battlestar Galactica,"scifi,drama",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+C,261,Bearcats,"action,adventure",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,261,Bearcats,"action,adventure",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,261,Bearcats,"action,adventure",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+C,255,Benson,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,1
+C,255,Benson,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,1
+A,378,Beverly Hillbillies,"comedy,family",family,saturday_early_morning,SAT 07-12,comedy,7.5%,877
+A,378,Beverly Hillbillies,"comedy,family",family,saturday_morning,SAT 07-12,comedy,7.5%,877
+A,378,Beverly Hillbillies,"comedy,family",family,sunday_early_morning,SUN 07-12,comedy,9.3%,877
+A,378,Beverly Hillbillies,"comedy,family",family,sunday_morning,SUN 07-12,comedy,9.3%,877
+A,217,Bewitched,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,832
+A,217,Bewitched,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,832
+A,217,Bewitched,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,832
+C,247,Beyond Westworld,scifi,adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,247,Beyond Westworld,scifi,adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,247,Beyond Westworld,scifi,adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+C,353,Bill Cosby Show,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,353,Bill Cosby Show,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+B,92,Bill Nye the Science Guy,educational,other,saturday_midday,SAT 12-19,education,1.9%,0
+B,92,Bill Nye the Science Guy,educational,other,saturday_afternoon,SAT 12-19,education,1.9%,0
+B,92,Bill Nye the Science Guy,educational,other,saturday_early_evening,SAT 12-19,education,1.9%,0
+C,368,Blondie,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,368,Blondie,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,257,Blue Thunder,"scifi,crime,drama",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,257,Blue Thunder,"scifi,crime,drama",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,257,Blue Thunder,"scifi,crime,drama",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+C,181,Bob Newhart Show,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,181,Bob Newhart Show,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,86,Brady Kids,cartoon,kids,weekday_after_school,WKD 16-19,cartoons/children,38.5%,10
+A,262,Branded,"western,drama",western,weekday_early_morning,WKD 06-10,western,3.7%,29
+A,262,Branded,"western,drama",western,weekday_morning,WKD 06-10,western,3.7%,29
+C,331,Buck Rogers in the 25th Century,"scifi,adventure,action",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,331,Buck Rogers in the 25th Century,"scifi,adventure,action",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,331,Buck Rogers in the 25th Century,"scifi,adventure,action",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+B,113,Cannon,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,113,Cannon,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,113,Cannon,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+C,180,Carol Burnett Show,"variety,comedy,musical",variety,saturday_morning,SAT 07-12,variety/music,4.9%,0
+C,393,Charles in Charge,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,393,Charles in Charge,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,108,Charlie's Angels,"crime,drama",drama,saturday_midday,SAT 12-19,crime/mystery/suspense,8.7%,30
+A,108,Charlie's Angels,"crime,drama",drama,saturday_afternoon,SAT 12-19,crime/mystery/suspense,8.7%,30
+A,108,Charlie's Angels,"crime,drama",drama,saturday_early_evening,SAT 12-19,crime/mystery/suspense,8.7%,30
+C,209,Cheers,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,209,Cheers,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+B,124,CHiPs,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,124,CHiPs,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,124,CHiPs,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+C,256,Cop Rock,"comedy,drama,musical",variety,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,189,Courtship of Eddie's Father,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,52
+A,189,Courtship of Eddie's Father,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,52
+A,189,Courtship of Eddie's Father,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,52
+A,189,Courtship of Eddie's Father,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,52
+A,189,Courtship of Eddie's Father,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,52
+A,189,Courtship of Eddie's Father,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,52
+A,189,Courtship of Eddie's Father,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,52
+A,189,Courtship of Eddie's Father,comedy,family,weekday_morning,WKD 06-10,comedy,22.1%,52
+C,245,CPO Sharkey,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,245,CPO Sharkey,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,376,Daktari,drama,drama,weekday_late_morning,WKD 10-16,drama,12.3%,16
+A,376,Daktari,drama,drama,weekday_noon,WKD 10-16,drama,12.3%,16
+A,376,Daktari,drama,drama,weekday_early_afternoon,WKD 10-16,drama,12.3%,16
+A,321,Danger Man,"action,crime,mystery",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,40
+A,321,Danger Man,"action,crime,mystery",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,40
+A,321,Danger Man,"action,crime,mystery",adventure,sunday_midday,SUN 12-19,adventure/sci-fi,11.9%,40
+A,321,Danger Man,"action,crime,mystery",adventure,sunday_afternoon,SUN 12-19,adventure/sci-fi,11.9%,40
+A,321,Danger Man,"action,crime,mystery",adventure,sunday_early_evening,SUN 12-19,adventure/sci-fi,11.9%,40
+A,321,Danger Man,"action,crime,mystery",adventure,weekday_morning,WKD 06-10,adventure/sci-fi,2.5%,40
+A,321,Danger Man,"action,crime,mystery",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,40
+A,207,Dark Shadows,"drama,horror",drama,saturday_midday,SAT 12-19,drama,17.4%,737
+A,207,Dark Shadows,"drama,horror",drama,saturday_afternoon,SAT 12-19,drama,17.4%,737
+A,207,Dark Shadows,"drama,horror",drama,saturday_early_evening,SAT 12-19,drama,17.4%,737
+A,207,Dark Shadows,"drama,horror",drama,sunday_midday,SUN 12-19,drama,40.0%,737
+A,207,Dark Shadows,"drama,horror",drama,sunday_afternoon,SUN 12-19,drama,40.0%,737
+A,207,Dark Shadows,"drama,horror",drama,sunday_early_evening,SUN 12-19,drama,40.0%,737
+B,316,Darkroom,"thriller,scifi,drama",adventure,saturday_early_morning,SAT 07-12,crime/mystery/suspense,0.5%,0
+B,316,Darkroom,"thriller,scifi,drama",adventure,saturday_morning,SAT 07-12,crime/mystery/suspense,0.5%,0
+B,316,Darkroom,"thriller,scifi,drama",adventure,weekday_morning,WKD 06-10,crime/mystery/suspense,0.4%,0
+B,316,Darkroom,"thriller,scifi,drama",adventure,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,277,Decoy,"crime,drama,police",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,277,Decoy,"crime,drama,police",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,277,Decoy,"crime,drama,police",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,244,Dennis the Menace,comedy,family,saturday_midday,SAT 12-19,comedy,22.0%,623
+A,244,Dennis the Menace,comedy,family,saturday_afternoon,SAT 12-19,comedy,22.0%,623
+A,244,Dennis the Menace,comedy,family,saturday_early_evening,SAT 12-19,comedy,22.0%,623
+A,244,Dennis the Menace,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,623
+A,244,Dennis the Menace,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,623
+A,244,Dennis the Menace,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,623
+A,244,Dennis the Menace,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,623
+A,244,Dennis the Menace,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,623
+C,23,Dick Van Dyke Show,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,23,Dick Van Dyke Show,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,142,Different Strokes,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,7
+C,142,Different Strokes,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,7
+C,31,Donna Reed Show,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,31,Donna Reed Show,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,322,Doris Day Show,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,322,Doris Day Show,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+B,120,Dragnet 1967,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,120,Dragnet 1967,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,120,Dragnet 1967,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+C,267,Dukes of Hazzard,"action,comedy",family,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,1
+C,267,Dukes of Hazzard,"action,comedy",family,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,1
+B,267,Dukes of Hazzard,"action,comedy",family,weekday_late_morning,WKD 10-16,adventure/sci-fi,1.9%,1
+B,267,Dukes of Hazzard,"action,comedy",family,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,1
+C,304,Ed Sullivan Show,"variety,musical",variety,saturday_morning,SAT 07-12,variety/music,4.9%,0
+B,98,Ellery Queen,mystery,drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,98,Ellery Queen,mystery,drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,98,Ellery Queen,mystery,drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,35,Emergency,drama,drama,saturday_midday,SAT 12-19,drama,17.4%,19
+A,35,Emergency,drama,drama,saturday_afternoon,SAT 12-19,drama,17.4%,19
+A,35,Emergency,drama,drama,saturday_early_evening,SAT 12-19,drama,17.4%,19
+A,35,Emergency,drama,drama,sunday_midday,SUN 12-19,drama,40.0%,19
+A,35,Emergency,drama,drama,sunday_afternoon,SUN 12-19,drama,40.0%,19
+A,35,Emergency,drama,drama,sunday_early_evening,SUN 12-19,drama,40.0%,19
+B,160,F.B.I.,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,160,F.B.I.,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,160,F.B.I.,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,382,Facts of Life,"comedy,drama,family",family,saturday_early_morning,SAT 07-12,comedy,7.5%,12
+A,382,Facts of Life,"comedy,drama,family",family,saturday_morning,SAT 07-12,comedy,7.5%,12
+A,382,Facts of Life,"comedy,drama,family",family,saturday_midday,SAT 12-19,comedy,22.0%,12
+A,382,Facts of Life,"comedy,drama,family",family,saturday_afternoon,SAT 12-19,comedy,22.0%,12
+A,382,Facts of Life,"comedy,drama,family",family,saturday_early_evening,SAT 12-19,comedy,22.0%,12
+A,382,Facts of Life,"comedy,drama,family",family,sunday_early_morning,SUN 07-12,comedy,9.3%,12
+A,382,Facts of Life,"comedy,drama,family",family,sunday_morning,SUN 07-12,comedy,9.3%,12
+A,382,Facts of Life,"comedy,drama,family",family,weekday_morning,WKD 06-10,comedy,22.1%,12
+A,382,Facts of Life,"comedy,drama,family",family,weekday_after_school,WKD 16-19,comedy,47.1%,12
+A,382,Facts of Life,"comedy,drama,family",family,weekday_early_evening,WKD 16-19,comedy,47.1%,12
+C,268,Fantastic Journey,"scifi,adventure",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,268,Fantastic Journey,"scifi,adventure",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,268,Fantastic Journey,"scifi,adventure",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+B,377,Father Brown,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,377,Father Brown,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,377,Father Brown,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+C,395,Fernwood Tonight,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,395,Fernwood Tonight,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,339,Firing Line,"talk,politics",talk,sunday_early_morning,SUN 07-12,variety/music,8.8%,27
+A,339,Firing Line,"talk,politics",talk,sunday_morning,SUN 07-12,variety/music,8.8%,27
+C,326,Flip Wilson Show,"variety,comedy,music",variety,saturday_morning,SAT 07-12,variety/music,4.9%,0
+C,60,Flo,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,60,Flo,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,210,Flying Nun,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,17
+A,210,Flying Nun,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,17
+A,210,Flying Nun,comedy,family,saturday_midday,SAT 12-19,comedy,22.0%,17
+A,210,Flying Nun,comedy,family,saturday_afternoon,SAT 12-19,comedy,22.0%,17
+A,210,Flying Nun,comedy,family,saturday_early_evening,SAT 12-19,comedy,22.0%,17
+A,210,Flying Nun,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,17
+A,210,Flying Nun,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,17
+A,210,Flying Nun,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,17
+A,210,Flying Nun,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,17
+A,210,Flying Nun,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,17
+A,210,Flying Nun,comedy,family,weekday_morning,WKD 06-10,comedy,22.1%,17
+C,298,Four Star Playhouse,"comedy,drama,crime",family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,298,Four Star Playhouse,"comedy,drama,crime",family,saturday_morning,SAT 07-12,comedy,7.5%,0
+B,219,Freddy's Nightmares,horror,drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,219,Freddy's Nightmares,horror,drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,219,Freddy's Nightmares,horror,drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,338,French Chef,cooking,talk,saturday_midday,SAT 12-19,,0.0%,439
+A,338,French Chef,cooking,talk,saturday_early_evening,SAT 12-19,,0.0%,439
+A,93,Fugitive,drama,drama,saturday_midday,SAT 12-19,drama,17.4%,226
+A,93,Fugitive,drama,drama,saturday_afternoon,SAT 12-19,drama,17.4%,226
+A,93,Fugitive,drama,drama,saturday_early_evening,SAT 12-19,drama,17.4%,226
+A,93,Fugitive,drama,drama,sunday_midday,SUN 12-19,drama,40.0%,226
+A,93,Fugitive,drama,drama,sunday_afternoon,SUN 12-19,drama,40.0%,226
+A,93,Fugitive,drama,drama,sunday_early_evening,SUN 12-19,drama,40.0%,226
+C,362,Galactica 1980,"scifi,drama",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,1
+C,362,Galactica 1980,"scifi,drama",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,1
+B,362,Galactica 1980,"scifi,drama",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,1
+C,254,Gemini Man,"scifi,action",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,254,Gemini Man,"scifi,action",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,254,Gemini Man,"scifi,action",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+B,303,Gentle Ben,"adventure,drama,family",family,weekday_late_morning,WKD 10-16,adventure/sci-fi,1.9%,3
+B,303,Gentle Ben,"adventure,drama,family",family,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,3
+A,223,George of the Jungle,cartoon,kids,weekday_after_school,WKD 16-19,cartoons/children,38.5%,92
+A,184,Get Smart,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,43
+A,184,Get Smart,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,43
+A,184,Get Smart,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,43
+A,184,Get Smart,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,43
+A,184,Get Smart,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,43
+A,96,Ghost & Mrs. Muir,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,13
+A,96,Ghost & Mrs. Muir,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,13
+A,96,Ghost & Mrs. Muir,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,13
+A,96,Ghost & Mrs. Muir,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,13
+A,96,Ghost & Mrs. Muir,comedy,family,weekday_morning,WKD 06-10,comedy,22.1%,13
+A,202,Gidget,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,65
+A,202,Gidget,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,65
+A,202,Gidget,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,65
+A,202,Gidget,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,65
+A,202,Gidget,comedy,family,weekday_morning,WKD 06-10,comedy,22.1%,65
+C,384,Gimme a Break,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,384,Gimme a Break,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,398,Gloria,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,1
+C,398,Gloria,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,1
+C,371,Golden Girls,"comedy,drama",family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,371,Golden Girls,"comedy,drama",family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,302,Gomer Pyle,"comedy,family",family,saturday_early_morning,SAT 07-12,comedy,7.5%,14
+A,302,Gomer Pyle,"comedy,family",family,saturday_morning,SAT 07-12,comedy,7.5%,14
+A,302,Gomer Pyle,"comedy,family",family,saturday_midday,SAT 12-19,comedy,22.0%,14
+A,302,Gomer Pyle,"comedy,family",family,saturday_afternoon,SAT 12-19,comedy,22.0%,14
+A,302,Gomer Pyle,"comedy,family",family,saturday_early_evening,SAT 12-19,comedy,22.0%,14
+A,302,Gomer Pyle,"comedy,family",family,sunday_early_morning,SUN 07-12,comedy,9.3%,14
+A,302,Gomer Pyle,"comedy,family",family,sunday_morning,SUN 07-12,comedy,9.3%,14
+A,302,Gomer Pyle,"comedy,family",family,sunday_midday,SUN 12-19,comedy,14.8%,14
+A,302,Gomer Pyle,"comedy,family",family,sunday_afternoon,SUN 12-19,comedy,14.8%,14
+A,302,Gomer Pyle,"comedy,family",family,sunday_early_evening,SUN 12-19,comedy,14.8%,14
+A,11,Green Acres,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,38
+A,11,Green Acres,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,38
+A,11,Green Acres,comedy,family,saturday_midday,SAT 12-19,comedy,22.0%,38
+A,11,Green Acres,comedy,family,saturday_afternoon,SAT 12-19,comedy,22.0%,38
+A,11,Green Acres,comedy,family,saturday_early_evening,SAT 12-19,comedy,22.0%,38
+A,11,Green Acres,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,38
+A,11,Green Acres,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,38
+C,163,Growing Pains,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,163,Growing Pains,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,144,Gunsmoke,"western,drama",western,sunday_afternoon,SUN 12-19,western,17.1%,25
+A,144,Gunsmoke,"western,drama",western,sunday_early_evening,SUN 12-19,western,17.1%,25
+A,17,H.R. Pufnstuf,comedy,kids,weekday_early_afternoon,WKD 10-16,cartoons/children,27.6%,11
+A,17,H.R. Pufnstuf,comedy,kids,weekday_after_school,WKD 16-19,cartoons/children,38.5%,11
+B,372,Hammer House of Horror,"horror,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,372,Hammer House of Horror,"horror,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,372,Hammer House of Horror,"horror,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,141,Happy Days,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,10
+A,141,Happy Days,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,10
+A,141,Happy Days,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,10
+A,141,Happy Days,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,10
+A,141,Happy Days,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,10
+A,141,Happy Days,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,10
+A,141,Happy Days,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,10
+C,251,Hardcastle and McCormick,"action,crime,drama",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,251,Hardcastle and McCormick,"action,crime,drama",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,251,Hardcastle and McCormick,"action,crime,drama",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+B,114,Harry O,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,114,Harry O,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,114,Harry O,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,115,Hart To Hart,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,115,Hart To Hart,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,115,Hart To Hart,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,28,Have Gun Will Travel,western,western,sunday_afternoon,SUN 12-19,western,17.1%,11
+A,28,Have Gun Will Travel,western,western,sunday_early_evening,SUN 12-19,western,17.1%,11
+A,28,Have Gun Will Travel,western,western,weekday_early_morning,WKD 06-10,western,3.7%,11
+A,28,Have Gun Will Travel,western,western,weekday_morning,WKD 06-10,western,3.7%,11
+B,100,Hawaii Five O,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,100,Hawaii Five O,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,100,Hawaii Five O,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,307,Hawk,"crime,drama,police",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,307,Hawk,"crime,drama,police",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,307,Hawk,"crime,drama,police",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,188,Hazel,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,19
+A,188,Hazel,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,19
+A,188,Hazel,comedy,family,saturday_midday,SAT 12-19,comedy,22.0%,19
+A,188,Hazel,comedy,family,saturday_afternoon,SAT 12-19,comedy,22.0%,19
+A,188,Hazel,comedy,family,saturday_early_evening,SAT 12-19,comedy,22.0%,19
+A,188,Hazel,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,19
+A,188,Hazel,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,19
+A,188,Hazel,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,19
+A,392,Here Come the Brides,"western,adventure",western,weekday_early_morning,WKD 06-10,western,3.7%,11
+A,392,Here Come the Brides,"western,adventure",western,weekday_morning,WKD 06-10,western,3.7%,11
+A,392,Here Come the Brides,"western,adventure",western,weekday_late_morning,WKD 10-16,western,2.7%,11
+A,392,Here Come the Brides,"western,adventure",western,weekday_noon,WKD 10-16,western,2.7%,11
+A,392,Here Come the Brides,"western,adventure",western,weekday_early_afternoon,WKD 10-16,western,2.7%,11
+A,392,Here Come the Brides,"western,adventure",western,weekday_early_evening,WKD 16-19,western,16.3%,11
+A,213,Here's Lucy,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,27
+A,213,Here's Lucy,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,27
+A,213,Here's Lucy,comedy,family,saturday_midday,SAT 12-19,comedy,22.0%,27
+A,213,Here's Lucy,comedy,family,saturday_afternoon,SAT 12-19,comedy,22.0%,27
+A,213,Here's Lucy,comedy,family,saturday_early_evening,SAT 12-19,comedy,22.0%,27
+A,213,Here's Lucy,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,27
+A,213,Here's Lucy,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,27
+A,213,Here's Lucy,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,27
+A,213,Here's Lucy,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,27
+A,213,Here's Lucy,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,27
+B,125,Hill Street Blues,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,125,Hill Street Blues,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,125,Hill Street Blues,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,122,Hogan's Heroes,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,51
+A,122,Hogan's Heroes,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,51
+A,122,Hogan's Heroes,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,51
+A,122,Hogan's Heroes,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,51
+A,122,Hogan's Heroes,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,51
+A,58,Honey West,drama,drama,sunday_midday,SUN 12-19,drama,40.0%,31
+A,58,Honey West,drama,drama,sunday_afternoon,SUN 12-19,drama,40.0%,31
+A,58,Honey West,drama,drama,sunday_early_evening,SUN 12-19,drama,40.0%,31
+A,58,Honey West,drama,drama,weekday_late_morning,WKD 10-16,drama,12.3%,31
+A,58,Honey West,drama,drama,weekday_noon,WKD 10-16,drama,12.3%,31
+A,58,Honey West,drama,drama,weekday_early_afternoon,WKD 10-16,drama,12.3%,31
+A,333,Honeymooners,"comedy,family",family,saturday_early_morning,SAT 07-12,comedy,7.5%,63
+A,333,Honeymooners,"comedy,family",family,saturday_morning,SAT 07-12,comedy,7.5%,63
+A,333,Honeymooners,"comedy,family",family,sunday_early_morning,SUN 07-12,comedy,9.3%,63
+A,333,Honeymooners,"comedy,family",family,sunday_morning,SUN 07-12,comedy,9.3%,63
+B,106,Hunter,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,106,Hunter,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,106,Hunter,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+C,143,I Dream of Jeannie,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,2
+C,143,I Dream of Jeannie,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,2
+C,5,I Love Lucy,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,3
+C,5,I Love Lucy,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,3
+C,214,In Search of...,scifi,adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,6
+C,214,In Search of...,scifi,adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,6
+C,117,Incredible Hulk,"scfi,drama",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,5
+C,117,Incredible Hulk,"scfi,drama",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,5
+C,239,Invisible Man,scifi,adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,1
+C,239,Invisible Man,scifi,adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,1
+B,239,Invisible Man,scifi,adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,1
+C,269,Invisible Man,"scifi,thriller",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,269,Invisible Man,"scifi,thriller",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,269,Invisible Man,"scifi,thriller",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+A,317,It Takes a Thief,"action,crime,drama",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,14
+A,317,It Takes a Thief,"action,crime,drama",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,14
+A,317,It Takes a Thief,"action,crime,drama",adventure,saturday_midday,SAT 12-19,adventure/sci-fi,20.4%,14
+A,317,It Takes a Thief,"action,crime,drama",adventure,saturday_afternoon,SAT 12-19,adventure/sci-fi,20.4%,14
+A,317,It Takes a Thief,"action,crime,drama",adventure,saturday_early_evening,SAT 12-19,adventure/sci-fi,20.4%,14
+A,317,It Takes a Thief,"action,crime,drama",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,14
+B,118,Jake and the Fatman,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,118,Jake and the Fatman,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,118,Jake and the Fatman,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,192,Jeffersons,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,70
+A,192,Jeffersons,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,70
+A,192,Jeffersons,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,70
+A,192,Jeffersons,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,70
+A,47,Jetsons,cartoon,kids,weekday_early_afternoon,WKD 10-16,cartoons/children,27.6%,155
+A,47,Jetsons,cartoon,kids,weekday_after_school,WKD 16-19,cartoons/children,38.5%,155
+C,185,Joanie Loves Chachi,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,1
+C,185,Joanie Loves Chachi,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,1
+A,182,Jonny Quest,cartoon,kids,sunday_early_morning,SUN 07-12,cartoons/children,42.6%,114
+A,182,Jonny Quest,cartoon,kids,sunday_morning,SUN 07-12,cartoons/children,42.6%,114
+A,182,Jonny Quest,cartoon,kids,weekday_early_morning,WKD 06-10,cartoons/children,54.9%,114
+A,182,Jonny Quest,cartoon,kids,weekday_morning,WKD 06-10,cartoons/children,54.9%,114
+A,182,Jonny Quest,cartoon,kids,weekday_early_afternoon,WKD 10-16,cartoons/children,27.6%,114
+C,283,Judy Garland Show,"variety,musical",variety,saturday_morning,SAT 07-12,variety/music,4.9%,0
+C,264,Knight Rider,"action,crime,drama",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,264,Knight Rider,"action,crime,drama",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,264,Knight Rider,"action,crime,drama",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+B,104,Kojak,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,1
+B,104,Kojak,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,1
+B,104,Kojak,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,1
+B,132,Kolchak: The Night Stalker,"crime,scifi,drama",adventure,saturday_early_morning,SAT 07-12,crime/mystery/suspense,0.5%,0
+B,132,Kolchak: The Night Stalker,"crime,scifi,drama",adventure,saturday_morning,SAT 07-12,crime/mystery/suspense,0.5%,0
+B,132,Kolchak: The Night Stalker,"crime,scifi,drama",adventure,weekday_morning,WKD 06-10,crime/mystery/suspense,0.4%,0
+B,132,Kolchak: The Night Stalker,"crime,scifi,drama",adventure,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,274,Land of the Giants,"scifi,drama",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,35
+A,274,Land of the Giants,"scifi,drama",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,35
+A,274,Land of the Giants,"scifi,drama",adventure,weekday_morning,WKD 06-10,adventure/sci-fi,2.5%,35
+A,274,Land of the Giants,"scifi,drama",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,35
+A,274,Land of the Giants,"scifi,drama",adventure,weekday_after_school,WKD 16-19,adventure/sci-fi,12.9%,35
+A,274,Land of the Giants,"scifi,drama",adventure,weekday_early_evening,WKD 16-19,adventure/sci-fi,12.9%,35
+A,400,Laramie,western,western,weekday_early_morning,WKD 06-10,western,3.7%,162
+A,400,Laramie,western,western,weekday_morning,WKD 06-10,western,3.7%,162
+A,140,Lavern and Shirley,comedy,family,saturday_midday,SAT 12-19,comedy,22.0%,41
+A,140,Lavern and Shirley,comedy,family,saturday_afternoon,SAT 12-19,comedy,22.0%,41
+A,140,Lavern and Shirley,comedy,family,saturday_early_evening,SAT 12-19,comedy,22.0%,41
+A,140,Lavern and Shirley,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,41
+A,140,Lavern and Shirley,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,41
+A,140,Lavern and Shirley,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,41
+A,140,Lavern and Shirley,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,41
+A,140,Lavern and Shirley,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,41
+C,250,Life with Lucy,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,250,Life with Lucy,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,227,Little House on the Prairie,drama,drama,saturday_midday,SAT 12-19,drama,17.4%,39
+A,227,Little House on the Prairie,drama,drama,saturday_afternoon,SAT 12-19,drama,17.4%,39
+A,227,Little House on the Prairie,drama,drama,saturday_early_evening,SAT 12-19,drama,17.4%,39
+A,2,Lone Ranger,western,western,weekday_late_morning,WKD 10-16,western,2.7%,178
+A,2,Lone Ranger,western,western,weekday_noon,WKD 10-16,western,2.7%,178
+A,2,Lone Ranger,western,western,weekday_early_afternoon,WKD 10-16,western,2.7%,178
+A,2,Lone Ranger,western,western,weekday_early_evening,WKD 16-19,western,16.3%,178
+A,38,Lost in Space,scfi,adventure,sunday_midday,SUN 12-19,adventure/sci-fi,11.9%,215
+A,38,Lost in Space,scfi,adventure,sunday_afternoon,SUN 12-19,adventure/sci-fi,11.9%,215
+A,38,Lost in Space,scfi,adventure,sunday_early_evening,SUN 12-19,adventure/sci-fi,11.9%,215
+A,38,Lost in Space,scfi,adventure,weekday_morning,WKD 06-10,adventure/sci-fi,2.5%,215
+C,195,Lotsa Luck!,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,195,Lotsa Luck!,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,157,Love Boat,"drama,romance,comedy",family,saturday_early_morning,SAT 07-12,drama,9.2%,37
+A,157,Love Boat,"drama,romance,comedy",family,saturday_morning,SAT 07-12,drama,9.2%,37
+A,157,Love Boat,"drama,romance,comedy",family,sunday_early_morning,SUN 07-12,drama,15.9%,37
+A,157,Love Boat,"drama,romance,comedy",family,sunday_morning,SUN 07-12,drama,15.9%,37
+A,157,Love Boat,"drama,romance,comedy",family,sunday_midday,SUN 12-19,drama,40.0%,37
+A,157,Love Boat,"drama,romance,comedy",family,sunday_afternoon,SUN 12-19,drama,40.0%,37
+A,157,Love Boat,"drama,romance,comedy",family,sunday_early_evening,SUN 12-19,drama,40.0%,37
+A,157,Love Boat,"drama,romance,comedy",family,weekday_after_school,WKD 16-19,drama,22.7%,37
+A,157,Love Boat,"drama,romance,comedy",family,weekday_early_evening,WKD 16-19,drama,22.7%,37
+A,183,"Love, American Style",comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,26
+A,183,"Love, American Style",comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,26
+A,183,"Love, American Style",comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,26
+A,183,"Love, American Style",comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,26
+A,183,"Love, American Style",comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,26
+A,183,"Love, American Style",comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,26
+A,183,"Love, American Style",comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,26
+A,1,Lucy Show,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,14
+A,1,Lucy Show,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,14
+A,1,Lucy Show,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,14
+A,1,Lucy Show,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,14
+A,1,Lucy Show,comedy,family,weekday_after_school,WKD 16-19,comedy,47.1%,14
+A,1,Lucy Show,comedy,family,weekday_early_evening,WKD 16-19,comedy,47.1%,14
+B,176,Magician,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,1
+B,176,Magician,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,1
+B,176,Magician,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,1
+C,265,Man From Atlantis,"scifi,adventure",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,265,Man From Atlantis,"scifi,adventure",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,265,Man From Atlantis,"scifi,adventure",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+A,69,Man from U.N.C.L.E.,drama,drama,saturday_midday,SAT 12-19,drama,17.4%,31
+A,69,Man from U.N.C.L.E.,drama,drama,saturday_afternoon,SAT 12-19,drama,17.4%,31
+A,69,Man from U.N.C.L.E.,drama,drama,saturday_early_evening,SAT 12-19,drama,17.4%,31
+B,285,Man with a Camera,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,285,Man with a Camera,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,285,Man with a Camera,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+C,266,Manimal,"adventure,crime,fantasy",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,1
+C,266,Manimal,"adventure,crime,fantasy",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,1
+B,266,Manimal,"adventure,crime,fantasy",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,1
+B,220,Mannix,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,4
+B,220,Mannix,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,4
+B,220,Mannix,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,4
+C,37,Many Loves of Dobie Gillis,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,37,Many Loves of Dobie Gillis,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,396,Mary Hartman Mary Hartman,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,396,Mary Hartman Mary Hartman,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,270,Mary Tyler Moore Show,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,270,Mary Tyler Moore Show,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,340,Match Game,game,game,saturday_morning,SAT 07-12,game/quiz,2.5%,1010
+A,340,Match Game,game,game,saturday_midday,SAT 12-19,game/quiz,8.0%,1010
+A,340,Match Game,game,game,saturday_early_evening,SAT 12-19,game/quiz,8.0%,1010
+A,340,Match Game,game,game,sunday_midday,SUN 12-19,game/quiz,9.9%,1010
+A,340,Match Game,game,game,sunday_early_evening,SUN 12-19,game/quiz,9.9%,1010
+A,340,Match Game,game,game,weekday_morning,WKD 06-10,game/quiz,22.1%,1010
+B,235,Matt Helm,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,235,Matt Helm,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,235,Matt Helm,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+C,133,Maude,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,1
+C,133,Maude,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,1
+A,22,Maverick,western,western,weekday_early_morning,WKD 06-10,western,3.7%,11
+A,22,Maverick,western,western,weekday_morning,WKD 06-10,western,3.7%,11
+A,22,Maverick,western,western,weekday_early_evening,WKD 16-19,western,16.3%,11
+C,63,Max Headroom,scfi,adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,63,Max Headroom,scfi,adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,63,Max Headroom,scfi,adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+A,397,Mayberry RFD,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,28
+A,397,Mayberry RFD,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,28
+A,397,Mayberry RFD,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,28
+A,397,Mayberry RFD,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,28
+A,397,Mayberry RFD,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,28
+A,397,Mayberry RFD,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,28
+A,397,Mayberry RFD,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,28
+A,364,McHale's Navy,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,628
+A,364,McHale's Navy,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,628
+B,130,McMillan & Wife,"crime,drame",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,130,McMillan & Wife,"crime,drame",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,130,McMillan & Wife,"crime,drame",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,13,Medical Center,drama,drama,saturday_midday,SAT 12-19,drama,17.4%,31
+A,13,Medical Center,drama,drama,saturday_afternoon,SAT 12-19,drama,17.4%,31
+A,13,Medical Center,drama,drama,saturday_early_evening,SAT 12-19,drama,17.4%,31
+A,13,Medical Center,drama,drama,sunday_midday,SUN 12-19,drama,40.0%,31
+A,13,Medical Center,drama,drama,sunday_afternoon,SUN 12-19,drama,40.0%,31
+A,13,Medical Center,drama,drama,sunday_early_evening,SUN 12-19,drama,40.0%,31
+A,394,Mickey Mouse Club,variety,kids,saturday_early_morning,SAT 07-12,cartoons/children,89.0%,267
+A,394,Mickey Mouse Club,variety,kids,saturday_morning,SAT 07-12,cartoons/children,89.0%,267
+A,394,Mickey Mouse Club,variety,kids,sunday_early_morning,SUN 07-12,cartoons/children,42.6%,267
+A,394,Mickey Mouse Club,variety,kids,sunday_morning,SUN 07-12,cartoons/children,42.6%,267
+A,7,Mister Ed,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,432
+A,7,Mister Ed,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,432
+A,7,Mister Ed,comedy,family,saturday_midday,SAT 12-19,comedy,22.0%,432
+A,7,Mister Ed,comedy,family,saturday_afternoon,SAT 12-19,comedy,22.0%,432
+A,7,Mister Ed,comedy,family,saturday_early_evening,SAT 12-19,comedy,22.0%,432
+A,7,Mister Ed,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,432
+A,7,Mister Ed,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,432
+A,7,Mister Ed,comedy,family,weekday_morning,WKD 06-10,comedy,22.1%,432
+B,128,Mod Squad,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,5
+B,128,Mod Squad,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,5
+B,128,Mod Squad,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,5
+B,148,Moonlighting,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,148,Moonlighting,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,148,Moonlighting,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,193,Mork and Mindy,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,8
+A,193,Mork and Mindy,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,8
+A,193,Mork and Mindy,comedy,family,saturday_midday,SAT 12-19,comedy,22.0%,8
+A,193,Mork and Mindy,comedy,family,saturday_afternoon,SAT 12-19,comedy,22.0%,8
+A,193,Mork and Mindy,comedy,family,saturday_early_evening,SAT 12-19,comedy,22.0%,8
+A,193,Mork and Mindy,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,8
+A,193,Mork and Mindy,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,8
+A,193,Mork and Mindy,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,8
+A,193,Mork and Mindy,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,8
+A,193,Mork and Mindy,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,8
+A,193,Mork and Mindy,comedy,family,weekday_morning,WKD 06-10,comedy,22.1%,8
+A,193,Mork and Mindy,comedy,family,weekday_late_morning,WKD 10-16,comedy,21.2%,8
+A,193,Mork and Mindy,comedy,family,weekday_early_afternoon,WKD 10-16,comedy,21.2%,8
+C,203,Mothers in Law,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,203,Mothers in Law,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,134,Mr. Terrific,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,24
+A,134,Mr. Terrific,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,24
+A,134,Mr. Terrific,comedy,family,saturday_midday,SAT 12-19,comedy,22.0%,24
+A,134,Mr. Terrific,comedy,family,saturday_afternoon,SAT 12-19,comedy,22.0%,24
+A,134,Mr. Terrific,comedy,family,saturday_early_evening,SAT 12-19,comedy,22.0%,24
+A,134,Mr. Terrific,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,24
+A,134,Mr. Terrific,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,24
+A,134,Mr. Terrific,comedy,family,weekday_morning,WKD 06-10,comedy,22.1%,24
+A,134,Mr. Terrific,comedy,family,weekday_late_morning,WKD 10-16,comedy,21.2%,24
+A,134,Mr. Terrific,comedy,family,weekday_early_afternoon,WKD 10-16,comedy,21.2%,24
+A,134,Mr. Terrific,comedy,family,weekday_after_school,WKD 16-19,comedy,47.1%,24
+A,134,Mr. Terrific,comedy,family,weekday_early_evening,WKD 16-19,comedy,47.1%,24
+A,18,Munsters,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,397
+A,18,Munsters,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,397
+A,97,My Favorite Martian,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,369
+A,97,My Favorite Martian,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,369
+A,406,My Little Margie,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,13
+A,406,My Little Margie,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,13
+A,406,My Little Margie,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,13
+A,406,My Little Margie,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,13
+A,406,My Little Margie,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,13
+A,406,My Little Margie,comedy,family,weekday_late_morning,WKD 10-16,comedy,21.2%,13
+A,406,My Little Margie,comedy,family,weekday_early_afternoon,WKD 10-16,comedy,21.2%,13
+A,406,My Little Margie,comedy,family,weekday_after_school,WKD 16-19,comedy,47.1%,13
+A,406,My Little Margie,comedy,family,weekday_early_evening,WKD 16-19,comedy,47.1%,13
+A,16,My Mother the Car,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,22
+A,16,My Mother the Car,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,22
+A,16,My Mother the Car,comedy,family,weekday_morning,WKD 06-10,comedy,22.1%,22
+A,16,My Mother the Car,comedy,family,weekday_late_morning,WKD 10-16,comedy,21.2%,22
+A,16,My Mother the Car,comedy,family,weekday_early_afternoon,WKD 10-16,comedy,21.2%,22
+A,161,My Three Sons,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,80
+A,161,My Three Sons,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,80
+A,161,My Three Sons,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,80
+A,161,My Three Sons,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,80
+C,391,My World and Welcome to It,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,391,My World and Welcome to It,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,399,Nanny and the Professor,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,3
+C,399,Nanny and the Professor,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,3
+B,178,NBC Mystery Movie,"crime,drama",movie,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,178,NBC Mystery Movie,"crime,drama",movie,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,178,NBC Mystery Movie,"crime,drama",movie,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,179,New CBS Tuesday Night Movies,"crime,drama",movie,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,179,New CBS Tuesday Night Movies,"crime,drama",movie,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,179,New CBS Tuesday Night Movies,"crime,drama",movie,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+C,162,Night Court,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,162,Night Court,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+B,229,Night Gallery,"horror,thriller",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,229,Night Gallery,"horror,thriller",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,229,Night Gallery,"horror,thriller",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+C,292,Occasional Wife,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,292,Occasional Wife,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,175,Odd Couple,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,46
+A,175,Odd Couple,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,46
+A,175,Odd Couple,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,46
+A,175,Odd Couple,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,46
+A,175,Odd Couple,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,46
+A,175,Odd Couple,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,46
+A,175,Odd Couple,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,46
+A,308,One Step Beyond,"drama,scifi,thriller",adventure,saturday_early_morning,SAT 07-12,drama,9.2%,22
+A,308,One Step Beyond,"drama,scifi,thriller",adventure,saturday_morning,SAT 07-12,drama,9.2%,22
+A,308,One Step Beyond,"drama,scifi,thriller",adventure,weekday_early_afternoon,WKD 10-16,drama,12.3%,22
+A,145,Partridge Family,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,40
+A,145,Partridge Family,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,40
+C,361,Patty Duke Show,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,2
+C,361,Patty Duke Show,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,2
+A,64,Petticoat Junction,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,19
+A,64,Petticoat Junction,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,19
+C,232,Planet of the Apes,scifi,adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,232,Planet of the Apes,scifi,adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,232,Planet of the Apes,scifi,adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+C,84,Police Squad,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,84,Police Squad,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+B,107,Police Woman,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,107,Police Woman,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,107,Police Woman,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+C,323,Punky Brewster,"comedy,family",family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,323,Punky Brewster,"comedy,family",family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,231,Quark,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,231,Quark,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,366,Rhoda,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,23
+A,366,Rhoda,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,23
+A,366,Rhoda,comedy,family,saturday_midday,SAT 12-19,comedy,22.0%,23
+A,366,Rhoda,comedy,family,saturday_afternoon,SAT 12-19,comedy,22.0%,23
+A,366,Rhoda,comedy,family,saturday_early_evening,SAT 12-19,comedy,22.0%,23
+A,366,Rhoda,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,23
+A,366,Rhoda,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,23
+A,366,Rhoda,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,23
+A,366,Rhoda,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,23
+A,366,Rhoda,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,23
+A,366,Rhoda,comedy,family,weekday_morning,WKD 06-10,comedy,22.1%,23
+A,126,Rockford Files,"crime,drama",drama,saturday_midday,SAT 12-19,crime/mystery/suspense,8.7%,15
+A,126,Rockford Files,"crime,drama",drama,saturday_afternoon,SAT 12-19,crime/mystery/suspense,8.7%,15
+A,126,Rockford Files,"crime,drama",drama,saturday_early_evening,SAT 12-19,crime/mystery/suspense,8.7%,15
+A,126,Rockford Files,"crime,drama",drama,sunday_midday,SUN 12-19,crime/mystery/suspense,7.9%,15
+A,126,Rockford Files,"crime,drama",drama,sunday_afternoon,SUN 12-19,crime/mystery/suspense,7.9%,15
+A,126,Rockford Files,"crime,drama",drama,sunday_early_evening,SUN 12-19,crime/mystery/suspense,7.9%,15
+A,50,Roger Ramjet,cartoon,kids,weekday_after_school,WKD 16-19,cartoons/children,38.5%,267
+B,136,Rookies,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,2
+B,136,Rookies,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,2
+B,136,Rookies,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,2
+A,187,Room 222,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,10
+A,187,Room 222,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,10
+A,187,Room 222,comedy,family,saturday_midday,SAT 12-19,comedy,22.0%,10
+A,187,Room 222,comedy,family,saturday_afternoon,SAT 12-19,comedy,22.0%,10
+A,187,Room 222,comedy,family,saturday_early_evening,SAT 12-19,comedy,22.0%,10
+A,187,Room 222,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,10
+A,187,Room 222,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,10
+A,187,Room 222,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,10
+A,187,Room 222,comedy,family,weekday_late_morning,WKD 10-16,comedy,21.2%,10
+A,187,Room 222,comedy,family,weekday_early_afternoon,WKD 10-16,comedy,21.2%,10
+C,312,Rowan & Martin's Laugh-In,"variety,musical,comedy",variety,saturday_morning,SAT 07-12,variety/music,4.9%,0
+C,66,Saturday Night Live,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,66,Saturday Night Live,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,383,Saved by the Bell,"comedy,family",family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,383,Saved by the Bell,"comedy,family",family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,225,Scarecrow and Mrs. King,"drama,adventure",adventure,saturday_early_morning,SAT 07-12,drama,9.2%,0
+C,225,Scarecrow and Mrs. King,"drama,adventure",adventure,saturday_morning,SAT 07-12,drama,9.2%,0
+A,284,Search,"adventure,drama,scifi",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,64
+A,284,Search,"adventure,drama,scifi",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,64
+A,284,Search,"adventure,drama,scifi",adventure,saturday_midday,SAT 12-19,adventure/sci-fi,20.4%,64
+A,284,Search,"adventure,drama,scifi",adventure,saturday_afternoon,SAT 12-19,adventure/sci-fi,20.4%,64
+A,284,Search,"adventure,drama,scifi",adventure,saturday_early_evening,SAT 12-19,adventure/sci-fi,20.4%,64
+A,284,Search,"adventure,drama,scifi",adventure,sunday_midday,SUN 12-19,adventure/sci-fi,11.9%,64
+A,284,Search,"adventure,drama,scifi",adventure,sunday_afternoon,SUN 12-19,adventure/sci-fi,11.9%,64
+A,284,Search,"adventure,drama,scifi",adventure,sunday_early_evening,SUN 12-19,adventure/sci-fi,11.9%,64
+A,284,Search,"adventure,drama,scifi",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,64
+A,284,Search,"adventure,drama,scifi",adventure,weekday_after_school,WKD 16-19,adventure/sci-fi,12.9%,64
+A,284,Search,"adventure,drama,scifi",adventure,weekday_early_evening,WKD 16-19,adventure/sci-fi,12.9%,64
+A,320,Secret Agent,"action,crime,mystery",adventure,weekday_morning,WKD 06-10,adventure/sci-fi,2.5%,69
+A,43,Secret Squirrel,cartoon,kids,sunday_early_morning,SUN 07-12,cartoons/children,42.6%,106
+A,43,Secret Squirrel,cartoon,kids,sunday_morning,SUN 07-12,cartoons/children,42.6%,106
+A,43,Secret Squirrel,cartoon,kids,weekday_early_morning,WKD 06-10,cartoons/children,54.9%,106
+A,43,Secret Squirrel,cartoon,kids,weekday_morning,WKD 06-10,cartoons/children,54.9%,106
+A,43,Secret Squirrel,cartoon,kids,weekday_early_afternoon,WKD 10-16,cartoons/children,27.6%,106
+A,43,Secret Squirrel,cartoon,kids,weekday_after_school,WKD 16-19,cartoons/children,38.5%,106
+C,301,Secrets of Isis,"fantasy,drama,adventure",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,301,Secrets of Isis,"fantasy,drama,adventure",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,301,Secrets of Isis,"fantasy,drama,adventure",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+B,177,Shaft,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,177,Shaft,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,177,Shaft,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,293,Shazam,"family,scifi,action",family,saturday_midday,SAT 12-19,FAMILY,0.0%,10
+A,293,Shazam,"family,scifi,action",family,saturday_afternoon,SAT 12-19,FAMILY,0.0%,10
+A,293,Shazam,"family,scifi,action",family,saturday_early_evening,SAT 12-19,FAMILY,0.0%,10
+A,293,Shazam,"family,scifi,action",family,sunday_midday,SUN 12-19,FAMILY,0.0%,10
+A,293,Shazam,"family,scifi,action",family,sunday_afternoon,SUN 12-19,FAMILY,0.0%,10
+A,293,Shazam,"family,scifi,action",family,sunday_early_evening,SUN 12-19,FAMILY,0.0%,10
+A,293,Shazam,"family,scifi,action",family,weekday_morning,WKD 06-10,FAMILY,0.0%,10
+A,293,Shazam,"family,scifi,action",family,weekday_late_morning,WKD 10-16,FAMILY,0.0%,10
+A,293,Shazam,"family,scifi,action",family,weekday_early_afternoon,WKD 10-16,FAMILY,0.0%,10
+A,293,Shazam,"family,scifi,action",family,weekday_after_school,WKD 16-19,FAMILY,0.0%,10
+A,293,Shazam,"family,scifi,action",family,weekday_early_evening,WKD 16-19,FAMILY,0.0%,10
+A,221,Six Million Dollar Man,"action,crime,drama",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,38
+A,221,Six Million Dollar Man,"action,crime,drama",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,38
+A,221,Six Million Dollar Man,"action,crime,drama",adventure,weekday_morning,WKD 06-10,adventure/sci-fi,2.5%,38
+B,146,Sixth Sense,"thriller,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,146,Sixth Sense,"thriller,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,146,Sixth Sense,"thriller,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,281,Smith Family,"crime,police,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,281,Smith Family,"crime,police,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,281,Smith Family,"crime,police,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+C,319,Smothers Brothers Comedy Hour,"variety,comedy,parody",variety,saturday_morning,SAT 07-12,variety/music,4.9%,0
+C,204,Soap,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,204,Soap,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,311,Sonny and Cher Comedy Hour,"variety,musical",variety,saturday_morning,SAT 07-12,variety/music,4.9%,0
+C,318,Sonny and Cher Show,"variety,music,comedy",variety,saturday_morning,SAT 07-12,variety/music,4.9%,0
+C,85,Space 1999,scfi,adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,3
+C,85,Space 1999,scfi,adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,3
+B,85,Space 1999,scfi,adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,3
+A,208,Speed Racer,cartoon,kids,saturday_early_morning,SAT 07-12,cartoons/children,89.0%,106
+A,208,Speed Racer,cartoon,kids,saturday_morning,SAT 07-12,cartoons/children,89.0%,106
+C,286,Square Pegs,"comedy,family",family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,286,Square Pegs,"comedy,family",family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,373,Star Cops,"scifi,drama",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,373,Star Cops,"scifi,drama",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,373,Star Cops,"scifi,drama",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+A,99,Starsky & Hutch,"crime,drama",drama,saturday_midday,SAT 12-19,crime/mystery/suspense,8.7%,59
+A,99,Starsky & Hutch,"crime,drama",drama,saturday_afternoon,SAT 12-19,crime/mystery/suspense,8.7%,59
+A,99,Starsky & Hutch,"crime,drama",drama,saturday_early_evening,SAT 12-19,crime/mystery/suspense,8.7%,59
+A,99,Starsky & Hutch,"crime,drama",drama,sunday_midday,SUN 12-19,crime/mystery/suspense,7.9%,59
+A,99,Starsky & Hutch,"crime,drama",drama,sunday_afternoon,SUN 12-19,crime/mystery/suspense,7.9%,59
+A,99,Starsky & Hutch,"crime,drama",drama,sunday_early_evening,SUN 12-19,crime/mystery/suspense,7.9%,59
+B,121,Street Hawk,"crime,drama",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,121,Street Hawk,"crime,drama",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,121,Street Hawk,"crime,drama",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+A,156,Streets of San Francisco,"crime,drama",drama,sunday_midday,SUN 12-19,crime/mystery/suspense,7.9%,41
+A,156,Streets of San Francisco,"crime,drama",drama,sunday_afternoon,SUN 12-19,crime/mystery/suspense,7.9%,41
+A,156,Streets of San Francisco,"crime,drama",drama,sunday_early_evening,SUN 12-19,crime/mystery/suspense,7.9%,41
+C,224,Tabitha,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,224,Tabitha,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,309,Tales from the Darkside,"scifi,thriller",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,309,Tales from the Darkside,"scifi,thriller",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,309,Tales from the Darkside,"scifi,thriller",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+B,374,Tales of the Unexpected,horror,drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,374,Tales of the Unexpected,horror,drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,0
+B,374,Tales of the Unexpected,horror,drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,0
+C,194,Taxi,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,194,Taxi,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,405,Tenspeed and Brown Shoe,"comedy,crime,drama",family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,405,Tenspeed and Brown Shoe,"comedy,crime,drama",family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,10,That Girl,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,239
+A,10,That Girl,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,239
+A,10,That Girl,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,239
+A,10,That Girl,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,239
+A,10,That Girl,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,239
+A,10,That Girl,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,239
+A,10,That Girl,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,239
+C,280,The Hilarious House of Frightenstein,"comedy,family,horror",family,saturday_early_morning,SAT 07-12,comedy,7.5%,1
+C,280,The Hilarious House of Frightenstein,"comedy,family,horror",family,saturday_morning,SAT 07-12,comedy,7.5%,1
+C,375,The Immortal,"scifi,drama",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,375,The Immortal,"scifi,drama",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,375,The Immortal,"scifi,drama",adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+C,288,The Persuaders!,"action,adventure,comedy",family,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,288,The Persuaders!,"action,adventure,comedy",family,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,288,The Persuaders!,"action,adventure,comedy",family,weekday_late_morning,WKD 10-16,adventure/sci-fi,1.9%,0
+B,288,The Persuaders!,"action,adventure,comedy",family,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+C,327,The Prisoner,"drama,mystery,scifi",adventure,saturday_early_morning,SAT 07-12,drama,9.2%,7
+C,327,The Prisoner,"drama,mystery,scifi",adventure,saturday_morning,SAT 07-12,drama,9.2%,7
+A,390,The Rat Patrol,"action,drama",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,34
+A,390,The Rat Patrol,"action,drama",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,34
+A,390,The Rat Patrol,"action,drama",adventure,weekday_morning,WKD 06-10,adventure/sci-fi,2.5%,34
+A,287,The Saint,"crime,drama,mystery",drama,weekday_late_morning,WKD 10-16,crime/mystery/suspense,1.5%,22
+A,287,The Saint,"crime,drama,mystery",drama,weekday_noon,WKD 10-16,crime/mystery/suspense,1.5%,22
+A,287,The Saint,"crime,drama,mystery",drama,weekday_early_afternoon,WKD 10-16,crime/mystery/suspense,1.5%,22
+A,296,The Westerner,"western,drama",western,weekday_late_morning,WKD 10-16,western,2.7%,104
+A,296,The Westerner,"western,drama",western,weekday_noon,WKD 10-16,western,2.7%,104
+A,296,The Westerner,"western,drama",western,weekday_early_afternoon,WKD 10-16,western,2.7%,104
+C,295,Three's a Crowd,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,295,Three's a Crowd,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,139,Three's Company,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,6
+C,139,Three's Company,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,6
+A,211,Thriller,"drama,mystery",drama,weekday_late_morning,WKD 10-16,drama,12.3%,28
+A,211,Thriller,"drama,mystery",drama,weekday_noon,WKD 10-16,drama,12.3%,28
+A,211,Thriller,"drama,mystery",drama,weekday_early_afternoon,WKD 10-16,drama,12.3%,28
+A,211,Thriller,"drama,mystery",drama,weekday_early_evening,WKD 16-19,drama,22.7%,28
+A,14,Thunderbirds,scfi,adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,81
+A,14,Thunderbirds,scfi,adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,81
+A,14,Thunderbirds,scfi,adventure,weekday_morning,WKD 06-10,adventure/sci-fi,2.5%,81
+A,14,Thunderbirds,scfi,adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,81
+A,272,Time Tunnel,"scifi,drama",adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,57
+A,272,Time Tunnel,"scifi,drama",adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,57
+A,272,Time Tunnel,"scifi,drama",adventure,sunday_midday,SUN 12-19,adventure/sci-fi,11.9%,57
+A,272,Time Tunnel,"scifi,drama",adventure,sunday_afternoon,SUN 12-19,adventure/sci-fi,11.9%,57
+A,272,Time Tunnel,"scifi,drama",adventure,sunday_early_evening,SUN 12-19,adventure/sci-fi,11.9%,57
+C,75,Too Close for Comfort,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,75,Too Close for Comfort,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,363,Top of the Pops,music,variety,saturday_morning,SAT 07-12,variety/music,4.9%,0
+A,76,Topper,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,67
+A,76,Topper,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,67
+A,76,Topper,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,67
+A,76,Topper,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,67
+A,76,Topper,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,67
+A,76,Topper,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,67
+A,76,Topper,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,67
+A,76,Topper,comedy,family,weekday_late_morning,WKD 10-16,comedy,21.2%,67
+A,76,Topper,comedy,family,weekday_early_afternoon,WKD 10-16,comedy,21.2%,67
+C,335,Turn On,"satire,comedy",family,saturday_early_morning,SAT 07-12,variety/music,4.9%,0
+C,335,Turn On,"satire,comedy",family,saturday_morning,SAT 07-12,variety/music,4.9%,0
+A,90,Underdog,cartoon,kids,weekday_after_school,WKD 16-19,cartoons/children,38.5%,241
+C,238,V: The Series,scifi,adventure,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+C,238,V: The Series,scifi,adventure,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,0
+B,238,V: The Series,scifi,adventure,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,0
+C,294,Voyagers!,"scifi,family,adventure",family,saturday_early_morning,SAT 07-12,adventure/sci-fi,6.7%,1
+C,294,Voyagers!,"scifi,family,adventure",family,saturday_morning,SAT 07-12,adventure/sci-fi,6.7%,1
+B,294,Voyagers!,"scifi,family,adventure",family,weekday_late_morning,WKD 10-16,adventure/sci-fi,1.9%,1
+B,294,Voyagers!,"scifi,family,adventure",family,weekday_early_afternoon,WKD 10-16,adventure/sci-fi,1.9%,1
+A,91,Wacky Races,cartoon,kids,sunday_early_morning,SUN 07-12,cartoons/children,42.6%,61
+A,91,Wacky Races,cartoon,kids,sunday_morning,SUN 07-12,cartoons/children,42.6%,61
+A,91,Wacky Races,cartoon,kids,weekday_early_morning,WKD 06-10,cartoons/children,54.9%,61
+A,91,Wacky Races,cartoon,kids,weekday_morning,WKD 06-10,cartoons/children,54.9%,61
+A,91,Wacky Races,cartoon,kids,weekday_after_school,WKD 16-19,cartoons/children,38.5%,61
+A,387,Wagon Train,"western,drama",western,weekday_early_morning,WKD 06-10,western,3.7%,48
+A,387,Wagon Train,"western,drama",western,weekday_morning,WKD 06-10,western,3.7%,48
+A,387,Wagon Train,"western,drama",western,weekday_late_morning,WKD 10-16,western,2.7%,48
+A,387,Wagon Train,"western,drama",western,weekday_noon,WKD 10-16,western,2.7%,48
+A,387,Wagon Train,"western,drama",western,weekday_early_afternoon,WKD 10-16,western,2.7%,48
+A,387,Wagon Train,"western,drama",western,weekday_early_evening,WKD 16-19,western,16.3%,48
+A,70,Waltons,drama,drama,saturday_midday,SAT 12-19,drama,17.4%,36
+A,70,Waltons,drama,drama,saturday_afternoon,SAT 12-19,drama,17.4%,36
+A,70,Waltons,drama,drama,saturday_early_evening,SAT 12-19,drama,17.4%,36
+A,70,Waltons,drama,drama,sunday_midday,SUN 12-19,drama,40.0%,36
+A,70,Waltons,drama,drama,sunday_afternoon,SUN 12-19,drama,40.0%,36
+A,70,Waltons,drama,drama,sunday_early_evening,SUN 12-19,drama,40.0%,36
+A,45,Wanted Dead or Alive,western,western,sunday_afternoon,SUN 12-19,western,17.1%,11
+A,45,Wanted Dead or Alive,western,western,sunday_early_evening,SUN 12-19,western,17.1%,11
+A,45,Wanted Dead or Alive,western,western,weekday_early_morning,WKD 06-10,western,3.7%,11
+A,45,Wanted Dead or Alive,western,western,weekday_morning,WKD 06-10,western,3.7%,11
+A,45,Wanted Dead or Alive,western,western,weekday_early_evening,WKD 16-19,western,16.3%,11
+A,190,Welcome Back Kotter,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,22
+A,190,Welcome Back Kotter,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,22
+A,190,Welcome Back Kotter,comedy,family,saturday_midday,SAT 12-19,comedy,22.0%,22
+A,190,Welcome Back Kotter,comedy,family,saturday_afternoon,SAT 12-19,comedy,22.0%,22
+A,190,Welcome Back Kotter,comedy,family,saturday_early_evening,SAT 12-19,comedy,22.0%,22
+A,190,Welcome Back Kotter,comedy,family,sunday_early_morning,SUN 07-12,comedy,9.3%,22
+A,190,Welcome Back Kotter,comedy,family,sunday_morning,SUN 07-12,comedy,9.3%,22
+A,190,Welcome Back Kotter,comedy,family,sunday_midday,SUN 12-19,comedy,14.8%,22
+A,190,Welcome Back Kotter,comedy,family,sunday_afternoon,SUN 12-19,comedy,14.8%,22
+A,190,Welcome Back Kotter,comedy,family,sunday_early_evening,SUN 12-19,comedy,14.8%,22
+A,190,Welcome Back Kotter,comedy,family,weekday_morning,WKD 06-10,comedy,22.1%,22
+C,388,Wendy and Me,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,388,Wendy and Me,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,0
+C,102,WKRP in Cincinnati,comedy,family,saturday_early_morning,SAT 07-12,comedy,7.5%,3
+C,102,WKRP in Cincinnati,comedy,family,saturday_morning,SAT 07-12,comedy,7.5%,3
+C,381,Wonder Years,"comedy,drama,family",family,saturday_early_morning,SAT 07-12,comedy,7.5%,0
+C,381,Wonder Years,"comedy,drama,family",family,saturday_morning,SAT 07-12,comedy,7.5%,0
+A,276,You Bet Your Life,game,game,saturday_morning,SAT 07-12,game/quiz,2.5%,15
+A,276,You Bet Your Life,game,game,saturday_midday,SAT 12-19,game/quiz,8.0%,15
+A,276,You Bet Your Life,game,game,saturday_early_evening,SAT 12-19,game/quiz,8.0%,15
+A,276,You Bet Your Life,game,game,sunday_midday,SUN 12-19,game/quiz,9.9%,15
+A,276,You Bet Your Life,game,game,sunday_early_evening,SUN 12-19,game/quiz,9.9%,15
+A,276,You Bet Your Life,game,game,weekday_early_evening,WKD 16-19,game/quiz,8.4%,15

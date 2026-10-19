@@ -1,0 +1,2945 @@
+{
+ "29": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_early_evening",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "310": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_noon",
+   "wd_early_afternoon",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "385": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "393": {
+  "slots": [
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "395": {
+  "slots": [
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "400": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_early_evening",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "404": {
+  "slots": [
+   "we_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "406": {
+  "slots": [
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "9": {
+  "slots": [
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_early_evening",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "19": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "89": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_early_evening",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "258": {
+  "slots": [
+   "we_early_evening",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "334": {
+  "slots": [
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "367": {
+  "slots": [
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "378": {
+  "slots": [
+   "we_morning",
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "382": {
+  "slots": [
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "384": {
+  "slots": [
+   "wd_morning",
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "392": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening"
+  ],
+  "note": ""
+ },
+ "396": {
+  "slots": [
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "397": {
+  "slots": [
+   "we_early_evening",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "399": {
+  "slots": [
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon"
+  ],
+  "note": ""
+ },
+ "57": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "252": {
+  "slots": [
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "278": {
+  "slots": [
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "297": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "346": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "351": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "359": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "376": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon"
+  ],
+  "note": ""
+ },
+ "394": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "30": {
+  "slots": [
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "159": {
+  "slots": [
+   "wd_early_morning",
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "191": {
+  "slots": [
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "345": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "352": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "355": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "356": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "370": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "371": {
+  "slots": [
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "383": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "we_midday",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "390": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_afternoon",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "131": {
+  "slots": [
+   "wd_late_morning",
+   "wd_early_afternoon"
+  ],
+  "note": ""
+ },
+ "342": {
+  "slots": [
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon"
+  ],
+  "note": ""
+ },
+ "362": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "364": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "366": {
+  "slots": [
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "387": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "44": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "119": {
+  "slots": [
+   "we_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "234": {
+  "slots": [
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "248": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "261": {
+  "slots": [
+   "wd_morning",
+   "wd_noon",
+   "wd_early_afternoon"
+  ],
+  "note": ""
+ },
+ "262": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "331": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "339": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "340": {
+  "slots": [
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon"
+  ],
+  "note": ""
+ },
+ "361": {
+  "slots": [
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "381": {
+  "slots": [
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "36": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "83": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "105": {
+  "slots": [
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "111": {
+  "slots": [
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "153": {
+  "slots": [
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "196": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "255": {
+  "slots": [
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "300": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "321": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "21": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "217": {
+  "slots": [
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11"
+  ],
+  "note": ""
+ },
+ "242": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "245": {
+  "slots": [
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "277": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "322": {
+  "slots": [
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "326": {
+  "slots": [],
+  "note": ""
+ },
+ "333": {
+  "slots": [
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "343": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "344": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "354": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "92": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "181": {
+  "slots": [
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "209": {
+  "slots": [
+   "wd_late_morning",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "241": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "244": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "267": {
+  "slots": [
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "304": {
+  "slots": [],
+  "note": ""
+ },
+ "307": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "317": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "323": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "336": {
+  "slots": [],
+  "note": ""
+ },
+ "348": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "174": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "180": {
+  "slots": [],
+  "note": ""
+ },
+ "189": {
+  "slots": [
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "207": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "282": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "298": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "303": {
+  "slots": [
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "305": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "315": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "320": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "327": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "86": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "87": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "113": {
+  "slots": [
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "124": {
+  "slots": [
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "142": {
+  "slots": [
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "160": {
+  "slots": [
+   "we_early_evening",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "218": {
+  "slots": [
+   "we_early_evening",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "219": {
+  "slots": [
+   "we_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "223": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "302": {
+  "slots": [
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "313": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "108": {
+  "slots": [
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "120": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "ln_11"
+  ],
+  "note": ""
+ },
+ "154": {
+  "slots": [
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "210": {
+  "slots": [
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "251": {
+  "slots": [
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "264": {
+  "slots": [
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "271": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "274": {
+  "slots": [
+   "we_morning",
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "291": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "308": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "312": {
+  "slots": [],
+  "note": ""
+ },
+ "101": {
+  "slots": [
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "137": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "184": {
+  "slots": [
+   "we_early_evening",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "202": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "213": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "228": {
+  "slots": [
+   "we_early_evening",
+   "wd_early_afternoon",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "239": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "265": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "270": {
+  "slots": [
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "279": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "301": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "311": {
+  "slots": [],
+  "note": ""
+ },
+ "23": {
+  "slots": [
+   "we_early_evening",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "31": {
+  "slots": [
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "51": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "93": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "96": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon"
+  ],
+  "note": ""
+ },
+ "163": {
+  "slots": [
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "188": {
+  "slots": [
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "214": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "215": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "227": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "229": {
+  "slots": [
+   "we_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "253": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "286": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "309": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "35": {
+  "slots": [
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "42": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "144": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "192": {
+  "slots": [
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "201": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "222": {
+  "slots": [
+   "we_early_evening",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "237": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "243": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "280": {
+  "slots": [
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "287": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "296": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_noon",
+   "wd_early_afternoon"
+  ],
+  "note": ""
+ },
+ "12": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "17": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "141": {
+  "slots": [
+   "we_early_evening",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "143": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "182": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "183": {
+  "slots": [
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "200": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "220": {
+  "slots": [
+   "we_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "225": {
+  "slots": [],
+  "note": ""
+ },
+ "295": {
+  "slots": [
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "11": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "54": {
+  "slots": [
+   "we_midday",
+   "we_afternoon"
+  ],
+  "note": ""
+ },
+ "114": {
+  "slots": [
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "115": {
+  "slots": [
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "125": {
+  "slots": [
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "138": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "151": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "155": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "157": {
+  "slots": [
+   "we_early_evening",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "193": {
+  "slots": [
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon"
+  ],
+  "note": ""
+ },
+ "203": {
+  "slots": [
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon"
+  ],
+  "note": ""
+ },
+ "221": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "wd_noon",
+   "wd_early_afternoon"
+  ],
+  "note": ""
+ },
+ "272": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "276": {
+  "slots": [
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "28": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_noon",
+   "wd_early_afternoon",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "100": {
+  "slots": [
+   "we_early_evening",
+   "wd_noon",
+   "wd_early_afternoon",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "122": {
+  "slots": [
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "132": {
+  "slots": [],
+  "note": ""
+ },
+ "140": {
+  "slots": [
+   "we_early_evening",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "161": {
+  "slots": [
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "178": {
+  "slots": [],
+  "note": ""
+ },
+ "187": {
+  "slots": [
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "197": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "204": {
+  "slots": [
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "208": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "211": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "106": {
+  "slots": [
+   "wd_late_morning",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "117": {
+  "slots": [
+   "we_early_evening",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "118": {
+  "slots": [
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "133": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "152": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "162": {
+  "slots": [
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "175": {
+  "slots": [
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "194": {
+  "slots": [
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "5": {
+  "slots": [
+   "we_early_evening",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "40": {
+  "slots": [
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "47": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "104": {
+  "slots": [
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "130": {
+  "slots": [
+   "we_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "145": {
+  "slots": [
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "150": {
+  "slots": [
+   "we_early_morning",
+   "we_morning"
+  ],
+  "note": ""
+ },
+ "156": {
+  "slots": [
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "190": {
+  "slots": [
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "24": {
+  "slots": [
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "62": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "69": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "128": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "136": {
+  "slots": [
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "147": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "2": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "38": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening"
+  ],
+  "note": ""
+ },
+ "55": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_afternoon",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "95": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening"
+  ],
+  "note": ""
+ },
+ "97": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "107": {
+  "slots": [
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "126": {
+  "slots": [
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "146": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "1": {
+  "slots": [
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "37": {
+  "slots": [
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "64": {
+  "slots": [
+   "wd_early_morning",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "73": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "85": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "99": {
+  "slots": [
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "139": {
+  "slots": [
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "22": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "25": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "32": {
+  "slots": [
+   "we_early_evening",
+   "wd_noon",
+   "wd_early_afternoon",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "41": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "67": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "116": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "127": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "135": {
+  "slots": [
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "13": {
+  "slots": [],
+  "note": ""
+ },
+ "18": {
+  "slots": [
+   "we_early_evening",
+   "wd_morning",
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "34": {
+  "slots": [
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "50": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "66": {
+  "slots": [],
+  "note": ""
+ },
+ "75": {
+  "slots": [
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "76": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "94": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "102": {
+  "slots": [
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "7": {
+  "slots": [
+   "wd_morning",
+   "wd_late_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "8": {
+  "slots": [
+   "wd_morning",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "27": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "43": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "46": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "61": {
+  "slots": [
+   "we_early_evening",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "90": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "91": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "52": {
+  "slots": [
+   "we_early_evening",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "70": {
+  "slots": [
+   "we_early_evening",
+   "wd_early_afternoon"
+  ],
+  "note": ""
+ },
+ "10": {
+  "slots": [
+   "wd_late_morning",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening"
+  ],
+  "note": ""
+ },
+ "14": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "49": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "68": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ },
+ "39": {
+  "slots": [
+   "we_early_evening",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "48": {
+  "slots": [
+   "we_early_morning",
+   "we_morning",
+   "wd_early_morning",
+   "wd_morning",
+   "wd_early_afternoon",
+   "wd_after_school"
+  ],
+  "note": ""
+ },
+ "20": {
+  "slots": [
+   "we_afternoon",
+   "we_early_evening",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12"
+  ],
+  "note": ""
+ },
+ "45": {
+  "slots": [
+   "we_midday",
+   "we_afternoon",
+   "we_early_evening",
+   "wd_noon",
+   "wd_early_afternoon",
+   "wd_after_school",
+   "wd_early_evening",
+   "ln_11",
+   "ln_12",
+   "ln_2",
+   "ln_4"
+  ],
+  "note": ""
+ }
+}

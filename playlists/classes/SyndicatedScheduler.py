@@ -42,15 +42,22 @@ WEEKEND_DAYPART_BLOCKS = [
     (17, 19, "early_evening"),
 ]
 
+# Late night: one block for every day of the week, 23:00 through 05:59 (hours 23 and 0-5), backed by a
+# single show_syndication_eligibility.late_night column. The hours between the daytime scope and
+# 23:00 (primetime) and a weekend's 06:00 hour stay outside this system (daypart_column_for -> None).
+LATE_NIGHT_COLUMN = "late_night"
+LATE_NIGHT_START_HOUR = 23
+LATE_NIGHT_END_HOUR = 6
+
 SATURDAY_DOW = 5
 SUNDAY_DOW = 6
 
 
 def daypart_column_for(start_time: time, dow: int = None):
     """Return the show_syndication_eligibility column name for a slot start time/day, or None if
-    the time falls outside this system's daytime scope for that day (weekday: 06:00-19:00;
-    weekend: 07:00-19:00) -- e.g. primetime/late-night syndicated slots, which this system
-    doesn't cover on any day."""
+    the time falls outside this system's scope for that day: daytime (weekday 06:00-19:00;
+    weekend 07:00-19:00) plus late night (23:00-06:00, any day). Primetime (19:00-23:00) is not
+    covered on any day."""
     hour = start_time.hour
     if dow == SATURDAY_DOW:
         blocks, prefix = WEEKEND_DAYPART_BLOCKS, "saturday_"
@@ -62,6 +69,8 @@ def daypart_column_for(start_time: time, dow: int = None):
     for start, end, column in blocks:
         if start <= hour < end:
             return column if prefix == "" else f"{prefix}{column}"
+    if hour >= LATE_NIGHT_START_HOUR or hour < LATE_NIGHT_END_HOUR:
+        return LATE_NIGHT_COLUMN
     return None
 
 
@@ -117,9 +126,9 @@ def adjacent_daypart_columns(start_time: time, dow: int = None):
     else:
         names, prefix = [b[2] for b in WEEKDAY_DAYPART_BLOCKS], ""
     here = daypart_column_for(start_time, dow)
-    if here is None:
-        return []
     names = [f"{prefix}{n}" for n in names]
+    if here not in names:   # outside the daytime blocks (None) or late night, which has no neighbours
+        return []
     i = names.index(here)
     return [names[j] for j in (i - 1, i + 1) if 0 <= j < len(names)]
 
@@ -457,8 +466,8 @@ class SyndicatedScheduler:
         """Build and STORE a duration-aware slot grid for the requested window, replacing whatever
         random grid time_slot_schedules holds there. Returns (grid, schedule_data), where
         schedule_data maps "HH:MM:SS" -> show_id, or None when the caller should keep the existing
-        flow instead: the window falls outside the daytime scope this system covers (weekday
-        06:00-19:00, weekend 07:00-19:00), or the window is already templated (a re-run must
+        flow instead: the window falls outside the scope this system covers (daytime: weekday
+        06:00-19:00, weekend 07:00-19:00; late night: 23:00-24:00 or 00:00-06:00), or the window is already templated (a re-run must
         reuse the stored grid so the schedule stays stable)."""
         start_time = datetime.strptime(start_str, "%H:%M:%S").time()
         hours, minutes, seconds = map(int, duration_str.split(":"))
@@ -466,10 +475,15 @@ class SyndicatedScheduler:
         end = start + hours * 3600 + minutes * 60 + seconds
 
         scope_start = 7 * 3600 if dow in (SATURDAY_DOW, SUNDAY_DOW) else 6 * 3600
-        if start < scope_start or end > 19 * 3600 or end - start < MIN_SLOT_SECONDS:
+        in_daytime = start >= scope_start and end <= 19 * 3600
+        # Late night is calendar-day: 23:00-24:00 on a date, and 00:00-06:00 on the NEXT date (that date's
+        # own day-of-week). A window can't cross midnight -- run the two halves separately.
+        in_late_night = (start >= LATE_NIGHT_START_HOUR * 3600 and end <= 86400) or end <= LATE_NIGHT_END_HOUR * 3600
+        if not (in_daytime or in_late_night) or end - start < MIN_SLOT_SECONDS:
             return None
 
-        end_time = time(end // 3600, (end % 3600) // 60, end % 60)
+        # 24:00 isn't a valid time; the last second of the day bounds the same slots (time_slot < end_time).
+        end_time = time(23, 59, 59) if end >= 86400 else time(end // 3600, (end % 3600) // 60, end % 60)
         self.cur.execute(
             """SELECT 1 FROM schedule_template
                WHERE channel_id = %s AND replication_year = %s AND %s = ANY(days_of_week)

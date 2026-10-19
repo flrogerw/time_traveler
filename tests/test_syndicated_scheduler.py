@@ -200,3 +200,71 @@ def test_network_scheduling_path_is_unaffected(db_conn):
     syndicated_branch, network_branch = source.split("else:", 1)
     assert "SyndicatedScheduler" in syndicated_branch
     assert "SyndicatedScheduler(" not in network_branch
+
+
+# --- late night (23:00-06:00, every day) -----------------------------------------------------------
+from playlists.classes.SyndicatedScheduler import daypart_column_for, adjacent_daypart_columns
+from tests.conftest import TEST_REPLICATION_YEAR
+
+
+def test_late_night_hours_map_to_late_night_column_on_every_day():
+    for dow in range(7):
+        for hour in (23, 0, 3, 5):
+            assert daypart_column_for(time(hour, 30), dow) == "late_night"
+
+
+def test_primetime_and_weekend_6am_stay_outside_the_system():
+    assert daypart_column_for(time(19, 0), 1) is None
+    assert daypart_column_for(time(22, 59), 4) is None
+    assert daypart_column_for(time(6, 30), 5) is None   # weekend scope starts at 07:00
+    assert daypart_column_for(time(6, 30), 1) == "weekday_early_morning"
+
+
+def test_late_night_has_no_adjacent_daypart():
+    assert adjacent_daypart_columns(time(23, 30), 2) == []
+    assert adjacent_daypart_columns(time(2, 0), 6) == []
+
+
+def test_late_night_slot_resolves_to_a_late_night_eligible_show(db_conn):
+    """Needs tv_guide_research/add_late_night.sql applied (late_night column + fill_rules); skipped before."""
+    import pytest
+    cur = db_conn.cursor()
+    cur.execute("SELECT 1 FROM information_schema.columns WHERE table_name='show_syndication_eligibility' AND column_name='late_night'")
+    if not cur.fetchone():
+        pytest.skip("late_night column not migrated yet")
+    cur.execute("SELECT channel_id FROM fill_rules WHERE start_time = '23:00' AND year_start IS NULL LIMIT 1")
+    row = cur.fetchone()
+    if not row:
+        pytest.skip("late-night fill_rules not loaded yet")
+    channel_id = row[0]
+    scheduler = SyndicatedScheduler(db_conn)
+    show_id = scheduler.resolve_syndicated_slot(channel_id, 1976, 2, time(23, 30), TEST_REPLICATION_YEAR)
+    assert show_id is not None
+    cur.execute("SELECT late_night FROM show_syndication_eligibility WHERE show_id = %s", (show_id,))
+    assert cur.fetchone()[0] is True
+
+
+def _late_night_ready(cur):
+    cur.execute("SELECT 1 FROM information_schema.columns WHERE table_name='show_syndication_eligibility' AND column_name='late_night'")
+    if not cur.fetchone():
+        return None
+    cur.execute("SELECT channel_id FROM fill_rules WHERE start_time = '23:00' AND year_start IS NULL LIMIT 1")
+    row = cur.fetchone()
+    return row[0] if row else None
+
+
+def test_duration_aware_grid_covers_both_late_night_windows_and_rejects_crossing_midnight(db_conn):
+    """Needs tv_guide_research/add_late_night.sql applied; skipped before. Late night is calendar-day:
+    23:00-24:00 and 00:00-06:00 build grids, a window crossing midnight returns None (caller keeps old flow)."""
+    import pytest
+    channel_id = _late_night_ready(db_conn.cursor())
+    if channel_id is None:
+        pytest.skip("late night not migrated yet")
+    scheduler = SyndicatedScheduler(db_conn)
+    year = TEST_REPLICATION_YEAR
+    evening = scheduler.build_daytime_schedule(channel_id, year, 2, "23:00:00", "01:00:00")
+    assert evening is not None and evening[0] and all(s["start_time"] >= "23:00:00" for s in evening[0])
+    early = scheduler.build_daytime_schedule(channel_id, year, 3, "00:00:00", "06:00:00")
+    assert early is not None and sum(s["seconds"] for s in early[0]) <= 6 * 3600
+    assert scheduler.build_daytime_schedule(channel_id, year, 2, "23:00:00", "07:00:00") is None
+    assert scheduler.build_daytime_schedule(channel_id, year, 2, "20:00:00", "02:00:00") is None   # primetime stays out

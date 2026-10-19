@@ -103,6 +103,15 @@ def main() -> None:
     eq_date, _ = Schedules.equivalent_date(args.year, sim_date.month, sim_date.day)
     dow = args.dow if args.dow is not None else eq_date.weekday()
 
+    # A window can't cross midnight: the slot grid is per calendar day, and Schedules.get_time_slots matches
+    # on time-of-day, so it would return nothing -- after which generate_time_slots would append another full
+    # random grid on every run. Run the two halves separately (e.g. 23:00 for 01:00, then the next date at 00:00).
+    h, m, sec = map(int, args.duration.split(':'))
+    start_h, start_m, start_s = map(int, args.start.split(':'))
+    if (start_h * 3600 + start_m * 60 + start_s) + (h * 3600 + m * 60 + sec) > 86400:
+        raise SystemExit(f"--start {args.start} --duration {args.duration} crosses midnight; run it as two windows "
+                         f"(through 24:00 on {args.sim_date}, then from 00:00 on the next date).")
+
     with get_db_connection() as db:
         # Instantiate class handlers with DB connection and hostname/year
         channel = Channels(db, args.hostname)

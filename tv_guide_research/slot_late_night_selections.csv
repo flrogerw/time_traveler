@@ -1,0 +1,127 @@
+show_id,show_name,late_night_blocks
+29,12 O'Clock High,ln_12 ln_2 ln_4
+9,Adam 12,ln_12 ln_2 ln_4
+19,Addams Family,ln_12 ln_2 ln_4
+310,Adventures of Jim Bowie,ln_12 ln_2 ln_4
+89,Adventures of Kit Carson,ln_12 ln_2 ln_4
+385,Adventures of Ozzie and Harriet,ln_12 ln_2 ln_4
+30,Alfred Hitchcock Presents,ln_12 ln_2 ln_4
+367,Amen,ln_12 ln_2 ln_4
+297,Annie Oakley,ln_12 ln_2 ln_4
+21,Avengers,ln_11 ln_12 ln_2 ln_4
+119,Banacek,ln_11 ln_12
+234,Baretta,ln_11 ln_12
+105,Barnaby Jones,ln_11 ln_12 ln_2 ln_4
+111,Barney Miller,ln_11 ln_12
+248,Battlestar Galactica,ln_11 ln_12 ln_2 ln_4
+255,Benson,ln_11 ln_12
+378,Beverly Hillbillies,ln_12 ln_2 ln_4
+217,Bewitched,ln_11
+181,Bob Newhart Show,ln_11 ln_12
+262,Branded,ln_12 ln_2 ln_4
+331,Buck Rogers in the 25th Century,ln_11 ln_12 ln_2 ln_4
+113,Cannon,ln_11 ln_12
+108,Charlie's Angels,ln_11 ln_12
+209,Cheers,ln_11 ln_12
+124,CHiPs,ln_11 ln_12
+101,Columbo,ln_11 ln_12
+242,Cosmos,ln_11 ln_12
+241,Cousteau Odyssey,ln_11 ln_12
+321,Danger Man,ln_11 ln_12 ln_2 ln_4
+207,Dark Shadows,ln_11 ln_12
+277,Decoy,ln_11 ln_12 ln_2 ln_4
+23,Dick Van Dyke Show,ln_11 ln_12
+120,Dragnet 1967,ln_11
+267,Dukes of Hazzard,ln_11 ln_12
+160,F.B.I.,ln_11 ln_12
+395,Fernwood Tonight,ln_11 ln_12
+339,Firing Line,ln_12 ln_2 ln_4
+298,Four Star Playhouse,ln_11 ln_12 ln_2 ln_4
+219,Freddy's Nightmares,ln_11 ln_12 ln_2 ln_4
+93,Fugitive,ln_11 ln_12 ln_2 ln_4
+184,Get Smart,ln_11 ln_12
+144,Gunsmoke,ln_11 ln_12
+251,Hardcastle and McCormick,ln_11 ln_12
+114,Harry O,ln_11 ln_12
+115,Hart To Hart,ln_11 ln_12
+28,Have Gun Will Travel,ln_11 ln_12 ln_2 ln_4
+100,Hawaii Five O,ln_11 ln_12
+307,Hawk,ln_11 ln_12
+213,Here's Lucy,ln_11 ln_12
+305,High Chaparral,ln_12 ln_2 ln_4
+125,Hill Street Blues,ln_11 ln_12
+333,Honeymooners,ln_11 ln_12 ln_2 ln_4
+228,Hotel,ln_11 ln_12
+106,Hunter,ln_11 ln_12
+5,I Love Lucy,ln_11 ln_12
+214,In Search of...,ln_11 ln_12
+117,Incredible Hulk,ln_11 ln_12
+239,Invisible Man,ln_11 ln_12 ln_2 ln_4
+40,Ironside,ln_11 ln_12
+317,It Takes a Thief,ln_11 ln_12
+118,Jake and the Fatman,ln_11 ln_12
+192,Jeffersons,ln_11 ln_12
+201,King of the Hill,ln_11 ln_12
+264,Knight Rider,ln_11 ln_12
+104,Kojak,ln_11 ln_12
+271,Kung Fu,ln_11 ln_12
+274,Land of the Giants,ln_11 ln_12 ln_2 ln_4
+400,Laramie,ln_12 ln_2 ln_4
+313,Life and Legend of Wyatt Earp,ln_11 ln_12 ln_2 ln_4
+227,Little House on the Prairie,ln_11 ln_12
+222,Lou Grant,ln_11 ln_12
+183,"Love, American Style",ln_11 ln_12
+200,M*A*S*H,ln_11 ln_12
+291,Mackenzie's Raiders,ln_11 ln_12 ln_2 ln_4
+265,Man From Atlantis,ln_11 ln_12
+69,Man from U.N.C.L.E.,ln_11 ln_12
+220,Mannix,ln_11 ln_12
+396,Mary Hartman Mary Hartman,ln_11 ln_12
+270,Mary Tyler Moore Show,ln_11 ln_12
+133,Maude,ln_11 ln_12
+22,Maverick,ln_12 ln_2 ln_4
+404,McCloud,ln_11 ln_12
+130,McMillan & Wife,ln_11 ln_12
+55,Mission Impossible,ln_11 ln_12
+128,Mod Squad,ln_11 ln_12
+18,Munsters,ln_11 ln_12
+406,My Little Margie,ln_12 ln_2 ln_4
+279,Naked City,ln_11 ln_12 ln_2 ln_4
+162,Night Court,ln_11 ln_12
+229,Night Gallery,ln_11 ln_12
+175,Odd Couple,ln_11 ln_12
+308,One Step Beyond,ln_11 ln_12 ln_2 ln_4
+253,Outer Limits,ln_11 ln_12 ln_2 ln_4
+32,Perry Mason,ln_11 ln_12
+237,Peter Gunn,ln_11 ln_12 ln_2 ln_4
+107,Police Woman,ln_11 ln_12
+34,Quincy M.E.,ln_11 ln_12
+243,Rawhide,ln_11 ln_12 ln_2 ln_4
+126,Rockford Files,ln_11 ln_12
+136,Rookies,ln_11 ln_12
+27,Sea Hunt,ln_11 ln_12 ln_2 ln_4
+320,Secret Agent,ln_11 ln_12 ln_2 ln_4
+146,Sixth Sense,ln_11 ln_12
+204,Soap,ln_11 ln_12
+61,Star Trek,ln_11 ln_12
+99,Starsky & Hutch,ln_11 ln_12
+156,Streets of San Francisco,ln_11 ln_12
+52,T. J. Hooker,ln_11 ln_12
+309,Tales from the Darkside,ln_11 ln_12 ln_2 ln_4
+194,Taxi,ln_11 ln_12
+280,The Hilarious House of Frightenstein,ln_11 ln_12
+327,The Prisoner,ln_11 ln_12 ln_2 ln_4
+390,The Rat Patrol,ln_12 ln_2 ln_4
+287,The Saint,ln_11 ln_12 ln_2 ln_4
+295,Three's a Crowd,ln_11 ln_12
+211,Thriller,ln_11 ln_12 ln_2 ln_4
+76,Topper,ln_11 ln_12 ln_2 ln_4
+127,Twilight Zone,ln_11 ln_12 ln_2 ln_4
+39,Vega$,ln_11 ln_12
+20,Voyage to the Bottom of the Sea,ln_11 ln_12
+387,Wagon Train,ln_12 ln_2 ln_4
+135,Wait Till Your Father Gets Home,ln_11 ln_12
+45,Wanted Dead or Alive,ln_11 ln_12 ln_2 ln_4
+102,WKRP in Cincinnati,ln_11 ln_12
+68,Yancy Derringer,ln_11 ln_12 ln_2 ln_4
+276,You Bet Your Life,ln_11 ln_12
