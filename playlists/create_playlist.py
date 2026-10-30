@@ -197,18 +197,23 @@ def main() -> None:
         # schedule_overrides only references the episodes table.)
         if args.holiday:
             holiday_episodes = episodes.get_episodes_for_holiday(args.holiday) or []
-            used_holiday_ids = set()
+            # Never reuse an episode another channel already holds (hard rule); avoid reusing a
+            # show across channels/slots whenever another fitting show exists (soft rule).
+            used_holiday_ids, used_holiday_shows = episodes.get_holiday_episodes_in_use(args.holiday, args.year)
             for slot in time_slots:
                 time_obj = datetime.datetime.strptime(slot['duration'], '%H:%M:%S')
                 slot_seconds = int(datetime.timedelta(hours=time_obj.hour, minutes=time_obj.minute,
                                                        seconds=time_obj.second).total_seconds())
-                candidates = [e for e in holiday_episodes if e['episode_id'] not in used_holiday_ids]
-                if not candidates:
+                fitting = [e for e in holiday_episodes
+                           if e['episode_id'] not in used_holiday_ids
+                           and abs(e['duration'] - slot_seconds) <= 600]  # within 10 minutes of the slot
+                if not fitting:
                     continue
-                best = min(candidates, key=lambda e: abs(e['duration'] - slot_seconds))
-                if abs(best['duration'] - slot_seconds) <= 600:  # within 10 minutes of the slot
-                    used_holiday_ids.add(best['episode_id'])
-                    schedule.override_slot(channel.id, eq_date, slot['start_time'], best['episode_id'])
+                fresh = [e for e in fitting if e['show_id'] not in used_holiday_shows]
+                best = min(fresh or fitting, key=lambda e: abs(e['duration'] - slot_seconds))
+                used_holiday_ids.add(best['episode_id'])
+                used_holiday_shows.add(best['show_id'])
+                schedule.override_slot(channel.id, eq_date, slot['start_time'], best['episode_id'])
 
         # Fill every slot through the normal engine -- holiday-pinned slots resolve via the
         # schedule_overrides priority check inside get_next_episode.

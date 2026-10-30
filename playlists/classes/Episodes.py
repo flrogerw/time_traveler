@@ -64,6 +64,28 @@ class Episodes:
             return formatted_record
 
 
+    def get_holiday_episodes_in_use(self, holiday, replication_year):
+        """
+        (episode_ids, show_ids) of `holiday` episodes already claimed on ANY channel: pinned in
+        schedule_overrides (not yet consumed) or already logged in broadcast_log for this
+        replication year. Holiday pinning runs once per channel, so without this each channel
+        independently picks the same best-fit episode.
+        """
+        try:
+            self.cur.execute(
+                """SELECT e.episode_id, e.show_id FROM episodes e
+                   WHERE e.episode_season = %s
+                     AND (e.episode_id IN (SELECT episode_id FROM schedule_overrides)
+                          OR e.episode_id IN (SELECT episode_id FROM broadcast_log
+                                              WHERE replication_year = %s));""",
+                (holiday, replication_year))
+            rows = self.cur.fetchall()
+        except Exception as e:
+            logging.error(f"Could not get holiday episodes in use: {e}")
+            self.db_connection.rollback()
+            return set(), set()
+        return {r['episode_id'] for r in rows}, {r['show_id'] for r in rows}
+
     def manage_time_slot_expansion(self, slot, dow, final_episodes, network, air_date=None, preferred_show_id=None):
         """
         Handle the expansion of time slots into 30-minute segments if no suitable show is found
