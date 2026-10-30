@@ -13,6 +13,37 @@ reference for anything not covered here. `DVD_RIPPING.md` documents the separate
 ingestion workflow (`dvdbackup` + `HandBrakeCLI`, plus MakeMKV as a fallback for damaged/oddly
 authored discs) used to source new episode files before they enter this pipeline.
 
+## Scheduler split (live scheduling moved out of this repo)
+
+Day-to-day scheduling now runs from `/Volumes/ExternalDrive/time_traveler_scheduler` (GitHub `flrogerw/time_traveler_scheduler`,
+cloned on the Mac mini at `/Users/roger/time_traveler_scheduler`): the planner, the multi-block calendar, the control panel
+on port 8060, and the conductor that runs the Kasa plug and playback. Its `CLAUDE.md` holds the standing rules and current
+design. This repo still owns ingestion, the commercial-break audit, the TV-guide research, and the original scheduler code;
+changes to scheduler behavior belong in the scheduler repo. The two `playlists/` trees have diverged (the scheduler's has
+exact-fit ads, per-block file names, `--no-signoff`, and the 3-year rerun rule), so don't copy files between them blindly.
+**This repo's `playlists/` is dead code** (the user migrated to the scheduler repo): never patch it for scheduler bugs, only
+the scheduler repo. The panel/mini run only the scheduler repo. The mini deploy is "commit, push, `git pull` in
+`/Users/roger/time_traveler_scheduler`, restart the panel only"; SSH to `roger@192.168.1.201` needs the user's password
+(not stored here, and failed attempts lock SSH out), so ask the user for it each session.
+
+## Halloween / holiday programming
+
+- `episodes.episode_season = 'halloween'` is the holiday tag (one value per episode, so an episode can't also be
+  `christmas`). Pinning in `create_playlist --holiday` only uses tagged episodes. 443 are tagged (2026-10-30, applied to the
+  DB at the user's explicit request): whole shows (Night Gallery, Thriller, Dark Shadows, Tales from the Darkside, Hammer
+  House, Kolchak, Circle of Fear, Ghost Story, Sixth Sense, Darkroom, Freddy's Nightmares, Addams Family, Munsters) plus hand-
+  picked episodes of Twilight Zone, Outer Limits, One Step Beyond, Hitchcock Presents, Tales of the Unexpected. Reviewed by
+  reading episode descriptions, not frames. The rollback script was deleted at the user's request.
+- The Hilarious House of Frightenstein (show 280) is never Halloween programming (user rule).
+- Scheduler-repo rules now enforced (commits `a9556c6`, `b9bb219`): an episode never airs twice on one date on any channel
+  (`get_next_episode` and `get_rerun_episode` check `broadcast_log` across channels); holiday pins skip episodes/shows already
+  claimed and prefer unused shows; holiday candidates are limited to shows that had started by `--year` (no M*A*S*H in 1971).
+  Movies and School House Rock interstitials still repeat by design.
+- Known: with an era-filtered pool a few shows (Night Gallery, Addams Family) take many slots, since the unused-show rule is
+  soft. A rebuild of a day needs that day's `broadcast_log` rows cleared first (the user runs that delete).
+- Test pattern that worked: run the real `create_playlist.main()` in-process with `commit` patched to a no-op and a rollback at
+  the end, then check `broadcast_log` for repeats (keep the harness in the scratchpad).
+
 ## Commands
 
 ```bash
@@ -25,10 +56,6 @@ python -c "import nltk; nltk.download('punkt_tab')"   # for utils/printable_tv_g
 # Generate an automatic schedule + playlist for one channel
 python -m playlists.create_playlist --hostname TV-ABC-7 --year 1971 \
   --sim-date 2026-10-22 --start 19:00:00 --duration 05:00:00
-
-# Experiment with scheduling WITHOUT touching the DB or the production .m3u (rolls back, temp output)
-python dryrun_create_playlist.py --hostname TV-SYN-5 --year 1976 --sim-date 2026-10-24 ...   # same args as create_playlist
-python dryrun_fill_ladder.py [--penalty N --adjacent --seeds N]   # read-only pool-exhaustion sim
 
 # Generate a playlist from a manually curated session
 python -m playlists.create_playlist_manual --session_name christmas-2025 --year 1971
@@ -145,7 +172,7 @@ per show for weekday and weekend) AND `shows.show_is_syndicated` -> filler ladde
   Migration `tv_guide_research/add_late_night.sql` (column + picks + all-era `fill_rules`) is proposed, NOT applied until the user says so.
 - **Filler** (`resolve_filler`): when a slot's categories have no unused eligible show -> adjacent daypart, related
   category, rerun on same channel, rerun from another channel, back-to-back as last resort; `use_filler=False` restores
-  old behavior. `dryrun_fill_ladder.py` mirrors it in memory -- keep the two in sync.
+  old behavior.
 - **Duration-aware grid** (`--duration-aware`, opt-in; writes `time_slot_schedules`): slot length = smallest
   `show_duration` option >=30 min that holds the show's typical episode (`EPISODE_FIT_TOLERANCE` 1.05). Episode pick
   prefers one that fits the slot; `get_true_duration` reads `episodes` (+ `commercial_breaks`), not `episode_durations`.
@@ -251,6 +278,10 @@ Permanent scripts (repo root, never scratchpad):
   a `MANUAL` tag) to this file's per-show table, and deletes `batch_runs/<show_id>/`. To discard
   in-progress review decisions for a show and start over, delete
   `batch_runs/<show_id>/human_review.json`.
+
+- `break_pattern_outliers.py` -- read-only statistical triage of the legacy `commercial_breaks` table: a break-position template per show and
+  per season (each compared only to itself; seasons vs their own show reported as drift), then ranked outliers (missing/extra breaks, close pairs, out-of-range, no breaks) in `break_pattern_analysis/`. It finds episodes that
+  differ from their show's pattern; it does not verify anything.
 
 `show_reprocess_queue.json` (repo root) is a DB-derived snapshot classifying every show into
 `untouched` (never processed), `detection_risk_1_125` / `detection_risk_126_152` (processed
